@@ -634,7 +634,9 @@ footer {
 
 @media (max-width: 600px) {
   .container {
-    width: calc(100% - 28px);
+    width: 100%;              /* 宽度完全占满 */
+    padding-left: 4px;        /* 极小边距，防止贴边太紧 */
+    padding-right: 4px;
   }
 
   .nav {
@@ -722,6 +724,11 @@ footer {
 }
 
 @media (max-width: 480px) {
+  .container {
+    padding-left: 4px;        /* 保持一致 */
+    padding-right: 4px;
+  }
+
   .hero h1 {
     font-size: 42px;
     letter-spacing: -2px;
@@ -824,6 +831,11 @@ footer {
 }
 
 @media (max-width: 400px) {
+  .container {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
   .hero h1 {
     font-size: 34px;
     letter-spacing: -1px;
