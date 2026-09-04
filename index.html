@@ -112,7 +112,6 @@ header {
   border-radius: 999px;
   font-size: 12px;
   font-weight: 800;
-  min-height: 36px; /* 增大触摸区域 */
 }
 
 .language button.active {
@@ -140,7 +139,6 @@ header {
   border: none;
   cursor: pointer;
   z-index: 1001;
-  padding: 4px; /* 增加点击区域 */
 }
 
 .menu-toggle span {
@@ -245,8 +243,6 @@ header {
   font-size: 14px;
   font-weight: 900;
   transition: .2s;
-  min-height: 52px; /* 保证点击区域 */
-  min-width: 48px;
 }
 
 .btn:hover {
@@ -338,8 +334,6 @@ section {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 18px;
-  flex-wrap: wrap;
-  gap: 8px;
 }
 
 .market-status {
@@ -446,8 +440,6 @@ section {
   border-radius: 8px;
   cursor: pointer;
   white-space: nowrap;
-  min-height: 44px; /* 增大触摸区域 */
-  min-width: 44px;
 }
 
 /* =========================
@@ -548,6 +540,7 @@ footer {
    MOBILE RESPONSIVE
 ========================= */
 
+/* 平板及以下 */
 @media (max-width: 900px) {
   .menu-toggle {
     display: flex;
@@ -570,6 +563,7 @@ footer {
     opacity: 0;
     pointer-events: none;
     transition: 0.3s ease-in-out;
+    z-index: 1000;
   }
 
   .nav-links.active {
@@ -583,7 +577,7 @@ footer {
     font-size: 18px;
     font-weight: 600;
     width: 100%;
-    padding: 8px 0;
+    padding: 10px 0;
   }
 
   .nav-buy {
@@ -596,11 +590,10 @@ footer {
   .language {
     width: 100%;
     justify-content: center;
-    padding: 6px;
   }
   .language button {
+    padding: 10px 16px;
     font-size: 14px;
-    padding: 8px 14px;
   }
 
   .stats {
@@ -616,6 +609,7 @@ footer {
   }
 }
 
+/* 手机大屏（600px 以下） */
 @media (max-width: 600px) {
   .container {
     width: calc(100% - 28px);
@@ -629,31 +623,31 @@ footer {
     padding: 70px 0 60px;
     min-height: auto;
   }
-
   .hero h1 {
     font-size: 58px;
     letter-spacing: -3px;
   }
-
   .hero h2 {
     font-size: 24px;
   }
-
   .hero p {
     font-size: 15px;
   }
 
   .stats {
-    grid-template-columns: 1fr;  /* 单列更清晰 */
-    gap: 12px;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
   }
   .stat {
     min-height: auto;
     padding: 20px;
   }
+  .stat-value {
+    font-size: 24px;
+  }
 
   .market-data {
-    grid-template-columns: 1fr 1fr;  /* 两列 */
+    grid-template-columns: 1fr 1fr;
   }
 
   .token-box,
@@ -663,14 +657,14 @@ footer {
   }
 
   .token-row {
-    grid-template-columns: 1fr;  /* 改为上下结构 */
+    grid-template-columns: 1fr;
     gap: 6px;
   }
   .token-row .copy {
     width: 100%;
     text-align: center;
     justify-content: center;
-    margin-top: 4px;
+    padding: 12px;
   }
 
   .trade-card h3 {
@@ -680,6 +674,7 @@ footer {
   .btn {
     width: 100%;
     justify-content: center;
+    padding: 16px 22px;
   }
   .buttons {
     flex-direction: column;
@@ -704,26 +699,126 @@ footer {
   }
 }
 
-/* 极窄屏额外优化 */
-@media (max-width: 420px) {
+/* 手机小屏（480px 以下）– 主力优化 */
+@media (max-width: 480px) {
   .hero h1 {
     font-size: 42px;
     letter-spacing: -2px;
+    margin-bottom: 20px;
   }
   .hero h2 {
     font-size: 20px;
   }
-  .market-data {
-    grid-template-columns: 1fr;  /* 单列 */
+  .hero p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .badge {
+    font-size: 10px;
+    padding: 5px 10px;
+    margin-bottom: 18px;
+  }
+
+  .section-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;   /* 单列更清晰 */
+    gap: 8px;
+  }
+  .stat {
+    padding: 16px 18px;
   }
   .stat-value {
     font-size: 22px;
   }
-  .section-title {
-    font-size: 28px;
+
+  .market-data {
+    grid-template-columns: 1fr 1fr; /* 两列合理利用宽度 */
+    gap: 8px;
   }
+  .market-item {
+    padding: 12px;
+  }
+  .market-item strong {
+    font-size: 14px;
+  }
+
   .token-box {
     padding: 16px;
+  }
+  .token-row {
+    padding: 14px 0;
+  }
+  .token-value {
+    font-size: 12px;
+  }
+  .copy {
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .trade-card {
+    padding: 16px;
+  }
+  .trade-card h3 {
+    font-size: 24px;
+  }
+  .trade-card p {
+    font-size: 14px;
+  }
+  .trade-info {
+    padding: 16px;
+  }
+  .info-row {
+    font-size: 12px;
+    padding: 10px 0;
+  }
+
+  .card {
+    padding: 20px;
+  }
+  .card h3 {
+    font-size: 22px;
+  }
+  .card p {
+    font-size: 14px;
+  }
+
+  .community {
+    padding: 60px 0;
+  }
+  .community h2 {
+    font-size: 32px;
+  }
+  .community p {
+    font-size: 14px;
+  }
+
+  .footer {
+    font-size: 12px;
+  }
+}
+
+/* 极窄屏（400px 以下） */
+@media (max-width: 400px) {
+  .hero h1 {
+    font-size: 34px;
+    letter-spacing: -1px;
+  }
+  .hero h2 {
+    font-size: 18px;
+  }
+  .market-data {
+    grid-template-columns: 1fr;   /* 单列避免拥挤 */
+  }
+  .stat-value {
+    font-size: 20px;
+  }
+  .section-title {
+    font-size: 24px;
   }
 }
 </style>
