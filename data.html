@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChiLi Token - 链上实时数据看板</title>
+    <!-- 引入 Tailwind CSS 让页面更美观 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Ethers.js 用于读取链上数据 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col justify-between">
+
+    <!-- 顶部导航 -->
+    <header class="p-6 border-b border-gray-800 flex justify-between items-center max-w-4xl mx-auto w-full">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center font-bold text-xl shadow-lg shadow-red-500/50">🌶️</div>
+            <span class="text-xl font-bold tracking-wider">ChiLi (CHILI)</span>
+        </div>
+        <div class="space-x-4">
+            <!-- 返回主页的链接 -->
+            <a href="./index.html" class="text-gray-400 hover:text-white transition">返回首页</a>
+            <a href="https://bscscan.com/token/0xEd3Caca4903256fB3E4997BC0C7830D19Fb35F7c" target="_blank" class="text-red-400 hover:text-red-300 transition">BscScan ↗</a>
+        </div>
+    </header>
+
+    <!-- 主体内容 -->
+    <main class="max-w-4xl mx-auto px-6 py-12 w-full flex-grow">
+        <div class="text-center mb-10">
+            <h1 class="text-3xl md:text-5xl font-extrabold mb-3 bg-gradient-to-r from-red-500 to-yellow-500 bg-clip-text text-transparent">
+                实时链上与行情数据看板
+            </h1>
+            <p class="text-gray-400 text-sm">
+                数据实时同步自 BSC 链上合约及去中心化行情接口
+            </p>
+        </div>
+
+        <!-- 实时数据看板 -->
+        <div class="bg-gray-800/50 border border-gray-700/50 rounded-2xl p-6 md:p-8 backdrop-blur-sm shadow-xl">
+            <h2 class="text-lg font-bold mb-6 flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-green-500 animate-ping"></span>
+                CHILI 监控面板
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- 价格卡片 -->
+                <div class="bg-gray-800 p-5 rounded-xl border border-gray-700">
+                    <p class="text-gray-400 text-xs uppercase tracking-wider mb-1">当前价格 (USD)</p>
+                    <p id="price" class="text-2xl font-bold text-green-400">加载中...</p>
+                </div>
+                <!-- 24h 交易量 -->
+                <div class="bg-gray-800 p-5 rounded-xl border border-gray-700">
+                    <p class="text-gray-400 text-xs uppercase tracking-wider mb-1">24h 交易量</p>
+                    <p id="volume" class="text-2xl font-bold text-blue-400">加载中...</p>
+                </div>
+                <!-- 总供应量 -->
+                <div class="bg-gray-800 p-5 rounded-xl border border-gray-700">
+                    <p class="text-gray-400 text-xs uppercase tracking-wider mb-1">链上总供应量</p>
+                    <p id="supply" class="text-lg font-bold text-yellow-400">读取中...</p>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-6 border-t border-gray-700/50 text-xs text-gray-500 text-center break-all">
+                合约地址: <a href="https://bscscan.com/token/0xEd3Caca4903256fB3E4997BC0C7830D19Fb35F7c" target="_blank" class="font-mono text-gray-400 hover:text-red-400 underline">0xEd3Caca4903256fB3E4997BC0C7830D19Fb35F7c</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="border-t border-gray-800 py-6 text-center text-gray-500 text-sm">
+        <p>&copy; 2026 ChiLi Token. All rights reserved.</p>
+    </footer>
+
+    <!-- 动态数据加载脚本 -->
+    <script>
+        const tokenAddress = "0xEd3Caca4903256fB3E4997BC0C7830D19Fb35F7c";
+        
+        // 1. 获取价格和交易量
+        async function fetchMarketData() {
+            try {
+                let response = await fetch(`https://api.dexscreener.com/latest/dex/tokens/${tokenAddress}`);
+                let data = await response.json();
+                
+                if (data.pairs && data.pairs.length > 0) {
+                    let pair = data.pairs[0];
+                    document.getElementById('price').innerText = "$" + pair.priceUsd;
+                    document.getElementById('volume').innerText = "$" + Number(pair.volume.h24 || 0).toLocaleString();
+                } else {
+                    document.getElementById('price').innerText = "暂无流动性池";
+                    document.getElementById('volume').innerText = "$0";
+                }
+            } catch (error) {
+                document.getElementById('price').innerText = "获取失败";
+                document.getElementById('volume').innerText = "获取失败";
+            }
+        }
+
+        // 2. 获取链上总供应量
+        async function fetchOnChainSupply() {
+            try {
+                const provider = new ethers.providers.JsonRpcProvider("https://bsc-dataseed.binance.org/");
+                const abi = [
+                    "function totalSupply() view returns (uint256)",
+                    "function decimals() view returns (uint8)"
+                ];
+                const contract = new ethers.Contract(tokenAddress, abi, provider);
+                
+                const decimals = await contract.decimals();
+                const rawSupply = await contract.totalSupply();
+                const formattedSupply = ethers.utils.formatUnits(rawSupply, decimals);
+
+                document.getElementById('supply').innerText = Number(formattedSupply).toLocaleString();
+            } catch (error) {
+                document.getElementById('supply').innerText = "读取失败";
+            }
+        }
+
+        fetchMarketData();
+        fetchOnChainSupply();
+    </script>
+</body>
+</html>
