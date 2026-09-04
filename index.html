@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CHILI | BNB Smart Chain</title>
+
+<meta name="description" content="CHILI - BNB Smart Chain 社区代币项目">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:
+        Arial,
+        "Microsoft YaHei",
+        "PingFang SC",
+        sans-serif;
+    background:#07080b;
+    color:#fff;
+    line-height:1.6;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+.container{
+    width:90%;
+    max-width:1180px;
+    margin:auto;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(7,8,11,.88);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid #242832;
+}
+
+.nav{
+    height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:900;
+    letter-spacing:.5px;
+}
+
+.logo span{
+    color:#ff4b2b;
+}
+
+.menu{
+    display:flex;
+    gap:28px;
+    color:#9da5b3;
+    font-size:14px;
+}
+
+.menu a:hover{
+    color:#ff5938;
+}
+
+.nav-button{
+    background:#ff4b2b;
+    padding:10px 18px;
+    border-radius:10px;
+    font-size:14px;
+    font-weight:bold;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:720px;
+    display:flex;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 78% 45%,
+            rgba(255,75,43,.22),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(255,130,50,.08),
+            transparent 30%
+        );
+}
+
+.hero-content{
+    width:65%;
+    position:relative;
+    z-index:2;
+}
+
+.badge{
+    display:inline-block;
+    padding:7px 13px;
+    border:1px solid #603126;
+    border-radius:30px;
+    color:#ff7258;
+    font-size:12px;
+    margin-bottom:25px;
+}
+
+.hero h1{
+    font-size:clamp(65px,11vw,135px);
+    line-height:.88;
+    letter-spacing:-5px;
+    margin-bottom:25px;
+}
+
+.hero h1 span{
+    color:#ff4b2b;
+}
+
+.hero h2{
+    font-size:30px;
+    margin-bottom:14px;
+}
+
+.hero p{
+    max-width:600px;
+    color:#9da5b3;
+    font-size:17px;
+}
+
+.buttons{
+    display:flex;
+    gap:12px;
+    margin-top:32px;
+    flex-wrap:wrap;
+}
+
+.button{
+    display:inline-block;
+    padding:14px 23px;
+    border-radius:12px;
+    background:#15181e;
+    border:1px solid #343943;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.button:hover{
+    transform:translateY(-2px);
+    border-color:#ff4b2b;
+}
+
+.button.primary{
+    background:#ff4b2b;
+    border-color:#ff4b2b;
+}
+
+.chili{
+    position:absolute;
+    right:4%;
+    top:50%;
+    transform:translateY(-50%) rotate(-18deg);
+    font-size:250px;
+    filter:drop-shadow(0 25px 60px rgba(255,70,30,.32));
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+    border-top:1px solid #252932;
+    border-bottom:1px solid #252932;
+    background:#101217;
+}
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+}
+
+.stat{
+    padding:28px 20px;
+    border-right:1px solid #252932;
+}
+
+.stat:last-child{
+    border-right:0;
+}
+
+.stat-title{
+    display:block;
+    color:#858e9c;
+    font-size:12px;
+}
+
+.stat-value{
+    display:block;
+    font-size:22px;
+    font-weight:bold;
+    margin-top:5px;
+}
+
+.pending{
+    color:#ff765c;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+section{
+    padding:100px 0;
+}
+
+.section-title{
+    margin-bottom:45px;
+}
+
+.section-number{
+    color:#ff4b2b;
+    font-size:13px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+.section-title h2{
+    font-size:45px;
+    margin-top:7px;
+}
+
+.intro{
+    max-width:850px;
+    color:#b9c0ca;
+    font-size:22px;
+    margin-bottom:45px;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.card{
+    padding:30px;
+    border-radius:18px;
+    background:#111419;
+    border:1px solid #292e38;
+}
+
+.card-icon{
+    font-size:34px;
+    margin-bottom:18px;
+}
+
+.card h3{
+    font-size:21px;
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#9099a7;
+}
+
+/* =========================
+   TRADE
+========================= */
+
+.trade-section{
+    background:#0d1015;
+}
+
+.trade-box{
+    max-width:760px;
+    padding:35px;
+    border-radius:20px;
+    background:#151920;
+    border:1px solid #303641;
+}
+
+.pair{
+    color:#8e97a6;
+    font-size:13px;
+}
+
+.pair-name{
+    font-size:32px;
+    font-weight:bold;
+    margin:5px 0 20px;
+}
+
+.info-box{
+    padding:17px;
+    background:#0d1015;
+    border-left:3px solid #ff4b2b;
+    color:#a6afbc;
+    font-size:14px;
+}
+
+/* =========================
+   ON CHAIN
+========================= */
+
+.live-list{
+    border:1px solid #292e38;
+    border-radius:18px;
+    overflow:hidden;
+}
+
+.live-row{
+    display:grid;
+    grid-template-columns:120px 1fr 130px 100px;
+    align-items:center;
+    padding:18px 22px;
+    border-bottom:1px solid #252a32;
+}
+
+.live-row:last-child{
+    border-bottom:0;
+}
+
+.buy{
+    color:#45df94;
+}
+
+.sell{
+    color:#ff6d6d;
+}
+
+.live-address{
+    color:#aab2bf;
+}
+
+.live-time{
+    color:#6f7887;
+    font-size:12px;
+}
+
+/* =========================
+   COMMUNITY
+========================= */
+
+.community{
+    padding:90px 0;
+    background:
+        radial-gradient(
+            circle at 80% 50%,
+            rgba(255,75,43,.18),
+            transparent 32%
+        ),
+        #111218;
+}
+
+.community-box{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:40px;
+}
+
+.community h2{
+    font-size:45px;
+    line-height:1.1;
+}
+
+/* =========================
+   ROADMAP
+========================= */
+
+.roadmap{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.phase{
+    padding:28px;
+    border-radius:18px;
+    background:#111419;
+    border:1px solid #292e38;
+}
+
+.phase-number{
+    color:#ff4b2b;
+    font-weight:bold;
+}
+
+.phase h3{
+    margin:8px 0;
+    font-size:22px;
+}
+
+.phase p{
+    color:#929baa;
+}
+
+/* =========================
+   CONTRACT
+========================= */
+
+.contract{
+    text-align:center;
+    background:#0d1015;
+}
+
+.contract h2{
+    font-size:40px;
+    margin-top:8px;
+}
+
+.contract-address{
+    max-width:900px;
+    margin:25px auto;
+    padding:18px;
+    border-radius:12px;
+    background:#080a0e;
+    border:1px solid #303641;
+    color:#c5ccd6;
+    font-family:monospace;
+    font-size:14px;
+    overflow-x:auto;
+    word-break:break-all;
+}
+
+.contract-note{
+    color:#737d8d;
+    font-size:13px;
+    margin-top:20px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    border-top:1px solid #252932;
+    padding:35px 0;
+    color:#737c8b;
+}
+
+.footer-content{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:800px){
+
+    .menu{
+        display:none;
+    }
+
+    .hero{
+        min-height:680px;
+    }
+
+    .hero-content{
+        width:100%;
+    }
+
+    .chili{
+        right:-30px;
+        top:180px;
+        font-size:150px;
+        opacity:.3;
+    }
+
+    .stats-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .stat{
+        border-bottom:1px solid #252932;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .roadmap{
+        grid-template-columns:1fr;
+    }
+
+    .section-title h2{
+        font-size:34px;
+    }
+
+    .intro{
+        font-size:19px;
+    }
+
+    .community-box{
+        display:block;
+    }
+
+    .community h2{
+        font-size:34px;
+        margin-bottom:30px;
+    }
+
+    .live-row{
+        grid-template-columns:1fr 1fr;
+        gap:8px;
+    }
+
+    .footer-content{
+        flex-direction:column;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<header>
+
+<div class="container nav">
+
+<a href="#home" class="logo">
+🌶️ <span>CHILI</span>
+</a>
+
+<nav class="menu">
+
+<a href="#about">关于 CHILI</a> <a href="#market">行情</a> <a href="#trade">交易</a> <a href="#ecosystem">生态</a> <a href="#roadmap">路线</a>
+
+</nav>
+
+<a href="#trade" class="nav-button">
+购买 CHILI
+</a>
+
+</div>
+
+</header>
+
+<main>
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="home">
+
+<div class="container">
+
+<div class="hero-content">
+
+<div class="badge">
+BNB SMART CHAIN · CHILI
+</div>
+
+<h1>
+<span>CHILI</span>
+</h1>
+
+<h2>
+属于社区的 CHILI
+</h2>
+
+<p>
+CHILI 是一个部署在 BNB Smart Chain
+上的社区代币项目，围绕社区、链上交易
+以及 Telegram 工具持续建设。
+</p>
+
+<div class="buttons">
+
+<a href="#trade" class="button primary">
+🌶️ 购买 CHILI
+</a>
+
+<a href="#community" class="button">
+加入社区
+</a>
+
+</div>
+
+</div>
+
+<div class="chili">
+🌶️
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================
+     MARKET
+========================= -->
+
+<section class="stats" id="market">
+
+<div class="container stats-grid">
+
+<div class="stat">
+
+<span class="stat-title">
+当前价格
+</span>
+
+<span class="stat-value pending">
+待接入
+</span>
+
+</div>
+
+<div class="stat">
+
+<span class="stat-title">
+24H 涨跌
+</span>
+
+<span class="stat-value pending">
+待接入
+</span>
+
+</div>
+
+<div class="stat">
+
+<span class="stat-title">
+流动性
+</span>
+
+<span class="stat-value pending">
+待接入
+</span>
+
+</div>
+
+<div class="stat">
+
+<span class="stat-title">
+持币地址
+</span>
+
+<span class="stat-value pending">
+待接入
+</span>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section id="about">
+
+<div class="container">
+
+<div class="section-title">
+
+<div class="section-number">
+01 · ABOUT
+</div>
+
+<h2>
+什么是 CHILI？
+</h2>
+
+</div>
+
+<p class="intro">
+
+CHILI 是一个部署在 BNB Smart Chain
+上的社区代币项目，致力于围绕社区互动、
+链上数据和 Telegram 社区工具逐步建设。
+
+</p>
+
+<div class="cards">
+
+<div class="card">
+
+<div class="card-icon">
+🌶️
+</div>
+
+<h3>
+社区
+</h3>
+
+<p>
+建立属于 CHILI 社区成员的交流空间，
+通过社区互动和活动推动项目持续发展。
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="card-icon">
+🔥
+</div>
+
+<h3>
+链上交易
+</h3>
+
+<p>
+CHILI 在 BNB Smart Chain 上运行，
+用户可以通过去中心化交易平台进行链上交易。
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="card-icon">
+🤖
+</div>
+
+<h3>
+Telegram 工具
+</h3>
+
+<p>
+持续建设行情、交易播报、持币数据
+以及其他社区工具。
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================
+     TRADE
+========================= -->
+
+<section class="trade-section" id="trade">
+
+<div class="container">
+
+<div class="section-title">
+
+<div class="section-number">
+02 · TRADE
+</div>
+
+<h2>
+交易 CHILI
+</h2>
+
+</div>
+
+<div class="trade-box">
+
+<div class="pair">
+交易对
+</div>
+
+<div class="pair-name">
+CHILI / USDT
+</div>
+
+<div class="info-box">
+
+CHILI 部署在 BNB Smart Chain。
+正式交易入口将在这里连接实际的
+CHILI / USDT 去中心化交易池。
+
+用户通过自己的钱包完成交易签名，
+项目方不会要求用户提供钱包私钥。
+
+</div>
+
+<div class="buttons">
+
+<a
+href="#"
+class="button primary"
+onclick="showMessage('正式版这里连接 CHILI / USDT 的真实 DEX 交易页面。'); return false;"
+
+>
+
+购买 CHILI </a>
+
+<a
+href="#"
+class="button"
+onclick="showMessage('正式版这里连接 CHILI / USDT 的真实 DEX 交易页面。'); return false;"
+
+>
+
+出售 CHILI </a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================
+     ON CHAIN
+========================= -->
+
+<section>
+
+<div class="container">
+
+<div class="section-title">
+
+<div class="section-number">
+03 · ON-CHAIN
+</div>
+
+<h2>
+链上交易
+</h2>
+
+</div>
+
+<div class="live-list">
+
+<div class="live-row">
+
+<strong class="buy">
+🟢 买入
+</strong>
+
+<span class="live-address">
+等待真实链上数据
+</span>
+
+<strong>
+—
+</strong>
+
+<span class="live-time">
+—
+</span>
+
+</div>
+
+<div class="live-row">
+
+<strong class="buy">
+🟢 买入
+</strong>
+
+<span class="live-address">
+等待真实链上数据
+</span>
+
+<strong>
+—
+</strong>
+
+<span class="live-time">
+—
+</span>
+
+</div>
+
+<div class="live-row">
+
+<strong class="sell">
+🔴 卖出
+</strong>
+
+<span class="live-address">
+等待真实链上数据
+</span>
+
+<strong>
+—
+</strong>
+
+<span class="live-time">
+—
+</span>
+
+</div>
+
+</div>
+
+<p style="
+color:#737d8d;
+margin-top:15px;
+font-size:13px;
+">
+
+正式版接入 BSC 链上数据后，
+这里显示真实 CHILI 交易记录。
+
+</p>
+
+</div>
+
+</section>
+
+<!-- =========================
+     ECOSYSTEM
+========================= -->
+
+<section id="ecosystem">
+
+<div class="container">
+
+<div class="section-title">
+
+<div class="section-number">
+04 · ECOSYSTEM
+</div>
+
+<h2>
+CHILI 生态
+</h2>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<div class="card-icon">
+🤖
+</div>
+
+<h3>
+CHILI Telegram 机器人
+</h3>
+
+<p>
+提供社区行情、交易播报、
+持币数据以及社区工具。
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="card-icon">
+💱
+</div>
+
+<h3>
+CHILI 交易
+</h3>
+
+<p>
+连接去中心化交易平台，
+让用户可以通过自己的钱包参与 CHILI 交易。
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="card-icon">
+🎮
+</div>
+
+<h3>
+社区互动
+</h3>
+
+<p>
+未来逐步加入社区活动、
+互动玩法以及其他 CHILI 功能。
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================
+     COMMUNITY
+========================= -->
+
+<section class="community" id="community">
+
+<div class="container community-box">
+
+<div>
+
+<div class="section-number">
+CHILI COMMUNITY
+</div>
+
+<h2>
+
+一个人发现 CHILI，<br>
+一群人让 CHILI 成长。
+
+</h2>
+
+</div>
+
+<a
+href="#"
+class="button primary"
+onclick="showMessage('请在正式版中替换为你的 Telegram 社区链接。'); return false;"
+
+>
+
+加入 Telegram
+
+</a>
+
+</div>
+
+</section>
+
+<!-- =========================
+     ROADMAP
+========================= -->
+
+<section id="roadmap">
+
+<div class="container">
+
+<div class="section-title">
+
+<div class="section-number">
+05 · ROADMAP
+</div>
+
+<h2>
+发展路线
+</h2>
+
+</div>
+
+<div class="roadmap">
+
+<div class="phase">
+
+<div class="phase-number">
+PHASE 01
+</div>
+
+<h3>
+项目启动
+</h3>
+
+<p>
+
+✓ CHILI 发布<br>
+✓ BNB Smart Chain<br>
+✓ 流动性建立<br>
+✓ 官方网站<br>
+✓ Telegram 社区
+
+</p>
+
+</div>
+
+<div class="phase">
+
+<div class="phase-number">
+PHASE 02
+</div>
+
+<h3>
+社区建设
+</h3>
+
+<p>
+
+✓ 社区发展<br>
+✓ Telegram 机器人<br>
+✓ 交易播报<br>
+✓ 行情数据
+
+</p>
+
+</div>
+
+<div class="phase">
+
+<div class="phase-number">
+PHASE 03
+</div>
+
+<h3>
+生态建设
+</h3>
+
+<p>
+
+○ 社区奖励<br>
+○ 社区活动<br>
+○ 游戏 / 娱乐<br>
+○ CHILI 工具
+
+</p>
+
+</div>
+
+<div class="phase">
+
+<div class="phase-number">
+PHASE 04
+</div>
+
+<h3>
+持续发展
+</h3>
+
+<p>
+
+○ 更多合作<br>
+○ 更多应用<br>
+○ 更多社区<br>
+○ 全球化发展
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================
+     CONTRACT
+========================= -->
+
+<section class="contract">
+
+<div class="container">
+
+<div class="section-number">
+BNB SMART CHAIN
+</div>
+
+<h2>
+CHILI 合约
+</h2>
+
+<div class="contract-address">
+
+0xEd3Caca4903256fB3E4997BC0C7830D19Fb35F7c
+
+</div>
+
+<div class="buttons" style="justify-content:center;">
+
+<a
+class="button primary"
+href="https://bscscan.com/address/0xEd3Caca4903256fB3E4997BC0C7830D19Fb35F7c"
+target="_blank"
+rel="noopener noreferrer"
+
+>
+
+在 BscScan 查看
+
+</a>
+
+<a
+class="button"
+href="#"
+onclick="showMessage('正式版这里连接真实 CHILI / USDT 流动性池。'); return false;"
+
+>
+
+查看交易池
+
+</a>
+
+</div>
+
+<p class="contract-note">
+
+Network: BNB Smart Chain<br>
+
+Contract:
+0xEd3Caca4903256fB3E4997BC0C7830D19Fb35F7c
+
+</p>
+
+</div>
+
+</section>
+
+</main>
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+<div class="container footer-content">
+
+<div>
+
+<strong>
+🌶️ CHILI
+</strong>
+
+<br>
+
+社区 · 交易 · 娱乐
+
+</div>
+
+<div>
+BNB Smart Chain
+</div>
+
+<div>
+© 2026 CHILI
+</div>
+
+</div>
+
+</footer>
+
+<script>
+
+function showMessage(message){
+
+    alert(message);
+
+}
+
+</script>
+
+</body>
+</html>
