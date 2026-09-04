@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <title>CHILI — BNB Chain</title>
 
@@ -13,6 +13,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -20,11 +21,12 @@ html {
 }
 
 body {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background: radial-gradient(circle at 50% -10%, rgba(255, 75, 20, 0.20), transparent 38%), #080808;
   color: #fff;
   line-height: 1.6;
   overflow-x: hidden;
+  width: 100%;
 }
 
 a {
@@ -37,12 +39,12 @@ button {
 }
 
 .container {
-  width: min(1180px, calc(100% - 40px));
+  width: min(1180px, calc(100% - 32px));
   margin: auto;
 }
 
 /* =========================
-   HEADER
+   HEADER & MOBILE NAV
 ========================= */
 
 header {
@@ -50,12 +52,13 @@ header {
   top: 0;
   z-index: 1000;
   backdrop-filter: blur(18px);
-  background: rgba(8, 8, 8, 0.82);
-  border-bottom: 1px solid rgba(255,255,255,0.07);
+  -webkit-backdrop-filter: blur(18px);
+  background: rgba(8, 8, 8, 0.85);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
 .nav {
-  height: 76px;
+  height: 68px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -65,26 +68,27 @@ header {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 25px;
-  font-weight: 1000;
-  letter-spacing: -1px;
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
 }
 
 .logo-mark {
-  width: 39px;
-  height: 39px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
+  border-radius: 10px;
   background: linear-gradient(135deg, #ff4212, #ff9200);
-  box-shadow: 0 0 30px rgba(255,75,20,0.30);
+  box-shadow: 0 0 20px rgba(255,75,20,0.35);
+  font-size: 18px;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
   color: #aaa;
   font-size: 14px;
 }
@@ -96,22 +100,25 @@ header {
 .language {
   display: flex;
   align-items: center;
-  gap: 5px;
-  padding: 5px;
+  gap: 4px;
+  padding: 4px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
 }
 
 .language button {
   border: none;
   background: transparent;
-  color: #777;
+  color: #888;
   cursor: pointer;
-  padding: 6px 9px;
+  padding: 6px 12px;
   border-radius: 999px;
   font-size: 12px;
   font-weight: 800;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
 }
 
 .language button.active {
@@ -120,34 +127,53 @@ header {
 }
 
 .nav-buy {
-  padding: 10px 18px;
+  padding: 10px 20px;
   border-radius: 999px;
   color: #fff !important;
   background: linear-gradient(135deg, #ff4212, #ff8500);
-  font-weight: 900;
-  box-shadow: 0 10px 30px rgba(255,75,15,0.18);
+  font-weight: 800;
+  box-shadow: 0 8px 25px rgba(255,75,15,0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
 }
 
-/* 移动端菜单按钮 (默认隐藏) */
+/* 汉堡包按钮 (Mobile Only) */
 .menu-toggle {
   display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 28px;
-  height: 20px;
-  background: transparent;
-  border: none;
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
   cursor: pointer;
   z-index: 1001;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .menu-toggle span {
   display: block;
-  width: 100%;
+  width: 20px;
   height: 2px;
   background: #fff;
   border-radius: 2px;
-  transition: 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.menu-toggle.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* =========================
@@ -155,23 +181,8 @@ header {
 ========================= */
 
 .hero {
-  min-height: 730px;
-  display: flex;
-  align-items: center;
-  padding: 100px 0 90px;
+  padding: 60px 0 50px;
   position: relative;
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  right: -230px;
-  top: 40px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,70,15,0.16), transparent 70%);
-  pointer-events: none;
 }
 
 .hero-content {
@@ -182,55 +193,52 @@ header {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 7px 13px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.035);
+  padding: 6px 14px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
   border-radius: 999px;
-  color: #aaa;
+  color: #bbb;
   font-size: 12px;
-  font-weight: 800;
-  margin-bottom: 25px;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
 
 .dot {
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: #43df76;
-  box-shadow: 0 0 12px rgba(67,223,118,0.8);
+  box-shadow: 0 0 10px rgba(67,223,118,0.8);
 }
 
 .hero h1 {
-  font-size: clamp(64px, 13vw, 155px);
-  line-height: .82;
-  letter-spacing: -6px;
-  font-weight: 1000;
-  margin-bottom: 32px;
-  background: linear-gradient(135deg, #fff 20%, #ff5a1a 70%, #ff9b00);
+  font-size: clamp(48px, 15vw, 120px);
+  line-height: 0.9;
+  letter-spacing: -2px;
+  font-weight: 900;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #fff 30%, #ff5a1a 75%, #ff9b00);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .hero h2 {
-  font-size: clamp(24px, 4vw, 46px);
-  line-height: 1.1;
-  max-width: 780px;
-  margin-bottom: 22px;
-  letter-spacing: -1px;
+  font-size: clamp(20px, 5vw, 38px);
+  line-height: 1.25;
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
 }
 
 .hero p {
-  color: #999;
-  max-width: 680px;
-  font-size: 17px;
-  line-height: 1.85;
-  margin-bottom: 30px;
+  color: #aaa;
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 28px;
 }
 
 .buttons {
   display: flex;
-  flex-wrap: wrap;
   gap: 12px;
 }
 
@@ -238,180 +246,158 @@ header {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 14px 22px;
+  padding: 12px 20px;
   border-radius: 12px;
   font-size: 14px;
-  font-weight: 900;
-  transition: .2s;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
+  font-weight: 800;
+  min-height: 48px;
+  flex: 1;
+  text-align: center;
 }
 
 .btn-primary {
   background: linear-gradient(135deg, #ff4212, #ff8500);
-  box-shadow: 0 12px 35px rgba(255,75,15,0.20);
+  box-shadow: 0 8px 25px rgba(255,75,15,0.25);
 }
 
 .btn-secondary {
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
 }
 
 /* =========================
-   SECTIONS
+   SECTIONS & CARDS
 ========================= */
 
 section {
-  padding: 100px 0;
+  padding: 50px 0;
 }
 
 .section-label {
   color: #ff681c;
   font-size: 11px;
-  font-weight: 900;
+  font-weight: 800;
   letter-spacing: 2px;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .section-title {
-  font-size: 38px;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
+  font-size: 26px;
+  letter-spacing: -0.5px;
+  margin-bottom: 20px;
 }
-
-/* =========================
-   MARKET
-========================= */
 
 .stats {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 13px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
 }
 
 .stat {
-  min-height: 145px;
-  padding: 25px;
-  border-radius: 19px;
-  background: linear-gradient(145deg, rgba(255,255,255,0.065), rgba(255,255,255,0.025));
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.08);
 }
 
 .stat-name {
-  color: #777;
+  color: #888;
   font-size: 11px;
-  font-weight: 800;
-  margin-bottom: 12px;
+  font-weight: 700;
+  margin-bottom: 6px;
 }
 
 .stat-value {
-  font-size: 28px;
-  font-weight: 1000;
-  letter-spacing: -.8px;
+  font-size: 20px;
+  font-weight: 900;
 }
 
-.green {
-  color: #43df78;
-}
-
-.red {
-  color: #ff5353;
-}
+.green { color: #43df78; }
+.red { color: #ff5353; }
 
 .market-box {
-  margin-top: 25px;
-  padding: 25px;
-  border-radius: 20px;
-  border: 1px solid rgba(255,255,255,0.07);
-  background: rgba(255,255,255,0.025);
+  margin-top: 16px;
+  padding: 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.02);
 }
 
 .market-head {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 18px;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 14px;
 }
 
 .market-status {
-  color: #777;
+  color: #888;
   font-size: 12px;
 }
 
-.market-status.live {
-  color: #43df78;
-}
+.market-status.live { color: #43df78; }
 
 .market-data {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
 }
 
 .market-item {
-  padding: 16px;
-  border-radius: 12px;
-  background: rgba(0,0,0,0.20);
+  padding: 12px;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.3);
 }
 
 .market-item span {
   display: block;
-  color: #666;
+  color: #777;
   font-size: 11px;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
 }
 
 .market-item strong {
-  font-size: 15px;
+  font-size: 14px;
 }
-
-/* =========================
-   ABOUT
-========================= */
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  grid-template-columns: 1fr;
+  gap: 12px;
 }
 
 .card {
-  padding: 36px;
-  border-radius: 22px;
-  background: rgba(255,255,255,0.035);
+  padding: 20px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.08);
 }
 
 .card h3 {
-  font-size: 25px;
-  margin-bottom: 13px;
+  font-size: 20px;
+  margin-bottom: 8px;
 }
 
 .card p {
-  color: #969696;
-  line-height: 1.9;
+  color: #999;
+  font-size: 14px;
+  line-height: 1.7;
 }
 
-/* =========================
-   TOKEN
-========================= */
-
+/* TOKEN INFO */
 .token-box {
-  padding: 35px;
-  border-radius: 24px;
-  background: linear-gradient(145deg, rgba(255,75,20,0.09), rgba(255,255,255,0.025));
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.08);
 }
 
 .token-row {
-  display: grid;
-  grid-template-columns: 170px 1fr auto;
-  align-items: center;
-  gap: 15px;
-  padding: 18px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 0;
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
@@ -421,13 +407,14 @@ section {
 
 .token-label {
   color: #777;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 800;
+  text-transform: uppercase;
 }
 
 .token-value {
-  color: #ddd;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: #fff;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
   font-size: 13px;
   word-break: break-all;
 }
@@ -435,50 +422,54 @@ section {
 .copy {
   border: none;
   color: #fff;
-  background: rgba(255,255,255,0.07);
-  padding: 8px 12px;
-  border-radius: 8px;
+  background: rgba(255,255,255,0.1);
+  padding: 10px;
+  border-radius: 10px;
   cursor: pointer;
-  white-space: nowrap;
+  font-weight: 700;
+  font-size: 13px;
+  text-align: center;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* =========================
-   TRADE
-========================= */
+.copy:active {
+  background: rgba(255, 75, 20, 0.4);
+}
 
+/* TRADE CARD */
 .trade-card {
-  display: grid;
-  grid-template-columns: 1.2fr .8fr;
-  gap: 25px;
-  padding: 35px;
-  border-radius: 25px;
-  background: linear-gradient(135deg, rgba(255,70,15,0.11), rgba(255,255,255,0.025));
-  border: 1px solid rgba(255,255,255,0.08);
+  padding: 20px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(255,70,15,0.12), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
 .trade-card h3 {
-  font-size: 36px;
-  margin-bottom: 12px;
+  font-size: 24px;
+  margin-bottom: 8px;
 }
 
 .trade-card p {
-  color: #999;
-  max-width: 600px;
-  line-height: 1.85;
-  margin-bottom: 25px;
+  color: #aaa;
+  font-size: 14px;
+  margin-bottom: 20px;
 }
 
 .trade-info {
-  padding: 24px;
-  border-radius: 18px;
-  background: rgba(0,0,0,0.23);
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 14px;
+  background: rgba(0,0,0,0.3);
 }
 
 .info-row {
   display: flex;
   justify-content: space-between;
-  gap: 20px;
-  padding: 13px 0;
+  gap: 10px;
+  padding: 10px 0;
   border-bottom: 1px solid rgba(255,255,255,0.06);
   font-size: 13px;
 }
@@ -487,180 +478,111 @@ section {
   border-bottom: none;
 }
 
-.info-row span {
-  color: #777;
-}
+.info-row span { color: #777; }
+.info-row strong { word-break: break-all; text-align: right; }
 
-.info-row strong {
-  text-align: right;
-  word-break: break-all;
-}
-
-/* =========================
-   COMMUNITY
-========================= */
-
+/* COMMUNITY & FOOTER */
 .community {
   text-align: center;
-  padding: 110px 0;
+  padding: 60px 0;
 }
 
 .community h2 {
-  font-size: clamp(38px, 7vw, 75px);
-  line-height: 1;
-  letter-spacing: -3px;
-  margin-bottom: 20px;
+  font-size: 32px;
+  margin-bottom: 12px;
 }
 
 .community p {
   color: #888;
-  max-width: 650px;
-  margin: 0 auto 28px;
-  line-height: 1.8;
+  font-size: 14px;
+  margin-bottom: 24px;
 }
 
-/* =========================
-   FOOTER
-========================= */
-
-<footer>
-  <div class="container footer">
-    <div>© 2026 CHILI</div>
-    <div data-i18n="footer">Built on BNB Chain · Community Driven</div>
-  </div>
-</footer>
+footer {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 24px 0;
+  font-size: 12px;
+  color: #666;
+}
 
 .footer {
   display: flex;
-  justify-content: space-between;
-  gap: 20px;
+  flex-direction: column;
+  gap: 8px;
+  text-align: center;
 }
 
 /* =========================
-   MOBILE RESPONSIVE
+   MEDIA QUERIES (DESKTOP ENHANCEMENTS)
 ========================= */
 
-@media (max-width: 900px) {
-  .menu-toggle {
-    display: flex;
-  }
+@media (min-width: 768px) {
+  .container { width: min(1180px, calc(100% - 40px)); }
+  .hero { padding: 100px 0 80px; }
+  .hero h1 { letter-spacing: -5px; }
+  .buttons { display: inline-flex; flex: initial; }
+  .btn { flex: initial; padding: 14px 28px; }
+  
+  section { padding: 90px 0; }
+  .section-title { font-size: 36px; margin-bottom: 30px; }
+  
+  .stats { grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .stat { padding: 22px; }
+  .stat-value { font-size: 26px; }
+  
+  .market-head { flex-direction: row; justify-content: space-between; align-items: center; }
+  .market-data { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  
+  .about-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  
+  .token-row { flex-direction: row; align-items: center; justify-content: space-between; grid-template-columns: 160px 1fr auto; display: grid; }
+  .copy { width: auto; padding: 6px 16px; min-height: auto; }
+  
+  .trade-card { display: grid; grid-template-columns: 1.2fr .8fr; gap: 30px; padding: 36px; }
+  .trade-info { margin-top: 0; }
+  
+  .footer { flex-direction: row; justify-content: space-between; text-align: left; }
+}
+
+@media (max-width: 767px) {
+  .menu-toggle { display: flex; }
 
   .nav-links {
-    position: absolute;
-    top: 76px;
+    position: fixed;
+    top: 68px;
     left: 0;
-    width: 100%;
+    right: 0;
+    bottom: 0;
+    background: rgba(8, 8, 8, 0.96);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
     flex-direction: column;
-    align-items: flex-start;
-    background: rgba(12, 12, 12, 0.95);
-    backdrop-filter: blur(20px);
-    padding: 24px 20px;
-    gap: 18px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-    transform: translateY(-120%);
+    align-items: stretch;
+    padding: 30px 20px;
+    gap: 20px;
+    transform: translateY(-100%);
     opacity: 0;
-    pointer-events: none;
-    transition: 0.3s ease-in-out;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .nav-links.active {
     transform: translateY(0);
     opacity: 1;
-    pointer-events: auto;
+    visibility: visible;
   }
 
   .nav-links > a:not(.nav-buy) {
-    display: block;
-    font-size: 16px;
-    font-weight: 600;
-    width: 100%;
-    padding: 6px 0;
-  }
-
-  .nav-buy {
-    width: 100%;
-    text-align: center;
-    padding: 12px 18px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #eee;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
   }
 
   .language {
-    width: 100%;
+    margin-top: 10px;
     justify-content: center;
-  }
-
-  .stats {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .about-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .trade-card {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 600px) {
-  .container {
-    width: calc(100% - 28px);
-  }
-
-  .nav {
-    height: 68px;
-  }
-
-  .hero {
-    padding: 70px 0 60px;
-    min-height: auto;
-  }
-
-  .hero h1 {
-    font-size: 58px;
-    letter-spacing: -3px;
-  }
-
-  .hero h2 {
-    font-size: 24px;
-  }
-
-  .hero p {
-    font-size: 15px;
-  }
-
-  .stats {
-    grid-template-columns: 1fr;
-  }
-
-  .market-data {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .token-box,
-  .trade-card,
-  .card {
-    padding: 20px;
-  }
-
-  .token-row {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-
-  .copy {
-    width: 100%;
-    text-align: center;
-    padding: 10px;
-  }
-
-  .footer {
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  section {
-    padding: 70px 0;
   }
 }
 </style>
@@ -679,7 +601,7 @@ section {
       CHILI
     </a>
 
-    <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-label="Menu">
+    <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-label="Toggle Menu">
       <span></span>
       <span></span>
       <span></span>
@@ -841,25 +763,25 @@ section {
       <div class="token-row">
         <div class="token-label" data-i18n="token_name">代币名称</div>
         <div class="token-value">CHILI</div>
-        <div>BSC</div>
+        <div style="font-size:12px; color:#888;">BSC</div>
       </div>
 
       <div class="token-row">
         <div class="token-label" data-i18n="network">网络</div>
         <div class="token-value">BNB Smart Chain</div>
-        <div>Chain ID 56</div>
+        <div style="font-size:12px; color:#888;">Chain ID 56</div>
       </div>
 
       <div class="token-row">
         <div class="token-label" data-i18n="contract">合约地址</div>
         <div class="token-value" id="contractAddress">0xEd3Caca4903256fB3E4997BC0C7830D19Fb35F7c</div>
-        <button class="copy" onclick="copyContract()" data-i18n="copy">复制</button>
+        <button class="copy" onclick="copyContract()" data-i18n="copy">复制地址</button>
       </div>
 
       <div class="token-row">
         <div class="token-label" data-i18n="explorer">区块浏览器</div>
         <div class="token-value">BscScan</div>
-        <a class="copy" id="tokenScan" href="#" target="_blank" rel="noopener" data-i18n="open" style="text-align:center; display:inline-block;">打开</a>
+        <a class="copy" id="tokenScan" href="#" target="_blank" rel="noopener" data-i18n="open">打开浏览器</a>
       </div>
     </div>
   </div>
@@ -880,7 +802,7 @@ section {
         <p data-i18n="trade_desc">
           通过 BNB Chain 上的去中心化交易生态交易 CHILI。你的钱包由你自己控制，交易由你的钱包确认。
         </p>
-        <a class="btn btn-primary" id="tradeButton" href="#" target="_blank" rel="noopener" data-i18n="trade_pancake">在 PancakeSwap 交易</a>
+        <a class="btn btn-primary" id="tradeButton" href="#" target="_blank" rel="noopener" data-i18n="trade_pancake" style="width: 100%;">在 PancakeSwap 交易</a>
       </div>
 
       <div class="trade-info">
@@ -918,7 +840,7 @@ section {
     <h2 data-i18n="community_title">加入 CHILI 社区</h2>
     <p data-i18n="community_text">获取 CHILI 最新公告、项目动态和社区消息。</p>
 
-    <div class="buttons" style="justify-content:center;">
+    <div class="buttons" style="max-width:400px; margin: auto;">
       <a class="btn btn-primary" href="#" onclick="alert(currentLanguage === 'zh' ? '请填写官方 Telegram 链接' : 'Please add the official Telegram link'); return false;" data-i18n="telegram">Telegram</a>
       <a class="btn btn-secondary" href="#" onclick="alert(currentLanguage === 'zh' ? '请填写官方 X 链接' : 'Please add the official X link'); return false;" data-i18n="x">X / Twitter</a>
     </div>
@@ -937,28 +859,33 @@ section {
 </footer>
 
 <script>
-/* =========================================
-   CHILI CONFIG
-========================================= */
 const TOKEN_ADDRESS = "0xEd3Caca4903256fB3E4997BC0C7830D19Fb35F7c";
 const BSCSCAN_URL = "https://bscscan.com/address/" + TOKEN_ADDRESS;
 
-/* =========================================
-   MOBILE MENU TOGGLE
-========================================= */
+/* 移动端菜单逻辑 */
 function toggleMenu() {
   const navLinks = document.getElementById("navLinks");
+  const toggleBtn = document.getElementById("menuToggle");
   navLinks.classList.toggle("active");
+  toggleBtn.classList.toggle("open");
+  
+  // 阻止背景滚动
+  if(navLinks.classList.contains("active")) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "";
+  }
 }
 
 function closeMenu() {
   const navLinks = document.getElementById("navLinks");
+  const toggleBtn = document.getElementById("menuToggle");
   navLinks.classList.remove("active");
+  toggleBtn.classList.remove("open");
+  document.body.style.overflow = "";
 }
 
-/* =========================================
-   LANGUAGE
-========================================= */
+/* 语言逻辑 */
 let currentLanguage = localStorage.getItem("chili-language") || "zh";
 
 const translations = {
@@ -994,9 +921,9 @@ const translations = {
     token_name: "代币名称",
     network: "网络",
     contract: "合约地址",
-    copy: "复制",
+    copy: "复制地址",
     explorer: "区块浏览器",
-    open: "打开",
+    open: "打开浏览器",
     trade_title: "交易 CHILI",
     trade_desc: "通过 BNB Chain 上的去中心化交易生态交易 CHILI。你的钱包由你自己控制，交易由你的钱包确认。",
     trade_pancake: "在 PancakeSwap 交易",
@@ -1040,9 +967,9 @@ const translations = {
     token_name: "TOKEN",
     network: "NETWORK",
     contract: "CONTRACT",
-    copy: "COPY",
+    copy: "COPY ADDRESS",
     explorer: "EXPLORER",
-    open: "OPEN",
+    open: "OPEN EXPLORER",
     trade_title: "TRADE CHILI",
     trade_desc: "Trade CHILI through the decentralized ecosystem on BNB Chain. Your wallet remains under your control.",
     trade_pancake: "TRADE ON PANCAKESWAP",
@@ -1072,9 +999,7 @@ function setLanguage(language) {
   document.getElementById("enBtn").classList.toggle("active", language === "en");
 }
 
-/* =========================================
-   MARKET DATA FORMATTING
-========================================= */
+/* 格式化数字 */
 function formatUSD(value) {
   if (value === undefined || value === null || isNaN(value)) return "—";
   const number = Number(value);
@@ -1090,12 +1015,10 @@ function formatNumber(value) {
   return Number(value).toLocaleString();
 }
 
-/* =========================================
-   FETCH DEXSCREENER API
-========================================= */
+/* API 行情读取 */
 async function loadMarketData() {
   const status = document.getElementById("marketStatus");
-  status.textContent = currentLanguage === "zh" ? "正在获取真实链上市场数据..." : "Loading live market data...";
+  status.textContent = currentLanguage === "zh" ? "更新数据中..." : "Updating data...";
   status.classList.remove("live");
 
   try {
@@ -1108,18 +1031,14 @@ async function loadMarketData() {
 
     const pairs = data.pairs.filter(pair => {
       const bsc = pair.chainId === "bsc";
-      const dex = String(pair.dexId || "").toLowerCase().includes("pancake");
-      const baseSymbol = String(pair.baseToken?.symbol || "").toUpperCase();
-      const quoteSymbol = String(pair.quoteToken?.symbol || "").toUpperCase();
       const tokenMatch = pair.baseToken?.address?.toLowerCase() === TOKEN_ADDRESS.toLowerCase() ||
                          pair.quoteToken?.address?.toLowerCase() === TOKEN_ADDRESS.toLowerCase();
-      const usdt = baseSymbol === "USDT" || quoteSymbol === "USDT";
-      return bsc && dex && tokenMatch && usdt;
+      return bsc && tokenMatch;
     });
 
     pairs.sort((a, b) => Number(b.liquidity?.usd || 0) - Number(a.liquidity?.usd || 0));
 
-    if (!pairs.length) throw new Error("CHILI / USDT PancakeSwap pair not found");
+    if (!pairs.length) throw new Error("CHILI pair not found");
 
     const pair = pairs[0];
     updateMarket(pair);
@@ -1128,7 +1047,7 @@ async function loadMarketData() {
     status.classList.add("live");
   } catch (error) {
     console.error("CHILI market error:", error);
-    status.textContent = currentLanguage === "zh" ? "暂时无法获取市场数据" : "Market data unavailable";
+    status.textContent = currentLanguage === "zh" ? "暂无数据" : "Unavailable";
     status.classList.remove("live");
   }
 }
@@ -1178,9 +1097,7 @@ function updateMarket(pair) {
   }
 }
 
-/* =========================================
-   INIT
-========================================= */
+/* 初始化 */
 document.addEventListener("DOMContentLoaded", () => {
   setLanguage(currentLanguage);
 
