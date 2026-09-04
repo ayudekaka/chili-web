@@ -100,23 +100,4 @@
             try {
                 const provider = new ethers.providers.JsonRpcProvider("https://bsc-dataseed.binance.org/");
                 const abi = [
-                    "function totalSupply() view returns (uint256)",
-                    "function decimals() view returns (uint8)"
-                ];
-                const contract = new ethers.Contract(tokenAddress, abi, provider);
-                
-                const decimals = await contract.decimals();
-                const rawSupply = await contract.totalSupply();
-                const formattedSupply = ethers.utils.formatUnits(rawSupply, decimals);
-
-                document.getElementById('supply').innerText = Number(formattedSupply).toLocaleString();
-            } catch (error) {
-                document.getElementById('supply').innerText = "读取失败";
-            }
-        }
-
-        fetchMarketData();
-        fetchOnChainSupply();
-    </script>
-</body>
-</html>
+                    "function tot
