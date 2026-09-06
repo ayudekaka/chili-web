@@ -335,4 +335,1939 @@ header {
     width: min(470px, 80vw);
     aspect-ratio: 1;
 
-    border
+    border-radius: 50%;
+
+    background: #f8f8f6;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+
+.hero-circle::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 22px;
+
+    border: 1px solid rgba(231,25,25,.15);
+
+    border-radius: 50%;
+}
+
+.hero-logo {
+    width: 66%;
+    max-width: 330px;
+
+    object-fit: contain;
+
+    position: relative;
+    z-index: 2;
+
+    animation: floating 5s ease-in-out infinite;
+}
+
+@keyframes floating {
+
+    0%, 100% {
+        transform: translateY(0) rotate(-2deg);
+    }
+
+    50% {
+        transform: translateY(-12px) rotate(2deg);
+    }
+}
+
+.hero-red-mark {
+    position: absolute;
+
+    width: 95px;
+    height: 95px;
+
+    border-radius: 50%;
+
+    background: var(--red);
+
+    right: 0;
+    bottom: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+
+    font-size: 40px;
+
+    box-shadow: 0 20px 50px rgba(231,25,25,.18);
+}
+
+/* =========================================================
+   TICKER
+   ========================================================= */
+
+.ticker {
+    border-top: 1px solid var(--black);
+    border-bottom: 1px solid var(--black);
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    padding: 18px 0;
+
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .1em;
+}
+
+.ticker-inner {
+    display: inline-flex;
+    gap: 50px;
+
+    animation: ticker 25s linear infinite;
+}
+
+.ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.ticker-item::after {
+    content: "•";
+
+    color: var(--red);
+}
+
+@keyframes ticker {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* =========================================================
+   SECTION
+   ========================================================= */
+
+section {
+    padding: 125px 0;
+}
+
+.section-label {
+    color: var(--red);
+
+    font-size: 12px;
+    font-weight: 900;
+
+    letter-spacing: .16em;
+
+    text-transform: uppercase;
+
+    margin-bottom: 18px;
+}
+
+.section-title {
+    font-size: clamp(48px, 6vw, 82px);
+
+    line-height: .95;
+
+    letter-spacing: -.065em;
+
+    font-weight: 900;
+}
+
+.section-description {
+    max-width: 600px;
+
+    margin-top: 24px;
+
+    color: var(--gray-1);
+
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+/* =========================================================
+   STATS
+   ========================================================= */
+
+.stats-section {
+    padding-top: 110px;
+}
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+}
+
+.stat {
+    padding: 42px 30px;
+
+    border-right: 1px solid #ddd;
+}
+
+.stat:last-child {
+    border-right: none;
+}
+
+.stat-number {
+    font-size: clamp(36px, 4vw, 58px);
+
+    line-height: 1;
+
+    font-weight: 900;
+
+    letter-spacing: -.055em;
+
+    color: var(--black);
+}
+
+.stat-number.red {
+    color: var(--red);
+}
+
+.stat-name {
+    margin-top: 14px;
+
+    font-size: 11px;
+
+    letter-spacing: .12em;
+
+    font-weight: 800;
+
+    color: var(--gray-2);
+}
+
+/* =========================================================
+   TOKENOMICS
+   ========================================================= */
+
+.tokenomics {
+    background: var(--light);
+}
+
+.tokenomics-grid {
+    display: grid;
+
+    grid-template-columns: .8fr 1.2fr;
+
+    gap: 90px;
+
+    margin-top: 70px;
+}
+
+.token-main {
+    background: var(--red);
+    color: white;
+
+    min-height: 420px;
+
+    border-radius: var(--radius);
+
+    padding: 48px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.token-main::after {
+    content: "🌶";
+
+    position: absolute;
+
+    right: -20px;
+    bottom: -45px;
+
+    font-size: 220px;
+
+    opacity: .12;
+
+    transform: rotate(-15deg);
+}
+
+.token-main-label {
+    font-size: 12px;
+
+    letter-spacing: .14em;
+
+    font-weight: 800;
+
+    opacity: .8;
+}
+
+.token-main-title {
+    font-size: 80px;
+
+    line-height: .9;
+
+    font-weight: 950;
+
+    letter-spacing: -.07em;
+}
+
+.token-main-value {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.token-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.token-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    padding: 25px 0;
+
+    border-bottom: 1px solid #d8d8d8;
+}
+
+.token-row:first-child {
+    border-top: 1px solid #d8d8d8;
+}
+
+.token-key {
+    color: var(--gray-2);
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+.token-value {
+    font-size: 16px;
+
+    font-weight: 850;
+
+    text-align: right;
+}
+
+.token-value.red {
+    color: var(--red);
+}
+
+/* =========================================================
+   CONTRACT
+   ========================================================= */
+
+.contract-section {
+    padding-top: 90px;
+}
+
+.contract-box {
+    margin-top: 55px;
+
+    border: 1px solid #222;
+
+    padding: 25px 28px;
+
+    border-radius: 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.contract-address {
+    font-family: monospace;
+
+    font-size: 14px;
+
+    word-break: break-all;
+}
+
+.copy-btn {
+    flex-shrink: 0;
+
+    border: none;
+
+    background: var(--red);
+
+    color: white;
+
+    padding: 12px 18px;
+
+    border-radius: 999px;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+.copy-btn:hover {
+    background: var(--red-dark);
+}
+
+.contract-links {
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 18px;
+
+    flex-wrap: wrap;
+}
+
+.contract-links a {
+    color: var(--red);
+
+    font-size: 13px;
+
+    font-weight: 800;
+}
+
+/* =========================================================
+   STORY
+   ========================================================= */
+
+.story {
+    background: var(--black);
+
+    color: white;
+}
+
+.story .section-label {
+    color: #ff3a3a;
+}
+
+.story-grid {
+    display: grid;
+
+    grid-template-columns: .75fr 1.25fr;
+
+    gap: 100px;
+
+    align-items: start;
+}
+
+.story-title {
+    font-size: clamp(55px, 7vw, 100px);
+
+    line-height: .88;
+
+    font-weight: 950;
+
+    letter-spacing: -.07em;
+}
+
+.story-title span {
+    color: var(--red);
+}
+
+.story-text {
+    font-size: clamp(23px, 3vw, 36px);
+
+    line-height: 1.35;
+
+    font-weight: 650;
+
+    letter-spacing: -.025em;
+}
+
+.story-text strong {
+    color: #ff3434;
+}
+
+.story-small {
+    margin-top: 35px;
+
+    color: #aaa;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+}
+
+/* =========================================================
+   SECURITY
+   ========================================================= */
+
+.security-grid {
+    margin-top: 65px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 1px;
+
+    background: #ddd;
+
+    border: 1px solid #ddd;
+}
+
+.security-item {
+    background: white;
+
+    padding: 32px;
+
+    min-height: 175px;
+}
+
+.security-icon {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+
+    background: #fff0f0;
+
+    color: var(--red);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 14px;
+
+    font-weight: 900;
+
+    margin-bottom: 24px;
+}
+
+.security-item h3 {
+    font-size: 17px;
+
+    margin-bottom: 8px;
+}
+
+.security-item p {
+    color: var(--gray-2);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+.security-note {
+    margin-top: 28px;
+
+    padding: 22px;
+
+    border-left: 3px solid var(--red);
+
+    background: #fafafa;
+
+    color: var(--gray-1);
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+/* =========================================================
+   PROJECT
+   ========================================================= */
+
+.project-section {
+    background: #f7f7f5;
+}
+
+.project-box {
+    margin-top: 65px;
+
+    max-width: 850px;
+
+    border-top: 1px solid #222;
+
+    border-bottom: 1px solid #222;
+
+    padding: 38px 0;
+}
+
+.project-box h3 {
+    font-size: 28px;
+
+    margin-bottom: 18px;
+}
+
+.project-box p {
+    color: var(--gray-1);
+
+    font-size: 16px;
+
+    line-height: 1.8;
+}
+
+/* =========================================================
+   COMMUNITY CTA
+   ========================================================= */
+
+.community {
+    padding: 140px 0;
+
+    background: var(--red);
+
+    color: white;
+
+    text-align: center;
+}
+
+.community .section-label {
+    color: white;
+
+    opacity: .75;
+}
+
+.community-title {
+    font-size: clamp(58px, 9vw, 125px);
+
+    line-height: .85;
+
+    font-weight: 950;
+
+    letter-spacing: -.08em;
+}
+
+.community-description {
+    max-width: 570px;
+
+    margin: 30px auto 0;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+
+    opacity: .9;
+}
+
+.community-buttons {
+    margin-top: 38px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+}
+
+.community .btn-primary {
+    background: white;
+
+    color: var(--red);
+}
+
+.community .btn-primary:hover {
+    background: #f5f5f5;
+}
+
+.community .btn-outline {
+    border-color: white;
+
+    color: white;
+
+    background: transparent;
+}
+
+.community .btn-outline:hover {
+    background: white;
+
+    color: var(--red);
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+    background: white;
+
+    padding: 55px 0 35px;
+}
+
+.footer-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 30px;
+
+    padding-bottom: 45px;
+
+    border-bottom: 1px solid #ddd;
+}
+
+.footer-brand {
+    font-size: 25px;
+
+    font-weight: 950;
+
+    letter-spacing: -.05em;
+}
+
+.footer-brand span {
+    color: var(--red);
+}
+
+.footer-description {
+    margin-top: 10px;
+
+    color: var(--gray-2);
+
+    max-width: 320px;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+.footer-links {
+    display: flex;
+
+    gap: 25px;
+
+    flex-wrap: wrap;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+.footer-links a:hover {
+    color: var(--red);
+}
+
+.footer-bottom {
+    padding-top: 25px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    color: #999;
+
+    font-size: 11px;
+}
+
+/* =========================================================
+   REVEAL ANIMATION
+   ========================================================= */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(25px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .container {
+        width: min(100% - 32px, var(--max-width));
+    }
+
+    .navbar {
+        height: 68px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        min-height: auto;
+
+        padding: 70px 0 80px;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+    }
+
+    .hero h1 {
+        font-size: clamp(68px, 19vw, 120px);
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+    }
+
+    .hero-visual {
+        min-height: 390px;
+    }
+
+    .hero-circle {
+        width: min(350px, 82vw);
+    }
+
+    .hero-red-mark {
+        width: 70px;
+        height: 70px;
+
+        font-size: 30px;
+
+        right: 4%;
+    }
+
+    section {
+        padding: 90px 0;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat:nth-child(2) {
+        border-right: none;
+    }
+
+    .stat:nth-child(-n+2) {
+        border-bottom: 1px solid #ddd;
+    }
+
+    .tokenomics-grid {
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+
+        margin-top: 50px;
+    }
+
+    .token-main {
+        min-height: 350px;
+    }
+
+    .story-grid {
+        grid-template-columns: 1fr;
+
+        gap: 50px;
+    }
+
+    .security-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contract-box {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .footer-top {
+        flex-direction: column;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 560px) {
+
+    .hero h1 {
+        letter-spacing: -.075em;
+    }
+
+    .hero-buttons {
+        width: 100%;
+    }
+
+    .btn {
+        flex: 1;
+
+        min-width: 135px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stat {
+        border-right: none;
+
+        border-bottom: 1px solid #ddd;
+    }
+
+    .stat:last-child {
+        border-bottom: none;
+    }
+
+    .token-main {
+        padding: 32px;
+
+        min-height: 300px;
+    }
+
+    .token-main-title {
+        font-size: 62px;
+    }
+
+    .token-row {
+        grid-template-columns: 1fr;
+
+        gap: 8px;
+    }
+
+    .token-value {
+        text-align: left;
+    }
+
+    .community {
+        padding: 100px 0;
+    }
+
+    .community-buttons .btn {
+        flex: 1 1 100%;
+    }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<!-- =======================================================
+     HEADER
+     ======================================================= -->
+
+<header>
+
+<div class="container">
+
+<nav class="navbar">
+
+<a href="index.html" class="brand">
+
+<img
+    src="https://raw.githubusercontent.com/ayudekaka/ChiLi/main/logo.png"
+    alt="CHILI Logo"
+>
+
+<span>小辣椒 <strong>CHILI</strong></span>
+
+</a>
+
+<div class="nav-links">
+
+<a href="#tokenomics">代币经济</a>
+
+<a href="#story">小辣椒的故事</a>
+
+<a href="#security">透明度</a>
+
+<a href="#contract">合约</a>
+
+<a href="whitepaper.html">白皮书</a>
+
+<a href="#community" class="nav-buy">JOIN CHILI</a>
+
+</div>
+
+</nav>
+
+</div>
+
+</header>
+
+
+<!-- =======================================================
+     HERO
+     ======================================================= -->
+
+<main>
+
+<section class="hero">
+
+<div class="container">
+
+<div class="hero-grid">
+
+<div class="hero-copy reveal">
+
+<div class="hero-eyebrow">
+BNB SMART CHAIN
+</div>
+
+<h1>
+
+<span>CHI</span>
+
+<span class="red">LI.</span>
+
+</h1>
+
+<p class="hero-subtitle">
+
+<strong>SPICE UP THE BLOCKCHAIN.</strong><br>
+
+小辣椒 CHILI 是一个社区驱动的代币，
+部署于 BNB Smart Chain。
+从一个简单的符号开始，让社区共同创造属于 CHILI 的故事。
+
+</p>
+
+<div class="hero-buttons">
+
+<a
+    class="btn btn-primary"
+    href="#contract"
+>
+BUY / CONTRACT
+</a>
+
+<a
+    class="btn btn-outline"
+    href="#story"
+>
+EXPLORE CHILI
+</a>
+
+</div>
+
+</div>
+
+
+<div class="hero-visual reveal">
+
+<div class="hero-circle">
+
+<img
+    class="hero-logo"
+    src="https://raw.githubusercontent.com/ayudekaka/ChiLi/main/logo.png"
+    alt="小辣椒 CHILI"
+>
+
+</div>
+
+<div class="hero-red-mark">
+🌶
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     TICKER
+     ======================================================= -->
+
+<div class="ticker">
+
+<div class="ticker-inner">
+
+<div class="ticker-item">
+CHILI
+</div>
+
+<div class="ticker-item">
+BNB CHAIN
+</div>
+
+<div class="ticker-item">
+COMMUNITY
+</div>
+
+<div class="ticker-item">
+0% TAX
+</div>
+
+<div class="ticker-item">
+SPICE UP THE BLOCKCHAIN
+</div>
+
+<div class="ticker-item">
+CHILI
+</div>
+
+<div class="ticker-item">
+BNB CHAIN
+</div>
+
+<div class="ticker-item">
+COMMUNITY
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =======================================================
+     STATS
+     ======================================================= -->
+
+<section class="stats-section">
+
+<div class="container">
+
+<div class="section-label reveal">
+CHILI / AT A GLANCE
+</div>
+
+<div class="section-title reveal">
+Small token.<br>
+Big community.
+</div>
+
+<div class="stats-grid" style="margin-top:65px;">
+
+<div class="stat reveal">
+
+<div class="stat-number">
+20,150,822
+</div>
+
+<div class="stat-name">
+TOTAL SUPPLY
+</div>
+
+</div>
+
+
+<div class="stat reveal">
+
+<div class="stat-number red">
+0%
+</div>
+
+<div class="stat-name">
+BUY / SELL / TRANSFER TAX
+</div>
+
+</div>
+
+
+<div class="stat reveal">
+
+<div class="stat-number">
+BSC
+</div>
+
+<div class="stat-name">
+NETWORK
+</div>
+
+</div>
+
+
+<div class="stat reveal">
+
+<div class="stat-number">
+CHILI
+</div>
+
+<div class="stat-name">
+TOKEN SYMBOL
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     TOKENOMICS
+     ======================================================= -->
+
+<section
+    id="tokenomics"
+    class="tokenomics"
+>
+
+<div class="container">
+
+<div class="section-label reveal">
+TOKENOMICS
+</div>
+
+<div class="section-title reveal">
+Simple.<br>
+Transparent.
+</div>
+
+<div class="section-description reveal">
+
+CHILI 保持简单的代币结构，
+让社区能够清楚了解基础信息，
+而不是被复杂机制淹没。
+
+</div>
+
+
+<div class="tokenomics-grid">
+
+<div class="token-main reveal">
+
+<div class="token-main-label">
+TOKEN
+</div>
+
+<div class="token-main-title">
+CHILI
+</div>
+
+<div class="token-main-value">
+小辣椒
+</div>
+
+</div>
+
+
+<div class="token-list reveal">
+
+<div class="token-row">
+
+<div class="token-key">
+Token Name
+</div>
+
+<div class="token-value">
+小辣椒 CHILI
+</div>
+
+</div>
+
+
+<div class="token-row">
+
+<div class="token-key">
+Symbol
+</div>
+
+<div class="token-value red">
+CHILI
+</div>
+
+</div>
+
+
+<div class="token-row">
+
+<div class="token-key">
+Network
+</div>
+
+<div class="token-value">
+BNB Smart Chain
+</div>
+
+</div>
+
+
+<div class="token-row">
+
+<div class="token-key">
+Total Supply
+</div>
+
+<div class="token-value">
+20,150,822 CHILI
+</div>
+
+</div>
+
+
+<div class="token-row">
+
+<div class="token-key">
+Buy Tax
+</div>
+
+<div class="token-value red">
+0%
+</div>
+
+</div>
+
+
+<div class="token-row">
+
+<div class="token-key">
+Sell Tax
+</div>
+
+<div class="token-value red">
+0%
+</div>
+
+</div>
+
+
+<div class="token-row">
+
+<div class="token-key">
+Transfer Tax
+</div>
+
+<div class="token-value red">
+0%
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     CONTRACT
+     ======================================================= -->
+
+<section
+    id="contract"
+    class="contract-section"
+>
+
+<div class="container">
+
+<div class="section-label reveal">
+OFFICIAL CONTRACT
+</div>
+
+<div class="section-title reveal">
+Verify.<br>
+Then decide.
+</div>
+
+<div class="section-description reveal">
+
+始终通过官方渠道确认 CHILI 合约地址。
+不要相信未经验证的第三方合约或链接。
+
+</div>
+
+
+<div class="contract-box reveal">
+
+<div class="contract-address">
+
+0xed3caca4903256fb3e4997bc0c7830d19fb35f7c
+
+</div>
+
+<button
+    class="copy-btn"
+    onclick="copyContract()"
+>
+COPY CONTRACT
+</button>
+
+</div>
+
+
+<div class="contract-links reveal">
+
+<a
+    href="https://bscscan.com/address/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c"
+    target="_blank"
+    rel="noopener"
+>
+BscScan ↗
+</a>
+
+<a
+    href="https://bscscan.com/address/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c#code"
+    target="_blank"
+    rel="noopener"
+>
+VERIFIED SOURCE CODE ↗
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     STORY
+     ======================================================= -->
+
+<section
+    id="story"
+    class="story"
+>
+
+<div class="container">
+
+<div class="story-grid">
+
+<div class="reveal">
+
+<div class="section-label">
+THE STORY
+</div>
+
+<div class="story-title">
+
+小辣椒<br>
+
+<span>CHILI.</span>
+
+</div>
+
+</div>
+
+
+<div class="reveal">
+
+<div class="story-text">
+
+普通人的故事。
+
+<br><br>
+
+人生会结束，名字会被遗忘，
+
+但 <strong>社区的信念与记忆可以延续。</strong>
+
+<br><br>
+
+我们相信，每一位参与者都是小辣椒的守护者。
+
+它不是某个人的专属，
+
+而是一群人的共同符号。
+
+</div>
+
+
+<div class="story-small">
+
+人会消失，币会留下，故事会继续燃烧。
+
+<br><br>
+
+小辣椒代表平凡人的希望与坚持，
+让每次参与都有意义。
+
+<br><br>
+
+未来，朋友们，请让它一直存在……
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     SECURITY
+     ======================================================= -->
+
+<section
+    id="security"
+>
+
+<div class="container">
+
+<div class="section-label reveal">
+SECURITY / TRANSPARENCY
+</div>
+
+<div class="section-title reveal">
+Open.<br>
+Clear.<br>
+Verifiable.
+</div>
+
+<div class="section-description reveal">
+
+CHILI 合约源码公开，并提供链上验证入口。
+以下为当前项目公开信息中的主要透明度说明。
+
+</div>
+
+
+<div class="security-grid">
+
+<div class="security-item reveal">
+
+<div class="security-icon">
+✓
+</div>
+
+<h3>
+Verified Source
+</h3>
+
+<p>
+合约源码已在 BscScan 公开验证。
+</p>
+
+</div>
+
+
+<div class="security-item reveal">
+
+<div class="security-icon">
+0
+</div>
+
+<h3>
+No Mint
+</h3>
+
+<p>
+当前公开信息显示没有额外铸币机制。
+</p>
+
+</div>
+
+
+<div class="security-item reveal">
+
+<div class="security-icon">
+0
+</div>
+
+<h3>
+0% Tax
+</h3>
+
+<p>
+买入、卖出及转账税率为 0%。
+</p>
+
+</div>
+
+
+<div class="security-item reveal">
+
+<div class="security-icon">
+✓
+</div>
+
+<h3>
+No Proxy
+</h3>
+
+<p>
+当前合约不是代理升级结构。
+</p>
+
+</div>
+
+
+<div class="security-item reveal">
+
+<div class="security-icon">
+✓
+</div>
+
+<h3>
+No Blacklist
+</h3>
+
+<p>
+当前公开信息没有发现黑名单机制。
+</p>
+
+</div>
+
+
+<div class="security-item reveal">
+
+<div class="security-icon">
+✓
+</div>
+
+<h3>
+Trading Open
+</h3>
+
+<p>
+当前没有发现通过合约暂停交易的机制。
+</p>
+
+</div>
+
+</div>
+
+
+<div class="security-note reveal">
+
+<strong>重要说明：</strong>
+
+安全信息仅代表当前公开源码及第三方检测结果的展示，
+不构成任何投资建议，也不代表未来不存在未知风险。
+
+请始终自行验证合约地址并 DYOR。
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     PROJECT
+     ======================================================= -->
+
+<section class="project-section">
+
+<div class="container">
+
+<div class="section-label reveal">
+PROJECT
+</div>
+
+<div class="section-title reveal">
+Built by<br>
+the community.
+</div>
+
+
+<div class="project-box reveal">
+
+<h3>
+项目方与创始人说明
+</h3>
+
+<p>
+
+CHILI 由独立开发者发起并维护。
+
+项目没有传统意义上的大型团队，
+目前处于持续建设和发展的早期阶段。
+
+项目公开信息将通过官方渠道持续更新。
+
+我们希望 CHILI 不只是一个代币地址，
+而成为一群参与者共同创造和记录的社区符号。
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     COMMUNITY
+     ======================================================= -->
+
+<section
+    id="community"
+    class="community"
+>
+
+<div class="container">
+
+<div class="section-label">
+JOIN THE COMMUNITY
+</div>
+
+<div class="community-title reveal">
+
+KEEP IT<br>
+SPICY.
+
+</div>
+
+<p class="community-description reveal">
+
+CHILI 的未来不由一个人定义。
+
+它来自每一个参与者、
+每一次讨论和每一个留下来的故事。
+
+</p>
+
+
+<div class="community-buttons">
+
+<a
+    href="#"
+    class="btn btn-primary"
+>
+JOIN TELEGRAM
+</a>
+
+<a
+    href="#contract"
+    class="btn btn-outline"
+>
+VIEW CONTRACT
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<!-- =======================================================
+     FOOTER
+     ======================================================= -->
+
+<footer>
+
+<div class="container">
+
+<div class="footer-top">
+
+<div>
+
+<div class="footer-brand">
+小辣椒 <span>CHILI</span>
+</div>
+
+<div class="footer-description">
+
+Community-driven token
+on BNB Smart Chain.
+
+</div>
+
+</div>
+
+
+<div class="footer-links">
+
+<a href="index.html">
+HOME
+</a>
+
+<a href="whitepaper.html">
+WHITEPAPER
+</a>
+
+<a href="tokenomics.html">
+TOKENOMICS
+</a>
+
+<a href="roadmap.html">
+ROADMAP
+</a>
+
+<a href="contact.html">
+CONTACT
+</a>
+
+<a
+    href="https://bscscan.com/address/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c"
+    target="_blank"
+    rel="noopener"
+>
+BscScan ↗
+</a>
+
+</div>
+
+</div>
+
+
+<div class="footer-bottom">
+
+<div>
+© 2026 CHILI. ALL RIGHTS RESERVED.
+</div>
+
+<div>
+BNB SMART CHAIN · CHILI
+</div>
+
+</div>
+
+</div>
+
+</footer>
+
+
+<!-- =======================================================
+     JAVASCRIPT
+     ======================================================= -->
+
+<script>
+
+/* ---------- COPY CONTRACT ---------- */
+
+function copyContract() {
+
+    const address =
+        "0xed3caca4903256fb3e4997bc0c7830d19fb35f7c";
+
+    navigator.clipboard.writeText(address)
+        .then(() => {
+
+            const button =
+                document.querySelector(".copy-btn");
+
+            const original =
+                button.textContent;
+
+            button.textContent =
+                "COPIED ✓";
+
+            setTimeout(() => {
+
+                button.textContent =
+                    original;
+
+            }, 1800);
+
+        })
+        .catch(() => {
+
+            alert(
+                "复制失败，请手动复制合约地址。"
+            );
+
+        });
+
+}
+
+
+/* ---------- SCROLL REVEAL ---------- */
+
+const observer =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add(
+                        "visible"
+                    );
+
+                    observer.unobserve(
+                        entry.target
+                    );
+
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.12
+        }
+    );
+
+
+document
+    .querySelectorAll(".reveal")
+    .forEach(element => {
+
+        observer.observe(element);
+
+    });
+
+
+/* ---------- HEADER SHADOW ---------- */
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+        const header =
+            document.querySelector("header");
+
+        if (window.scrollY > 20) {
+
+            header.style.boxShadow =
+                "0 8px 30px rgba(0,0,0,.04)";
+
+        } else {
+
+            header.style.boxShadow =
+                "none";
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
