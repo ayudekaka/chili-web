@@ -3,31 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#ffffff">
-<meta name="description" content="CHILI — A next-generation community token on BNB Smart Chain.">
+
 <title>CHILI — BNB Smart Chain</title>
+<meta name="description" content="CHILI — A next-generation community token on BNB Smart Chain.">
 
 <style>
-/* =========================================================
-   CHILI // SINGLE FILE WEBSITE
-   WHITE FUTURISTIC WEB3 TERMINAL
-========================================================= */
-
 :root{
   --red:#e51b23;
   --red2:#ff4650;
   --red-dark:#c9151c;
   --red-light:#fff1f2;
-  --black:#111111;
-  --gray:#666;
-  --gray2:#888;
-  --gray3:#aaa;
-  --line:#e8e8e8;
-  --line2:#dedede;
-  --soft:#f7f7f7;
-  --white:#fff;
-  --shadow:0 25px 70px rgba(0,0,0,.07);
-  --radius:2px;
+
+  --black:#0b0b0d;
+  --black2:#161619;
+  --gray:#68686f;
+  --gray2:#9a9aa1;
+
+  --white:#ffffff;
+  --line:#e9e9ec;
+  --line2:#f1f1f3;
+
+  --shadow:0 20px 70px rgba(0,0,0,.08);
+  --shadow-red:0 20px 80px rgba(229,27,35,.15);
+
+  --max:1380px;
 }
 
 *{
@@ -48,9 +47,30 @@ body{
     "Segoe UI",
     Arial,
     sans-serif;
+
   background:#fff;
   color:var(--black);
   overflow-x:hidden;
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+
+  background-image:
+    linear-gradient(rgba(0,0,0,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,0,0,.025) 1px,transparent 1px);
+
+  background-size:42px 42px;
+
+  mask-image:linear-gradient(
+    to bottom,
+    rgba(0,0,0,.7),
+    transparent 75%
+  );
 }
 
 a{
@@ -62,65 +82,37 @@ button{
   font:inherit;
 }
 
-::selection{
-  background:var(--red);
-  color:#fff;
+.container{
+  width:min(calc(100% - 48px),var(--max));
+  margin:auto;
 }
 
-/* =========================================================
-   GLOBAL GRID
-========================================================= */
-
-.page-grid{
-  position:fixed;
-  inset:0;
-  z-index:-5;
-  pointer-events:none;
-  opacity:.42;
-
-  background-image:
-    linear-gradient(rgba(0,0,0,.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(0,0,0,.025) 1px,transparent 1px);
-
-  background-size:42px 42px;
-}
-
-.page-grid:after{
-  content:"";
-  position:absolute;
-  inset:0;
-
-  background:
-    radial-gradient(
-      circle at 50% 0%,
-      rgba(229,27,35,.07),
-      transparent 32%
-    );
-}
-
-/* =========================================================
+/* =========================
    HEADER
-========================================================= */
+========================= */
 
-header{
+.header{
   position:fixed;
   top:0;
   left:0;
   right:0;
-  z-index:1000;
 
   height:76px;
 
-  background:rgba(255,255,255,.86);
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
+  display:flex;
+  align-items:center;
 
-  border-bottom:1px solid rgba(0,0,0,.07);
+  z-index:1000;
+
+  background:rgba(255,255,255,.82);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+
+  border-bottom:1px solid rgba(0,0,0,.06);
 }
 
-.nav{
-  width:min(1380px,calc(100% - 40px));
-  height:100%;
+.header-inner{
+  width:min(calc(100% - 48px),var(--max));
   margin:auto;
 
   display:flex;
@@ -131,18 +123,15 @@ header{
 .logo{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:12px;
 
-  font-size:22px;
-  font-weight:950;
-  letter-spacing:-.06em;
+  font-weight:900;
+  letter-spacing:-.05em;
 }
 
 .logo-mark{
-  width:34px;
-  height:34px;
-
-  border-radius:50%;
+  width:38px;
+  height:38px;
 
   display:grid;
   place-items:center;
@@ -150,1620 +139,1752 @@ header{
   background:var(--red);
   color:#fff;
 
+  font-size:20px;
+  font-weight:900;
+
+  border-radius:11px;
+
   box-shadow:
-    0 0 0 5px rgba(229,27,35,.07),
     0 8px 25px rgba(229,27,35,.22);
 
-  font-size:17px;
+  transform:rotate(-6deg);
 }
 
-.logo small{
-  display:block;
-  font-size:7px;
-  letter-spacing:.2em;
-  color:#999;
-  font-weight:800;
-  margin-top:-2px;
+.logo-text{
+  display:flex;
+  flex-direction:column;
+  line-height:1;
 }
 
-.nav-links{
+.logo-main{
+  font-size:20px;
+  letter-spacing:.08em;
+}
+
+.logo-small{
+  margin-top:5px;
+
+  color:var(--gray2);
+
+  font-size:8px;
+  letter-spacing:.25em;
+  font-weight:700;
+}
+
+.nav{
   display:flex;
   align-items:center;
   gap:30px;
 }
 
-.nav-links a{
-  font-size:10px;
-  font-weight:850;
+.nav a{
+  position:relative;
+
+  font-size:11px;
+  font-weight:800;
   letter-spacing:.12em;
-  color:#555;
-  transition:.25s;
+
+  color:#45454b;
+
+  transition:.25s ease;
 }
 
-.nav-links a:hover{
+.nav a:after{
+  content:"";
+
+  position:absolute;
+  left:0;
+  bottom:-8px;
+
+  width:0;
+  height:2px;
+
+  background:var(--red);
+
+  transition:.25s ease;
+}
+
+.nav a:hover{
   color:var(--red);
 }
 
-.nav-right{
-  display:flex;
-  align-items:center;
-  gap:9px;
+.nav a:hover:after{
+  width:100%;
 }
 
-.lang-btn,
-.menu-btn{
-  border:1px solid var(--line);
-  background:#fff;
-  cursor:pointer;
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
 .lang-btn{
-  padding:9px 12px;
-  font-size:9px;
+  border:1px solid var(--line);
+
+  background:#fff;
+
+  height:36px;
+  padding:0 14px;
+
+  border-radius:9px;
+
+  cursor:pointer;
+
+  font-size:10px;
   font-weight:900;
   letter-spacing:.12em;
+
+  transition:.25s;
 }
 
 .lang-btn:hover{
+  border-color:var(--red);
   color:var(--red);
-  border-color:rgba(229,27,35,.3);
 }
 
 .menu-btn{
   display:none;
+
   width:38px;
   height:38px;
-}
 
-/* =========================================================
-   BUTTONS
-========================================================= */
+  border:1px solid var(--line);
+  background:#fff;
 
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:9px;
-
-  min-height:46px;
-  padding:0 19px;
-
-  border:1px solid var(--black);
-
-  font-size:9px;
-  font-weight:900;
-  letter-spacing:.13em;
+  border-radius:9px;
 
   cursor:pointer;
-  transition:.3s;
 }
 
-.btn-red{
-  color:#fff;
-  background:var(--red);
-  border-color:var(--red);
-
-  box-shadow:
-    0 12px 30px rgba(229,27,35,.18);
-}
-
-.btn-red:hover{
-  background:var(--red-dark);
-  transform:translateY(-2px);
-}
-
-.btn-light{
-  background:#fff;
-}
-
-.btn-light:hover{
-  border-color:var(--red);
-  color:var(--red);
-  transform:translateY(-2px);
-}
-
-/* =========================================================
+/* =========================
    HERO
-========================================================= */
+========================= */
 
 .hero{
-  position:relative;
-  min-height:100vh;
+  min-height:900px;
 
-  padding:
-    150px 0
-    80px;
+  padding-top:76px;
 
   display:flex;
   align-items:center;
+
+  position:relative;
 
   overflow:hidden;
 }
 
-.hero-container{
-  width:min(1380px,calc(100% - 40px));
-  margin:auto;
+.hero:before{
+  content:"";
 
-  display:grid;
-  grid-template-columns:1.1fr .9fr;
-  gap:80px;
-  align-items:center;
-}
-
-.hero-kicker{
-  display:inline-flex;
-  align-items:center;
-  gap:9px;
-
-  padding:8px 12px;
-
-  border:1px solid rgba(229,27,35,.22);
-  background:var(--red-light);
-
-  color:var(--red);
-
-  font-size:8px;
-  font-weight:900;
-  letter-spacing:.17em;
-}
-
-.hero-kicker i{
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:var(--red);
-  box-shadow:0 0 12px rgba(229,27,35,.5);
-  animation:pulse 1.5s infinite;
-}
-
-@keyframes pulse{
-  0%,100%{opacity:1;transform:scale(1)}
-  50%{opacity:.4;transform:scale(.65)}
-}
-
-.hero h1{
-  margin-top:22px;
-
-  font-size:
-    clamp(90px,15vw,220px);
-
-  line-height:.78;
-  letter-spacing:-.095em;
-  font-weight:1000;
-
-  position:relative;
-}
-
-.hero h1 span{
-  color:var(--red);
-
-  text-shadow:
-    0 0 60px rgba(229,27,35,.1);
-}
-
-.hero-subtitle{
-  margin-top:30px;
-  max-width:600px;
-
-  color:#666;
-  font-size:16px;
-  line-height:1.75;
-}
-
-.hero-actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:30px;
-}
-
-.contract-mini{
-  margin-top:23px;
-
-  display:flex;
-  align-items:center;
-  gap:10px;
-
-  color:#999;
-
-  font-family:
-    ui-monospace,
-    SFMono-Regular,
-    Menlo,
-    monospace;
-
-  font-size:9px;
-}
-
-.contract-mini strong{
-  color:#333;
-}
-
-.copy-mini{
-  border:0;
-  background:none;
-  color:var(--red);
-  cursor:pointer;
-  font-size:9px;
-  font-weight:900;
-}
-
-/* =========================================================
-   HERO CORE
-========================================================= */
-
-.hero-core{
-  position:relative;
-
-  width:min(510px,90vw);
-  aspect-ratio:1;
-
-  margin:auto;
-
-  display:grid;
-  place-items:center;
-}
-
-.core-glow{
   position:absolute;
-  inset:15%;
+
+  width:760px;
+  height:760px;
+
+  right:-260px;
+  top:30px;
 
   border-radius:50%;
 
   background:
     radial-gradient(
       circle,
-      rgba(229,27,35,.18),
-      rgba(229,27,35,.04) 45%,
+      rgba(229,27,35,.11),
+      rgba(229,27,35,.03) 38%,
       transparent 70%
     );
 
-  filter:blur(25px);
-
-  animation:coreGlow 4s ease-in-out infinite;
+  pointer-events:none;
 }
 
-@keyframes coreGlow{
-  0%,100%{transform:scale(.92);opacity:.65}
-  50%{transform:scale(1.08);opacity:1}
+.hero-grid{
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    minmax(400px,540px);
+
+  gap:80px;
+
+  align-items:center;
+}
+
+.hero-kicker{
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  margin-bottom:24px;
+
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.2em;
+
+  color:var(--red);
+}
+
+.hero-kicker i{
+  display:block;
+
+  width:7px;
+  height:7px;
+
+  border-radius:50%;
+
+  background:var(--red);
+
+  box-shadow:
+    0 0 0 5px rgba(229,27,35,.1),
+    0 0 20px rgba(229,27,35,.55);
+
+  animation:pulse 1.8s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{
+    transform:scale(1);
+    opacity:1;
+  }
+
+  50%{
+    transform:scale(.65);
+    opacity:.55;
+  }
+}
+
+.hero h1{
+  font-size:
+    clamp(90px,13vw,210px);
+
+  line-height:.78;
+
+  letter-spacing:-.085em;
+
+  font-weight:950;
+
+  margin-left:-9px;
+
+  color:#08080a;
+}
+
+.hero h1 span{
+  color:var(--red);
+}
+
+.hero-subtitle{
+  max-width:610px;
+
+  margin-top:42px;
+
+  color:#66666d;
+
+  font-size:16px;
+  line-height:1.8;
+}
+
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+
+  gap:12px;
+
+  margin-top:30px;
+}
+
+.btn{
+  min-height:48px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:0 20px;
+
+  border-radius:9px;
+
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.12em;
+
+  transition:.25s;
+
+  cursor:pointer;
+}
+
+.btn-primary{
+  color:#fff;
+  background:var(--red);
+
+  box-shadow:
+    0 12px 30px rgba(229,27,35,.2);
+}
+
+.btn-primary:hover{
+  background:var(--red-dark);
+  transform:translateY(-2px);
+}
+
+.btn-outline{
+  color:#161619;
+  background:#fff;
+
+  border:1px solid #dddde1;
+}
+
+.btn-outline:hover{
+  border-color:var(--red);
+  color:var(--red);
+}
+
+.contract-mini{
+  margin-top:25px;
+
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  color:#7a7a80;
+
+  font-size:9px;
+  letter-spacing:.08em;
+}
+
+.contract-mini code{
+  color:#3f3f45;
+
+  max-width:300px;
+
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.copy-mini{
+  border:0;
+  background:var(--red-light);
+
+  color:var(--red);
+
+  padding:7px 9px;
+
+  border-radius:6px;
+
+  font-size:8px;
+  font-weight:900;
+
+  cursor:pointer;
+}
+
+/* =========================
+   CORE ORBIT
+========================= */
+
+.hero-visual{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.core{
+  width:min(500px,78vw);
+  aspect-ratio:1;
+
+  position:relative;
+
+  display:grid;
+  place-items:center;
+}
+
+.core:before,
+.core:after{
+  content:"";
+
+  position:absolute;
+
+  border-radius:50%;
+
+  border:1px solid rgba(229,27,35,.22);
+}
+
+.core:before{
+  inset:5%;
+  animation:spin 20s linear infinite;
+}
+
+.core:after{
+  inset:14%;
+  border-style:dashed;
+  animation:spinReverse 14s linear infinite;
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+@keyframes spinReverse{
+  to{
+    transform:rotate(-360deg);
+  }
 }
 
 .core-ring{
   position:absolute;
+
+  border:1px solid rgba(229,27,35,.11);
+
   border-radius:50%;
-  border:1px solid rgba(229,27,35,.22);
 }
 
-.ring-1{
-  inset:12%;
-  animation:spin 22s linear infinite;
+.r1{
+  inset:24%;
 }
 
-.ring-2{
-  inset:20%;
-  border-style:dashed;
-  animation:spinReverse 17s linear infinite;
+.r2{
+  inset:34%;
 }
 
-.ring-3{
-  inset:29%;
-  border-color:rgba(0,0,0,.08);
-  animation:spin 12s linear infinite;
+.r3{
+  inset:42%;
 }
 
-@keyframes spin{
-  to{transform:rotate(360deg)}
-}
+.core-center{
+  width:40%;
 
-@keyframes spinReverse{
-  to{transform:rotate(-360deg)}
-}
-
-.core-ring:before,
-.core-ring:after{
-  content:"";
-  position:absolute;
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:var(--red);
-  box-shadow:0 0 18px rgba(229,27,35,.55);
-}
-
-.ring-1:before{
-  top:-4px;
-  left:50%;
-}
-
-.ring-2:after{
-  right:4%;
-  top:48%;
-}
-
-.ring-3:before{
-  bottom:-4px;
-  left:45%;
-}
-
-.core-logo{
-  position:relative;
-  z-index:5;
-
-  width:185px;
-  height:185px;
+  aspect-ratio:1;
 
   border-radius:50%;
 
-  display:grid;
-  place-items:center;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
 
-  color:#fff;
   background:
     radial-gradient(
-      circle at 35% 25%,
-      #ff626a,
-      var(--red) 45%,
-      var(--red-dark)
+      circle at 35% 30%,
+      #ff5d65,
+      var(--red) 35%,
+      #b70f16 100%
     );
 
-  font-size:80px;
-  font-weight:1000;
-  letter-spacing:-.1em;
+  color:#fff;
 
   box-shadow:
-    0 0 0 10px rgba(229,27,35,.05),
-    0 0 0 30px rgba(229,27,35,.025),
-    0 30px 90px rgba(229,27,35,.24);
+    0 0 0 12px rgba(229,27,35,.06),
+    0 0 80px rgba(229,27,35,.25),
+    inset 0 0 35px rgba(255,255,255,.2);
+
+  position:relative;
+
+  z-index:5;
 }
 
-.core-label{
-  position:absolute;
-  top:4%;
-  right:7%;
+.core-center strong{
+  font-size:clamp(28px,5vw,58px);
+  letter-spacing:-.08em;
+  line-height:.9;
+}
 
-  padding:7px 10px;
+.core-center small{
+  margin-top:9px;
 
-  border:1px solid var(--line);
-  background:#fff;
-
-  font-size:7px;
+  font-size:8px;
   font-weight:900;
-  letter-spacing:.15em;
-}
+  letter-spacing:.25em;
 
-.core-label.red{
-  color:var(--red);
+  opacity:.8;
 }
 
 .core-data{
   position:absolute;
-  left:0;
-  bottom:7%;
 
-  padding:13px 16px;
+  z-index:10;
 
-  border:1px solid var(--line);
-  background:rgba(255,255,255,.9);
-  backdrop-filter:blur(10px);
+  display:flex;
+  flex-direction:column;
 
-  font-family:monospace;
   font-size:8px;
-  line-height:1.8;
+  font-weight:900;
+
+  letter-spacing:.12em;
+
+  color:#85858b;
 }
 
 .core-data b{
-  color:var(--red);
+  color:#161619;
+  margin-top:4px;
 }
 
-/* =========================================================
+.core-data span{
+  white-space:nowrap;
+}
+
+.core-data.d1{
+  top:14%;
+  left:4%;
+}
+
+.core-data.d2{
+  top:29%;
+  right:0;
+}
+
+.core-data.d3{
+  bottom:26%;
+  right:4%;
+}
+
+.core-data.d4{
+  bottom:12%;
+  left:8%;
+}
+
+/* =========================
    SECTION
-========================================================= */
+========================= */
 
 section{
   position:relative;
 }
 
 .section{
-  padding:120px 0;
-}
-
-.container{
-  width:min(1380px,calc(100% - 40px));
-  margin:auto;
+  padding:150px 0;
 }
 
 .section-head{
   display:flex;
   justify-content:space-between;
   align-items:flex-end;
-  gap:30px;
-  margin-bottom:42px;
+
+  gap:40px;
+
+  margin-bottom:70px;
 }
 
 .section-code{
+  margin-bottom:17px;
+
   color:var(--red);
-  font-size:8px;
+
+  font-size:9px;
   font-weight:900;
   letter-spacing:.2em;
 }
 
 .section-title{
-  margin-top:9px;
+  font-size:clamp(50px,8vw,105px);
 
-  font-size:
-    clamp(38px,5vw,68px);
+  line-height:.84;
 
-  line-height:.95;
-  letter-spacing:-.06em;
+  letter-spacing:-.07em;
+
   font-weight:950;
 }
 
 .section-description{
-  max-width:430px;
-  color:#777;
-  font-size:13px;
+  max-width:450px;
+
+  color:#77777d;
+
+  font-size:14px;
   line-height:1.8;
 }
 
-/* =========================================================
-   LIVE TERMINAL
-========================================================= */
+/* =========================
+   TERMINAL
+========================= */
 
 .terminal-section{
-  padding:120px 0;
-
-  background:
-    radial-gradient(
-      circle at 10% 30%,
-      rgba(229,27,35,.07),
-      transparent 27%
-    ),
-    radial-gradient(
-      circle at 90% 70%,
-      rgba(255,70,80,.05),
-      transparent 30%
-    );
+  padding-top:60px;
 }
 
-.terminal-shell{
+.terminal{
   position:relative;
 
-  width:min(1380px,calc(100% - 40px));
-  margin:auto;
+  border:1px solid #dedee2;
 
-  overflow:hidden;
-
-  border:1px solid #ddd;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.98),
-      rgba(248,248,248,.94)
-    );
+  background:#fff;
 
   box-shadow:var(--shadow);
+
+  overflow:hidden;
 }
 
-.terminal-shell:before{
-  content:"";
-
-  position:absolute;
-  inset:0;
-
-  pointer-events:none;
-
-  background-image:
-    linear-gradient(
-      rgba(0,0,0,.025) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(0,0,0,.025) 1px,
-      transparent 1px
-    );
-
-  background-size:34px 34px;
-}
-
-.terminal-shell:after{
+.terminal:before{
   content:"";
 
   position:absolute;
   left:0;
   right:0;
-  top:-10%;
+  top:0;
 
-  height:1px;
+  height:2px;
 
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(229,27,35,.65),
-      transparent
-    );
+  background:linear-gradient(
+    90deg,
+    transparent,
+    var(--red),
+    transparent
+  );
 
-  animation:terminalScan 6s linear infinite;
-  pointer-events:none;
+  animation:scanTop 3s linear infinite;
 }
 
-@keyframes terminalScan{
-  from{top:-5%}
-  to{top:105%}
+@keyframes scanTop{
+  0%{
+    transform:translateX(-100%);
+  }
+
+  100%{
+    transform:translateX(100%);
+  }
 }
 
-.terminal-top{
-  position:relative;
-  z-index:2;
+.terminal-header{
+  min-height:66px;
 
-  min-height:82px;
-  padding:18px 24px;
+  padding:0 22px;
 
   display:flex;
   align-items:center;
   justify-content:space-between;
 
-  border-bottom:1px solid var(--line);
-}
+  border-bottom:1px solid var(--line2);
 
-.terminal-brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.terminal-dot{
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:var(--red);
-  box-shadow:0 0 14px rgba(229,27,35,.5);
-  animation:pulse 1.5s infinite;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(229,27,35,.025),
+      transparent 45%
+    );
 }
 
 .terminal-code{
-  color:var(--red);
-  font-size:8px;
+  color:#55555c;
+
+  font-size:9px;
   font-weight:900;
-  letter-spacing:.2em;
+  letter-spacing:.16em;
 }
 
 .terminal-title{
-  margin-top:4px;
-  font-size:20px;
+  font-size:12px;
   font-weight:950;
-  letter-spacing:-.04em;
+  letter-spacing:.16em;
+}
+
+.terminal-chain{
+  color:var(--red);
+
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.12em;
 }
 
 .terminal-status{
   display:flex;
   align-items:center;
   gap:8px;
-}
-
-.chain-chip,
-.live-chip{
-  padding:9px 12px;
-
-  border:1px solid var(--line);
-  background:#fff;
 
   font-size:8px;
   font-weight:900;
-  letter-spacing:.13em;
-}
-
-.live-chip{
-  display:flex;
-  align-items:center;
-  gap:7px;
-
-  color:var(--red);
-  border-color:rgba(229,27,35,.2);
-}
-
-.live-chip i{
-  width:5px;
-  height:5px;
-  border-radius:50%;
-  background:var(--red);
-}
-
-/* terminal main */
-
-.terminal-main{
-  position:relative;
-  z-index:2;
-
-  display:grid;
-  grid-template-columns:1.25fr 1fr;
-  gap:15px;
-
-  padding:15px;
-}
-
-.price-module{
-  position:relative;
-
-  min-height:535px;
-  padding:30px;
-
-  overflow:hidden;
-
-  border:1px solid var(--line2);
-  background:#fff;
-}
-
-.hud-corner{
-  position:absolute;
-  width:18px;
-  height:18px;
-}
-
-.hud-tl{
-  top:0;
-  left:0;
-  border-top:2px solid var(--red);
-  border-left:2px solid var(--red);
-}
-
-.hud-tr{
-  top:0;
-  right:0;
-  border-top:2px solid var(--red);
-  border-right:2px solid var(--red);
-}
-
-.hud-bl{
-  bottom:0;
-  left:0;
-  border-bottom:2px solid var(--red);
-  border-left:2px solid var(--red);
-}
-
-.hud-br{
-  bottom:0;
-  right:0;
-  border-bottom:2px solid var(--red);
-  border-right:2px solid var(--red);
-}
-
-.module-header{
-  display:flex;
-  justify-content:space-between;
-
-  color:#999;
-
-  font-size:8px;
-  font-weight:900;
-  letter-spacing:.18em;
-}
-
-.module-live{
-  color:var(--red);
-}
-
-.pair-name{
-  margin-top:45px;
-
-  font-size:13px;
-  font-weight:900;
-  letter-spacing:.15em;
-}
-
-.pair-name span{
-  color:var(--red);
-}
-
-.price-row{
-  display:flex;
-  align-items:flex-end;
-  flex-wrap:wrap;
-  gap:16px;
-
-  margin-top:9px;
-}
-
-.live-price{
-  font-size:
-    clamp(43px,6vw,76px);
-
-  line-height:1;
-
-  font-weight:1000;
-  letter-spacing:-.07em;
-
-  font-variant-numeric:tabular-nums;
-}
-
-.price-change{
-  margin-bottom:6px;
-
-  padding:6px 8px;
-
-  color:var(--red);
-  background:var(--red-light);
-
-  border:1px solid rgba(229,27,35,.18);
-
-  font-size:10px;
-  font-weight:900;
-}
-
-.price-change.down{
-  color:#666;
-  background:#f5f5f5;
-  border-color:#ddd;
-}
-
-.price-label{
-  margin-top:10px;
-
-  color:#aaa;
-
-  font-size:7px;
-  font-weight:900;
-  letter-spacing:.18em;
-}
-
-.pulse-area{
-  margin-top:44px;
-  padding-top:15px;
-
-  border-top:1px solid #eee;
-}
-
-.pulse-head{
-  display:flex;
-  justify-content:space-between;
-
-  color:#aaa;
-
-  font-size:7px;
-  font-weight:900;
-  letter-spacing:.14em;
-}
-
-#pricePulse{
-  width:100%;
-  height:170px;
-  margin-top:5px;
-  overflow:visible;
-}
-
-#pulsePath{
-  fill:none;
-  stroke:var(--red);
-  stroke-width:3.5;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-
-  filter:
-    drop-shadow(
-      0 0 5px rgba(229,27,35,.35)
-    );
-}
-
-.price-footer{
-  position:absolute;
-
-  left:30px;
-  right:30px;
-  bottom:24px;
-
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-
-  padding-top:15px;
-
-  border-top:1px solid #eee;
-}
-
-.price-footer span{
-  display:block;
-
-  color:#aaa;
-  font-size:7px;
-  letter-spacing:.14em;
-}
-
-.price-footer strong{
-  display:block;
-  margin-top:4px;
-
-  font-size:9px;
-
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-/* metrics */
-
-.metrics-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:15px;
-}
-
-.metric{
-  position:relative;
-
-  min-height:168px;
-  padding:21px;
-
-  overflow:hidden;
-
-  border:1px solid var(--line2);
-  background:#fff;
-
-  transition:.35s;
-}
-
-.metric:hover{
-  transform:translateY(-4px);
-
-  border-color:rgba(229,27,35,.3);
-
-  box-shadow:
-    0 18px 45px rgba(229,27,35,.07);
-}
-
-.metric:after{
-  content:"";
-
-  position:absolute;
-
-  width:100px;
-  height:100px;
-
-  right:-50px;
-  bottom:-50px;
-
-  border-radius:50%;
-
-  background:rgba(229,27,35,.06);
-  filter:blur(10px);
-}
-
-.metric-top{
-  display:flex;
-  justify-content:space-between;
-
-  color:#aaa;
-
-  font-size:7px;
-  font-weight:900;
-  letter-spacing:.15em;
-}
-
-.metric-top b{
-  color:var(--red);
-}
-
-.metric-value{
-  margin-top:22px;
-
-  font-size:
-    clamp(20px,2.6vw,32px);
-
-  line-height:1;
-
-  font-weight:950;
-  letter-spacing:-.05em;
-
-  font-variant-numeric:tabular-nums;
-
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.metric-buy{
-  color:var(--red);
-}
-
-.metric-sell{
-  color:#555;
-}
-
-.metric-label{
-  position:absolute;
-  bottom:19px;
-
-  color:#aaa;
-
-  font-size:7px;
-  font-weight:800;
   letter-spacing:.12em;
 }
 
-.metric-bar{
-  position:absolute;
-  left:21px;
-  right:21px;
-  bottom:38px;
+.status-dot{
+  width:6px;
+  height:6px;
 
-  height:2px;
-  background:#eee;
-}
-
-.metric-bar i{
-  display:block;
-  height:100%;
-  width:0;
-  background:var(--red);
-
-  transition:width 1s ease;
-}
-
-/* terminal bottom */
-
-.terminal-bottom{
-  position:relative;
-  z-index:2;
-
-  display:grid;
-  grid-template-columns:1fr 1.4fr 1fr auto;
-
-  border-top:1px solid var(--line);
-}
-
-.terminal-info{
-  min-height:73px;
-  padding:14px 19px;
-
-  border-right:1px solid var(--line);
-
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.terminal-info small{
-  display:block;
-
-  color:#aaa;
-  font-size:6px;
-  font-weight:900;
-  letter-spacing:.14em;
-}
-
-.terminal-info strong{
-  display:block;
-
-  margin-top:5px;
-
-  font-family:monospace;
-  font-size:9px;
-
-  max-width:230px;
-
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-}
-
-.network-dot{
-  width:7px;
-  height:7px;
   border-radius:50%;
-  flex-shrink:0;
-  background:var(--red);
-  box-shadow:0 0 12px rgba(229,27,35,.5);
+
+  background:#777;
+
+  box-shadow:0 0 10px currentColor;
 }
 
-.chart-link{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
+.terminal-status.live .status-dot{
+  background:#17a558;
+  color:#17a558;
+}
 
+.terminal-status.offline .status-dot{
+  background:#777;
+  color:#777;
+}
+
+.terminal-status.reconnecting .status-dot{
+  background:var(--red);
   color:var(--red);
 
-  font-size:8px;
-  font-weight:900;
-  letter-spacing:.13em;
-
-  transition:.25s;
+  animation:pulse 1s infinite;
 }
 
-.chart-link:hover{
-  background:var(--red-light);
+/* market top */
+
+.market-main{
+  display:grid;
+
+  grid-template-columns:1.3fr .7fr;
+
+  min-height:310px;
 }
 
-/* stream */
+.market-primary{
+  padding:38px;
 
-.data-stream{
-  position:relative;
-  z-index:2;
+  border-right:1px solid var(--line2);
+}
 
-  min-height:38px;
-
+.market-pair-line{
   display:flex;
   align-items:center;
   gap:12px;
 
-  padding:0 20px;
-
-  overflow:hidden;
-
-  color:#aaa;
-
-  border-top:1px solid var(--line);
-
-  font-size:6px;
-  font-weight:900;
-  letter-spacing:.18em;
-
-  white-space:nowrap;
+  margin-bottom:22px;
 }
 
-.data-stream i{
-  width:3px;
-  height:3px;
-  flex-shrink:0;
-
-  border-radius:50%;
-
-  background:var(--red);
-}
-
-/* =========================================================
-   ABOUT
-========================================================= */
-
-.about-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-}
-
-.about-card{
-  position:relative;
-
-  padding:40px;
-
-  border:1px solid var(--line);
-  background:#fff;
-
-  min-height:330px;
-}
-
-.about-card.red{
-  background:
-    radial-gradient(
-      circle at 80% 20%,
-      rgba(229,27,35,.09),
-      transparent 35%
-    ),
-    #fff;
-}
-
-.about-number{
-  color:var(--red);
+.market-pair-label{
   font-size:9px;
   font-weight:900;
   letter-spacing:.15em;
+
+  color:#8b8b91;
 }
 
-.about-card h3{
-  margin-top:60px;
-
-  font-size:38px;
-  line-height:1;
-  letter-spacing:-.06em;
-}
-
-.about-card p{
-  margin-top:20px;
-
-  max-width:570px;
-
-  color:#777;
-  font-size:13px;
-  line-height:1.9;
-}
-
-/* =========================================================
-   WHY
-========================================================= */
-
-.why-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-}
-
-.why-card{
-  position:relative;
-
-  min-height:270px;
-  padding:28px;
-
-  border:1px solid var(--line);
-  background:#fff;
-
-  transition:.35s;
-}
-
-.why-card:hover{
-  transform:translateY(-6px);
-  border-color:rgba(229,27,35,.25);
-}
-
-.why-index{
-  font-family:monospace;
-  color:var(--red);
-  font-size:10px;
-}
-
-.why-icon{
-  margin-top:45px;
-
-  width:44px;
-  height:44px;
-
-  display:grid;
-  place-items:center;
-
-  border:1px solid rgba(229,27,35,.25);
-
-  color:var(--red);
-
-  font-size:16px;
-}
-
-.why-card h3{
-  margin-top:22px;
-  font-size:21px;
-  letter-spacing:-.03em;
-}
-
-.why-card p{
-  margin-top:10px;
-  color:#888;
+.pair-name{
   font-size:11px;
-  line-height:1.75;
+  font-weight:950;
+  letter-spacing:.08em;
 }
 
-/* =========================================================
-   TOKENOMICS
-========================================================= */
-
-.tokenomics{
-  background:#fafafa;
-}
-
-.token-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-}
-
-.token-core{
-  position:relative;
-
-  min-height:480px;
-
-  border:1px solid var(--line);
-
-  background:#fff;
-
-  display:grid;
-  place-items:center;
-
-  overflow:hidden;
-}
-
-.token-circle{
-  position:relative;
-
-  width:290px;
-  height:290px;
-
-  border-radius:50%;
-
-  border:
-    1px solid rgba(229,27,35,.35);
-
-  box-shadow:
-    0 0 0 20px rgba(229,27,35,.025),
-    0 0 0 50px rgba(229,27,35,.015);
-}
-
-.token-circle:before,
-.token-circle:after{
-  content:"";
-  position:absolute;
-  inset:22px;
-
-  border-radius:50%;
-  border:1px dashed rgba(0,0,0,.12);
-}
-
-.token-circle:after{
-  inset:70px;
-  border-style:solid;
-  border-color:rgba(229,27,35,.15);
-}
-
-.token-center{
-  position:absolute;
-  inset:0;
-
-  display:grid;
-  place-items:center;
-
-  text-align:center;
-}
-
-.token-center strong{
-  display:block;
+.realtime{
+  margin-left:auto;
 
   color:var(--red);
-
-  font-size:50px;
-  font-weight:1000;
-  letter-spacing:-.08em;
-}
-
-.token-center span{
-  display:block;
-
-  margin-top:4px;
-
-  color:#999;
 
   font-size:8px;
   font-weight:900;
-  letter-spacing:.2em;
+  letter-spacing:.1em;
 }
 
-.token-orbit{
-  position:absolute;
+.price-label{
+  margin-bottom:8px;
 
-  top:-4px;
-  left:50%;
+  color:#88888e;
 
-  width:8px;
-  height:8px;
-
-  margin-left:-4px;
-
-  border-radius:50%;
-
-  background:var(--red);
-  box-shadow:0 0 18px rgba(229,27,35,.55);
-
-  animation:orbit 8s linear infinite;
-  transform-origin:4px 149px;
-}
-
-@keyframes orbit{
-  to{
-    transform:rotate(360deg);
-  }
-}
-
-.token-stats{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px;
-}
-
-.token-stat{
-  min-height:225px;
-
-  padding:25px;
-
-  border:1px solid var(--line);
-  background:#fff;
-}
-
-.token-stat span{
-  color:#aaa;
-
-  font-size:7px;
+  font-size:8px;
   font-weight:900;
   letter-spacing:.16em;
 }
 
-.token-stat strong{
-  display:block;
-
-  margin-top:25px;
-
-  font-size:31px;
-  letter-spacing:-.05em;
-}
-
-.token-stat em{
-  display:block;
-
-  margin-top:12px;
-
-  color:var(--red);
-
-  font-size:8px;
-  font-style:normal;
-  font-weight:900;
-}
-
-/* =========================================================
-   STORY
-========================================================= */
-
-.story-grid{
-  display:grid;
-  grid-template-columns:1fr 1.3fr;
-  gap:70px;
-}
-
-.story-big{
-  font-size:
-    clamp(42px,6vw,76px);
+.price{
+  font-size:clamp(40px,6vw,78px);
 
   line-height:.95;
 
-  letter-spacing:-.065em;
   font-weight:950;
+
+  letter-spacing:-.07em;
+
+  word-break:break-all;
+}
+
+.change{
+  display:inline-flex;
+
+  margin-top:13px;
+
+  padding:7px 10px;
+
+  border-radius:6px;
+
+  background:#f4f4f5;
+
+  font-size:10px;
+  font-weight:900;
+}
+
+.change.up{
+  color:#14824a;
+  background:#edf9f2;
+}
+
+.change.down{
+  color:#c5151d;
+  background:#fff0f1;
+}
+
+.pulse-label{
+  margin-top:30px;
+  margin-bottom:10px;
+
+  color:#9a9aa0;
+
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.15em;
+}
+
+.pulse-chart{
+  height:70px;
+
+  position:relative;
+
+  overflow:hidden;
+
+  border-top:1px solid var(--line2);
+  border-bottom:1px solid var(--line2);
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 49px,
+      rgba(0,0,0,.025) 50px
+    );
+}
+
+.pulse-chart svg{
+  width:100%;
+  height:100%;
+  overflow:visible;
+}
+
+.pulse-line{
+  fill:none;
+
+  stroke:var(--red);
+
+  stroke-width:1.5;
+
+  vector-effect:non-scaling-stroke;
+
+  filter:
+    drop-shadow(
+      0 0 5px rgba(229,27,35,.3)
+    );
+}
+
+.pulse-time{
+  margin-top:7px;
+
+  color:#a1a1a7;
+
+  font-size:8px;
+  letter-spacing:.1em;
+}
+
+/* market side */
+
+.market-stats{
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+}
+
+.stat{
+  padding:26px 24px;
+
+  border-bottom:1px solid var(--line2);
+
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.stat:nth-child(odd){
+  border-right:1px solid var(--line2);
+}
+
+.stat:nth-last-child(-n+2){
+  border-bottom:0;
+}
+
+.stat-label{
+  color:#8c8c92;
+
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.15em;
+}
+
+.stat-value{
+  margin-top:15px;
+
+  color:#121216;
+
+  font-size:18px;
+  font-weight:950;
+
+  letter-spacing:-.03em;
+
+  word-break:break-word;
+}
+
+.stat-sub{
+  margin-top:7px;
+
+  color:#aaaab0;
+
+  font-size:7px;
+  letter-spacing:.08em;
+}
+
+.stat.buy .stat-value{
+  color:#15834b;
+}
+
+.stat.sell .stat-value{
+  color:var(--red);
+}
+
+/* terminal lower */
+
+.market-flow{
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  border-top:1px solid var(--line2);
+}
+
+.flow-box{
+  min-height:120px;
+
+  padding:25px;
+
+  border-right:1px solid var(--line2);
+}
+
+.flow-box:last-child{
+  border-right:0;
+}
+
+.flow-label{
+  color:#929298;
+
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.15em;
+}
+
+.flow-value{
+  margin-top:12px;
+
+  font-size:20px;
+  font-weight:950;
+
+  letter-spacing:-.04em;
+}
+
+.flow-bar{
+  height:3px;
+
+  margin-top:17px;
+
+  background:#f0f0f2;
+
+  overflow:hidden;
+}
+
+.flow-bar i{
+  display:block;
+
+  height:100%;
+
+  width:0%;
+
+  background:var(--red);
+
+  transition:width .6s ease;
+}
+
+.terminal-footer{
+  padding:20px 25px;
+
+  display:grid;
+
+  grid-template-columns:repeat(4,1fr);
+
+  border-top:1px solid var(--line2);
+
+  background:#fcfcfd;
+}
+
+.tech-item{
+  min-width:0;
+}
+
+.tech-label{
+  color:#a0a0a6;
+
+  font-size:7px;
+  font-weight:900;
+  letter-spacing:.14em;
+}
+
+.tech-value{
+  margin-top:7px;
+
+  color:#414147;
+
+  font-size:9px;
+  font-weight:800;
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.tech-value a{
+  color:var(--red);
+}
+
+.stream{
+  border-top:1px solid var(--line2);
+
+  min-height:46px;
+
+  display:flex;
+  align-items:center;
+
+  overflow:hidden;
+
+  white-space:nowrap;
+
+  background:#fff;
+}
+
+.stream-track{
+  display:flex;
+
+  align-items:center;
+
+  gap:45px;
+
+  animation:stream 28s linear infinite;
+}
+
+.stream-item{
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  color:#8b8b91;
+
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.13em;
+}
+
+.stream-item b{
+  color:var(--red);
+}
+
+@keyframes stream{
+  from{
+    transform:translateX(0);
+  }
+
+  to{
+    transform:translateX(-35%);
+  }
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-grid{
+  display:grid;
+
+  grid-template-columns:.75fr 1.25fr;
+
+  gap:100px;
+}
+
+.about-copy{
+  padding-top:20px;
+}
+
+.about-description{
+  color:#77777d;
+
+  font-size:15px;
+  line-height:1.9;
+
+  max-width:500px;
+}
+
+.about-blocks{
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:25px;
+}
+
+.about-card{
+  min-height:360px;
+
+  padding:32px;
+
+  border:1px solid var(--line);
+
+  position:relative;
+
+  overflow:hidden;
+
+  transition:.35s;
+}
+
+.about-card:hover{
+  border-color:rgba(229,27,35,.3);
+
+  box-shadow:var(--shadow-red);
+
+  transform:translateY(-5px);
+}
+
+.about-card:after{
+  content:"";
+
+  position:absolute;
+
+  width:170px;
+  height:170px;
+
+  right:-80px;
+  bottom:-80px;
+
+  border-radius:50%;
+
+  border:1px solid rgba(229,27,35,.14);
+}
+
+.card-code{
+  color:var(--red);
+
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.15em;
+}
+
+.card-title{
+  margin-top:90px;
+
+  font-size:clamp(28px,3.2vw,48px);
+
+  line-height:.9;
+
+  font-weight:950;
+
+  letter-spacing:-.06em;
+}
+
+.card-text{
+  margin-top:24px;
+
+  color:#85858b;
+
+  font-size:12px;
+  line-height:1.8;
+}
+
+/* =========================
+   WHY
+========================= */
+
+.why{
+  background:#08080a;
+  color:#fff;
+}
+
+.why .section-code{
+  color:#ff4650;
+}
+
+.why .section-title{
+  color:#fff;
+}
+
+.nodes{
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:1px;
+
+  background:#28282b;
+
+  border:1px solid #28282b;
+}
+
+.node{
+  min-height:380px;
+
+  padding:35px;
+
+  background:#0c0c0f;
+
+  position:relative;
+
+  transition:.3s;
+}
+
+.node:hover{
+  background:#111114;
+}
+
+.node-number{
+  color:#ff4650;
+
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.16em;
+}
+
+.node-title{
+  margin-top:105px;
+
+  font-size:34px;
+
+  line-height:.95;
+
+  letter-spacing:-.05em;
+
+  font-weight:950;
+}
+
+.node-text{
+  max-width:300px;
+
+  margin-top:24px;
+
+  color:#88888f;
+
+  font-size:12px;
+  line-height:1.8;
+}
+
+.node-dot{
+  position:absolute;
+
+  right:28px;
+  top:30px;
+
+  width:8px;
+  height:8px;
+
+  border-radius:50%;
+
+  background:var(--red);
+
+  box-shadow:0 0 20px rgba(229,27,35,.7);
+}
+
+/* =========================
+   TOKENOMICS
+========================= */
+
+.token-grid{
+  display:grid;
+
+  grid-template-columns:repeat(4,1fr);
+
+  border-top:1px solid var(--line);
+  border-left:1px solid var(--line);
+}
+
+.token-card{
+  min-height:250px;
+
+  padding:30px;
+
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+
+  position:relative;
+}
+
+.token-index{
+  color:var(--red);
+
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.16em;
+}
+
+.token-label{
+  margin-top:80px;
+
+  color:#99999f;
+
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.15em;
+}
+
+.token-value{
+  margin-top:10px;
+
+  font-size:26px;
+  font-weight:950;
+
+  letter-spacing:-.05em;
+}
+
+.token-value small{
+  font-size:10px;
+  letter-spacing:.08em;
+  color:#88888e;
+}
+
+.token-card:after{
+  content:"";
+
+  position:absolute;
+
+  right:20px;
+  top:20px;
+
+  width:35px;
+  height:35px;
+
+  border-top:1px solid var(--red);
+  border-right:1px solid var(--red);
+
+  opacity:.45;
+}
+
+/* =========================
+   STORY
+========================= */
+
+.story{
+  overflow:hidden;
+}
+
+.story-grid{
+  display:grid;
+
+  grid-template-columns:.8fr 1.2fr;
+
+  gap:90px;
+
+  align-items:center;
+}
+
+.story-big{
+  font-size:clamp(60px,9vw,135px);
+
+  line-height:.78;
+
+  font-weight:950;
+
+  letter-spacing:-.085em;
 }
 
 .story-big span{
   color:var(--red);
 }
 
-.story-text{
-  color:#777;
-  font-size:14px;
-  line-height:2;
-}
+.story-copy{
+  display:flex;
+  flex-direction:column;
 
-.story-text p + p{
-  margin-top:20px;
+  gap:28px;
 }
 
 .story-line{
-  margin-top:40px;
+  display:grid;
 
-  height:1px;
+  grid-template-columns:70px 1fr;
 
-  background:
-    linear-gradient(
-      90deg,
-      var(--red),
-      transparent
-    );
+  gap:25px;
+
+  padding-bottom:28px;
+
+  border-bottom:1px solid var(--line);
 }
 
-/* =========================================================
+.story-line:last-child{
+  border-bottom:0;
+}
+
+.story-no{
+  color:var(--red);
+
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.12em;
+}
+
+.story-line p{
+  color:#77777d;
+
+  font-size:13px;
+  line-height:1.9;
+}
+
+/* =========================
    SECURITY
-========================================================= */
+========================= */
+
+.security{
+  background:#fafafa;
+}
 
 .security-grid{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px;
+
+  grid-template-columns:.7fr 1.3fr;
+
+  gap:100px;
 }
 
-.security-card{
-  padding:27px;
+.security-side{
+  position:relative;
+}
 
-  border:1px solid var(--line);
+.security-badge{
+  width:170px;
+  height:170px;
+
+  border-radius:50%;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  border:1px solid rgba(229,27,35,.35);
+
+  color:var(--red);
+
+  position:relative;
+}
+
+.security-badge:before{
+  content:"";
+
+  position:absolute;
+
+  inset:12px;
+
+  border:1px dashed rgba(229,27,35,.25);
+
+  border-radius:50%;
+
+  animation:spin 16s linear infinite;
+}
+
+.security-badge strong{
+  font-size:25px;
+  font-weight:950;
+}
+
+.security-badge small{
+  margin-top:6px;
+
+  font-size:7px;
+  font-weight:900;
+  letter-spacing:.15em;
+}
+
+.security-items{
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:1px;
+
+  background:var(--line);
+}
+
+.security-item{
+  min-height:260px;
+
+  padding:30px;
+
   background:#fff;
 }
 
-.security-card-top{
+.security-top{
   display:flex;
+  align-items:center;
   justify-content:space-between;
 }
 
-.security-card h3{
-  margin-top:35px;
+.security-tag{
+  color:var(--red);
 
-  font-size:22px;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.15em;
+}
+
+.security-status{
+  color:#15904f;
+
+  font-size:7px;
+  font-weight:900;
+  letter-spacing:.12em;
+}
+
+.security-item h3{
+  margin-top:65px;
+
+  font-size:23px;
+  font-weight:950;
+
   letter-spacing:-.04em;
 }
 
-.security-card p{
-  margin-top:12px;
+.security-item p{
+  margin-top:15px;
 
-  color:#888;
+  color:#85858b;
 
   font-size:11px;
   line-height:1.8;
 }
 
-.security-status{
-  color:var(--red);
-
-  font-size:7px;
-  font-weight:900;
-  letter-spacing:.14em;
-}
-
-/* =========================================================
+/* =========================
    CONTRACT
-========================================================= */
+========================= */
+
+.contract-section{
+  padding-top:80px;
+}
 
 .contract-box{
-  position:relative;
+  padding:35px;
 
-  padding:55px;
+  border:1px solid #dddde2;
 
-  border:1px solid #ddd;
+  background:#fff;
 
-  background:
-    radial-gradient(
-      circle at 90% 30%,
-      rgba(229,27,35,.08),
-      transparent 30%
-    ),
-    #fff;
+  box-shadow:var(--shadow);
 
-  overflow:hidden;
-}
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 
-.contract-box:before{
-  content:"CHILI";
-
-  position:absolute;
-
-  right:-20px;
-  bottom:-55px;
-
-  color:rgba(229,27,35,.025);
-
-  font-size:210px;
-  font-weight:1000;
-  letter-spacing:-.1em;
+  gap:30px;
 }
 
 .contract-label{
-  color:var(--red);
+  color:#8d8d93;
 
   font-size:8px;
   font-weight:900;
-  letter-spacing:.18em;
+  letter-spacing:.15em;
 }
 
 .contract-address{
-  position:relative;
-  z-index:2;
+  margin-top:10px;
 
-  margin-top:20px;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
 
-  font-family:monospace;
-
-  font-size:
-    clamp(13px,2vw,21px);
-
-  line-height:1.5;
+  font-size:13px;
 
   word-break:break-all;
 }
 
 .contract-actions{
-  position:relative;
-  z-index:2;
-
   display:flex;
-  flex-wrap:wrap;
   gap:10px;
-
-  margin-top:28px;
+  flex-shrink:0;
 }
 
-/* =========================================================
+/* =========================
    COMMUNITY
-========================================================= */
+========================= */
 
 .community{
-  padding-bottom:140px;
-}
-
-.community-box{
-  position:relative;
-
-  padding:70px 50px;
+  padding:170px 0;
 
   text-align:center;
 
-  border:1px solid rgba(229,27,35,.2);
+  overflow:hidden;
 
   background:
     radial-gradient(
-      circle at 50% 100%,
-      rgba(229,27,35,.1),
-      transparent 45%
-    ),
-    #fff;
-
-  overflow:hidden;
+      circle at center,
+      rgba(229,27,35,.07),
+      transparent 50%
+    );
 }
 
-.community-box h2{
-  font-size:
-    clamp(45px,7vw,90px);
+.community-title{
+  font-size:clamp(65px,11vw,160px);
 
-  line-height:.9;
+  line-height:.78;
 
-  letter-spacing:-.075em;
+  letter-spacing:-.09em;
+
+  font-weight:950;
 }
 
-.community-box h2 span{
+.community-title span{
   color:var(--red);
 }
 
-.community-box p{
-  max-width:520px;
-  margin:20px auto 0;
+.community-text{
+  max-width:560px;
 
-  color:#777;
-  font-size:13px;
+  margin:35px auto 0;
+
+  color:#77777d;
+
+  font-size:14px;
   line-height:1.8;
 }
 
 .community-actions{
+  margin-top:30px;
+
   display:flex;
   justify-content:center;
-  flex-wrap:wrap;
-  gap:10px;
+  gap:12px;
 
-  margin-top:28px;
+  flex-wrap:wrap;
 }
 
-/* =========================================================
+/* =========================
    FOOTER
-========================================================= */
+========================= */
 
-footer{
-  border-top:1px solid var(--line);
-
+.footer{
   padding:30px 0;
 
-  background:#fff;
-}
+  border-top:1px solid var(--line);
 
-.footer-inner{
-  width:min(1380px,calc(100% - 40px));
-  margin:auto;
+  color:#929298;
 
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
-}
-
-.footer-brand{
-  font-weight:950;
-  font-size:18px;
-  letter-spacing:-.05em;
-}
-
-.footer-brand span{
-  color:var(--red);
-}
-
-.footer-copy{
-  color:#aaa;
   font-size:8px;
+  font-weight:900;
+
   letter-spacing:.12em;
 }
 
-/* =========================================================
+.footer-inner{
+  display:flex;
+
+  align-items:center;
+  justify-content:space-between;
+
+  gap:20px;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+  position:fixed;
+
+  left:50%;
+  bottom:30px;
+
+  transform:
+    translate(-50%,20px);
+
+  padding:12px 18px;
+
+  background:#0b0b0d;
+
+  color:#fff;
+
+  border-radius:8px;
+
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.1em;
+
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:.3s;
+
+  z-index:5000;
+
+  box-shadow:0 15px 50px rgba(0,0,0,.2);
+}
+
+.toast.show{
+  opacity:1;
+
+  transform:
+    translate(-50%,0);
+}
+
+/* =========================
+   MOBILE NAV
+========================= */
+
+.mobile-nav{
+  position:fixed;
+
+  top:76px;
+  left:0;
+  right:0;
+
+  background:#fff;
+
+  border-bottom:1px solid var(--line);
+
+  padding:20px 24px;
+
+  display:none;
+
+  z-index:999;
+
+  box-shadow:0 15px 35px rgba(0,0,0,.08);
+}
+
+.mobile-nav.active{
+  display:block;
+}
+
+.mobile-nav a{
+  display:block;
+
+  padding:15px 0;
+
+  border-bottom:1px solid var(--line2);
+
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.12em;
+}
+
+.mobile-nav a:last-child{
+  border-bottom:0;
+}
+
+/* =========================
    REVEAL
-========================================================= */
+========================= */
 
 .reveal{
   opacity:0;
   transform:translateY(25px);
+
   transition:
-    opacity .8s ease,
-    transform .8s ease;
+    opacity .7s ease,
+    transform .7s ease;
 }
 
 .reveal.visible{
@@ -1771,48 +1892,13 @@ footer{
   transform:none;
 }
 
-/* =========================================================
-   TOAST
-========================================================= */
+/* =========================
+   RESPONSIVE
+========================= */
 
-.toast{
-  position:fixed;
+@media(max-width:1050px){
 
-  left:50%;
-  bottom:25px;
-
-  transform:
-    translate(-50%,20px);
-
-  z-index:2000;
-
-  padding:11px 17px;
-
-  color:#fff;
-  background:#111;
-
-  font-size:9px;
-  font-weight:900;
-  letter-spacing:.1em;
-
-  opacity:0;
-  pointer-events:none;
-
-  transition:.3s;
-}
-
-.toast.show{
-  opacity:1;
-  transform:translate(-50%,0);
-}
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:1000px){
-
-  .nav-links{
+  .nav{
     display:none;
   }
 
@@ -1820,157 +1906,279 @@ footer{
     display:block;
   }
 
-  .hero-container{
+  .hero{
+    min-height:auto;
+    padding-top:140px;
+    padding-bottom:100px;
+  }
+
+  .hero-grid{
     grid-template-columns:1fr;
-    gap:50px;
+    gap:70px;
   }
 
-  .hero-core{
-    width:min(440px,90vw);
+  .hero-visual{
+    order:2;
   }
 
-  .terminal-main{
+  .core{
+    width:min(520px,88vw);
+  }
+
+  .market-main{
     grid-template-columns:1fr;
   }
 
-  .terminal-bottom{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .terminal-info{
-    border-bottom:1px solid var(--line);
+  .market-primary{
+    border-right:0;
+    border-bottom:1px solid var(--line2);
   }
 
   .about-grid,
-  .token-grid,
   .story-grid,
   .security-grid{
     grid-template-columns:1fr;
+    gap:60px;
   }
 
-  .why-grid{
+  .token-grid{
     grid-template-columns:1fr 1fr;
+  }
+
+  .nodes{
+    grid-template-columns:1fr;
+  }
+
+  .node{
+    min-height:280px;
+  }
+
+  .node-title{
+    margin-top:65px;
+  }
+
+  .security-items{
+    grid-template-columns:1fr;
   }
 }
 
-@media(max-width:650px){
+@media(max-width:700px){
 
-  header{
+  .container,
+  .header-inner{
+    width:calc(100% - 30px);
+  }
+
+  .header{
     height:68px;
   }
 
-  .nav{
-    width:calc(100% - 24px);
+  .mobile-nav{
+    top:68px;
+  }
+
+  .logo-main{
+    font-size:17px;
+  }
+
+  .logo-mark{
+    width:34px;
+    height:34px;
   }
 
   .hero{
     padding-top:120px;
   }
 
-  .hero-container,
-  .container,
-  .terminal-shell{
-    width:calc(100% - 24px);
-  }
-
   .hero h1{
-    font-size:27vw;
+    font-size:
+      clamp(75px,23vw,145px);
+
+    margin-left:-4px;
   }
 
   .hero-subtitle{
     font-size:13px;
   }
 
-  .hero-core{
-    width:94vw;
-  }
-
-  .core-logo{
-    width:135px;
-    height:135px;
-    font-size:57px;
-  }
-
-  .terminal-section,
-  .section{
-    padding:85px 0;
-  }
-
-  .terminal-top{
+  .contract-mini{
     align-items:flex-start;
     flex-direction:column;
-    gap:14px;
   }
 
-  .terminal-status{
+  .contract-mini code{
+    max-width:100%;
+  }
+
+  .section{
+    padding:100px 0;
+  }
+
+  .section-head{
+    display:block;
+    margin-bottom:45px;
+  }
+
+  .section-description{
+    margin-top:25px;
+  }
+
+  .terminal-header{
+    padding:16px;
+    gap:12px;
+
+    flex-wrap:wrap;
+  }
+
+  .terminal-title{
+    order:3;
     width:100%;
   }
 
-  .chain-chip,
-  .live-chip{
-    flex:1;
-    text-align:center;
-    justify-content:center;
+  .market-primary{
+    padding:25px 18px;
   }
 
-  .price-module{
-    min-height:500px;
-    padding:22px;
+  .market-stats{
+    grid-template-columns:1fr 1fr;
   }
 
-  .price-footer{
-    left:22px;
-    right:22px;
+  .stat{
+    padding:20px 15px;
   }
 
-  .metrics-grid{
-    gap:9px;
+  .stat-value{
+    font-size:15px;
   }
 
-  .metric{
-    min-height:140px;
-    padding:16px;
-  }
-
-  .metric-value{
-    font-size:19px;
-  }
-
-  .metric-bar{
-    left:16px;
-    right:16px;
-  }
-
-  .terminal-bottom{
+  .market-flow{
     grid-template-columns:1fr;
   }
 
-  .terminal-info{
+  .flow-box{
     border-right:0;
+    border-bottom:1px solid var(--line2);
   }
 
-  .why-grid,
-  .token-stats{
+  .flow-box:last-child{
+    border-bottom:0;
+  }
+
+  .terminal-footer{
+    grid-template-columns:1fr 1fr;
+
+    gap:20px;
+  }
+
+  .about-blocks{
     grid-template-columns:1fr;
   }
 
   .about-card{
-    padding:27px;
-    min-height:280px;
+    min-height:300px;
+  }
+
+  .card-title{
+    margin-top:60px;
+  }
+
+  .token-grid{
+    grid-template-columns:1fr;
+  }
+
+  .token-card{
+    min-height:210px;
+  }
+
+  .token-label{
+    margin-top:55px;
+  }
+
+  .story-big{
+    font-size:
+      clamp(65px,19vw,110px);
+  }
+
+  .story-line{
+    grid-template-columns:50px 1fr;
+    gap:15px;
   }
 
   .contract-box{
-    padding:30px 22px;
+    flex-direction:column;
+    align-items:flex-start;
+    padding:25px 20px;
   }
 
-  .community-box{
-    padding:55px 22px;
+  .contract-actions{
+    width:100%;
+    flex-wrap:wrap;
+  }
+
+  .contract-actions .btn{
+    flex:1;
+  }
+
+  .community{
+    padding:110px 0;
+  }
+
+  .community-title{
+    font-size:
+      clamp(65px,20vw,125px);
   }
 
   .footer-inner{
-    width:calc(100% - 24px);
     flex-direction:column;
     align-items:flex-start;
+  }
+}
+
+@media(max-width:430px){
+
+  .header-actions{
+    gap:5px;
+  }
+
+  .lang-btn{
+    padding:0 10px;
+  }
+
+  .hero-kicker{
+    font-size:8px;
+  }
+
+  .core-data{
+    font-size:6px;
+  }
+
+  .core-data.d1{
+    left:-1%;
+  }
+
+  .core-data.d2{
+    right:-4%;
+  }
+
+  .core-data.d3{
+    right:-3%;
+  }
+
+  .core-data.d4{
+    left:0;
+  }
+
+  .market-pair-line{
+    flex-wrap:wrap;
+  }
+
+  .realtime{
+    margin-left:0;
+    width:100%;
+  }
+
+  .price{
+    font-size:39px;
   }
 }
 </style>
@@ -1978,30 +2186,32 @@ footer{
 
 <body>
 
-<div class="page-grid"></div>
-
-<!-- =========================================================
+<!-- =========================
      HEADER
-========================================================= -->
+========================= -->
 
-<header>
-
-  <nav class="nav">
+<header class="header">
+  <div class="header-inner">
 
     <a href="#top" class="logo">
 
       <div class="logo-mark">🌶</div>
 
-      <div>
-        CHILI
-        <small>ON-CHAIN</small>
+      <div class="logo-text">
+        <div class="logo-main">CHILI</div>
+        <div
+          class="logo-small"
+          data-i18n="logo-small"
+        >
+          ON-CHAIN
+        </div>
       </div>
 
     </a>
 
-    <div class="nav-links">
+    <nav class="nav">
 
-      <a href="#terminal" data-i18n="nav-market">
+      <a href="#market" data-i18n="nav-market">
         MARKET
       </a>
 
@@ -2025,48 +2235,77 @@ footer{
         CONTRACT
       </a>
 
-    </div>
+    </nav>
 
-    <div class="nav-right">
+    <div class="header-actions">
 
       <button
         class="lang-btn"
-        id="langBtn">
+        id="langBtn"
+        type="button"
+      >
         中文
       </button>
 
       <button
         class="menu-btn"
-        id="menuBtn">
+        id="menuBtn"
+        type="button"
+        aria-label="Menu"
+      >
         ☰
       </button>
 
     </div>
 
-  </nav>
-
+  </div>
 </header>
+
+<nav class="mobile-nav" id="mobileNav">
+
+  <a href="#market" data-i18n="nav-market">
+    MARKET
+  </a>
+
+  <a href="#about" data-i18n="nav-about">
+    ABOUT
+  </a>
+
+  <a href="#tokenomics" data-i18n="nav-tokenomics">
+    TOKENOMICS
+  </a>
+
+  <a href="#story" data-i18n="nav-story">
+    STORY
+  </a>
+
+  <a href="#security" data-i18n="nav-security">
+    SECURITY
+  </a>
+
+  <a href="#contract" data-i18n="nav-contract">
+    CONTRACT
+  </a>
+
+</nav>
 
 <main id="top">
 
-<!-- =========================================================
+<!-- =========================
      HERO
-========================================================= -->
+========================= -->
 
 <section class="hero">
 
-  <div class="hero-container">
+  <div class="container hero-grid">
 
-    <div class="hero-copy">
+    <div class="hero-copy reveal">
 
       <div class="hero-kicker">
-
         <i></i>
-
         <span data-i18n="hero-kicker">
           BNB SMART CHAIN // SYSTEM ONLINE
         </span>
-
       </div>
 
       <h1>
@@ -2075,26 +2314,28 @@ footer{
 
       <p
         class="hero-subtitle"
-        data-i18n="hero-subtitle">
-        A community-driven token built for the next wave of
-        on-chain culture.
+        data-i18n="hero-subtitle"
+      >
+        A community-driven token built for the next wave of on-chain culture.
       </p>
 
       <div class="hero-actions">
 
         <a
-          class="btn btn-red"
-          href="#terminal"
-          data-i18n="hero-enter">
+          href="#market"
+          class="btn btn-primary"
+          data-i18n="hero-enter"
+        >
           ENTER TERMINAL →
         </a>
 
         <a
-          class="btn btn-light"
           href="https://bscscan.com/address/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c"
           target="_blank"
           rel="noopener"
-          data-i18n="hero-contract">
+          class="btn btn-outline"
+          data-i18n="hero-contract"
+        >
           VIEW CONTRACT ↗
         </a>
 
@@ -2106,14 +2347,15 @@ footer{
           CA:
         </span>
 
-        <strong>
-          0xed3c...35f7c
-        </strong>
+        <code>
+          0xed3caca4903256fb3e4997bc0c7830d19fb35f7c
+        </code>
 
         <button
           class="copy-mini"
-          id="heroCopy"
-          data-i18n="hero-copy">
+          id="copyHero"
+          data-i18n="hero-copy"
+        >
           COPY
         </button>
 
@@ -2121,57 +2363,41 @@ footer{
 
     </div>
 
-    <div class="hero-core">
+    <div class="hero-visual reveal">
 
-      <div class="core-glow"></div>
+      <div class="core">
 
-      <div class="core-ring ring-1"></div>
-      <div class="core-ring ring-2"></div>
-      <div class="core-ring ring-3"></div>
+        <div class="core-ring r1"></div>
+        <div class="core-ring r2"></div>
+        <div class="core-ring r3"></div>
 
-      <div class="core-logo">
-        🌶
-      </div>
+        <div class="core-data d1">
+          <span data-i18n="core-network">NETWORK</span>
+          <b>BNB</b>
+        </div>
 
-      <div
-        class="core-label red"
-        data-i18n="core-label">
-        CHILI CORE
-      </div>
+        <div class="core-data d2">
+          <span data-i18n="core-status">STATUS</span>
+          <b data-i18n="core-online">ONLINE</b>
+        </div>
 
-      <div class="core-data">
+        <div class="core-data d3">
+          <span data-i18n="core-tax">TAX</span>
+          <b>0%</b>
+        </div>
 
-        <span data-i18n="core-network">
-          NETWORK
-        </span>
+        <div class="core-data d4">
+          <span data-i18n="core-token">TOKEN</span>
+          <b>CHILI</b>
+        </div>
 
-        <b>BNB</b>
+        <div class="core-center">
+          <strong>CHILI</strong>
 
-        <br>
-
-        <span data-i18n="core-status">
-          STATUS
-        </span>
-
-        <b data-i18n="core-online">
-          ONLINE
-        </b>
-
-        <br>
-
-        <span data-i18n="core-tax">
-          TAX
-        </span>
-
-        <b>0%</b>
-
-        <br>
-
-        <span data-i18n="core-token">
-          TOKEN
-        </span>
-
-        <b>CHILI</b>
+          <small data-i18n="core-label">
+            CHILI CORE
+          </small>
+        </div>
 
       </div>
 
@@ -2181,720 +2407,231 @@ footer{
 
 </section>
 
-<!-- =========================================================
+
+<!-- =========================
      LIVE MARKET TERMINAL
-========================================================= -->
+========================= -->
 
 <section
-  id="terminal"
-  class="terminal-section">
+  class="section terminal-section"
+  id="market"
+>
 
-  <div class="terminal-shell">
+  <div class="container">
 
-    <div class="terminal-top">
+    <div class="terminal reveal">
 
-      <div class="terminal-brand">
+      <div class="terminal-header">
 
-        <div class="terminal-dot"></div>
-
-        <div>
-
-          <div
-            class="terminal-code"
-            data-i18n="terminal-code">
-            CHILI // ON-CHAIN CORE
-          </div>
-
-          <div
-            class="terminal-title"
-            data-i18n="terminal-title">
-            LIVE MARKET TERMINAL
-          </div>
-
+        <div
+          class="terminal-code"
+          data-i18n="terminal-code"
+        >
+          CHILI // ON-CHAIN CORE
         </div>
 
-      </div>
+        <div
+          class="terminal-title"
+          data-i18n="terminal-title"
+        >
+          LIVE MARKET TERMINAL
+        </div>
 
-      <div class="terminal-status">
-
-        <span
-          class="chain-chip"
-          data-i18n="terminal-chain">
+        <div
+          class="terminal-chain"
+          data-i18n="terminal-chain"
+        >
           BNB SMART CHAIN
-        </span>
+        </div>
 
-        <span class="live-chip">
-
-          <i></i>
-
-          <b id="marketStatus">
-            SYNC
-          </b>
-
-        </span>
+        <div
+          class="terminal-status reconnecting"
+          id="marketStatus"
+        >
+          <span class="status-dot"></span>
+          <span id="marketStatusText">
+            RECONNECTING
+          </span>
+        </div>
 
       </div>
 
-    </div>
+      <div class="market-main">
 
-    <div class="terminal-main">
+        <div class="market-primary">
 
-      <!-- PRICE -->
+          <div class="market-pair-line">
 
-      <div class="price-module">
-
-        <div class="hud-corner hud-tl"></div>
-        <div class="hud-corner hud-tr"></div>
-        <div class="hud-corner hud-bl"></div>
-        <div class="hud-corner hud-br"></div>
-
-        <div class="module-header">
-
-          <span data-i18n="market-pair">
-            MARKET PAIR
-          </span>
-
-          <span
-            class="module-live"
-            data-i18n="realtime">
-            ● REALTIME
-          </span>
-
-        </div>
-
-        <!-- REAL DATA - DO NOT TRANSLATE -->
-
-        <div
-          class="pair-name"
-          id="displayPair">
-          CHILI <span>/</span> USDT
-        </div>
-
-        <div class="price-row">
-
-          <div
-            class="live-price"
-            id="livePrice">
-            —
-          </div>
-
-          <div
-            class="price-change"
-            id="priceChange">
-            —
-          </div>
-
-        </div>
-
-        <div
-          class="price-label"
-          data-i18n="current-price">
-          CURRENT MARKET PRICE
-        </div>
-
-        <div class="pulse-area">
-
-          <div class="pulse-head">
-
-            <span data-i18n="price-pulse">
-              LIVE PRICE PULSE
+            <span
+              class="market-pair-label"
+              data-i18n="market-pair"
+            >
+              MARKET PAIR
             </span>
 
-            <span id="pulseTime">
-              WAITING FOR DATA...
-            </span>
-
-          </div>
-
-          <svg
-            id="pricePulse"
-            viewBox="0 0 900 220"
-            preserveAspectRatio="none">
-
-            <path
-              id="pulsePath"
-              d="">
-            </path>
-
-          </svg>
-
-        </div>
-
-        <div class="price-footer">
-
-          <div>
-
-            <span data-i18n="pair">
-              PAIR
-            </span>
-
-            <strong id="pairName">
+            <strong
+              class="pair-name"
+              id="pairName"
+            >
               CHILI / USDT
             </strong>
 
-          </div>
-
-          <div>
-
-            <span data-i18n="dex">
-              DEX
+            <span
+              class="realtime"
+              data-i18n="realtime"
+            >
+              ● REALTIME
             </span>
-
-            <strong id="dexName">
-              —
-            </strong>
 
           </div>
 
-          <div>
+          <div
+            class="price-label"
+            data-i18n="current-price"
+          >
+            CURRENT MARKET PRICE
+          </div>
 
-            <span data-i18n="block">
-              BLOCK
-            </span>
+          <div
+            class="price"
+            id="price"
+          >
+            —
+          </div>
 
-            <strong id="blockNumber">
-              —
-            </strong>
+          <div
+            class="change"
+            id="change"
+          >
+            —
+          </div>
 
+          <div
+            class="pulse-label"
+            data-i18n="price-pulse"
+          >
+            LIVE PRICE PULSE
+          </div>
+
+          <div class="pulse-chart">
+
+            <svg
+              viewBox="0 0 1000 100"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <polyline
+                id="pulseLine"
+                class="pulse-line"
+                points=""
+              />
+            </svg>
+
+          </div>
+
+          <div
+            class="pulse-time"
+            id="pulseTime"
+          >
+            WAITING FOR DATA...
           </div>
 
         </div>
 
-      </div>
 
-      <!-- METRICS -->
+        <div class="market-stats">
 
-      <div class="metrics-grid">
+          <div class="stat">
 
-        <div class="metric">
-
-          <div class="metric-top">
-            <b>01</b>
-
-            <span data-i18n="liquidity">
+            <div
+              class="stat-label"
+              data-i18n="liquidity"
+            >
               LIQUIDITY
-            </span>
+            </div>
+
+            <div
+              class="stat-value"
+              id="liquidity"
+            >
+              —
+            </div>
+
+            <div class="stat-sub">
+              USD
+            </div>
+
           </div>
 
-          <div
-            class="metric-value"
-            id="liquidity">
-            —
-          </div>
 
-          <div class="metric-bar">
-            <i></i>
-          </div>
+          <div class="stat">
 
-          <div
-            class="metric-label"
-            data-i18n="pool-depth">
-            POOL DEPTH / USD
-          </div>
-
-        </div>
-
-        <div class="metric">
-
-          <div class="metric-top">
-            <b>02</b>
-
-            <span data-i18n="volume">
+            <div
+              class="stat-label"
+              data-i18n="volume"
+            >
               24H VOLUME
-            </span>
+            </div>
+
+            <div
+              class="stat-value"
+              id="volume"
+            >
+              —
+            </div>
+
+            <div class="stat-sub">
+              USD
+            </div>
+
           </div>
 
-          <div
-            class="metric-value"
-            id="volume24h">
-            —
-          </div>
 
-          <div class="metric-bar">
-            <i></i>
-          </div>
+          <div class="stat">
 
-          <div
-            class="metric-label"
-            data-i18n="market-flow">
-            MARKET FLOW / 24H
-          </div>
-
-        </div>
-
-        <div class="metric">
-
-          <div class="metric-top">
-            <b>03</b>
-
-            <span data-i18n="market-cap">
+            <div
+              class="stat-label"
+              data-i18n="market-cap"
+            >
               MARKET CAP
-            </span>
+            </div>
+
+            <div
+              class="stat-value"
+              id="marketCap"
+            >
+              —
+            </div>
+
+            <div class="stat-sub">
+              USD
+            </div>
+
           </div>
 
-          <div
-            class="metric-value"
-            id="marketCap">
-            —
-          </div>
 
-          <div class="metric-bar">
-            <i></i>
-          </div>
+          <div class="stat">
 
-          <div
-            class="metric-label"
-            data-i18n="network-valuation">
-            NETWORK VALUATION
-          </div>
-
-        </div>
-
-        <div class="metric">
-
-          <div class="metric-top">
-            <b>04</b>
-
-            <span data-i18n="txns">
+            <div
+              class="stat-label"
+              data-i18n="txns"
+            >
               24H TXNS
-            </span>
-          </div>
-
-          <div
-            class="metric-value"
-            id="transactions">
-            —
-          </div>
-
-          <div class="metric-bar">
-            <i></i>
-          </div>
-
-          <div
-            class="metric-label"
-            data-i18n="total-transactions">
-            TOTAL TRANSACTIONS
-          </div>
-
-        </div>
-
-        <div class="metric">
-
-          <div class="metric-top">
-            <b>05</b>
-
-            <span data-i18n="buys">
-              BUYS
-            </span>
-          </div>
-
-          <div
-            class="metric-value metric-buy"
-            id="buys">
-            —
-          </div>
-
-          <div class="metric-bar">
-            <i id="buyBar"></i>
-          </div>
-
-          <div
-            class="metric-label"
-            data-i18n="buy-pressure">
-            BUY PRESSURE
-          </div>
-
-        </div>
-
-        <div class="metric">
-
-          <div class="metric-top">
-            <b>06</b>
-
-            <span data-i18n="sells">
-              SELLS
-            </span>
-          </div>
-
-          <div
-            class="metric-value metric-sell"
-            id="sells">
-            —
-          </div>
-
-          <div class="metric-bar">
-            <i id="sellBar"></i>
-          </div>
-
-          <div
-            class="metric-label"
-            data-i18n="sell-pressure">
-            SELL PRESSURE
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="terminal-bottom">
-
-      <div class="terminal-info">
-
-        <span class="network-dot"></span>
-
-        <div>
-
-          <small data-i18n="network">
-            NETWORK
-          </small>
-
-          <strong>
-            BNB SMART CHAIN
-          </strong>
-
-        </div>
-
-      </div>
-
-      <div class="terminal-info">
-
-        <div>
-
-          <small data-i18n="pair-address">
-            PAIR ADDRESS
-          </small>
-
-          <strong id="pairAddress">
-            —
-          </strong>
-
-        </div>
-
-      </div>
-
-      <div class="terminal-info">
-
-        <div>
-
-          <small data-i18n="last-update">
-            LAST UPDATE
-          </small>
-
-          <strong id="lastUpdate">
-            —
-          </strong>
-
-        </div>
-
-      </div>
-
-      <a
-        id="chartLink"
-        class="chart-link"
-        href="https://dexscreener.com/bsc"
-        target="_blank"
-        rel="noopener"
-        data-i18n="open-chart">
-
-        OPEN LIVE CHART ↗
-
-      </a>
-
-    </div>
-
-    <div class="data-stream">
-
-      <span data-i18n="stream-core">
-        CHILI CORE
-      </span>
-
-      <i></i>
-
-      <span data-i18n="stream-sync">
-        MARKET SYNC
-      </span>
-
-      <i></i>
-
-      <span data-i18n="stream-liquidity">
-        LIQUIDITY MATRIX
-      </span>
-
-      <i></i>
-
-      <span data-i18n="stream-block">
-        BSC BLOCK SYNC
-      </span>
-
-      <i></i>
-
-      <span data-i18n="stream-realtime">
-        REALTIME DATA
-      </span>
-
-      <i></i>
-
-      <span data-i18n="stream-active">
-        ON-CHAIN ACTIVE
-      </span>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- =========================================================
-     ABOUT
-========================================================= -->
-
-<section
-  id="about"
-  class="section">
-
-  <div class="container">
-
-    <div class="section-head">
-
-      <div>
-
-        <div
-          class="section-code"
-          data-i18n="about-code">
-          01 // SYSTEM
-        </div>
-
-        <h2
-          class="section-title"
-          data-i18n="about-title">
-          ABOUT<br>CHILI
-        </h2>
-
-      </div>
-
-      <p
-        class="section-description"
-        data-i18n="about-description">
-        CHILI is designed around community,
-        transparency and on-chain participation.
-      </p>
-
-    </div>
-
-    <div class="about-grid reveal">
-
-      <div class="about-card red">
-
-        <div
-          class="about-number"
-          data-i18n="about-core1">
-          CORE / 001
-        </div>
-
-        <h3 data-i18n="about-title1">
-          SIMPLE.<br>
-          VISIBLE.<br>
-          ON-CHAIN.
-        </h3>
-
-        <p data-i18n="about-text1">
-          CHILI keeps the core idea simple:
-          build a recognizable community token
-          with transparent on-chain information.
-        </p>
-
-      </div>
-
-      <div class="about-card">
-
-        <div
-          class="about-number"
-          data-i18n="about-core2">
-          CORE / 002
-        </div>
-
-        <h3 data-i18n="about-title2">
-          BUILT FOR<br>
-          COMMUNITY.
-        </h3>
-
-        <p data-i18n="about-text2">
-          The CHILI identity is powered by the people
-          who participate, create, share and build around
-          the ecosystem.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- =========================================================
-     WHY CHILI
-========================================================= -->
-
-<section class="section">
-
-  <div class="container">
-
-    <div class="section-head">
-
-      <div>
-
-        <div
-          class="section-code"
-          data-i18n="why-code">
-          02 // ARCHITECTURE
-        </div>
-
-        <h2
-          class="section-title"
-          data-i18n="why-title">
-          WHY<br>CHILI?
-        </h2>
-
-      </div>
-
-    </div>
-
-    <div class="why-grid reveal">
-
-      <div class="why-card">
-
-        <div
-          class="why-index"
-          data-i18n="why-node1">
-          NODE / 01
-        </div>
-
-        <div class="why-icon">
-          ◉
-        </div>
-
-        <h3 data-i18n="why1-title">
-          Community First
-        </h3>
-
-        <p data-i18n="why1-text">
-          CHILI is built around an open,
-          recognizable community identity.
-        </p>
-
-      </div>
-
-      <div class="why-card">
-
-        <div
-          class="why-index"
-          data-i18n="why-node2">
-          NODE / 02
-        </div>
-
-        <div class="why-icon">
-          ⛓
-        </div>
-
-        <h3 data-i18n="why2-title">
-          On-Chain
-        </h3>
-
-        <p data-i18n="why2-text">
-          Market information and contract activity
-          can be independently viewed on BNB Smart Chain.
-        </p>
-
-      </div>
-
-      <div class="why-card">
-
-        <div
-          class="why-index"
-          data-i18n="why-node3">
-          NODE / 03
-        </div>
-
-        <div class="why-icon">
-          ✦
-        </div>
-
-        <h3 data-i18n="why3-title">
-          Built To Evolve
-        </h3>
-
-        <p data-i18n="why3-text">
-          The website and community layer are designed
-          to expand as the CHILI ecosystem grows.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- =========================================================
-     TOKENOMICS
-========================================================= -->
-
-<section
-  id="tokenomics"
-  class="section tokenomics">
-
-  <div class="container">
-
-    <div class="section-head">
-
-      <div>
-
-        <div
-          class="section-code"
-          data-i18n="token-code">
-          03 // TOKEN MATRIX
-        </div>
-
-        <h2
-          class="section-title"
-          data-i18n="token-title">
-          TOKENOMICS
-        </h2>
-
-      </div>
-
-      <p
-        class="section-description"
-        data-i18n="token-description">
-        Core CHILI token parameters.
-      </p>
-
-    </div>
-
-    <div class="token-grid reveal">
-
-      <div class="token-core">
-
-        <div class="token-circle">
-
-          <div class="token-orbit"></div>
-
-          <div class="token-center">
-
-            <div>
-
-              <strong>
-                CHILI
-              </strong>
-
-              <span data-i18n="token-onchain">
-                ON-CHAIN ASSET
-              </span>
-
+            </div>
+
+            <div
+              class="stat-value"
+              id="txns"
+            >
+              —
+            </div>
+
+            <div class="stat-sub">
+              <span data-i18n="buys">BUYS</span>
+              <span id="buys">—</span>
+              /
+              <span data-i18n="sells">SELLS</span>
+              <span id="sells">—</span>
             </div>
 
           </div>
@@ -2903,69 +2640,200 @@ footer{
 
       </div>
 
-      <div class="token-stats">
 
-        <div class="token-stat">
+      <div class="market-flow">
 
-          <span data-i18n="token-symbol">
-            TOKEN SYMBOL
-          </span>
+        <div class="flow-box">
 
-          <strong>
-            CHILI
-          </strong>
+          <div
+            class="flow-label"
+            data-i18n="pool-depth"
+          >
+            POOL DEPTH / USD
+          </div>
 
-          <em data-i18n="token-active">
-            ACTIVE
-          </em>
+          <div
+            class="flow-value"
+            id="flowLiquidity"
+          >
+            —
+          </div>
+
+          <div class="flow-bar">
+            <i id="liquidityBar"></i>
+          </div>
 
         </div>
 
-        <div class="token-stat">
 
-          <span data-i18n="token-network">
+        <div class="flow-box">
+
+          <div
+            class="flow-label"
+            data-i18n="market-flow"
+          >
+            MARKET FLOW / 24H
+          </div>
+
+          <div
+            class="flow-value"
+            id="flowVolume"
+          >
+            —
+          </div>
+
+          <div class="flow-bar">
+            <i id="volumeBar"></i>
+          </div>
+
+        </div>
+
+
+        <div class="flow-box">
+
+          <div
+            class="flow-label"
+            data-i18n="network-valuation"
+          >
+            NETWORK VALUATION
+          </div>
+
+          <div
+            class="flow-value"
+            id="flowMcap"
+          >
+            —
+          </div>
+
+          <div class="flow-bar">
+            <i id="mcapBar"></i>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="terminal-footer">
+
+        <div class="tech-item">
+
+          <div
+            class="tech-label"
+            data-i18n="network"
+          >
             NETWORK
-          </span>
+          </div>
 
-          <strong>
-            BSC
-          </strong>
-
-          <em data-i18n="token-bsc">
+          <div class="tech-value">
             BNB SMART CHAIN
-          </em>
+          </div>
 
         </div>
 
-        <div class="token-stat">
 
-          <span data-i18n="token-supply">
-            TOTAL SUPPLY
-          </span>
+        <div class="tech-item">
 
-          <strong>
-            20.15M
-          </strong>
+          <div
+            class="tech-label"
+            data-i18n="pair-address"
+          >
+            PAIR ADDRESS
+          </div>
 
-          <em>
-            CHILI
-          </em>
+          <div
+            class="tech-value"
+            id="pairAddress"
+          >
+            —
+          </div>
 
         </div>
 
-        <div class="token-stat">
 
-          <span data-i18n="token-tax">
-            PROJECT TAX
-          </span>
+        <div class="tech-item">
 
-          <strong>
-            0%
-          </strong>
+          <div
+            class="tech-label"
+            data-i18n="last-update"
+          >
+            LAST UPDATE
+          </div>
 
-          <em data-i18n="token-project-tax">
-            PROJECT-STATED
-          </em>
+          <div
+            class="tech-value"
+            id="lastUpdate"
+          >
+            —
+          </div>
+
+        </div>
+
+
+        <div class="tech-item">
+
+          <div
+            class="tech-label"
+            data-i18n="dex"
+          >
+            DEX
+          </div>
+
+          <div
+            class="tech-value"
+            id="dexName"
+          >
+            —
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="stream">
+
+        <div class="stream-track">
+
+          <div class="stream-item">
+            <b>●</b>
+            <span data-i18n="stream-core">CHILI CORE</span>
+          </div>
+
+          <div class="stream-item">
+            <b>01</b>
+            <span data-i18n="stream-sync">MARKET SYNC</span>
+          </div>
+
+          <div class="stream-item">
+            <b>02</b>
+            <span data-i18n="stream-liquidity">LIQUIDITY MATRIX</span>
+          </div>
+
+          <div class="stream-item">
+            <b>03</b>
+            <span data-i18n="stream-block">BSC BLOCK SYNC</span>
+          </div>
+
+          <div class="stream-item">
+            <b>04</b>
+            <span data-i18n="stream-realtime">REALTIME DATA</span>
+          </div>
+
+          <div class="stream-item">
+            <b>05</b>
+            <span data-i18n="stream-active">ON-CHAIN ACTIVE</span>
+          </div>
+
+          <div class="stream-item">
+            <b>●</b>
+            <span data-i18n="stream-core">CHILI CORE</span>
+          </div>
+
+          <div class="stream-item">
+            <b>01</b>
+            <span data-i18n="stream-sync">MARKET SYNC</span>
+          </div>
 
         </div>
 
@@ -2977,29 +2845,472 @@ footer{
 
 </section>
 
-<!-- =========================================================
-     STORY
-========================================================= -->
+
+<!-- =========================
+     ABOUT
+========================= -->
 
 <section
-  id="story"
-  class="section">
+  class="section"
+  id="about"
+>
 
   <div class="container">
 
-    <div class="section-head">
+    <div class="about-grid">
+
+      <div class="about-copy reveal">
+
+        <div
+          class="section-code"
+          data-i18n="about-code"
+        >
+          01 // SYSTEM
+        </div>
+
+        <h2
+          class="section-title"
+          data-i18n="about-title"
+        >
+          ABOUT<br>CHILI
+        </h2>
+
+        <p
+          class="about-description"
+          data-i18n="about-description"
+        >
+          CHILI is designed around community, transparency and on-chain participation.
+        </p>
+
+      </div>
+
+
+      <div class="about-blocks">
+
+        <article class="about-card reveal">
+
+          <div
+            class="card-code"
+            data-i18n="about-core1"
+          >
+            CORE / 001
+          </div>
+
+          <h3
+            class="card-title"
+            data-i18n="about-title1"
+          >
+            SIMPLE.<br>
+            VISIBLE.<br>
+            ON-CHAIN.
+          </h3>
+
+          <p
+            class="card-text"
+            data-i18n="about-text1"
+          >
+            CHILI keeps the core idea simple: build a recognizable community token with transparent on-chain information.
+          </p>
+
+        </article>
+
+
+        <article class="about-card reveal">
+
+          <div
+            class="card-code"
+            data-i18n="about-core2"
+          >
+            CORE / 002
+          </div>
+
+          <h3
+            class="card-title"
+            data-i18n="about-title2"
+          >
+            BUILT FOR<br>
+            COMMUNITY.
+          </h3>
+
+          <p
+            class="card-text"
+            data-i18n="about-text2"
+          >
+            The CHILI identity is powered by the people who participate, create, share and build around the ecosystem.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     WHY CHILI
+========================= -->
+
+<section
+  class="section why"
+>
+
+  <div class="container">
+
+    <div class="section-head reveal">
 
       <div>
 
         <div
           class="section-code"
-          data-i18n="story-code">
+          data-i18n="why-code"
+        >
+          02 // ARCHITECTURE
+        </div>
+
+        <h2
+          class="section-title"
+          data-i18n="why-title"
+        >
+          WHY<br>CHILI?
+        </h2>
+
+      </div>
+
+    </div>
+
+
+    <div class="nodes">
+
+      <article class="node reveal">
+
+        <div
+          class="node-number"
+          data-i18n="why-node1"
+        >
+          NODE / 01
+        </div>
+
+        <div class="node-dot"></div>
+
+        <h3
+          class="node-title"
+          data-i18n="why1-title"
+        >
+          Community First
+        </h3>
+
+        <p
+          class="node-text"
+          data-i18n="why1-text"
+        >
+          CHILI is built around an open, recognizable community identity.
+        </p>
+
+      </article>
+
+
+      <article class="node reveal">
+
+        <div
+          class="node-number"
+          data-i18n="why-node2"
+        >
+          NODE / 02
+        </div>
+
+        <div class="node-dot"></div>
+
+        <h3
+          class="node-title"
+          data-i18n="why2-title"
+        >
+          On-Chain
+        </h3>
+
+        <p
+          class="node-text"
+          data-i18n="why2-text"
+        >
+          Market information and contract activity can be independently viewed on BNB Smart Chain.
+        </p>
+
+      </article>
+
+
+      <article class="node reveal">
+
+        <div
+          class="node-number"
+          data-i18n="why-node3"
+        >
+          NODE / 03
+        </div>
+
+        <div class="node-dot"></div>
+
+        <h3
+          class="node-title"
+          data-i18n="why3-title"
+        >
+          Built To Evolve
+        </h3>
+
+        <p
+          class="node-text"
+          data-i18n="why3-text"
+        >
+          The website and community layer are designed to expand as the CHILI ecosystem grows.
+        </p>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     TOKENOMICS
+========================= -->
+
+<section
+  class="section"
+  id="tokenomics"
+>
+
+  <div class="container">
+
+    <div class="section-head reveal">
+
+      <div>
+
+        <div
+          class="section-code"
+          data-i18n="token-code"
+        >
+          03 // TOKEN MATRIX
+        </div>
+
+        <h2
+          class="section-title"
+          data-i18n="token-title"
+        >
+          TOKENOMICS
+        </h2>
+
+      </div>
+
+      <p
+        class="section-description"
+        data-i18n="token-description"
+      >
+        Core CHILI token parameters.
+      </p>
+
+    </div>
+
+
+    <div class="token-grid">
+
+      <div class="token-card reveal">
+
+        <div class="token-index">
+          01
+        </div>
+
+        <div
+          class="token-label"
+          data-i18n="token-symbol"
+        >
+          TOKEN SYMBOL
+        </div>
+
+        <div class="token-value">
+          CHILI
+        </div>
+
+      </div>
+
+
+      <div class="token-card reveal">
+
+        <div class="token-index">
+          02
+        </div>
+
+        <div
+          class="token-label"
+          data-i18n="token-network"
+        >
+          NETWORK
+        </div>
+
+        <div class="token-value">
+          BSC
+        </div>
+
+      </div>
+
+
+      <div class="token-card reveal">
+
+        <div class="token-index">
+          03
+        </div>
+
+        <div
+          class="token-label"
+          data-i18n="token-supply"
+        >
+          TOTAL SUPPLY
+        </div>
+
+        <div class="token-value">
+          20.15M
+          <small>CHILI</small>
+        </div>
+
+      </div>
+
+
+      <div class="token-card reveal">
+
+        <div class="token-index">
+          04
+        </div>
+
+        <div
+          class="token-label"
+          data-i18n="token-tax"
+        >
+          PROJECT TAX
+        </div>
+
+        <div class="token-value">
+          0%
+        </div>
+
+      </div>
+
+
+      <div class="token-card reveal">
+
+        <div class="token-index">
+          05
+        </div>
+
+        <div
+          class="token-label"
+          data-i18n="token-active"
+        >
+          ACTIVE
+        </div>
+
+        <div class="token-value">
+          LIVE
+        </div>
+
+      </div>
+
+
+      <div class="token-card reveal">
+
+        <div class="token-index">
+          06
+        </div>
+
+        <div
+          class="token-label"
+          data-i18n="token-bsc"
+        >
+          BNB SMART CHAIN
+        </div>
+
+        <div class="token-value">
+          BSC
+        </div>
+
+      </div>
+
+
+      <div class="token-card reveal">
+
+        <div class="token-index">
+          07
+        </div>
+
+        <div
+          class="token-label"
+          data-i18n="token-project-tax"
+        >
+          PROJECT-STATED
+        </div>
+
+        <div class="token-value">
+          0%
+        </div>
+
+      </div>
+
+
+      <div class="token-card reveal">
+
+        <div class="token-index">
+          08
+        </div>
+
+        <div
+          class="token-label"
+          data-i18n="token-onchain"
+        >
+          ON-CHAIN ASSET
+        </div>
+
+        <div class="token-value">
+          CHILI
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     STORY
+========================= -->
+
+<section
+  class="section story"
+  id="story"
+>
+
+  <div class="container">
+
+    <div class="section-head reveal">
+
+      <div>
+
+        <div
+          class="section-code"
+          data-i18n="story-code"
+        >
           04 // TRANSMISSION
         </div>
 
         <h2
           class="section-title"
-          data-i18n="story-title">
+          data-i18n="story-title"
+        >
           THE<br>STORY
         </h2>
 
@@ -3007,38 +3318,59 @@ footer{
 
     </div>
 
-    <div class="story-grid reveal">
 
-      <div class="story-big">
+    <div class="story-grid">
 
+      <div
+        class="story-big reveal"
+        data-i18n="story-big"
+      >
         FROM<br>
         <span>SPARK</span><br>
         TO<br>
         MOVEMENT.
-
       </div>
 
-      <div class="story-text">
 
-        <p data-i18n="story-text1">
-          CHILI started with a simple idea:
-          create something recognizable, energetic
-          and easy for a community to rally around.
-        </p>
+      <div class="story-copy">
 
-        <p data-i18n="story-text2">
-          The chili represents energy.
-          The chain represents transparency.
-          The community creates the movement.
-        </p>
+        <div class="story-line reveal">
 
-        <p data-i18n="story-text3">
-          As CHILI grows, the goal is to keep the
-          experience simple while continuously expanding
-          the tools and infrastructure around it.
-        </p>
+          <div class="story-no">
+            001
+          </div>
 
-        <div class="story-line"></div>
+          <p data-i18n="story-text1">
+            CHILI started with a simple idea: create something recognizable, energetic and easy for a community to rally around.
+          </p>
+
+        </div>
+
+
+        <div class="story-line reveal">
+
+          <div class="story-no">
+            002
+          </div>
+
+          <p data-i18n="story-text2">
+            The chili represents energy. The chain represents transparency. The community creates the movement.
+          </p>
+
+        </div>
+
+
+        <div class="story-line reveal">
+
+          <div class="story-no">
+            003
+          </div>
+
+          <p data-i18n="story-text3">
+            As CHILI grows, the goal is to keep the experience simple while continuously expanding the tools and infrastructure around it.
+          </p>
+
+        </div>
 
       </div>
 
@@ -3048,160 +3380,192 @@ footer{
 
 </section>
 
-<!-- =========================================================
+
+<!-- =========================
      SECURITY
-========================================================= -->
+========================= -->
 
 <section
+  class="section security"
   id="security"
-  class="section">
+>
 
   <div class="container">
 
-    <div class="section-head">
+    <div class="security-grid">
 
-      <div>
+      <div class="security-side reveal">
 
         <div
           class="section-code"
-          data-i18n="security-code">
+          data-i18n="security-code"
+        >
           05 // TRANSPARENCY
         </div>
 
         <h2
           class="section-title"
-          data-i18n="security-title">
+          data-i18n="security-title"
+        >
           SECURITY<br>& DATA
         </h2>
 
-      </div>
+        <p
+          class="section-description"
+          style="margin-top:30px"
+          data-i18n="security-description"
+        >
+          Important information should be independently verifiable on-chain.
+        </p>
 
-      <p
-        class="section-description"
-        data-i18n="security-description">
-        Important information should be independently
-        verifiable on-chain.
-      </p>
+        <div
+          class="security-badge"
+          style="margin-top:55px"
+        >
 
-    </div>
+          <strong>BSC</strong>
 
-    <div class="security-grid reveal">
-
-      <div class="security-card">
-
-        <div class="security-card-top">
-
-          <span
-            class="section-code"
-            data-i18n="security-contract">
-            CONTRACT
-          </span>
-
-          <span
-            class="security-status"
-            data-i18n="security-onchain">
+          <small data-i18n="security-onchain">
             ON-CHAIN
-          </span>
+          </small>
 
         </div>
-
-        <h3 data-i18n="security-title1">
-          Public Contract
-        </h3>
-
-        <p data-i18n="security-text1">
-          The CHILI contract address is publicly accessible
-          on BNB Smart Chain and can be independently inspected.
-        </p>
 
       </div>
 
-      <div class="security-card">
 
-        <div class="security-card-top">
+      <div class="security-items">
 
-          <span
-            class="section-code"
-            data-i18n="security-market">
-            MARKET
-          </span>
+        <article class="security-item reveal">
 
-          <span
-            class="security-status"
-            data-i18n="security-realtime">
-            REALTIME
-          </span>
+          <div class="security-top">
 
-        </div>
+            <span
+              class="security-tag"
+              data-i18n="security-contract"
+            >
+              CONTRACT
+            </span>
 
-        <h3 data-i18n="security-title2">
-          Live Market Data
-        </h3>
+            <span
+              class="security-status"
+              data-i18n="security-onchain"
+            >
+              ON-CHAIN
+            </span>
 
-        <p data-i18n="security-text2">
-          Price, liquidity, volume and transaction information
-          displayed above is retrieved from live market data.
-        </p>
+          </div>
 
-      </div>
+          <h3
+            data-i18n="security-title1"
+          >
+            Public Contract
+          </h3>
 
-      <div class="security-card">
+          <p data-i18n="security-text1">
+            The CHILI contract address is publicly accessible on BNB Smart Chain and can be independently inspected.
+          </p>
 
-        <div class="security-card-top">
+        </article>
 
-          <span
-            class="section-code"
-            data-i18n="security-network">
-            NETWORK
-          </span>
 
-          <span
-            class="security-status"
-            data-i18n="security-bsc">
-            BSC
-          </span>
+        <article class="security-item reveal">
 
-        </div>
+          <div class="security-top">
 
-        <h3 data-i18n="security-title3">
-          BNB Smart Chain
-        </h3>
+            <span
+              class="security-tag"
+              data-i18n="security-market"
+            >
+              MARKET
+            </span>
 
-        <p data-i18n="security-text3">
-          CHILI operates on BNB Smart Chain,
-          allowing transactions and contract activity
-          to be publicly viewed.
-        </p>
+            <span
+              class="security-status"
+              data-i18n="security-realtime"
+            >
+              REALTIME
+            </span>
 
-      </div>
+          </div>
 
-      <div class="security-card">
+          <h3
+            data-i18n="security-title2"
+          >
+            Live Market Data
+          </h3>
 
-        <div class="security-card-top">
+          <p data-i18n="security-text2">
+            Price, liquidity, volume and transaction information displayed above is retrieved from live market data.
+          </p>
 
-          <span
-            class="section-code"
-            data-i18n="security-data">
-            DATA
-          </span>
+        </article>
 
-          <span
-            class="security-status"
-            data-i18n="security-no-fake">
-            NO FAKE TICKER
-          </span>
 
-        </div>
+        <article class="security-item reveal">
 
-        <h3 data-i18n="security-title4">
-          No Fabricated Market Data
-        </h3>
+          <div class="security-top">
 
-        <p data-i18n="security-text4">
-          If live market information cannot be retrieved,
-          the terminal displays a sync/offline state instead
-          of inventing numbers.
-        </p>
+            <span
+              class="security-tag"
+              data-i18n="security-network"
+            >
+              NETWORK
+            </span>
+
+            <span
+              class="security-status"
+              data-i18n="security-bsc"
+            >
+              BSC
+            </span>
+
+          </div>
+
+          <h3
+            data-i18n="security-title3"
+          >
+            BNB Smart Chain
+          </h3>
+
+          <p data-i18n="security-text3">
+            CHILI operates on BNB Smart Chain, allowing transactions and contract activity to be publicly viewed.
+          </p>
+
+        </article>
+
+
+        <article class="security-item reveal">
+
+          <div class="security-top">
+
+            <span
+              class="security-tag"
+              data-i18n="security-data"
+            >
+              DATA
+            </span>
+
+            <span
+              class="security-status"
+              data-i18n="security-no-fake"
+            >
+              NO FAKE TICKER
+            </span>
+
+          </div>
+
+          <h3
+            data-i18n="security-title4"
+          >
+            No Fabricated Market Data
+          </h3>
+
+          <p data-i18n="security-text4">
+            If live market information cannot be retrieved, the terminal displays a sync/offline state instead of inventing numbers.
+          </p>
+
+        </article>
 
       </div>
 
@@ -3211,52 +3575,63 @@ footer{
 
 </section>
 
-<!-- =========================================================
+
+<!-- =========================
      CONTRACT
-========================================================= -->
+========================= -->
 
 <section
+  class="section contract-section"
   id="contract"
-  class="section">
+>
 
   <div class="container">
 
     <div class="contract-box reveal">
 
-      <div
-        class="contract-label"
-        data-i18n="contract-label">
-        CHILI // CONTRACT IDENTIFIER
+      <div>
+
+        <div
+          class="contract-label"
+          data-i18n="contract-label"
+        >
+          CHILI // CONTRACT IDENTIFIER
+        </div>
+
+        <div class="contract-address">
+          0xed3caca4903256fb3e4997bc0c7830d19fb35f7c
+        </div>
+
       </div>
 
-      <div class="contract-address">
-        0xed3caca4903256fb3e4997bc0c7830d19fb35f7c
-      </div>
 
       <div class="contract-actions">
 
         <button
-          class="btn btn-red"
+          class="btn btn-primary"
           id="copyContract"
-          data-i18n="copy-contract">
+          data-i18n="copy-contract"
+        >
           COPY CONTRACT
         </button>
 
         <a
-          class="btn btn-light"
           href="https://bscscan.com/address/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c"
           target="_blank"
           rel="noopener"
-          data-i18n="bscscan">
+          class="btn btn-outline"
+          data-i18n="bscscan"
+        >
           BSCSCAN ↗
         </a>
 
         <a
-          class="btn btn-light"
-          href="https://dexscreener.com/bsc"
+          href="https://dexscreener.com/bsc/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c"
           target="_blank"
           rel="noopener"
-          data-i18n="dexscreener">
+          class="btn btn-outline"
+          data-i18n="dexscreener"
+        >
           DEXSCREENER ↗
         </a>
 
@@ -3268,52 +3643,56 @@ footer{
 
 </section>
 
-<!-- =========================================================
-     COMMUNITY
-========================================================= -->
 
-<section class="section community">
+<!-- =========================
+     COMMUNITY
+========================= -->
+
+<section class="community">
 
   <div class="container">
 
-    <div class="community-box reveal">
+    <div
+      class="section-code reveal"
+      data-i18n="community-code"
+    >
+      06 // COMMUNITY NETWORK
+    </div>
 
-      <div
-        class="section-code"
-        data-i18n="community-code">
-        06 // COMMUNITY NETWORK
-      </div>
+    <h2
+      class="community-title reveal"
+      data-i18n="community-title"
+    >
+      FEEL THE<br>
+      <span>HEAT.</span>
+    </h2>
 
-      <h2 data-i18n="community-title">
-        FEEL THE<br>
-        <span>HEAT.</span>
-      </h2>
+    <p
+      class="community-text reveal"
+      data-i18n="community-text"
+    >
+      CHILI is more than a token address. It is a community identity built on-chain.
+    </p>
 
-      <p data-i18n="community-text">
-        CHILI is more than a token address.
-        It is a community identity built on-chain.
-      </p>
+    <div class="community-actions reveal">
 
-      <div class="community-actions">
+      <a
+        href="#"
+        class="btn btn-primary"
+        data-i18n="telegram"
+      >
+        TELEGRAM ↗
+      </a>
 
-        <a
-          class="btn btn-red"
-          href="#"
-          onclick="return false;"
-          data-i18n="telegram">
-          TELEGRAM ↗
-        </a>
-
-        <a
-          class="btn btn-light"
-          href="https://bscscan.com/address/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c"
-          target="_blank"
-          rel="noopener"
-          data-i18n="explore-bsc">
-          EXPLORE ON BSC ↗
-        </a>
-
-      </div>
+      <a
+        href="https://bscscan.com/address/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c"
+        target="_blank"
+        rel="noopener"
+        class="btn btn-outline"
+        data-i18n="explore-bsc"
+      >
+        EXPLORE ON BSC ↗
+      </a>
 
     </div>
 
@@ -3323,77 +3702,74 @@ footer{
 
 </main>
 
-<!-- =========================================================
+
+<!-- =========================
      FOOTER
-========================================================= -->
+========================= -->
 
-<footer>
+<footer class="footer">
 
-  <div class="footer-inner">
+  <div class="container footer-inner">
 
-    <div class="footer-brand">
-      <span>🌶</span> CHILI
+    <div data-i18n="footer">
+      © 2026 CHILI // BNB SMART CHAIN
     </div>
 
-    <div
-      class="footer-copy"
-      data-i18n="footer">
-      © 2026 CHILI // BNB SMART CHAIN
+    <div>
+      CHILI
+      /
+      BSC
+      /
+      ON-CHAIN
     </div>
 
   </div>
 
 </footer>
 
+
 <div
   class="toast"
-  id="toast">
+  id="toast"
+>
   COPIED
 </div>
 
+
 <script>
 /* =========================================================
-   CHILI // JAVASCRIPT CORE
+   CHILI WEBSITE
+   BILINGUAL + REALTIME MARKET TERMINAL
 ========================================================= */
 
 const CHILI_ADDRESS =
-  "0xed3caca4903256fb3e4997bc0c7830d19fb35f7c".toLowerCase();
+  "0xed3caca4903256fb3e4997bc0c7830d19fb35f7c";
 
+const DEX_API =
+  "https://api.dexscreener.com/token-pairs/v1/bsc/";
 
-/* =========================================================
-   DEXSCREENER
-========================================================= */
-
-const DEX_ENDPOINTS = [
-
-  "https://api.dexscreener.com/token-pairs/v1/bsc/" +
-  CHILI_ADDRESS,
-
-  "https://api.dexscreener.com/tokens/v1/bsc/" +
-  CHILI_ADDRESS
-
-];
-
-
-/* =========================================================
-   BSC RPC
-========================================================= */
+const DEX_TOKEN_API =
+  "https://api.dexscreener.com/tokens/v1/bsc/";
 
 const BSC_RPCS = [
-
   "https://bsc-dataseed.binance.org/",
   "https://bsc-dataseed1.binance.org/",
   "https://bsc-dataseed2.binance.org/",
   "https://bsc-dataseed3.binance.org/",
   "https://bsc-dataseed1.defibit.io/",
   "https://bsc-dataseed1.ninicoin.io/"
-
 ];
 
+let currentLanguage =
+  localStorage.getItem("chili-language") || "en";
+
+let currentPair = null;
 
 let priceHistory = [];
-let currentPair = null;
-let marketLoadedOnce = false;
+
+let marketLoaded = false;
+
+let marketRequestActive = false;
 
 
 /* =========================================================
@@ -3404,12 +3780,23 @@ const translations = {
 
   en: {
 
-    "nav-market":"MARKET",
-    "nav-about":"ABOUT",
-    "nav-tokenomics":"TOKENOMICS",
-    "nav-story":"STORY",
-    "nav-security":"SECURITY",
-    "nav-contract":"CONTRACT",
+    "nav-market":
+      "MARKET",
+
+    "nav-about":
+      "ABOUT",
+
+    "nav-tokenomics":
+      "TOKENOMICS",
+
+    "nav-story":
+      "STORY",
+
+    "nav-security":
+      "SECURITY",
+
+    "nav-contract":
+      "CONTRACT",
 
     "hero-kicker":
       "BNB SMART CHAIN // SYSTEM ONLINE",
@@ -3428,6 +3815,9 @@ const translations = {
 
     "hero-copy":
       "COPY",
+
+    "logo-small":
+      "ON-CHAIN",
 
     "core-label":
       "CHILI CORE",
@@ -3657,6 +4047,9 @@ const translations = {
     "story-title":
       "THE<br>STORY",
 
+    "story-big":
+      "FROM<br><span>SPARK</span><br>TO<br>MOVEMENT.",
+
     "story-text1":
       "CHILI started with a simple idea: create something recognizable, energetic and easy for a community to rally around.",
 
@@ -3754,7 +4147,13 @@ const translations = {
       "© 2026 CHILI // BNB SMART CHAIN",
 
     "copied":
-      "COPIED"
+      "COPIED",
+
+    "page-title":
+      "CHILI — BNB Smart Chain",
+
+    "page-description":
+      "CHILI — A next-generation community token on BNB Smart Chain."
   },
 
 
@@ -3795,6 +4194,9 @@ const translations = {
 
     "hero-copy":
       "复制",
+
+    "logo-small":
+      "链上",
 
     "core-label":
       "CHILI 核心",
@@ -4024,6 +4426,9 @@ const translations = {
     "story-title":
       "CHILI<br>故事",
 
+    "story-big":
+      "从<br><span>火花</span><br>到<br>热潮。",
+
     "story-text1":
       "CHILI 始于一个简单的想法：创造一个具有辨识度、充满活力，并且能够让社区共同参与的品牌。",
 
@@ -4121,135 +4526,16 @@ const translations = {
       "© 2026 CHILI // BNB 智能链",
 
     "copied":
-      "已复制"
+      "已复制",
+
+    "page-title":
+      "CHILI — BNB 智能链",
+
+    "page-description":
+      "CHILI — 一个运行于 BNB 智能链的下一代社区型代币。"
   }
 
 };
-
-
-/* =========================================================
-   LANGUAGE ENGINE
-========================================================= */
-
-let currentLanguage =
-  localStorage.getItem("chili-language") || "en";
-
-
-function t(key){
-
-  return (
-    translations[currentLanguage] &&
-    translations[currentLanguage][key]
-  ) || key;
-
-}
-
-
-function translatePage(){
-
-  document
-    .querySelectorAll("[data-i18n]")
-    .forEach(element=>{
-
-      const key =
-        element.getAttribute("data-i18n");
-
-      if(
-        translations[currentLanguage] &&
-        translations[currentLanguage][key] !== undefined
-      ){
-
-        element.innerHTML =
-          translations[currentLanguage][key];
-
-      }
-
-    });
-
-
-  $("langBtn").textContent =
-    currentLanguage === "en"
-      ? "中文"
-      : "EN";
-
-
-  /*
-    REALTIME DATA NEVER GETS TRANSLATED
-  */
-
-  if(
-    $("marketStatus")
-  ){
-
-    const status =
-      $("marketStatus").dataset.status;
-
-    if(status === "live"){
-
-      $("marketStatus").textContent =
-        t("terminal-live");
-
-    }
-
-    else if(status === "offline"){
-
-      $("marketStatus").textContent =
-        t("terminal-offline");
-
-    }
-
-    else if(status === "reconnecting"){
-
-      $("marketStatus").textContent =
-        t("terminal-reconnecting");
-
-    }
-
-    else{
-
-      $("marketStatus").textContent =
-        t("terminal-sync");
-
-    }
-
-  }
-
-
-  /*
-    Pulse waiting text
-  */
-
-  if(
-    priceHistory.length === 0 &&
-    $("pulseTime")
-  ){
-
-    $("pulseTime").textContent =
-      t("waiting");
-
-  }
-
-}
-
-
-$("langBtn").addEventListener(
-  "click",
-  ()=>{
-
-    currentLanguage =
-      currentLanguage === "en"
-        ? "zh"
-        : "en";
-
-    localStorage.setItem(
-      "chili-language",
-      currentLanguage
-    );
-
-    translatePage();
-
-  }
-);
 
 
 /* =========================================================
@@ -4261,134 +4547,178 @@ function $(id){
 }
 
 
-function formatMoney(value){
-
-  if(
-    value === null ||
-    value === undefined ||
-    !isFinite(Number(value))
-  ){
-    return "—";
-  }
-
-  const n =
-    Number(value);
-
-  if(n >= 1000000000){
-
-    return "$" +
-      (n / 1000000000).toFixed(2) +
-      "B";
-
-  }
-
-  if(n >= 1000000){
-
-    return "$" +
-      (n / 1000000).toFixed(2) +
-      "M";
-
-  }
-
-  if(n >= 1000){
-
-    return "$" +
-      (n / 1000).toFixed(2) +
-      "K";
-
-  }
-
-  return "$" +
-    n.toLocaleString(
-      undefined,
-      {
-        maximumFractionDigits:6
-      }
-    );
-
-}
-
-
-function formatNumber(value){
-
-  if(
-    value === null ||
-    value === undefined ||
-    !isFinite(Number(value))
-  ){
-
-    return "—";
-
-  }
-
-  return Number(value).toLocaleString();
-
-}
-
-
-function formatPrice(value){
-
-  if(
-    value === null ||
-    value === undefined ||
-    !isFinite(Number(value))
-  ){
-
-    return "—";
-
-  }
-
-  const n =
-    Number(value);
-
-  if(n === 0){
-    return "$0";
-  }
-
-  if(n < 0.000001){
-
-    return "$" +
-      n.toFixed(10);
-
-  }
-
-  if(n < 0.001){
-
-    return "$" +
-      n.toFixed(8);
-
-  }
-
-  if(n < 1){
-
-    return "$" +
-      n.toFixed(6);
-
-  }
-
-  return "$" +
-    n.toLocaleString(
-      undefined,
-      {
-        minimumFractionDigits:2,
-        maximumFractionDigits:6
-      }
-    );
-
-}
-
-
-function shortenAddress(address){
-
-  if(!address){
-    return "—";
-  }
+function t(key){
 
   return (
-    address.slice(0,8) +
-    "..." +
-    address.slice(-6)
+    translations[currentLanguage] &&
+    translations[currentLanguage][key]
+  ) ||
+  translations.en[key] ||
+  key;
+
+}
+
+
+/* =========================================================
+   TRANSLATION
+========================================================= */
+
+function translatePage(){
+
+  const dict =
+    translations[currentLanguage] ||
+    translations.en;
+
+  /*
+    1. HTML language
+  */
+
+  document.documentElement.lang =
+    currentLanguage === "zh"
+      ? "zh-CN"
+      : "en";
+
+
+  /*
+    2. Browser title
+  */
+
+  document.title =
+    dict["page-title"];
+
+
+  /*
+    3. Meta description
+  */
+
+  const meta =
+    document.querySelector(
+      'meta[name="description"]'
+    );
+
+  if(meta){
+    meta.setAttribute(
+      "content",
+      dict["page-description"]
+    );
+  }
+
+
+  /*
+    4. All static text
+  */
+
+  document
+    .querySelectorAll("[data-i18n]")
+    .forEach(el => {
+
+      const key =
+        el.dataset.i18n;
+
+      if(
+        Object.prototype.hasOwnProperty.call(
+          dict,
+          key
+        )
+      ){
+
+        el.innerHTML =
+          dict[key];
+
+      }
+
+    });
+
+
+  /*
+    5. Language button
+  */
+
+  $("langBtn").textContent =
+    currentLanguage === "en"
+      ? "中文"
+      : "EN";
+
+
+  /*
+    6. Dynamic status belongs
+       to market JS.
+  */
+
+  refreshDynamicStatus();
+
+
+  /*
+    7. Waiting message is
+       translated separately.
+  */
+
+  if(!priceHistory.length){
+
+    $("pulseTime").textContent =
+      dict["waiting"];
+  }
+
+}
+
+
+/* =========================================================
+   MARKET STATUS
+========================================================= */
+
+function setMarketStatus(status){
+
+  const el =
+    $("marketStatus");
+
+  const text =
+    $("marketStatusText");
+
+  el.classList.remove(
+    "live",
+    "offline",
+    "reconnecting"
   );
+
+  el.classList.add(status);
+
+  const keyMap = {
+
+    live:
+      "terminal-live",
+
+    offline:
+      "terminal-offline",
+
+    reconnecting:
+      "terminal-reconnecting",
+
+    sync:
+      "terminal-sync"
+
+  };
+
+  text.textContent =
+    t(keyMap[status] || "terminal-sync");
+
+}
+
+
+function refreshDynamicStatus(){
+
+  const el =
+    $("marketStatus");
+
+  if(!el) return;
+
+  const status =
+    el.classList.contains("live")
+      ? "live"
+      : el.classList.contains("offline")
+        ? "offline"
+        : "reconnecting";
+
+  setMarketStatus(status);
 
 }
 
@@ -4404,29 +4734,26 @@ async function copyText(text){
     await navigator.clipboard.writeText(text);
 
     showToast(
-      translations[currentLanguage].copied
+      t("copied")
     );
 
-  }catch(error){
+  }catch{
 
-    const textarea =
+    const input =
       document.createElement("textarea");
 
-    textarea.value =
-      text;
+    input.value = text;
 
-    document.body.appendChild(
-      textarea
-    );
+    document.body.appendChild(input);
 
-    textarea.select();
+    input.select();
 
     document.execCommand("copy");
 
-    textarea.remove();
+    input.remove();
 
     showToast(
-      translations[currentLanguage].copied
+      t("copied")
     );
 
   }
@@ -4434,212 +4761,170 @@ async function copyText(text){
 }
 
 
-function showToast(message){
+function showToast(text){
 
   const toast =
     $("toast");
 
   toast.textContent =
-    message;
+    text;
 
   toast.classList.add("show");
 
-  setTimeout(
-    ()=>{
-      toast.classList.remove("show");
-    },
-    1800
+  clearTimeout(
+    showToast.timer
   );
+
+  showToast.timer =
+    setTimeout(() => {
+
+      toast.classList.remove("show");
+
+    },1800);
 
 }
 
 
-$("copyContract").addEventListener(
-  "click",
-  ()=>{
-    copyText(CHILI_ADDRESS);
+/* =========================================================
+   NUMBER FORMAT
+========================================================= */
+
+function formatMoney(value){
+
+  if(
+    value === null ||
+    value === undefined ||
+    !Number.isFinite(Number(value))
+  ){
+    return "—";
   }
-);
+
+  const n =
+    Number(value);
+
+  if(n >= 1e9){
+
+    return "$" +
+      (n / 1e9)
+        .toFixed(2)
+        .replace(/\.00$/,"") +
+      "B";
+
+  }
+
+  if(n >= 1e6){
+
+    return "$" +
+      (n / 1e6)
+        .toFixed(2)
+        .replace(/\.00$/,"") +
+      "M";
+
+  }
+
+  if(n >= 1e3){
+
+    return "$" +
+      (n / 1e3)
+        .toFixed(2)
+        .replace(/\.00$/,"") +
+      "K";
+
+  }
+
+  return "$" +
+    n.toLocaleString(
+      undefined,
+      {
+        maximumFractionDigits:2
+      }
+    );
+
+}
 
 
-$("heroCopy").addEventListener(
-  "click",
-  ()=>{
-    copyText(CHILI_ADDRESS);
+function formatPrice(value){
+
+  const n =
+    Number(value);
+
+  if(
+    !Number.isFinite(n)
+  ){
+    return "—";
   }
-);
+
+  if(n >= 1){
+
+    return "$" +
+      n.toLocaleString(
+        undefined,
+        {
+          maximumFractionDigits:4
+        }
+      );
+
+  }
+
+  if(n >= .01){
+
+    return "$" +
+      n.toFixed(6);
+
+  }
+
+  if(n >= .000001){
+
+    return "$" +
+      n.toFixed(9);
+
+  }
+
+  return "$" +
+    n.toFixed(12);
+
+}
+
+
+function formatNumber(value){
+
+  const n =
+    Number(value);
+
+  if(!Number.isFinite(n)){
+    return "—";
+  }
+
+  return n.toLocaleString();
+
+}
 
 
 /* =========================================================
    FETCH JSON
 ========================================================= */
 
-async function fetchJSON(url){
+async function fetchJson(url){
 
-  const controller =
-    new AbortController();
-
-  const timeout =
-    setTimeout(
-      ()=>{
-        controller.abort();
-      },
-      10000
+  const response =
+    await fetch(
+      url,
+      {
+        method:"GET",
+        cache:"no-store"
+      }
     );
 
-  try{
+  if(!response.ok){
 
-    const response =
-      await fetch(
-        url,
-        {
-          method:"GET",
-          cache:"no-store",
-          signal:controller.signal,
-          headers:{
-            "Accept":"application/json"
-          }
-        }
-      );
-
-    if(!response.ok){
-
-      throw new Error(
-        "HTTP " +
-        response.status
-      );
-
-    }
-
-    return await response.json();
-
-  }finally{
-
-    clearTimeout(timeout);
-
-  }
-
-}
-
-
-/* =========================================================
-   RPC
-========================================================= */
-
-async function rpcRequest(
-  method,
-  params=[]
-){
-
-  let lastError;
-
-  for(
-    const rpc of BSC_RPCS
-  ){
-
-    try{
-
-      const response =
-        await fetch(
-          rpc,
-          {
-            method:"POST",
-
-            headers:{
-              "Content-Type":
-                "application/json"
-            },
-
-            body:JSON.stringify({
-
-              jsonrpc:"2.0",
-
-              id:Date.now(),
-
-              method,
-
-              params
-
-            })
-          }
-        );
-
-      if(!response.ok){
-
-        throw new Error(
-          "RPC HTTP " +
-          response.status
-        );
-
-      }
-
-      const data =
-        await response.json();
-
-      if(data.error){
-
-        throw new Error(
-          data.error.message
-        );
-
-      }
-
-      return data.result;
-
-    }catch(error){
-
-      lastError =
-        error;
-
-    }
-
-  }
-
-  throw (
-    lastError ||
-    new Error(
-      "BSC RPC unavailable"
-    )
-  );
-
-}
-
-
-/* =========================================================
-   BLOCK
-========================================================= */
-
-async function updateBlock(){
-
-  try{
-
-    const result =
-      await rpcRequest(
-        "eth_blockNumber"
-      );
-
-    const block =
-      parseInt(
-        result,
-        16
-      );
-
-    $("blockNumber").textContent =
-      block.toLocaleString();
-
-  }catch(error){
-
-    /*
-      Do not destroy previous block
-      if temporary RPC failure.
-    */
-
-    console.warn(
-      "BSC block error:",
-      error
+    throw new Error(
+      "HTTP " +
+      response.status
     );
 
   }
+
+  return response.json();
 
 }
 
@@ -4648,277 +4933,287 @@ async function updateBlock(){
    SELECT BEST PAIR
 ========================================================= */
 
-function selectBestPair(pairs){
+function selectBestPair(data){
 
-  if(!Array.isArray(pairs)){
+  if(!Array.isArray(data))
     return null;
-  }
 
-  const token =
+  const normalized =
     CHILI_ADDRESS.toLowerCase();
 
 
   const valid =
-    pairs.filter(
-      pair=>{
+    data.filter(pair => {
 
-        if(!pair){
-          return false;
-        }
+      if(!pair)
+        return false;
 
-        if(
-          String(pair.chainId)
-            .toLowerCase()
-          !== "bsc"
-        ){
+      const base =
+        pair.baseToken &&
+        pair.baseToken.address
+          ? pair.baseToken.address.toLowerCase()
+          : "";
 
-          return false;
+      const quote =
+        pair.quoteToken &&
+        pair.quoteToken.address
+          ? pair.quoteToken.address.toLowerCase()
+          : "";
 
-        }
+      return (
+        base === normalized ||
+        quote === normalized
+      );
 
-
-        const base =
-          pair.baseToken &&
-          pair.baseToken.address
-            ? pair.baseToken.address
-                .toLowerCase()
-            : "";
-
-
-        const quote =
-          pair.quoteToken &&
-          pair.quoteToken.symbol
-            ? pair.quoteToken.symbol
-                .toUpperCase()
-            : "";
+    });
 
 
-        return (
-
-          base === token &&
-
-          [
-            "USDT",
-            "USDC",
-            "BUSD",
-            "WBNB",
-            "BNB"
-          ].includes(quote)
-
-        );
-
-      }
-    );
+  if(!valid.length)
+    return null;
 
 
-  valid.sort(
-    (a,b)=>
-      Number(
-        b.liquidity &&
-        b.liquidity.usd
-          ? b.liquidity.usd
-          : 0
-      )
-      -
+  /*
+    Prefer USDT / USDC / BUSD.
+  */
+
+  const preferredQuotes =
+    [
+      "usdt",
+      "usdc",
+      "busd",
+      "wbnb",
+      "bnb"
+    ];
+
+
+  valid.sort((a,b) => {
+
+    const qa =
+      (
+        a.quoteToken &&
+        a.quoteToken.symbol
+          ? a.quoteToken.symbol
+          : ""
+      ).toLowerCase();
+
+    const qb =
+      (
+        b.quoteToken &&
+        b.quoteToken.symbol
+          ? b.quoteToken.symbol
+          : ""
+      ).toLowerCase();
+
+    const ia =
+      preferredQuotes.indexOf(qa);
+
+    const ib =
+      preferredQuotes.indexOf(qb);
+
+    const sa =
+      ia === -1
+        ? 999
+        : ia;
+
+    const sb =
+      ib === -1
+        ? 999
+        : ib;
+
+    if(sa !== sb)
+      return sa - sb;
+
+
+    const la =
       Number(
         a.liquidity &&
         a.liquidity.usd
           ? a.liquidity.usd
           : 0
-      )
-  );
+      );
+
+    const lb =
+      Number(
+        b.liquidity &&
+        b.liquidity.usd
+          ? b.liquidity.usd
+          : 0
+      );
+
+    return lb - la;
+
+  });
 
 
-  return (
-    valid[0] ||
-    null
-  );
+  return valid[0];
 
 }
 
 
 /* =========================================================
-   MARKET
+   UPDATE PAIR DISPLAY
 ========================================================= */
 
-async function loadMarket(){
+function updatePairDisplay(pair){
 
-  let lastError = null;
-
-
-  setMarketStatus(
-    "sync"
-  );
-
-
-  for(
-    const endpoint of DEX_ENDPOINTS
-  ){
-
-    try{
-
-      const data =
-        await fetchJSON(
-          endpoint +
-          (
-            endpoint.includes("?")
-              ? "&"
-              : "?"
-          ) +
-          "_=" +
-          Date.now()
-        );
-
-
-      const pairs =
-        Array.isArray(data)
-          ? data
-          : (
-              data &&
-              Array.isArray(data.pairs)
-                ? data.pairs
-                : []
-            );
-
-
-      const pair =
-        selectBestPair(
-          pairs
-        );
-
-
-      if(!pair){
-
-        throw new Error(
-          "No valid CHILI pair found"
-        );
-
-      }
-
-
-      currentPair =
-        pair;
-
-
-      marketLoadedOnce =
-        true;
-
-
-      updateMarket(
-        pair
-      );
-
-
-      setMarketStatus(
-        "live"
-      );
-
-
-      return;
-
-
-    }catch(error){
-
-      lastError =
-        error;
-
-      console.warn(
-        "Dex endpoint failed:",
-        endpoint,
-        error
-      );
-
-    }
-
-  }
-
-
-  /*
-    If there was already valid data,
-    preserve it instead of showing fake data.
-  */
-
-  if(marketLoadedOnce){
-
-    setMarketStatus(
-      "reconnecting"
-    );
-
-  }else{
-
-    setMarketStatus(
-      "offline"
-    );
-
-  }
-
-
-  console.error(
-    "CHILI market error:",
-    lastError
-  );
-
-}
-
-
-/* =========================================================
-   MARKET STATUS
-========================================================= */
-
-function setMarketStatus(status){
-
-  const element =
-    $("marketStatus");
-
-  if(!element){
+  if(!pair)
     return;
-  }
-
-  element.dataset.status =
-    status;
 
 
-  if(status === "live"){
+  const base =
+    pair.baseToken &&
+    pair.baseToken.symbol
+      ? pair.baseToken.symbol
+      : "CHILI";
 
-    element.textContent =
-      t("terminal-live");
+  const quote =
+    pair.quoteToken &&
+    pair.quoteToken.symbol
+      ? pair.quoteToken.symbol
+      : "USDT";
 
-  }
 
-  else if(status === "offline"){
+  $("pairName").textContent =
+    base +
+    " / " +
+    quote;
 
-    element.textContent =
-      t("terminal-offline");
 
-  }
+  $("pairAddress").textContent =
+    pair.pairAddress ||
+    "—";
 
-  else if(status === "reconnecting"){
 
-    element.textContent =
-      t("terminal-reconnecting");
-
-  }
-
-  else{
-
-    element.textContent =
-      t("terminal-sync");
-
-  }
+  $("dexName").textContent =
+    pair.dexId ||
+    "—";
 
 }
 
 
 /* =========================================================
-   MARKET UI
+   PRICE HISTORY
+========================================================= */
+
+function updatePriceChart(price){
+
+  const n =
+    Number(price);
+
+  if(!Number.isFinite(n))
+    return;
+
+
+  priceHistory.push(n);
+
+
+  if(priceHistory.length > 70){
+
+    priceHistory =
+      priceHistory.slice(
+        priceHistory.length - 70
+      );
+
+  }
+
+
+  if(priceHistory.length < 2){
+
+    $("pulseLine").setAttribute(
+      "points",
+      ""
+    );
+
+    return;
+
+  }
+
+
+  let min =
+    Math.min(...priceHistory);
+
+  let max =
+    Math.max(...priceHistory);
+
+
+  if(max === min){
+
+    max += 1;
+    min -= 1;
+
+  }
+
+
+  const points =
+    priceHistory
+      .map((v,i) => {
+
+        const x =
+          (
+            i /
+            (priceHistory.length - 1)
+          ) * 1000;
+
+        const y =
+          90 -
+          (
+            (v - min) /
+            (max - min)
+          ) * 80;
+
+        return (
+          x.toFixed(2) +
+          "," +
+          y.toFixed(2)
+        );
+
+      })
+      .join(" ");
+
+
+  $("pulseLine")
+    .setAttribute(
+      "points",
+      points
+    );
+
+}
+
+
+/* =========================================================
+   UPDATE MARKET UI
 ========================================================= */
 
 function updateMarket(pair){
 
+  if(!pair)
+    return;
+
+
+  currentPair =
+    pair;
+
+
+  updatePairDisplay(
+    pair
+  );
+
+
   const price =
     Number(
-      pair.priceUsd || 0
+      pair.priceUsd
     );
+
+
+  /*
+    Important:
+    Everything below is dynamic market
+    data and NEVER passes through
+    translation.
+  */
+
+  $("price").textContent =
+    formatPrice(price);
 
 
   const change =
@@ -4928,6 +5223,28 @@ function updateMarket(pair){
         ? pair.priceChange.h24
         : 0
     );
+
+
+  $("change").textContent =
+    (
+      change >= 0
+        ? "+"
+        : ""
+    ) +
+    change.toFixed(2) +
+    "%";
+
+
+  $("change").classList.remove(
+    "up",
+    "down"
+  );
+
+  $("change").classList.add(
+    change >= 0
+      ? "up"
+      : "down"
+  );
 
 
   const liquidity =
@@ -4976,499 +5293,465 @@ function updateMarket(pair){
     );
 
 
-  const transactions =
-    buys +
-    sells;
+  const txns =
+    buys + sells;
 
-
-  /* =====================================================
-     PRICE
-  ===================================================== */
-
-  $("livePrice").textContent =
-    formatPrice(price);
-
-
-  /* =====================================================
-     CHANGE
-  ===================================================== */
-
-  const changeElement =
-    $("priceChange");
-
-
-  changeElement.textContent =
-    (
-      change >= 0
-        ? "+"
-        : ""
-    ) +
-    change.toFixed(2) +
-    "% 24H";
-
-
-  changeElement.classList.toggle(
-    "down",
-    change < 0
-  );
-
-
-  /* =====================================================
-     METRICS
-  ===================================================== */
 
   $("liquidity").textContent =
-    formatMoney(
-      liquidity
-    );
+    formatMoney(liquidity);
 
 
-  $("volume24h").textContent =
-    formatMoney(
-      volume
-    );
+  $("volume").textContent =
+    formatMoney(volume);
 
 
   $("marketCap").textContent =
-    formatMoney(
-      marketCap
-    );
+    marketCap > 0
+      ? formatMoney(marketCap)
+      : "—";
 
 
-  $("transactions").textContent =
-    formatNumber(
-      transactions
-    );
+  $("txns").textContent =
+    formatNumber(txns);
 
 
   $("buys").textContent =
-    formatNumber(
-      buys
-    );
+    formatNumber(buys);
 
 
   $("sells").textContent =
-    formatNumber(
-      sells
-    );
+    formatNumber(sells);
 
 
-  /* =====================================================
-     BUY / SELL
-  ===================================================== */
-
-  const total =
-    buys +
-    sells;
+  $("flowLiquidity").textContent =
+    formatMoney(liquidity);
 
 
-  let buyPercent =
-    0;
-
-  let sellPercent =
-    0;
+  $("flowVolume").textContent =
+    formatMoney(volume);
 
 
-  if(total > 0){
-
-    buyPercent =
-      buys /
-      total *
-      100;
-
-
-    sellPercent =
-      sells /
-      total *
-      100;
-
-  }
-
-
-  $("buyBar").style.width =
-    buyPercent +
-    "%";
-
-
-  $("sellBar").style.width =
-    sellPercent +
-    "%";
-
-
-  /* =====================================================
-     PAIR
-  ===================================================== */
-
-  const quote =
-    pair.quoteToken &&
-    pair.quoteToken.symbol
-      ? pair.quoteToken.symbol
-      : "USDT";
-
-
-  $("pairName").textContent =
-    "CHILI / " +
-    quote;
+  $("flowMcap").textContent =
+    marketCap > 0
+      ? formatMoney(marketCap)
+      : "—";
 
 
   /*
-    Display the actual live pair
+    Bars are visual indicators only.
   */
 
-  $("displayPair").innerHTML =
-    "CHILI <span>/</span> " +
-    quote;
-
-
-  /* =====================================================
-     DEX
-  ===================================================== */
-
-  $("dexName").textContent =
-    pair.dexId ||
-    "DEX";
-
-
-  /* =====================================================
-     PAIR ADDRESS
-  ===================================================== */
-
-  $("pairAddress").textContent =
-    shortenAddress(
-      pair.pairAddress
+  const total =
+    Math.max(
+      liquidity,
+      volume,
+      marketCap,
+      1
     );
 
 
-  /* =====================================================
-     CHART
-  ===================================================== */
-
-  if(pair.url){
-
-    $("chartLink").href =
-      pair.url;
-
-  }
+  $("liquidityBar").style.width =
+    Math.min(
+      100,
+      liquidity / total * 100
+    ) + "%";
 
 
-  /* =====================================================
-     PRICE HISTORY
-  ===================================================== */
-
-  if(price > 0){
-
-    priceHistory.push(
-      price
-    );
+  $("volumeBar").style.width =
+    Math.min(
+      100,
+      volume / total * 100
+    ) + "%";
 
 
-    if(
-      priceHistory.length > 45
-    ){
-
-      priceHistory.shift();
-
-    }
+  $("mcapBar").style.width =
+    Math.min(
+      100,
+      marketCap / total * 100
+    ) + "%";
 
 
-    drawPulse();
-
-  }
-
-
-  const now =
-    new Date();
+  updatePriceChart(
+    price
+  );
 
 
   $("pulseTime").textContent =
-    now.toLocaleTimeString();
+    new Date().toLocaleTimeString();
 
 
   $("lastUpdate").textContent =
-    now.toLocaleTimeString();
+    new Date().toLocaleTimeString();
+
+
+  marketLoaded =
+    true;
+
+
+  setMarketStatus(
+    "live"
+  );
 
 }
 
 
 /* =========================================================
-   SVG PRICE PULSE
+   LOAD MARKET
 ========================================================= */
 
-function drawPulse(){
+async function loadMarket(){
 
-  const path =
-    $("pulsePath");
-
-
-  if(
-    !path ||
-    priceHistory.length < 2
-  ){
-
+  if(marketRequestActive)
     return;
+
+
+  marketRequestActive =
+    true;
+
+
+  if(!marketLoaded){
+
+    setMarketStatus(
+      "reconnecting"
+    );
+
+  }else{
+
+    setMarketStatus(
+      "reconnecting"
+    );
 
   }
 
 
-  const width =
-    900;
+  try{
+
+    let data = null;
+
+    let lastError = null;
 
 
-  const height =
-    220;
+    /*
+      Primary endpoint
+    */
+
+    try{
+
+      data =
+        await fetchJson(
+          DEX_API +
+          CHILI_ADDRESS
+        );
+
+    }catch(error){
+
+      lastError =
+        error;
+
+    }
 
 
-  const padding =
-    10;
+    let pair =
+      selectBestPair(data);
 
 
-  let min =
-    Math.min(
-      ...priceHistory
-    );
+    /*
+      Fallback endpoint
+    */
 
+    if(!pair){
 
-  let max =
-    Math.max(
-      ...priceHistory
-    );
+      try{
 
-
-  const range =
-    max -
-    min ||
-    1;
-
-
-  const points =
-    priceHistory.map(
-      (
-        price,
-        index
-      )=>{
-
-        const x =
-          padding +
-          index /
-          (
-            priceHistory.length -
-            1
-          ) *
-          (
-            width -
-            padding *
-            2
+        const tokenData =
+          await fetchJson(
+            DEX_TOKEN_API +
+            CHILI_ADDRESS
           );
 
-
-        const normalized =
-          (
-            price -
-            min
-          ) /
-          range;
-
-
-        const y =
-          height -
-          padding -
-          normalized *
-          (
-            height -
-            padding *
-            2
+        pair =
+          selectBestPair(
+            tokenData
           );
 
+      }catch(error){
 
-        return {
-          x,
-          y
-        };
+        lastError =
+          error;
 
       }
+
+    }
+
+
+    if(!pair){
+
+      throw (
+        lastError ||
+        new Error(
+          "No CHILI market pair found"
+        )
+      );
+
+    }
+
+
+    updateMarket(
+      pair
     );
 
 
-  let d =
-    `M ${points[0].x} ${points[0].y}`;
+  }catch(error){
+
+    console.warn(
+      "CHILI market error:",
+      error
+    );
+
+
+    /*
+      If we already have valid data,
+      preserve it instead of replacing
+      real numbers with fake values.
+    */
+
+    if(marketLoaded){
+
+      setMarketStatus(
+        "reconnecting"
+      );
+
+    }else{
+
+      setMarketStatus(
+        "offline"
+      );
+
+      $("pulseTime").textContent =
+        t("terminal-offline");
+
+    }
+
+  }finally{
+
+    marketRequestActive =
+      false;
+
+  }
+
+}
+
+
+/* =========================================================
+   BSC BLOCK
+========================================================= */
+
+async function getBlockNumber(){
+
+  const payload = {
+    jsonrpc:"2.0",
+    id:1,
+    method:"eth_blockNumber",
+    params:[]
+  };
 
 
   for(
-    let i=1;
-    i<points.length;
-    i++
+    const rpc of BSC_RPCS
   ){
 
-    const previous =
-      points[i-1];
+    try{
+
+      const response =
+        await fetch(
+          rpc,
+          {
+            method:"POST",
+            headers:{
+              "Content-Type":
+                "application/json"
+            },
+            body:
+              JSON.stringify(payload),
+            cache:"no-store"
+          }
+        );
 
 
-    const current =
-      points[i];
+      if(!response.ok)
+        continue;
 
 
-    const center =
-      (
-        previous.x +
-        current.x
-      ) /
-      2;
+      const data =
+        await response.json();
 
 
-    d +=
-      ` C ${center} ${previous.y}, ` +
-      `${center} ${current.y}, ` +
-      `${current.x} ${current.y}`;
+      if(
+        data &&
+        data.result
+      ){
+
+        const block =
+          parseInt(
+            data.result,
+            16
+          );
+
+
+        if(
+          Number.isFinite(block)
+        ){
+
+          return block;
+
+        }
+
+      }
+
+    }catch{
+
+      continue;
+
+    }
 
   }
 
 
-  path.setAttribute(
-    "d",
-    d
-  );
-
-
-  path.style.strokeDasharray =
-    "1600";
-
-
-  path.style.strokeDashoffset =
-    "1600";
-
-
-  path.style.transition =
-    "stroke-dashoffset 1.8s ease";
-
-
-  requestAnimationFrame(
-    ()=>{
-      path.style.strokeDashoffset =
-        "0";
-    }
-  );
+  return null;
 
 }
+
+
+/* =========================================================
+   UPDATE BLOCK DISPLAY
+========================================================= */
+
+async function updateBlock(){
+
+  const block =
+    await getBlockNumber();
+
+
+  if(
+    block !== null
+  ){
+
+    /*
+      Pair-address area stays pair address.
+      Block is displayed in the last-update
+      metadata without interfering with
+      dynamic market values.
+    */
+
+    const last =
+      $("lastUpdate");
+
+    last.textContent =
+      "BSC #" +
+      block +
+      " · " +
+      new Date()
+        .toLocaleTimeString();
+
+  }
+
+}
+
+
+/* =========================================================
+   LANGUAGE SWITCH
+========================================================= */
+
+$("langBtn")
+  .addEventListener(
+    "click",
+    () => {
+
+      currentLanguage =
+        currentLanguage === "en"
+          ? "zh"
+          : "en";
+
+
+      localStorage.setItem(
+        "chili-language",
+        currentLanguage
+      );
+
+
+      translatePage();
+
+    }
+  );
 
 
 /* =========================================================
    MOBILE MENU
 ========================================================= */
 
-$("menuBtn").addEventListener(
-  "click",
-  ()=>{
+$("menuBtn")
+  .addEventListener(
+    "click",
+    () => {
 
-    const links =
-      document.querySelector(
-        ".nav-links"
-      );
-
-
-    if(
-      links.style.display ===
-      "flex"
-    ){
-
-      links.style.display =
-        "";
-
-      return;
+      $("mobileNav")
+        .classList.toggle(
+          "active"
+        );
 
     }
+  );
 
 
-    links.style.position =
-      "absolute";
+document
+  .querySelectorAll(
+    ".mobile-nav a"
+  )
+  .forEach(link => {
 
+    link.addEventListener(
+      "click",
+      () => {
 
-    links.style.top =
-      "68px";
+        $("mobileNav")
+          .classList.remove(
+            "active"
+          );
 
+      }
+    );
 
-    links.style.left =
-      "12px";
-
-
-    links.style.right =
-      "12px";
-
-
-    links.style.display =
-      "flex";
-
-
-    links.style.flexDirection =
-      "column";
-
-
-    links.style.alignItems =
-      "stretch";
-
-
-    links.style.gap =
-      "0";
-
-
-    links.style.padding =
-      "8px";
-
-
-    links.style.background =
-      "#fff";
-
-
-    links.style.border =
-      "1px solid #e8e8e8";
-
-
-    links.style.boxShadow =
-      "0 20px 50px rgba(0,0,0,.08)";
-
-
-    links
-      .querySelectorAll("a")
-      .forEach(
-        a=>{
-
-          a.style.padding =
-            "15px";
-
-        }
-      );
-
-  }
-);
+  });
 
 
 /* =========================================================
-   CLOSE MOBILE MENU AFTER CLICK
+   COPY BUTTONS
 ========================================================= */
 
-document
-  .querySelectorAll(".nav-links a")
-  .forEach(
-    link=>{
+const contractAddress =
+  CHILI_ADDRESS;
 
-      link.addEventListener(
-        "click",
-        ()=>{
 
-          if(
-            window.innerWidth <=
-            1000
-          ){
+$("copyHero")
+  .addEventListener(
+    "click",
+    () => {
 
-            document
-              .querySelector(
-                ".nav-links"
-              )
-              .style.display =
-              "";
+      copyText(
+        contractAddress
+      );
 
-          }
+    }
+  );
 
-        }
+
+$("copyContract")
+  .addEventListener(
+    "click",
+    () => {
+
+      copyText(
+        contractAddress
       );
 
     }
@@ -5476,95 +5759,73 @@ document
 
 
 /* =========================================================
-   SCROLL REVEAL
+   REVEAL ANIMATION
 ========================================================= */
 
 const observer =
   new IntersectionObserver(
-    entries=>{
+    entries => {
 
-      entries.forEach(
-        entry=>{
+      entries.forEach(entry => {
 
-          if(
-            entry.isIntersecting
-          ){
+        if(
+          entry.isIntersecting
+        ){
 
-            entry.target.classList.add(
-              "visible"
-            );
-
-          }
+          entry.target
+            .classList
+            .add("visible");
 
         }
-      );
+
+      });
 
     },
     {
-      threshold:.12
+      threshold:.08
     }
   );
 
 
 document
   .querySelectorAll(".reveal")
-  .forEach(
-    element=>{
-      observer.observe(
-        element
-      );
-    }
-  );
+  .forEach(el => {
+
+    observer.observe(el);
+
+  });
 
 
 /* =========================================================
-   START SYSTEM
+   INIT
 ========================================================= */
 
-async function startChiliSystem(){
+translatePage();
 
-  /*
-    Apply language first
-  */
+loadMarket();
 
-  translatePage();
+updateBlock();
 
 
-  /*
-    Initial live data
-  */
+/*
+  Real-time refresh.
 
-  await Promise.allSettled([
-    loadMarket(),
-    updateBlock()
-  ]);
+  Market:
+  every 15 seconds.
 
+  BSC block:
+  every 15 seconds.
+*/
 
-  /*
-    Market refresh:
-    every 15 seconds
-  */
+setInterval(
+  loadMarket,
+  15000
+);
 
-  setInterval(
-    loadMarket,
-    15000
-  );
-
-
-  /*
-    BSC block:
-    every 15 seconds
-  */
-
-  setInterval(
-    updateBlock,
-    15000
-  );
-
-}
-
-
-startChiliSystem();
+setInterval(
+  updateBlock,
+  15000
+);
 
 </script>
 
