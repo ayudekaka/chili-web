@@ -1,9 +1,4 @@
-// ========================================
-// CHILI Web3 Website - Global Configuration
-// ========================================
-
 const CHILI_CONFIG = {
-
     project: {
         name: "CHILI",
         symbol: "CHILI",
@@ -12,16 +7,14 @@ const CHILI_CONFIG = {
         chainId: 56,
         chainIdHex: "0x38"
     },
-
     token: {
-        // 填入真实地址，避免页面显示占位符
+        // 已填入您的真实地址
         address: "0xed3caca4903256fb3e4997bc0c7830d19fb35f7c",
         symbol: "CHILI",
         decimals: 18,
         explorer: "https://bscscan.com/token/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c",
         contractExplorer: "https://bscscan.com/address/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c#code"
     },
-
     network: {
         chainId: "0x38",
         chainName: "BNB Smart Chain",
@@ -30,38 +23,29 @@ const CHILI_CONFIG = {
             symbol: "BNB",
             decimals: 18
         },
-        rpcUrls: [
-            "https://bsc-dataseed.binance.org/"
-        ],
-        blockExplorerUrls: [
-            "https://bscscan.com/"
-        ]
+        rpcUrls: ["https://bsc-dataseed.binance.org/"],
+        blockExplorerUrls: ["https://bscscan.com/"]
     },
-
     dex: {
         name: "PancakeSwap",
         pair: "CHILI / USDT",
         swapUrl: "https://pancakeswap.finance/swap?outputCurrency=0xed3caca4903256fb3e4997bc0c7830d19fb35f7c"
     },
-
     social: {
         telegram: "#",
         twitter: "#",
         github: "https://github.com/ayudekaka/chili-web"
     },
-
     assets: {
-        // 修改为根目录路径
-        logo: "logo-TOU.png",
-        favicon: "logo-TOU.png"
+        // 修正为 assets 文件夹路径
+        logo: "assets/logo-TOU.png",
+        favicon: "assets/logo-TOU.png"
     },
-
     site: {
         title: "CHILI | Community Driven Token",
         description: "CHILI is a community-driven token built on BNB Chain.",
         themeColor: "#e53935"
     },
-
     ui: {
         addressStartLength: 6,
         addressEndLength: 4,
