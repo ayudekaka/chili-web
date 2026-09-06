@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>小辣椒 CHILI — BNB Smart Chain</title>
+<title>CHILI — BNB Smart Chain</title>
 
 <meta
   name="description"
-  content="小辣椒 CHILI — A community-driven token on BNB Smart Chain."
+  content="CHILI — A community-driven token built on BNB Smart Chain."
+>
+
+<meta name="theme-color" content="#e51b23">
+
+<link
+  rel="icon"
+  type="image/png"
+  href="https://raw.githubusercontent.com/ayudekaka/ChiLi/main/logo.png"
 >
 
 <style>
-/* =========================
+
+/* =========================================================
    RESET
-========================= */
+========================================================= */
 
 *{
   box-sizing:border-box;
@@ -43,8 +53,8 @@ body{
 }
 
 a{
-  text-decoration:none;
   color:inherit;
+  text-decoration:none;
 }
 
 button{
@@ -53,23 +63,27 @@ button{
 }
 
 img{
-  max-width:100%;
   display:block;
+  max-width:100%;
 }
 
 :root{
   --red:#e51b23;
+  --red-dark:#c9151c;
   --red-light:#fff1f2;
+
   --black:#111;
   --gray:#707070;
+  --gray-light:#999;
+
   --light:#f8f8f7;
   --border:#e8e8e8;
 }
 
 
-/* =========================
-   COMMON
-========================= */
+/* =========================================================
+   GLOBAL
+========================================================= */
 
 .container{
   width:min(1120px,calc(100% - 40px));
@@ -78,6 +92,7 @@ img{
 
 .btn{
   min-height:50px;
+
   padding:0 24px;
 
   border-radius:999px;
@@ -94,8 +109,7 @@ img{
   transition:
     transform .2s ease,
     background .2s ease,
-    color .2s ease,
-    border-color .2s ease;
+    color .2s ease;
 }
 
 .btn:hover{
@@ -109,7 +123,7 @@ img{
 }
 
 .btn-red:hover{
-  background:#c9151c;
+  background:var(--red-dark);
 }
 
 .btn-outline{
@@ -123,9 +137,9 @@ img{
 }
 
 
-/* =========================
+/* =========================================================
    HEADER
-========================= */
+========================================================= */
 
 header{
   height:72px;
@@ -134,7 +148,7 @@ header{
   top:0;
   z-index:100;
 
-  background:rgba(255,255,255,.94);
+  background:rgba(255,255,255,.95);
 
   backdrop-filter:blur(14px);
 
@@ -142,9 +156,8 @@ header{
 }
 
 .header-inner{
-  height:100%;
-
   width:min(1120px,calc(100% - 40px));
+  height:100%;
 
   margin:auto;
 
@@ -156,26 +169,25 @@ header{
 .logo{
   display:flex;
   align-items:center;
-
   gap:9px;
+
+  flex-shrink:0;
 
   font-size:20px;
   font-weight:900;
-
-  flex-shrink:0;
 }
 
 .logo-icon{
   width:29px;
   height:29px;
 
-  border-radius:50%;
-
-  background:var(--red);
-
   display:flex;
   align-items:center;
   justify-content:center;
+
+  border-radius:50%;
+
+  background:var(--red);
 
   font-size:15px;
 }
@@ -191,10 +203,10 @@ header{
 }
 
 .nav a{
+  color:#555;
+
   font-size:11px;
   font-weight:700;
-
-  color:#555;
 
   white-space:nowrap;
 
@@ -208,35 +220,38 @@ header{
 .header-right{
   display:flex;
   align-items:center;
-
   gap:9px;
 }
 
+
+/* LANGUAGE
+   保持你上一版的位置
+*/
+
 .lang{
   display:flex;
-
-  border:1px solid var(--border);
-
-  border-radius:999px;
+  align-items:center;
 
   padding:3px;
 
   background:#fff;
+
+  border:1px solid var(--border);
+  border-radius:999px;
 }
 
 .lang button{
   border:0;
-
   background:transparent;
 
   padding:5px 8px;
 
   border-radius:999px;
 
+  color:#777;
+
   font-size:9px;
   font-weight:800;
-
-  color:#777;
 
   transition:.2s ease;
 }
@@ -253,7 +268,6 @@ header{
   height:40px;
 
   border:1px solid var(--border);
-
   border-radius:50%;
 
   background:#fff;
@@ -264,13 +278,60 @@ header{
 }
 
 
-/* =========================
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+.mobile-menu{
+  display:none;
+
+  position:fixed;
+
+  top:72px;
+  left:0;
+  right:0;
+
+  z-index:99;
+
+  padding:20px;
+
+  background:#fff;
+
+  border-bottom:1px solid var(--border);
+}
+
+.mobile-menu.active{
+  display:block;
+}
+
+.mobile-nav{
+  display:flex;
+  flex-direction:column;
+}
+
+.mobile-nav a{
+  padding:14px 4px;
+
+  border-bottom:1px solid var(--border);
+
+  color:#333;
+
+  font-size:12px;
+  font-weight:800;
+}
+
+.mobile-lang{
+  margin-top:18px;
+}
+
+
+/* =========================================================
    HERO
-========================= */
+========================================================= */
 
 .hero{
   padding:
-    clamp(70px,10vw,130px)
+    clamp(75px,10vw,130px)
     0
     clamp(70px,9vw,110px);
 }
@@ -294,34 +355,32 @@ header{
 .badge{
   display:inline-flex;
   align-items:center;
-
   gap:7px;
 
   padding:7px 12px;
 
-  border:1px solid var(--border);
+  background:#fff;
 
+  border:1px solid var(--border);
   border-radius:999px;
+
+  color:#666;
 
   font-size:9px;
   font-weight:800;
 
   letter-spacing:1px;
-
-  color:#666;
-
-  text-transform:uppercase;
-
-  background:#fff;
 }
 
 .dot{
   width:6px;
   height:6px;
 
-  background:var(--red);
+  flex-shrink:0;
 
   border-radius:50%;
+
+  background:var(--red);
 }
 
 .hero h1{
@@ -344,9 +403,9 @@ header{
 }
 
 .hero-text{
-  margin-top:30px;
+  max-width:580px;
 
-  max-width:560px;
+  margin-top:30px;
 
   color:var(--gray);
 
@@ -360,7 +419,6 @@ header{
   margin-top:30px;
 
   display:flex;
-
   gap:10px;
 
   flex-wrap:wrap;
@@ -368,18 +426,17 @@ header{
 
 .hero-logo{
   width:min(390px,100%);
-
   aspect-ratio:1;
-
-  background:var(--red);
-
-  border-radius:50%;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
   padding:30px;
+
+  background:var(--red);
+
+  border-radius:50%;
 
   box-shadow:
     0 30px 70px rgba(229,27,35,.15);
@@ -393,9 +450,9 @@ header{
 }
 
 
-/* =========================
+/* =========================================================
    CORE DATA
-========================= */
+========================================================= */
 
 .core{
   border-top:1px solid var(--border);
@@ -422,13 +479,15 @@ header{
 }
 
 .core-item:last-child{
-  border-right:0;
   padding-right:0;
+  border-right:0;
 }
 
 .core-number{
   font-size:
-    clamp(27px,3vw,42px);
+    clamp(26px,3vw,42px);
+
+  line-height:1;
 
   font-weight:900;
 
@@ -442,12 +501,11 @@ header{
 }
 
 .core-label{
-  margin-top:7px;
+  margin-top:8px;
 
-  color:#999;
+  color:var(--gray-light);
 
   font-size:9px;
-
   font-weight:800;
 
   letter-spacing:1px;
@@ -456,9 +514,9 @@ header{
 }
 
 
-/* =========================
-   SECTION
-========================= */
+/* =========================================================
+   COMMON SECTION
+========================================================= */
 
 .section{
   padding:
@@ -468,9 +526,7 @@ header{
 
 .section-header{
   display:flex;
-
   align-items:flex-end;
-
   justify-content:space-between;
 
   gap:30px;
@@ -482,7 +538,6 @@ header{
   color:var(--red);
 
   font-size:10px;
-
   font-weight:900;
 
   letter-spacing:2px;
@@ -504,19 +559,164 @@ header{
 }
 
 .section-desc{
-  max-width:420px;
+  max-width:440px;
 
   color:var(--gray);
 
   font-size:14px;
 
-  line-height:1.7;
+  line-height:1.75;
 }
 
 
-/* =========================
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about{
+  background:#fff;
+}
+
+.about-grid{
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1.1fr)
+    minmax(280px,.9fr);
+
+  gap:80px;
+
+  align-items:center;
+}
+
+.about-text{
+  color:#555;
+
+  font-size:
+    clamp(16px,2vw,19px);
+
+  line-height:1.9;
+}
+
+.about-text strong{
+  color:var(--red);
+  font-weight:900;
+}
+
+.about-points{
+  display:grid;
+
+  gap:12px;
+}
+
+.about-point{
+  padding:24px;
+
+  border:1px solid var(--border);
+
+  background:#fff;
+
+  transition:.2s ease;
+}
+
+.about-point:hover{
+  background:var(--red-light);
+
+  border-color:#f2c7ca;
+}
+
+.about-point-number{
+  color:var(--red);
+
+  font-size:11px;
+  font-weight:900;
+
+  letter-spacing:1px;
+}
+
+.about-point-title{
+  margin-top:8px;
+
+  font-size:18px;
+  font-weight:900;
+}
+
+.about-point-text{
+  margin-top:8px;
+
+  color:#777;
+
+  font-size:13px;
+
+  line-height:1.65;
+}
+
+
+/* =========================================================
+   WHY CHILI
+========================================================= */
+
+.why{
+  background:var(--light);
+}
+
+.why-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,minmax(0,1fr));
+
+  border-top:1px solid var(--border);
+  border-left:1px solid var(--border);
+}
+
+.why-item{
+  min-width:0;
+
+  padding:32px;
+
+  background:#fff;
+
+  border-right:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+
+.why-icon{
+  width:42px;
+  height:42px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:var(--red-light);
+
+  font-size:20px;
+}
+
+.why-title{
+  margin-top:22px;
+
+  font-size:21px;
+  font-weight:900;
+}
+
+.why-text{
+  margin-top:10px;
+
+  color:#777;
+
+  font-size:13px;
+
+  line-height:1.75;
+}
+
+
+/* =========================================================
    TOKENOMICS
-========================= */
+========================================================= */
 
 .tokenomics{
   background:#fff;
@@ -529,7 +729,6 @@ header{
     repeat(2,minmax(0,1fr));
 
   border-top:1px solid var(--border);
-
   border-left:1px solid var(--border);
 }
 
@@ -538,13 +737,12 @@ header{
 
   padding:30px;
 
+  background:#fff;
+
   border-right:1px solid var(--border);
   border-bottom:1px solid var(--border);
 
-  background:#fff;
-
-  transition:
-    background .2s ease;
+  transition:.2s ease;
 }
 
 .token-item:hover{
@@ -555,7 +753,6 @@ header{
   color:#999;
 
   font-size:9px;
-
   font-weight:800;
 
   letter-spacing:1.5px;
@@ -571,7 +768,7 @@ header{
   font-size:
     clamp(22px,3vw,34px);
 
-  line-height:1.1;
+  line-height:1.15;
 
   font-weight:900;
 
@@ -584,10 +781,20 @@ header{
   color:var(--red);
 }
 
+.token-note{
+  margin-top:8px;
 
-/* =========================
+  color:#999;
+
+  font-size:11px;
+
+  line-height:1.5;
+}
+
+
+/* =========================================================
    STORY
-========================= */
+========================================================= */
 
 .story{
   background:var(--light);
@@ -618,18 +825,12 @@ header{
 
 .story-text strong{
   color:var(--red);
-
   font-weight:900;
 }
 
 .story-mark{
   width:100%;
-
   aspect-ratio:1;
-
-  border-radius:50%;
-
-  background:var(--red);
 
   display:flex;
   align-items:center;
@@ -638,23 +839,27 @@ header{
   position:relative;
 
   overflow:hidden;
+
+  background:var(--red);
+
+  border-radius:50%;
 }
 
 .story-mark::before{
   content:"";
 
   width:72%;
-
   aspect-ratio:1;
 
-  border:1px solid rgba(255,255,255,.45);
-
-  border-radius:50%;
-
   position:absolute;
+
+  border:1px solid rgba(255,255,255,.45);
+  border-radius:50%;
 }
 
 .story-mark span{
+  position:relative;
+
   color:#fff;
 
   font-size:
@@ -665,33 +870,30 @@ header{
   font-weight:950;
 
   letter-spacing:-8px;
-
-  position:relative;
 }
 
 
-/* =========================
+/* =========================================================
    CONTRACT
-========================= */
+========================================================= */
 
 .contract{
   background:#fff;
 }
 
 .contract-box{
-  border:1px solid var(--border);
-
   padding:
     clamp(25px,5vw,45px);
 
   background:#fff;
+
+  border:1px solid var(--border);
 }
 
 .contract-label{
   color:#999;
 
   font-size:9px;
-
   font-weight:800;
 
   letter-spacing:1.5px;
@@ -726,20 +928,83 @@ header{
   margin-top:25px;
 
   display:flex;
-
   gap:10px;
 
   flex-wrap:wrap;
 }
 
+.contract-note{
+  margin-top:18px;
 
-/* =========================
+  color:#999;
+
+  font-size:11px;
+
+  line-height:1.6;
+}
+
+
+/* =========================================================
+   TRANSPARENCY
+========================================================= */
+
+.transparency{
+  background:var(--light);
+}
+
+.transparency-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,minmax(0,1fr));
+
+  gap:14px;
+}
+
+.transparency-card{
+  padding:28px;
+
+  background:#fff;
+
+  border:1px solid var(--border);
+}
+
+.transparency-card-label{
+  color:var(--red);
+
+  font-size:9px;
+  font-weight:900;
+
+  letter-spacing:1.5px;
+
+  text-transform:uppercase;
+}
+
+.transparency-card-title{
+  margin-top:10px;
+
+  font-size:19px;
+  font-weight:900;
+}
+
+.transparency-card-text{
+  margin-top:9px;
+
+  color:#777;
+
+  font-size:12px;
+
+  line-height:1.7;
+}
+
+
+/* =========================================================
    COMMUNITY
-========================= */
+========================================================= */
 
 .community{
   padding:
-    70px 0
+    75px 0
     90px;
 
   border-top:1px solid var(--border);
@@ -749,7 +1014,6 @@ header{
   display:flex;
 
   align-items:center;
-
   justify-content:space-between;
 
   gap:30px;
@@ -759,11 +1023,11 @@ header{
   font-size:
     clamp(32px,5vw,60px);
 
-  font-weight:950;
+  line-height:1;
 
   letter-spacing:-3px;
 
-  line-height:1;
+  font-weight:950;
 }
 
 .community-title span{
@@ -779,9 +1043,9 @@ header{
 }
 
 
-/* =========================
+/* =========================================================
    FOOTER
-========================= */
+========================================================= */
 
 footer{
   background:#fff;
@@ -795,7 +1059,6 @@ footer{
   display:flex;
 
   align-items:center;
-
   justify-content:space-between;
 
   gap:20px;
@@ -808,7 +1071,6 @@ footer{
   gap:8px;
 
   font-size:16px;
-
   font-weight:900;
 }
 
@@ -816,13 +1078,13 @@ footer{
   width:24px;
   height:24px;
 
-  border-radius:50%;
-
-  background:var(--red);
-
   display:flex;
   align-items:center;
   justify-content:center;
+
+  background:var(--red);
+
+  border-radius:50%;
 
   font-size:12px;
 }
@@ -835,7 +1097,6 @@ footer{
 
 .footer-links{
   display:flex;
-
   gap:18px;
 }
 
@@ -843,7 +1104,6 @@ footer{
   color:#777;
 
   font-size:10px;
-
   font-weight:700;
 }
 
@@ -852,68 +1112,9 @@ footer{
 }
 
 
-/* =========================
-   MOBILE MENU
-========================= */
-
-.mobile-menu{
-  display:none;
-
-  position:fixed;
-
-  top:72px;
-  left:0;
-  right:0;
-
-  z-index:99;
-
-  background:#fff;
-
-  border-bottom:1px solid var(--border);
-
-  padding:22px 20px;
-}
-
-.mobile-menu.active{
-  display:block;
-}
-
-.mobile-nav{
-  display:flex;
-
-  flex-direction:column;
-
-  gap:3px;
-}
-
-.mobile-nav a{
-  padding:14px 5px;
-
-  border-bottom:1px solid var(--border);
-
-  color:#333;
-
-  font-size:12px;
-
-  font-weight:800;
-}
-
-.mobile-nav a:last-child{
-  border-bottom:0;
-}
-
-.mobile-lang{
-  margin-top:18px;
-
-  display:flex;
-
-  justify-content:flex-start;
-}
-
-
-/* =========================
+/* =========================================================
    TABLET
-========================= */
+========================================================= */
 
 @media(max-width:900px){
 
@@ -932,26 +1133,16 @@ footer{
     letter-spacing:-6px;
   }
 
-  .hero-text{
-    font-size:16px;
-  }
-
   .story-grid{
     gap:45px;
-  }
-
-  .story-mark{
-    max-width:330px;
-
-    margin:auto;
   }
 
 }
 
 
-/* =========================
+/* =========================================================
    MOBILE
-========================= */
+========================================================= */
 
 @media(max-width:700px){
 
@@ -969,14 +1160,12 @@ footer{
 
   .logo{
     font-size:18px;
-
     gap:7px;
   }
 
   .logo-icon{
     width:27px;
     height:27px;
-
     font-size:14px;
   }
 
@@ -1007,7 +1196,6 @@ footer{
 
   .hero-grid{
     display:flex;
-
     flex-direction:column;
 
     align-items:flex-start;
@@ -1031,17 +1219,17 @@ footer{
   .hero-text{
     margin-top:24px;
 
+    max-width:100%;
+
     font-size:15px;
 
     line-height:1.65;
-
-    max-width:100%;
   }
 
   .hero-actions{
-    margin-top:25px;
-
     width:100%;
+
+    margin-top:25px;
 
     display:grid;
 
@@ -1050,13 +1238,13 @@ footer{
   }
 
   .btn{
+    width:100%;
+
     min-height:46px;
 
-    padding:0 15px;
+    padding:0 13px;
 
-    font-size:11px;
-
-    width:100%;
+    font-size:10px;
   }
 
   .hero-logo{
@@ -1077,38 +1265,34 @@ footer{
 
   .core-item{
     padding:22px 15px;
-
-    border-right:1px solid var(--border);
   }
 
   .core-item:nth-child(2){
     border-right:0;
   }
 
-  .core-item:nth-child(3){
-    padding-left:0;
-
-    border-top:1px solid var(--border);
-  }
-
+  .core-item:nth-child(3),
   .core-item:nth-child(4){
     border-top:1px solid var(--border);
   }
 
-  .core-number{
-    font-size:25px;
+  .core-item:nth-child(3){
+    padding-left:0;
+  }
 
-    letter-spacing:-1.5px;
+  .core-number{
+    font-size:24px;
+
+    letter-spacing:-1.2px;
   }
 
   .core-label{
     font-size:8px;
-
-    letter-spacing:.8px;
+    letter-spacing:.7px;
   }
 
 
-  /* SECTION */
+  /* SECTIONS */
 
   .section{
     padding:
@@ -1135,6 +1319,50 @@ footer{
     margin-top:20px;
 
     font-size:13px;
+  }
+
+
+  /* ABOUT */
+
+  .about-grid{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:40px;
+  }
+
+  .about-text{
+    font-size:15px;
+    line-height:1.85;
+  }
+
+  .about-points{
+    width:100%;
+  }
+
+  .about-point{
+    padding:20px;
+  }
+
+  .about-point-title{
+    font-size:17px;
+  }
+
+
+  /* WHY */
+
+  .why-grid{
+    grid-template-columns:1fr;
+  }
+
+  .why-item{
+    padding:24px 20px;
+  }
+
+  .why-title{
+    margin-top:17px;
+    font-size:19px;
   }
 
 
@@ -1167,7 +1395,6 @@ footer{
 
   .story-text{
     font-size:15px;
-
     line-height:1.85;
   }
 
@@ -1179,8 +1406,18 @@ footer{
 
   .story-mark span{
     font-size:80px;
-
     letter-spacing:-5px;
+  }
+
+
+  /* TRANSPARENCY */
+
+  .transparency-grid{
+    grid-template-columns:1fr;
+  }
+
+  .transparency-card{
+    padding:23px 20px;
   }
 
 
@@ -1192,7 +1429,6 @@ footer{
 
   .contract-address{
     font-size:11px;
-
     line-height:1.7;
   }
 
@@ -1203,6 +1439,10 @@ footer{
       repeat(2,minmax(0,1fr));
 
     gap:8px;
+  }
+
+  .contract-note{
+    font-size:10px;
   }
 
 
@@ -1227,8 +1467,15 @@ footer{
 
   .community-text{
     font-size:13px;
-
     line-height:1.6;
+  }
+
+  .community .btn{
+    margin-top:22px;
+
+    width:auto;
+
+    padding:0 25px;
   }
 
 
@@ -1246,16 +1493,15 @@ footer{
 
   .footer-links{
     gap:15px;
-
     flex-wrap:wrap;
   }
 
 }
 
 
-/* =========================
+/* =========================================================
    SMALL PHONE
-========================= */
+========================================================= */
 
 @media(max-width:380px){
 
@@ -1269,7 +1515,6 @@ footer{
 
   .hero h1{
     font-size:61px;
-
     letter-spacing:-4px;
   }
 
@@ -1286,7 +1531,7 @@ footer{
   }
 
   .core-number{
-    font-size:22px;
+    font-size:21px;
   }
 
   .token-item{
@@ -1304,13 +1549,9 @@ footer{
 }
 
 
-/* =========================
-   LANGUAGE
-========================= */
-
-[data-i18n]{
-  transition:opacity .12s ease;
-}
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
 
 .lang button:focus,
 .menu:focus,
@@ -1325,9 +1566,10 @@ footer{
 
 <body id="top">
 
-<!-- =========================
+
+<!-- =======================================================
      HEADER
-========================= -->
+======================================================= -->
 
 <header>
 
@@ -1335,9 +1577,7 @@ footer{
 
     <a href="#top" class="logo">
 
-      <div class="logo-icon">
-        🌶️
-      </div>
+      <div class="logo-icon">🌶️</div>
 
       CHILI
 
@@ -1345,6 +1585,13 @@ footer{
 
 
     <nav class="nav">
+
+      <a
+        href="#about"
+        data-i18n="navAbout"
+      >
+        ABOUT
+      </a>
 
       <a
         href="#tokenomics"
@@ -1372,6 +1619,10 @@ footer{
 
     <div class="header-right">
 
+      <!--
+        中英按钮位置保持你指定的版本
+      -->
+
       <div class="lang">
 
         <button
@@ -1391,6 +1642,7 @@ footer{
 
       </div>
 
+
       <button
         class="menu"
         id="menuBtn"
@@ -1407,9 +1659,9 @@ footer{
 </header>
 
 
-<!-- =========================
+<!-- =======================================================
      MOBILE MENU
-========================= -->
+======================================================= -->
 
 <div
   class="mobile-menu"
@@ -1417,6 +1669,14 @@ footer{
 >
 
   <nav class="mobile-nav">
+
+    <a
+      href="#about"
+      data-i18n="navAbout"
+      onclick="closeMenu()"
+    >
+      ABOUT
+    </a>
 
     <a
       href="#tokenomics"
@@ -1471,11 +1731,16 @@ footer{
 </div>
 
 
-<!-- =========================
-     HERO
-========================= -->
+<!-- =======================================================
+     MAIN
+======================================================= -->
 
 <main>
+
+
+<!-- =======================================================
+     HERO
+======================================================= -->
 
 <section class="hero">
 
@@ -1491,7 +1756,7 @@ footer{
           <span class="dot"></span>
 
           <span data-i18n="badge">
-            BNB SMART CHAIN
+            BUILT ON BNB SMART CHAIN
           </span>
 
         </div>
@@ -1522,11 +1787,11 @@ footer{
           </a>
 
           <a
-            href="#tokenomics"
+            href="#about"
             class="btn btn-outline"
-            data-i18n="viewToken"
+            data-i18n="learnMore"
           >
-            查看代币
+            了解 CHILI
           </a>
 
         </div>
@@ -1539,7 +1804,6 @@ footer{
         <img
           src="https://raw.githubusercontent.com/ayudekaka/ChiLi/main/logo.png"
           alt="CHILI Logo"
-          onerror="this.style.display='none'"
         >
 
       </div>
@@ -1552,9 +1816,9 @@ footer{
 </section>
 
 
-<!-- =========================
-     CORE
-========================= -->
+<!-- =======================================================
+     CORE DATA
+======================================================= -->
 
 <section class="core">
 
@@ -1566,7 +1830,7 @@ footer{
       <div class="core-item">
 
         <div class="core-number">
-          20.15M
+          20,150,822
         </div>
 
         <div
@@ -1634,9 +1898,270 @@ footer{
 </section>
 
 
-<!-- =========================
+<!-- =======================================================
+     ABOUT
+======================================================= -->
+
+<section
+  class="section about"
+  id="about"
+>
+
+  <div class="container">
+
+    <div class="section-header">
+
+      <div>
+
+        <div
+          class="section-label"
+          data-i18n="aboutLabel"
+        >
+          ABOUT CHILI
+        </div>
+
+        <h2
+          class="section-title"
+          data-i18n="aboutTitle"
+        >
+          More than a token.
+        </h2>
+
+      </div>
+
+
+      <p
+        class="section-desc"
+        data-i18n="aboutDesc"
+      >
+        CHILI 希望成为一个简单、开放、由社区共同参与的 Meme 文化项目。
+      </p>
+
+    </div>
+
+
+    <div class="about-grid">
+
+
+      <div>
+
+        <p
+          class="about-text"
+          data-i18n="aboutText"
+        >
+          CHILI 从一个很简单的想法开始：
+          <strong>让社区成为故事的一部分。</strong>
+          在充满复杂概念的加密世界里，
+          CHILI 选择保持简单。
+          它是一种文化、一种态度，
+          也是一群喜欢加密世界的人共同创造的社区符号。
+        </p>
+
+      </div>
+
+
+      <div class="about-points">
+
+
+        <div class="about-point">
+
+          <div class="about-point-number">
+            01
+          </div>
+
+          <div
+            class="about-point-title"
+            data-i18n="aboutPoint1Title"
+          >
+            Community
+          </div>
+
+          <div
+            class="about-point-text"
+            data-i18n="aboutPoint1Text"
+          >
+            社区是 CHILI 故事的核心。
+          </div>
+
+        </div>
+
+
+        <div class="about-point">
+
+          <div class="about-point-number">
+            02
+          </div>
+
+          <div
+            class="about-point-title"
+            data-i18n="aboutPoint2Title"
+          >
+            Simplicity
+          </div>
+
+          <div
+            class="about-point-text"
+            data-i18n="aboutPoint2Text"
+          >
+            简单的规则，清晰的代币信息。
+          </div>
+
+        </div>
+
+
+        <div class="about-point">
+
+          <div class="about-point-number">
+            03
+          </div>
+
+          <div
+            class="about-point-title"
+            data-i18n="aboutPoint3Title"
+          >
+            Meme Culture
+          </div>
+
+          <div
+            class="about-point-text"
+            data-i18n="aboutPoint3Text"
+          >
+            用轻松、有趣的方式参与加密文化。
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     WHY CHILI
+======================================================= -->
+
+<section class="section why">
+
+  <div class="container">
+
+    <div class="section-header">
+
+      <div>
+
+        <div
+          class="section-label"
+          data-i18n="whyLabel"
+        >
+          WHY CHILI
+        </div>
+
+        <h2
+          class="section-title"
+          data-i18n="whyTitle"
+        >
+          Keep it simple.
+        </h2>
+
+      </div>
+
+
+      <p
+        class="section-desc"
+        data-i18n="whyDesc"
+      >
+        不用复杂的承诺，只展示真正可以验证的信息。
+      </p>
+
+    </div>
+
+
+    <div class="why-grid">
+
+
+      <div class="why-item">
+
+        <div class="why-icon">
+          🌶️
+        </div>
+
+        <div
+          class="why-title"
+          data-i18n="why1Title"
+        >
+          Community First
+        </div>
+
+        <div
+          class="why-text"
+          data-i18n="why1Text"
+        >
+          CHILI 的文化建立在社区参与和共同传播之上。
+        </div>
+
+      </div>
+
+
+      <div class="why-item">
+
+        <div class="why-icon">
+          ◉
+        </div>
+
+        <div
+          class="why-title"
+          data-i18n="why2Title"
+        >
+          Simple Token
+        </div>
+
+        <div
+          class="why-text"
+          data-i18n="why2Text"
+        >
+          代币信息保持简单，供应量、税费和网络清晰展示。
+        </div>
+
+      </div>
+
+
+      <div class="why-item">
+
+        <div class="why-icon">
+          ↗
+        </div>
+
+        <div
+          class="why-title"
+          data-i18n="why3Title"
+        >
+          On-chain
+        </div>
+
+        <div
+          class="why-text"
+          data-i18n="why3Text"
+        >
+          合约地址公开，用户可以直接通过 BscScan 查看链上信息。
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
      TOKENOMICS
-========================= -->
+======================================================= -->
 
 <section
   class="section tokenomics"
@@ -1693,6 +2218,13 @@ footer{
           CHILI
         </div>
 
+        <div
+          class="token-note"
+          data-i18n="tokenNameNote"
+        >
+          小辣椒 CHILI
+        </div>
+
       </div>
 
 
@@ -1707,6 +2239,13 @@ footer{
 
         <div class="token-value">
           20,150,822
+        </div>
+
+        <div
+          class="token-note"
+          data-i18n="tokenSupplyNote"
+        >
+          Total token supply
         </div>
 
       </div>
@@ -1725,6 +2264,13 @@ footer{
           0%
         </div>
 
+        <div
+          class="token-note"
+          data-i18n="tokenTaxNote"
+        >
+          Current token tax
+        </div>
+
       </div>
 
 
@@ -1741,6 +2287,13 @@ footer{
           BNB Chain
         </div>
 
+        <div
+          class="token-note"
+          data-i18n="tokenNetworkNote"
+        >
+          BNB Smart Chain
+        </div>
+
       </div>
 
 
@@ -1751,9 +2304,9 @@ footer{
 </section>
 
 
-<!-- =========================
+<!-- =======================================================
      STORY
-========================= -->
+======================================================= -->
 
 <section
   class="section story"
@@ -1791,6 +2344,11 @@ footer{
           不需要复杂的叙事，也不需要堆砌概念。
           CHILI 希望用简单直接的方式，
           连接喜欢加密文化、社区和 Meme 的人。
+
+          就像一颗小辣椒。
+          它不需要很大，
+          但只要出现，
+          就能让人感受到一点热度。
         </p>
 
       </div>
@@ -1798,9 +2356,7 @@ footer{
 
       <div class="story-mark">
 
-        <span>
-          🌶
-        </span>
+        <span>🌶</span>
 
       </div>
 
@@ -1812,9 +2368,137 @@ footer{
 </section>
 
 
-<!-- =========================
+<!-- =======================================================
+     TRANSPARENCY
+======================================================= -->
+
+<section class="section transparency">
+
+  <div class="container">
+
+
+    <div class="section-header">
+
+      <div>
+
+        <div
+          class="section-label"
+          data-i18n="transparencyLabel"
+        >
+          TRANSPARENCY
+        </div>
+
+        <h2
+          class="section-title"
+          data-i18n="transparencyTitle"
+        >
+          Verify it.
+        </h2>
+
+      </div>
+
+
+      <p
+        class="section-desc"
+        data-i18n="transparencyDesc"
+      >
+        不靠口号，让公开的信息自己说话。
+      </p>
+
+    </div>
+
+
+    <div class="transparency-grid">
+
+
+      <div class="transparency-card">
+
+        <div
+          class="transparency-card-label"
+          data-i18n="transparency1Label"
+        >
+          CONTRACT
+        </div>
+
+        <div
+          class="transparency-card-title"
+          data-i18n="transparency1Title"
+        >
+          Public Contract
+        </div>
+
+        <div
+          class="transparency-card-text"
+          data-i18n="transparency1Text"
+        >
+          合约地址公开，并提供 BscScan 链接进行查询。
+        </div>
+
+      </div>
+
+
+      <div class="transparency-card">
+
+        <div
+          class="transparency-card-label"
+          data-i18n="transparency2Label"
+        >
+          TOKEN
+        </div>
+
+        <div
+          class="transparency-card-title"
+          data-i18n="transparency2Title"
+        >
+          Clear Information
+        </div>
+
+        <div
+          class="transparency-card-text"
+          data-i18n="transparency2Text"
+        >
+          Token 名称、Symbol、供应量、税费和网络信息公开展示。
+        </div>
+
+      </div>
+
+
+      <div class="transparency-card">
+
+        <div
+          class="transparency-card-label"
+          data-i18n="transparency3Label"
+        >
+          NETWORK
+        </div>
+
+        <div
+          class="transparency-card-title"
+          data-i18n="transparency3Title"
+        >
+          BNB Smart Chain
+        </div>
+
+        <div
+          class="transparency-card-text"
+          data-i18n="transparency3Text"
+        >
+          CHILI is built on BNB Smart Chain.
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
      CONTRACT
-========================= -->
+======================================================= -->
 
 <section
   class="section contract"
@@ -1837,7 +2521,6 @@ footer{
 
         <h2
           class="section-title"
-          data-i18n="contractTitle"
         >
           CHILI.
         </h2>
@@ -1856,6 +2539,7 @@ footer{
 
 
     <div class="contract-box">
+
 
       <div
         class="contract-label"
@@ -1879,7 +2563,7 @@ footer{
           class="btn btn-red"
           data-i18n="bscscan"
         >
-          BscScan
+          查看 BscScan
         </a>
 
 
@@ -1893,6 +2577,15 @@ footer{
 
       </div>
 
+
+      <div
+        class="contract-note"
+        data-i18n="contractNote"
+      >
+        请始终通过官方渠道核对合约地址。
+      </div>
+
+
     </div>
 
   </div>
@@ -1900,9 +2593,9 @@ footer{
 </section>
 
 
-<!-- =========================
+<!-- =======================================================
      COMMUNITY
-========================= -->
+======================================================= -->
 
 <section class="community">
 
@@ -1946,12 +2639,13 @@ footer{
 
 </section>
 
+
 </main>
 
 
-<!-- =========================
+<!-- =======================================================
      FOOTER
-========================= -->
+======================================================= -->
 
 <footer>
 
@@ -1990,6 +2684,7 @@ footer{
           Contract
         </a>
 
+
         <a
           href="https://gopluslabs.io/"
           target="_blank"
@@ -2011,19 +2706,28 @@ footer{
 
 <script>
 
-/* =========================
+/* =========================================================
    TRANSLATIONS
-========================= */
+========================================================= */
 
 const translations = {
 
   zh: {
 
-    navTokenomics: "代币经济",
-    navStory: "故事",
-    navContract: "合约",
+    navAbout:
+      "关于 CHILI",
 
-    badge: "BNB SMART CHAIN",
+    navTokenomics:
+      "代币经济",
+
+    navStory:
+      "故事",
+
+    navContract:
+      "合约",
+
+    badge:
+      "BUILT ON BNB SMART CHAIN",
 
     heroText:
       "小辣椒 CHILI，一个建立在 BNB Smart Chain 上的社区驱动型代币。",
@@ -2031,8 +2735,8 @@ const translations = {
     viewContract:
       "查看合约",
 
-    viewToken:
-      "查看代币",
+    learnMore:
+      "了解 CHILI",
 
     supply:
       "总供应量",
@@ -2046,6 +2750,66 @@ const translations = {
     symbol:
       "代币符号",
 
+
+    aboutLabel:
+      "ABOUT CHILI",
+
+    aboutTitle:
+      "不只是一个代币。",
+
+    aboutDesc:
+      "CHILI 希望成为一个简单、开放、由社区共同参与的 Meme 文化项目。",
+
+    aboutText:
+      "CHILI 从一个很简单的想法开始：<strong>让社区成为故事的一部分。</strong> 在充满复杂概念的加密世界里，CHILI 选择保持简单。它是一种文化、一种态度，也是喜欢加密世界的人共同创造的社区符号。",
+
+    aboutPoint1Title:
+      "社区",
+
+    aboutPoint1Text:
+      "社区是 CHILI 故事的核心。",
+
+    aboutPoint2Title:
+      "简单",
+
+    aboutPoint2Text:
+      "简单的规则，清晰的代币信息。",
+
+    aboutPoint3Title:
+      "Meme 文化",
+
+    aboutPoint3Text:
+      "用轻松、有趣的方式参与加密文化。",
+
+
+    whyLabel:
+      "WHY CHILI",
+
+    whyTitle:
+      "保持简单。",
+
+    whyDesc:
+      "不用复杂的承诺，只展示真正可以验证的信息。",
+
+    why1Title:
+      "社区优先",
+
+    why1Text:
+      "CHILI 的文化建立在社区参与和共同传播之上。",
+
+    why2Title:
+      "简单代币",
+
+    why2Text:
+      "供应量、税费和网络等核心信息清晰展示。",
+
+    why3Title:
+      "链上公开",
+
+    why3Text:
+      "合约地址公开，可以通过 BscScan 查看链上信息。",
+
+
     tokenLabel:
       "TOKENOMICS",
 
@@ -2058,14 +2822,27 @@ const translations = {
     tokenName:
       "代币",
 
+    tokenNameNote:
+      "小辣椒 CHILI",
+
     tokenSupply:
       "总供应量",
+
+    tokenSupplyNote:
+      "代币总供应量",
 
     tokenTax:
       "税费",
 
+    tokenTaxNote:
+      "当前代币税费",
+
     tokenNetwork:
       "网络",
+
+    tokenNetworkNote:
+      "BNB Smart Chain",
+
 
     storyLabel:
       "STORY",
@@ -2074,13 +2851,48 @@ const translations = {
       "一点热度。",
 
     storyText:
-      "小辣椒 CHILI 从一个简单的想法开始：让社区成为核心。不需要复杂的叙事，也不需要堆砌概念。CHILI 希望用简单直接的方式，连接喜欢加密文化、社区和 Meme 的人。",
+      "小辣椒 CHILI 从一个简单的想法开始：<strong>让社区成为核心。</strong> 不需要复杂的叙事，也不需要堆砌概念。CHILI 希望用简单直接的方式，连接喜欢加密文化、社区和 Meme 的人。就像一颗小辣椒。它不需要很大，但只要出现，就能让人感受到一点热度。",
+
+
+    transparencyLabel:
+      "TRANSPARENCY",
+
+    transparencyTitle:
+      "自己验证。",
+
+    transparencyDesc:
+      "不靠口号，让公开的信息自己说话。",
+
+    transparency1Label:
+      "CONTRACT",
+
+    transparency1Title:
+      "公开合约",
+
+    transparency1Text:
+      "合约地址公开，并提供 BscScan 链接进行查询。",
+
+    transparency2Label:
+      "TOKEN",
+
+    transparency2Title:
+      "清晰资料",
+
+    transparency2Text:
+      "Token 名称、Symbol、供应量、税费和网络信息公开展示。",
+
+    transparency3Label:
+      "NETWORK",
+
+    transparency3Title:
+      "BNB Smart Chain",
+
+    transparency3Text:
+      "CHILI 建立在 BNB Smart Chain 上。",
+
 
     contractLabel:
       "CONTRACT",
-
-    contractTitle:
-      "CHILI.",
 
     contractDesc:
       "官方合约地址及链上查询入口。",
@@ -2094,6 +2906,10 @@ const translations = {
     copy:
       "复制地址",
 
+    contractNote:
+      "请始终通过官方渠道核对合约地址。",
+
+
     communityTitle:
       "保持一点 <span>热度。</span>",
 
@@ -2102,6 +2918,7 @@ const translations = {
 
     communityButton:
       "CHILI",
+
 
     footer:
       "© 2026 CHILI. Built on BNB Smart Chain.",
@@ -2117,6 +2934,9 @@ const translations = {
 
   en: {
 
+    navAbout:
+      "ABOUT",
+
     navTokenomics:
       "TOKENOMICS",
 
@@ -2127,7 +2947,7 @@ const translations = {
       "CONTRACT",
 
     badge:
-      "BNB SMART CHAIN",
+      "BUILT ON BNB SMART CHAIN",
 
     heroText:
       "CHILI is a community-driven token built on BNB Smart Chain.",
@@ -2135,8 +2955,8 @@ const translations = {
     viewContract:
       "VIEW CONTRACT",
 
-    viewToken:
-      "VIEW TOKEN",
+    learnMore:
+      "LEARN MORE",
 
     supply:
       "TOTAL SUPPLY",
@@ -2150,6 +2970,66 @@ const translations = {
     symbol:
       "SYMBOL",
 
+
+    aboutLabel:
+      "ABOUT CHILI",
+
+    aboutTitle:
+      "More than a token.",
+
+    aboutDesc:
+      "CHILI is a simple, open community project inspired by Meme culture.",
+
+    aboutText:
+      "CHILI started with a simple idea: <strong>let the community become part of the story.</strong> In a crypto world filled with complicated concepts, CHILI chooses to stay simple. It is a culture, an attitude, and a community symbol created by people who enjoy crypto.",
+
+    aboutPoint1Title:
+      "Community",
+
+    aboutPoint1Text:
+      "The community is at the heart of the CHILI story.",
+
+    aboutPoint2Title:
+      "Simplicity",
+
+    aboutPoint2Text:
+      "Simple rules and clear token information.",
+
+    aboutPoint3Title:
+      "Meme Culture",
+
+    aboutPoint3Text:
+      "A lighthearted way to participate in crypto culture.",
+
+
+    whyLabel:
+      "WHY CHILI",
+
+    whyTitle:
+      "Keep it simple.",
+
+    whyDesc:
+      "No complicated promises. Just information that can be verified.",
+
+    why1Title:
+      "Community First",
+
+    why1Text:
+      "CHILI's culture is built around community participation and sharing.",
+
+    why2Title:
+      "Simple Token",
+
+    why2Text:
+      "Core token information such as supply, tax and network is clearly presented.",
+
+    why3Title:
+      "On-chain",
+
+    why3Text:
+      "The contract is public and can be checked directly on BscScan.",
+
+
     tokenLabel:
       "TOKENOMICS",
 
@@ -2162,14 +3042,27 @@ const translations = {
     tokenName:
       "TOKEN",
 
+    tokenNameNote:
+      "CHILI",
+
     tokenSupply:
       "TOTAL SUPPLY",
+
+    tokenSupplyNote:
+      "Total token supply",
 
     tokenTax:
       "TAX",
 
+    tokenTaxNote:
+      "Current token tax",
+
     tokenNetwork:
       "NETWORK",
+
+    tokenNetworkNote:
+      "BNB Smart Chain",
+
 
     storyLabel:
       "STORY",
@@ -2178,13 +3071,48 @@ const translations = {
       "A little heat.",
 
     storyText:
-      "CHILI started with a simple idea: put the community at the center. No complicated narratives and no unnecessary concepts. CHILI is about connecting people who enjoy crypto culture, communities, and Meme.",
+      "CHILI started with a simple idea: <strong>put the community at the center.</strong> No complicated narratives and no unnecessary concepts. CHILI is about connecting people who enjoy crypto culture, communities, and Meme. Like a little chili pepper, it does not need to be big to make an impression. Sometimes, a little heat is enough.",
+
+
+    transparencyLabel:
+      "TRANSPARENCY",
+
+    transparencyTitle:
+      "Verify it.",
+
+    transparencyDesc:
+      "No slogans. Let the public information speak for itself.",
+
+    transparency1Label:
+      "CONTRACT",
+
+    transparency1Title:
+      "Public Contract",
+
+    transparency1Text:
+      "The contract address is public and can be checked through BscScan.",
+
+    transparency2Label:
+      "TOKEN",
+
+    transparency2Title:
+      "Clear Information",
+
+    transparency2Text:
+      "Token name, symbol, supply, tax and network information are publicly displayed.",
+
+    transparency3Label:
+      "NETWORK",
+
+    transparency3Title:
+      "BNB Smart Chain",
+
+    transparency3Text:
+      "CHILI is built on BNB Smart Chain.",
+
 
     contractLabel:
       "CONTRACT",
-
-    contractTitle:
-      "CHILI.",
 
     contractDesc:
       "Official contract address and on-chain verification.",
@@ -2198,6 +3126,10 @@ const translations = {
     copy:
       "COPY ADDRESS",
 
+    contractNote:
+      "Always verify the contract address through official channels.",
+
+
     communityTitle:
       "KEEP IT <span>SPICY.</span>",
 
@@ -2206,6 +3138,7 @@ const translations = {
 
     communityButton:
       "CHILI",
+
 
     footer:
       "© 2026 CHILI. Built on BNB Smart Chain.",
@@ -2221,9 +3154,9 @@ const translations = {
 };
 
 
-/* =========================
-   LANGUAGE SWITCH
-========================= */
+/* =========================================================
+   LANGUAGE
+========================================================= */
 
 function setLanguage(lang){
 
@@ -2296,9 +3229,9 @@ function setLanguage(lang){
 }
 
 
-/* =========================
+/* =========================================================
    INITIAL LANGUAGE
-========================= */
+========================================================= */
 
 function initLanguage(){
 
@@ -2306,7 +3239,6 @@ function initLanguage(){
     localStorage.getItem(
       "chili-language"
     );
-
 
   if(saved === "zh" || saved === "en"){
 
@@ -2340,9 +3272,9 @@ function initLanguage(){
 }
 
 
-/* =========================
+/* =========================================================
    MOBILE MENU
-========================= */
+========================================================= */
 
 function toggleMenu(){
 
@@ -2372,9 +3304,9 @@ function closeMenu(){
 }
 
 
-/* =========================
+/* =========================================================
    COPY CONTRACT
-========================= */
+========================================================= */
 
 function copyContract(){
 
@@ -2382,51 +3314,104 @@ function copyContract(){
     "0xed3caca4903256fb3e4997bc0c7830d19fb35f7c";
 
 
-  navigator.clipboard
-    .writeText(address)
-    .then(() => {
+  if(
+    navigator.clipboard &&
+    navigator.clipboard.writeText
+  ){
 
-      const buttons =
-        document.querySelectorAll(
-          '[data-i18n="copy"]'
-        );
+    navigator.clipboard
+      .writeText(address)
+      .then(() => {
 
-      buttons.forEach(button => {
+        showCopied();
 
-        const original =
-          button.innerHTML;
+      })
+      .catch(() => {
 
-        button.innerHTML =
-          "✓ " +
-          (
-            document.documentElement.lang === "zh"
-              ? "已复制"
-              : "COPIED"
-          );
-
-
-        setTimeout(() => {
-
-          button.innerHTML =
-            original;
-
-        },1500);
+        fallbackCopy(address);
 
       });
 
-    })
-    .catch(() => {
+  }else{
 
-      alert(address);
+    fallbackCopy(address);
 
-    });
+  }
 
 }
 
 
-/* =========================
+function fallbackCopy(address){
+
+  const textarea =
+    document.createElement("textarea");
+
+  textarea.value = address;
+
+  textarea.style.position =
+    "fixed";
+
+  textarea.style.opacity =
+    "0";
+
+  document.body.appendChild(
+    textarea
+  );
+
+  textarea.select();
+
+  try{
+
+    document.execCommand("copy");
+
+    showCopied();
+
+  }catch{
+
+    alert(address);
+
+  }
+
+  document.body.removeChild(
+    textarea
+  );
+
+}
+
+
+function showCopied(){
+
+  const buttons =
+    document.querySelectorAll(
+      '[data-i18n="copy"]'
+    );
+
+  buttons.forEach(button => {
+
+    const original =
+      button.innerHTML;
+
+    button.innerHTML =
+      document.documentElement.lang === "zh-CN"
+        ? "✓ 已复制"
+        : "✓ COPIED";
+
+
+    setTimeout(() => {
+
+      button.innerHTML =
+        original;
+
+    },1500);
+
+  });
+
+}
+
+
+/* =========================================================
    START
-========================= */
+========================================================= */
 
 initLanguage();
 
