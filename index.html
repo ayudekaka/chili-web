@@ -4,16 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CHILI — BNB Smart Chain</title>
+<title>小辣椒 CHILI — BNB Smart Chain</title>
 
-<meta name="description"
-      content="CHILI — A little heat for the crypto world.">
+<meta
+  name="description"
+  content="小辣椒 CHILI — A community-driven token on BNB Smart Chain."
+>
 
 <style>
-
-/* =========================================================
+/* =========================
    RESET
-========================================================= */
+========================= */
 
 *{
   box-sizing:border-box;
@@ -48,41 +49,92 @@ a{
 
 button{
   font:inherit;
+  cursor:pointer;
+}
+
+img{
+  max-width:100%;
+  display:block;
 }
 
 :root{
   --red:#e51b23;
-  --red-dark:#c9141b;
-  --red-soft:#fff3f3;
-  --red-border:#f2d5d5;
-
+  --red-light:#fff1f2;
   --black:#111;
   --gray:#707070;
-  --muted:#999;
-
+  --light:#f8f8f7;
   --border:#e8e8e8;
-  --light:#fafafa;
 }
+
+
+/* =========================
+   COMMON
+========================= */
 
 .container{
   width:min(1120px,calc(100% - 40px));
   margin:auto;
 }
 
+.btn{
+  min-height:50px;
+  padding:0 24px;
 
-/* =========================================================
+  border-radius:999px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  white-space:nowrap;
+
+  font-size:12px;
+  font-weight:800;
+
+  transition:
+    transform .2s ease,
+    background .2s ease,
+    color .2s ease,
+    border-color .2s ease;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+.btn-red{
+  background:var(--red);
+  color:#fff;
+  border:1px solid var(--red);
+}
+
+.btn-red:hover{
+  background:#c9151c;
+}
+
+.btn-outline{
+  background:#fff;
+  color:var(--red);
+  border:1px solid var(--red);
+}
+
+.btn-outline:hover{
+  background:var(--red-light);
+}
+
+
+/* =========================
    HEADER
-========================================================= */
+========================= */
 
 header{
   height:72px;
 
   position:sticky;
   top:0;
-
   z-index:100;
 
-  background:rgba(255,255,255,.95);
+  background:rgba(255,255,255,.94);
 
   backdrop-filter:blur(14px);
 
@@ -97,21 +149,17 @@ header{
   margin:auto;
 
   display:flex;
-
   align-items:center;
-
   justify-content:space-between;
 }
 
 .logo{
   display:flex;
-
   align-items:center;
 
   gap:9px;
 
   font-size:20px;
-
   font-weight:900;
 
   flex-shrink:0;
@@ -126,9 +174,7 @@ header{
   background:var(--red);
 
   display:flex;
-
   align-items:center;
-
   justify-content:center;
 
   font-size:15px;
@@ -136,20 +182,23 @@ header{
 
 .nav{
   display:flex;
-
   align-items:center;
 
   gap:28px;
+
+  margin-left:auto;
+  margin-right:25px;
 }
 
 .nav a{
   font-size:11px;
-
-  font-weight:800;
+  font-weight:700;
 
   color:#555;
 
-  transition:.2s;
+  white-space:nowrap;
+
+  transition:.2s ease;
 }
 
 .nav a:hover{
@@ -158,7 +207,6 @@ header{
 
 .header-right{
   display:flex;
-
   align-items:center;
 
   gap:9px;
@@ -186,19 +234,15 @@ header{
   border-radius:999px;
 
   font-size:9px;
-
   font-weight:800;
 
   color:#777;
 
-  cursor:pointer;
-
-  white-space:nowrap;
+  transition:.2s ease;
 }
 
 .lang button.active{
   background:var(--red);
-
   color:#fff;
 }
 
@@ -217,140 +261,12 @@ header{
   color:var(--red);
 
   font-size:18px;
-
-  cursor:pointer;
 }
 
 
-/* =========================================================
-   COMMON
-========================================================= */
-
-.section{
-  padding:110px 0;
-}
-
-.section-label{
-  display:flex;
-
-  align-items:center;
-
-  gap:10px;
-
-  color:var(--red);
-
-  font-size:10px;
-
-  font-weight:900;
-
-  letter-spacing:2px;
-}
-
-.section-label::before{
-  content:"";
-
-  width:24px;
-  height:2px;
-
-  background:var(--red);
-
-  flex-shrink:0;
-}
-
-.section-title{
-  margin-top:18px;
-
-  max-width:900px;
-
-  font-size:
-    clamp(42px,6vw,76px);
-
-  line-height:.95;
-
-  letter-spacing:-4px;
-
-  font-weight:950;
-}
-
-.section-title span{
-  color:var(--red);
-}
-
-.section-intro{
-  margin-top:24px;
-
-  max-width:620px;
-
-  color:var(--gray);
-
-  font-size:17px;
-
-  line-height:1.8;
-}
-
-
-/* =========================================================
-   BUTTONS
-========================================================= */
-
-.btn{
-  min-height:50px;
-
-  padding:0 24px;
-
-  border-radius:999px;
-
-  display:inline-flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  white-space:nowrap;
-
-  font-size:12px;
-
-  font-weight:800;
-
-  cursor:pointer;
-
-  transition:.2s ease;
-}
-
-.btn:hover{
-  transform:translateY(-2px);
-}
-
-.btn-red{
-  background:var(--red);
-
-  color:#fff;
-
-  border:1px solid var(--red);
-}
-
-.btn-red:hover{
-  background:var(--red-dark);
-
-  border-color:var(--red-dark);
-}
-
-.btn-outline{
-  border:1px solid var(--red);
-
-  background:#fff;
-
-  color:var(--red);
-}
-
-.btn-outline:hover{
-  background:var(--red-soft);
-}
-
-
-/* =========================================================
+/* =========================
    HERO
-========================================================= */
+========================= */
 
 .hero{
   padding:
@@ -377,7 +293,6 @@ header{
 
 .badge{
   display:inline-flex;
-
   align-items:center;
 
   gap:7px;
@@ -389,7 +304,6 @@ header{
   border-radius:999px;
 
   font-size:9px;
-
   font-weight:800;
 
   letter-spacing:1px;
@@ -397,6 +311,8 @@ header{
   color:#666;
 
   text-transform:uppercase;
+
+  background:#fff;
 }
 
 .dot{
@@ -406,8 +322,6 @@ header{
   background:var(--red);
 
   border-radius:50%;
-
-  flex-shrink:0;
 }
 
 .hero h1{
@@ -462,17 +376,13 @@ header{
   border-radius:50%;
 
   display:flex;
-
   align-items:center;
-
   justify-content:center;
 
   padding:30px;
 
   box-shadow:
     0 30px 70px rgba(229,27,35,.15);
-
-  margin:auto;
 }
 
 .hero-logo img{
@@ -483,13 +393,12 @@ header{
 }
 
 
-/* =========================================================
-   CORE
-========================================================= */
+/* =========================
+   CORE DATA
+========================= */
 
 .core{
   border-top:1px solid var(--border);
-
   border-bottom:1px solid var(--border);
 }
 
@@ -514,7 +423,6 @@ header{
 
 .core-item:last-child{
   border-right:0;
-
   padding-right:0;
 }
 
@@ -548,332 +456,233 @@ header{
 }
 
 
-/* =========================================================
-   STORY
-========================================================= */
+/* =========================
+   SECTION
+========================= */
 
-.story{
-  position:relative;
+.section{
+  padding:
+    clamp(80px,10vw,125px)
+    0;
 }
 
-.story-grid{
-  display:grid;
+.section-header{
+  display:flex;
 
-  grid-template-columns:
-    minmax(0,.9fr)
-    minmax(0,1.1fr);
+  align-items:flex-end;
 
-  gap:90px;
+  justify-content:space-between;
 
-  align-items:start;
+  gap:30px;
+
+  margin-bottom:45px;
 }
 
-.story-big{
+.section-label{
+  color:var(--red);
+
+  font-size:10px;
+
+  font-weight:900;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+}
+
+.section-title{
+  margin-top:10px;
+
   font-size:
-    clamp(44px,6vw,76px);
+    clamp(36px,6vw,72px);
 
-  line-height:1;
+  line-height:.95;
 
   letter-spacing:-4px;
 
   font-weight:950;
 }
 
-.story-big span{
-  color:var(--red);
-}
+.section-desc{
+  max-width:420px;
 
-.story-copy{
-  padding-top:8px;
-}
-
-.story-copy p{
-  color:#666;
-
-  font-size:17px;
-
-  line-height:1.9;
-
-  margin-bottom:24px;
-}
-
-.story-quote{
-  margin-top:35px;
-
-  padding-left:22px;
-
-  border-left:3px solid var(--red);
-
-  font-size:
-    clamp(24px,3vw,36px);
-
-  line-height:1.25;
-
-  font-weight:900;
-
-  letter-spacing:-1px;
-}
-
-
-/* =========================================================
-   WHY CHILI
-========================================================= */
-
-.why{
-  background:var(--red-soft);
-}
-
-.why-grid{
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,minmax(0,1fr));
-
-  gap:1px;
-
-  background:var(--red-border);
-
-  margin-top:55px;
-}
-
-.why-item{
-  background:#fff;
-
-  padding:38px 32px;
-
-  min-width:0;
-}
-
-.why-number{
-  color:var(--red);
-
-  font-size:12px;
-
-  font-weight:900;
-
-  letter-spacing:2px;
-}
-
-.why-item h3{
-  margin-top:18px;
-
-  font-size:25px;
-
-  line-height:1.15;
-
-  letter-spacing:-1px;
-
-  font-weight:900;
-}
-
-.why-item p{
-  margin-top:15px;
-
-  color:#777;
+  color:var(--gray);
 
   font-size:14px;
-
-  line-height:1.75;
-}
-
-
-/* =========================================================
-   TOKENOMICS
-========================================================= */
-
-.tokenomics-grid{
-  margin-top:55px;
-
-  display:grid;
-
-  grid-template-columns:
-    minmax(0,1fr)
-    minmax(0,1fr);
-
-  gap:60px;
-}
-
-.token-list{
-  border-top:1px solid var(--border);
-}
-
-.token-row{
-  min-height:70px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  gap:20px;
-
-  border-bottom:1px solid var(--border);
-}
-
-.token-name{
-  color:#888;
-
-  font-size:11px;
-
-  font-weight:800;
-
-  letter-spacing:1px;
-
-  text-transform:uppercase;
-}
-
-.token-value{
-  font-size:16px;
-
-  font-weight:900;
-
-  text-align:right;
-
-  white-space:nowrap;
-}
-
-.token-note{
-  margin-top:25px;
-
-  color:#999;
-
-  font-size:12px;
 
   line-height:1.7;
 }
 
 
-/* =========================================================
-   WHY JOIN
-========================================================= */
+/* =========================
+   TOKENOMICS
+========================= */
 
-.hold{
-  border-top:1px solid var(--border);
+.tokenomics{
+  background:#fff;
 }
 
-.hold-layout{
+.tokenomics-grid{
   display:grid;
 
   grid-template-columns:
-    1fr
-    1fr;
-
-  gap:70px;
-
-  align-items:center;
-}
-
-.hold-message{
-  font-size:
-    clamp(38px,5vw,65px);
-
-  line-height:1;
-
-  letter-spacing:-3px;
-
-  font-weight:950;
-}
-
-.hold-message span{
-  color:var(--red);
-}
-
-.hold-copy{
-  color:#666;
-
-  font-size:17px;
-
-  line-height:1.9;
-}
-
-.hold-copy strong{
-  color:var(--red);
-}
-
-
-/* =========================================================
-   ROADMAP
-========================================================= */
-
-.roadmap{
-  background:#fafafa;
-}
-
-.roadmap-list{
-  margin-top:60px;
+    repeat(2,minmax(0,1fr));
 
   border-top:1px solid var(--border);
+
+  border-left:1px solid var(--border);
 }
 
-.roadmap-item{
-  display:grid;
+.token-item{
+  min-width:0;
 
-  grid-template-columns:
-    90px
-    minmax(0,1fr)
-    180px;
+  padding:30px;
 
-  align-items:center;
-
-  gap:30px;
-
-  padding:30px 0;
-
+  border-right:1px solid var(--border);
   border-bottom:1px solid var(--border);
+
+  background:#fff;
+
+  transition:
+    background .2s ease;
 }
 
-.roadmap-number{
-  color:var(--red);
-
-  font-size:12px;
-
-  font-weight:900;
-
-  letter-spacing:2px;
+.token-item:hover{
+  background:var(--red-light);
 }
 
-.roadmap-title{
-  font-size:25px;
+.token-key{
+  color:#999;
+
+  font-size:9px;
+
+  font-weight:800;
+
+  letter-spacing:1.5px;
+
+  text-transform:uppercase;
+}
+
+.token-value{
+  margin-top:12px;
+
+  color:#111;
+
+  font-size:
+    clamp(22px,3vw,34px);
+
+  line-height:1.1;
 
   font-weight:900;
 
   letter-spacing:-1px;
+
+  overflow-wrap:anywhere;
 }
 
-.roadmap-text{
-  color:#888;
-
-  font-size:12px;
-
-  line-height:1.6;
-
-  text-align:right;
+.token-value.red{
+  color:var(--red);
 }
 
 
-/* =========================================================
+/* =========================
+   STORY
+========================= */
+
+.story{
+  background:var(--light);
+}
+
+.story-grid{
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1fr)
+    minmax(280px,430px);
+
+  gap:80px;
+
+  align-items:center;
+}
+
+.story-text{
+  max-width:650px;
+
+  color:#555;
+
+  font-size:
+    clamp(16px,2vw,19px);
+
+  line-height:1.9;
+}
+
+.story-text strong{
+  color:var(--red);
+
+  font-weight:900;
+}
+
+.story-mark{
+  width:100%;
+
+  aspect-ratio:1;
+
+  border-radius:50%;
+
+  background:var(--red);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+.story-mark::before{
+  content:"";
+
+  width:72%;
+
+  aspect-ratio:1;
+
+  border:1px solid rgba(255,255,255,.45);
+
+  border-radius:50%;
+
+  position:absolute;
+}
+
+.story-mark span{
+  color:#fff;
+
+  font-size:
+    clamp(70px,11vw,145px);
+
+  line-height:1;
+
+  font-weight:950;
+
+  letter-spacing:-8px;
+
+  position:relative;
+}
+
+
+/* =========================
    CONTRACT
-========================================================= */
+========================= */
 
 .contract{
-  border-top:1px solid var(--border);
+  background:#fff;
 }
 
 .contract-box{
-  margin-top:55px;
-
   border:1px solid var(--border);
 
-  padding:35px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  gap:30px;
+  padding:
+    clamp(25px,5vw,45px);
 
   background:#fff;
 }
@@ -883,7 +692,7 @@ header{
 
   font-size:9px;
 
-  font-weight:900;
+  font-weight:800;
 
   letter-spacing:1.5px;
 
@@ -891,7 +700,9 @@ header{
 }
 
 .contract-address{
-  margin-top:12px;
+  margin-top:14px;
+
+  color:var(--red);
 
   font-family:
     ui-monospace,
@@ -901,89 +712,83 @@ header{
     Consolas,
     monospace;
 
-  font-size:14px;
+  font-size:
+    clamp(12px,2vw,17px);
 
-  line-height:1.5;
+  font-weight:700;
 
-  word-break:break-all;
+  line-height:1.7;
+
+  overflow-wrap:anywhere;
 }
 
 .contract-actions{
+  margin-top:25px;
+
   display:flex;
 
   gap:10px;
 
-  flex-shrink:0;
+  flex-wrap:wrap;
 }
 
 
-/* =========================================================
-   FINAL
-========================================================= */
+/* =========================
+   COMMUNITY
+========================= */
 
-.final{
+.community{
   padding:
-    120px
-    0
-    130px;
+    70px 0
+    90px;
 
-  text-align:center;
+  border-top:1px solid var(--border);
 }
 
-.final-small{
-  color:#999;
+.community-inner{
+  display:flex;
 
-  font-size:10px;
+  align-items:center;
 
-  font-weight:900;
+  justify-content:space-between;
 
-  letter-spacing:2px;
+  gap:30px;
 }
 
-.final h2{
-  margin-top:18px;
-
+.community-title{
   font-size:
-    clamp(52px,9vw,120px);
-
-  line-height:.9;
-
-  letter-spacing:-6px;
+    clamp(32px,5vw,60px);
 
   font-weight:950;
+
+  letter-spacing:-3px;
+
+  line-height:1;
 }
 
-.final h2 span{
+.community-title span{
   color:var(--red);
 }
 
-.final p{
-  margin:25px auto 0;
-
-  max-width:500px;
+.community-text{
+  margin-top:12px;
 
   color:#777;
 
-  font-size:16px;
-
-  line-height:1.7;
-}
-
-.final .btn{
-  margin-top:30px;
+  font-size:14px;
 }
 
 
-/* =========================================================
+/* =========================
    FOOTER
-========================================================= */
+========================= */
 
 footer{
+  background:#fff;
+
   border-top:1px solid var(--border);
 
-  padding:25px 0;
-
-  background:#fff;
+  padding:30px 0;
 }
 
 .footer-inner{
@@ -997,9 +802,29 @@ footer{
 }
 
 .footer-logo{
-  font-size:15px;
+  display:flex;
+  align-items:center;
+
+  gap:8px;
+
+  font-size:16px;
 
   font-weight:900;
+}
+
+.footer-logo-icon{
+  width:24px;
+  height:24px;
+
+  border-radius:50%;
+
+  background:var(--red);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:12px;
 }
 
 .footer-copy{
@@ -1008,15 +833,130 @@ footer{
   font-size:10px;
 }
 
+.footer-links{
+  display:flex;
 
-/* =========================================================
+  gap:18px;
+}
+
+.footer-links a{
+  color:#777;
+
+  font-size:10px;
+
+  font-weight:700;
+}
+
+.footer-links a:hover{
+  color:var(--red);
+}
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.mobile-menu{
+  display:none;
+
+  position:fixed;
+
+  top:72px;
+  left:0;
+  right:0;
+
+  z-index:99;
+
+  background:#fff;
+
+  border-bottom:1px solid var(--border);
+
+  padding:22px 20px;
+}
+
+.mobile-menu.active{
+  display:block;
+}
+
+.mobile-nav{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:3px;
+}
+
+.mobile-nav a{
+  padding:14px 5px;
+
+  border-bottom:1px solid var(--border);
+
+  color:#333;
+
+  font-size:12px;
+
+  font-weight:800;
+}
+
+.mobile-nav a:last-child{
+  border-bottom:0;
+}
+
+.mobile-lang{
+  margin-top:18px;
+
+  display:flex;
+
+  justify-content:flex-start;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media(max-width:900px){
+
+  .hero-grid{
+    grid-template-columns:
+      minmax(0,1fr)
+      280px;
+
+    gap:40px;
+  }
+
+  .hero h1{
+    font-size:
+      clamp(65px,12vw,105px);
+
+    letter-spacing:-6px;
+  }
+
+  .hero-text{
+    font-size:16px;
+  }
+
+  .story-grid{
+    gap:45px;
+  }
+
+  .story-mark{
+    max-width:330px;
+
+    margin:auto;
+  }
+
+}
+
+
+/* =========================
    MOBILE
-========================================================= */
+========================= */
 
-@media(max-width:800px){
+@media(max-width:700px){
 
   .container{
-    width:min(100% - 28px,1120px);
+    width:calc(100% - 28px);
   }
 
   header{
@@ -1025,6 +965,19 @@ footer{
 
   .header-inner{
     width:calc(100% - 28px);
+  }
+
+  .logo{
+    font-size:18px;
+
+    gap:7px;
+  }
+
+  .logo-icon{
+    width:27px;
+    height:27px;
+
+    font-size:14px;
   }
 
   .nav{
@@ -1039,41 +992,83 @@ footer{
     display:block;
   }
 
+  .lang button{
+    padding:5px 7px;
+  }
+
+
+  /* HERO */
+
   .hero{
     padding:
-      65px
-      0
-      70px;
+      55px 0
+      60px;
   }
 
   .hero-grid{
-    grid-template-columns:1fr;
+    display:flex;
 
-    gap:50px;
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:42px;
   }
 
   .hero h1{
+    margin-top:20px;
+
     font-size:
-      clamp(70px,22vw,120px);
+      clamp(64px,22vw,92px);
 
-    letter-spacing:-6px;
+    line-height:.82;
 
-    line-height:.8;
+    letter-spacing:-5px;
+
+    white-space:nowrap;
   }
 
   .hero-text{
-    font-size:16px;
-
     margin-top:24px;
+
+    font-size:15px;
+
+    line-height:1.65;
+
+    max-width:100%;
   }
 
   .hero-actions{
     margin-top:25px;
+
+    width:100%;
+
+    display:grid;
+
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+  }
+
+  .btn{
+    min-height:46px;
+
+    padding:0 15px;
+
+    font-size:11px;
+
+    width:100%;
   }
 
   .hero-logo{
-    width:min(310px,78vw);
+    width:min(300px,78vw);
+
+    margin:auto;
+
+    padding:24px;
   }
+
+
+  /* CORE */
 
   .core-grid{
     grid-template-columns:
@@ -1083,7 +1078,7 @@ footer{
   .core-item{
     padding:22px 15px;
 
-    border-bottom:1px solid var(--border);
+    border-right:1px solid var(--border);
   }
 
   .core-item:nth-child(2){
@@ -1093,185 +1088,176 @@ footer{
   .core-item:nth-child(3){
     padding-left:0;
 
-    border-bottom:0;
+    border-top:1px solid var(--border);
   }
 
   .core-item:nth-child(4){
-    border-bottom:0;
-
-    border-right:0;
+    border-top:1px solid var(--border);
   }
 
   .core-number{
-    font-size:28px;
+    font-size:25px;
+
+    letter-spacing:-1.5px;
   }
 
+  .core-label{
+    font-size:8px;
+
+    letter-spacing:.8px;
+  }
+
+
+  /* SECTION */
+
   .section{
-    padding:80px 0;
+    padding:
+      70px 0
+      75px;
+  }
+
+  .section-header{
+    display:block;
+
+    margin-bottom:32px;
   }
 
   .section-title{
+    margin-top:9px;
+
     font-size:
-      clamp(42px,12vw,65px);
+      clamp(38px,12vw,56px);
 
     letter-spacing:-3px;
   }
 
-  .section-intro{
-    font-size:15px;
+  .section-desc{
+    margin-top:20px;
 
-    line-height:1.75;
+    font-size:13px;
   }
 
-  .story-grid{
-    grid-template-columns:1fr;
 
-    gap:35px;
-  }
-
-  .story-big{
-    font-size:
-      clamp(45px,13vw,70px);
-
-    letter-spacing:-3px;
-  }
-
-  .story-copy p{
-    font-size:15px;
-  }
-
-  .story-quote{
-    font-size:27px;
-
-    margin-top:28px;
-  }
-
-  .why-grid{
-    grid-template-columns:1fr;
-
-    margin-top:40px;
-  }
-
-  .why-item{
-    padding:28px 24px;
-  }
+  /* TOKENOMICS */
 
   .tokenomics-grid{
     grid-template-columns:1fr;
-
-    gap:35px;
-
-    margin-top:40px;
   }
 
-  .token-row{
-    min-height:64px;
-
-    gap:12px;
+  .token-item{
+    padding:24px 20px;
   }
 
   .token-value{
-    font-size:14px;
+    font-size:25px;
   }
 
-  .hold-layout{
-    grid-template-columns:1fr;
 
-    gap:35px;
-  }
+  /* STORY */
 
-  .hold-message{
-    font-size:
-      clamp(42px,12vw,65px);
-
-    letter-spacing:-3px;
-  }
-
-  .hold-copy{
-    font-size:15px;
-  }
-
-  .roadmap-list{
-    margin-top:40px;
-  }
-
-  .roadmap-item{
-    grid-template-columns:
-      45px
-      minmax(0,1fr);
-
-    gap:12px;
-
-    padding:25px 0;
-  }
-
-  .roadmap-title{
-    font-size:20px;
-  }
-
-  .roadmap-text{
-    grid-column:2;
-
-    text-align:left;
-
-    font-size:12px;
-  }
-
-  .contract-box{
-    margin-top:40px;
-
-    padding:24px;
-
-    display:block;
-  }
-
-  .contract-address{
-    font-size:12px;
-  }
-
-  .contract-actions{
-    margin-top:22px;
-
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-  }
-
-  .contract-actions .btn{
-    padding:0 10px;
-
-    min-height:46px;
-  }
-
-  .final{
-    padding:
-      85px
-      0
-      90px;
-  }
-
-  .final h2{
-    font-size:
-      clamp(54px,15vw,90px);
-
-    letter-spacing:-4px;
-  }
-
-  .footer-inner{
-    align-items:flex-start;
+  .story-grid{
+    display:flex;
 
     flex-direction:column;
 
+    align-items:flex-start;
+
+    gap:45px;
+  }
+
+  .story-text{
+    font-size:15px;
+
+    line-height:1.85;
+  }
+
+  .story-mark{
+    width:min(270px,75vw);
+
+    margin:auto;
+  }
+
+  .story-mark span{
+    font-size:80px;
+
+    letter-spacing:-5px;
+  }
+
+
+  /* CONTRACT */
+
+  .contract-box{
+    padding:23px 18px;
+  }
+
+  .contract-address{
+    font-size:11px;
+
+    line-height:1.7;
+  }
+
+  .contract-actions{
+    display:grid;
+
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+
     gap:8px;
   }
+
+
+  /* COMMUNITY */
+
+  .community{
+    padding:
+      60px 0
+      70px;
+  }
+
+  .community-inner{
+    display:block;
+  }
+
+  .community-title{
+    font-size:
+      clamp(36px,11vw,54px);
+
+    letter-spacing:-2.5px;
+  }
+
+  .community-text{
+    font-size:13px;
+
+    line-height:1.6;
+  }
+
+
+  /* FOOTER */
+
+  .footer-inner{
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:14px;
+  }
+
+  .footer-links{
+    gap:15px;
+
+    flex-wrap:wrap;
+  }
+
 }
 
 
-/* =========================================================
-   SMALL PHONES
-========================================================= */
+/* =========================
+   SMALL PHONE
+========================= */
 
-@media(max-width:390px){
+@media(max-width:380px){
 
   .container{
     width:calc(100% - 24px);
@@ -1281,74 +1267,56 @@ footer{
     width:calc(100% - 24px);
   }
 
-  .logo{
-    font-size:18px;
-  }
-
-  .logo-icon{
-    width:27px;
-    height:27px;
-  }
-
-  .lang button{
-    padding:5px 7px;
-  }
-
-  .hero{
-    padding-top:55px;
-  }
-
   .hero h1{
-    font-size:68px;
+    font-size:61px;
 
-    letter-spacing:-5px;
+    letter-spacing:-4px;
   }
 
   .hero-text{
-    font-size:15px;
+    font-size:14px;
   }
 
-  .btn{
-    min-height:46px;
+  .hero-actions{
+    grid-template-columns:1fr;
+  }
 
-    padding:0 18px;
-
-    font-size:11px;
+  .hero-logo{
+    width:245px;
   }
 
   .core-number{
-    font-size:25px;
-
-    letter-spacing:-1px;
-  }
-
-  .core-label{
-    font-size:8px;
-  }
-
-  .story-big{
-    font-size:43px;
-  }
-
-  .why-item h3{
     font-size:22px;
   }
 
-  .token-name{
-    font-size:9px;
+  .token-item{
+    padding:21px 17px;
   }
 
   .token-value{
-    font-size:13px;
-  }
-
-  .roadmap-title{
-    font-size:18px;
+    font-size:22px;
   }
 
   .contract-actions{
     grid-template-columns:1fr;
   }
+
+}
+
+
+/* =========================
+   LANGUAGE
+========================= */
+
+[data-i18n]{
+  transition:opacity .12s ease;
+}
+
+.lang button:focus,
+.menu:focus,
+.btn:focus{
+  outline:2px solid rgba(229,27,35,.25);
+  outline-offset:2px;
 }
 
 </style>
@@ -1357,10 +1325,9 @@ footer{
 
 <body id="top">
 
-
-<!-- =========================================================
+<!-- =========================
      HEADER
-========================================================= -->
+========================= -->
 
 <header>
 
@@ -1380,37 +1347,28 @@ footer{
     <nav class="nav">
 
       <a
-        href="#story"
-        data-i18n="nav_story"
-      >
-        STORY
-      </a>
-
-      <a
-        href="#why"
-        data-i18n="nav_why"
-      >
-        WHY CHILI
-      </a>
-
-      <a
         href="#tokenomics"
-        data-i18n="nav_tokenomics"
+        data-i18n="navTokenomics"
       >
         TOKENOMICS
       </a>
 
       <a
+        href="#story"
+        data-i18n="navStory"
+      >
+        STORY
+      </a>
+
+      <a
         href="#contract"
-        data-i18n="nav_contract"
+        data-i18n="navContract"
       >
         CONTRACT
       </a>
 
     </nav>
 
-
-    <!-- 语言按钮位置保持原来的位置 -->
 
     <div class="header-right">
 
@@ -1433,10 +1391,10 @@ footer{
 
       </div>
 
-
       <button
         class="menu"
         id="menuBtn"
+        aria-label="Menu"
         onclick="toggleMenu()"
       >
         ☰
@@ -1449,156 +1407,143 @@ footer{
 </header>
 
 
-<!-- =========================================================
+<!-- =========================
      MOBILE MENU
-========================================================= -->
+========================= -->
 
 <div
+  class="mobile-menu"
   id="mobileMenu"
-  style="
-    display:none;
-    position:fixed;
-    top:64px;
-    left:0;
-    right:0;
-    z-index:99;
-    background:#fff;
-    border-bottom:1px solid #e8e8e8;
-    padding:20px 24px;
-  "
 >
 
-  <a
-    href="#story"
-    onclick="closeMenu()"
-    data-i18n="nav_story"
-    style="
-      display:block;
-      padding:14px 0;
-      font-size:13px;
-      font-weight:800;
-      border-bottom:1px solid #eee;
-    "
-  >
-    STORY
-  </a>
+  <nav class="mobile-nav">
+
+    <a
+      href="#tokenomics"
+      data-i18n="navTokenomics"
+      onclick="closeMenu()"
+    >
+      TOKENOMICS
+    </a>
+
+    <a
+      href="#story"
+      data-i18n="navStory"
+      onclick="closeMenu()"
+    >
+      STORY
+    </a>
+
+    <a
+      href="#contract"
+      data-i18n="navContract"
+      onclick="closeMenu()"
+    >
+      CONTRACT
+    </a>
+
+  </nav>
 
 
-  <a
-    href="#why"
-    onclick="closeMenu()"
-    data-i18n="nav_why"
-    style="
-      display:block;
-      padding:14px 0;
-      font-size:13px;
-      font-weight:800;
-      border-bottom:1px solid #eee;
-    "
-  >
-    WHY CHILI
-  </a>
+  <div class="mobile-lang">
 
+    <div class="lang">
 
-  <a
-    href="#tokenomics"
-    onclick="closeMenu()"
-    data-i18n="nav_tokenomics"
-    style="
-      display:block;
-      padding:14px 0;
-      font-size:13px;
-      font-weight:800;
-      border-bottom:1px solid #eee;
-    "
-  >
-    TOKENOMICS
-  </a>
+      <button
+        id="mobileZhBtn"
+        class="active"
+        onclick="setLanguage('zh')"
+      >
+        中文
+      </button>
 
+      <button
+        id="mobileEnBtn"
+        onclick="setLanguage('en')"
+      >
+        EN
+      </button>
 
-  <a
-    href="#contract"
-    onclick="closeMenu()"
-    data-i18n="nav_contract"
-    style="
-      display:block;
-      padding:14px 0;
-      font-size:13px;
-      font-weight:800;
-    "
-  >
-    CONTRACT
-  </a>
+    </div>
+
+  </div>
 
 </div>
 
 
-<!-- =========================================================
+<!-- =========================
      HERO
-========================================================= -->
+========================= -->
+
+<main>
 
 <section class="hero">
 
-  <div class="container hero-grid">
+  <div class="container">
+
+    <div class="hero-grid">
 
 
-    <div class="hero-content">
+      <div class="hero-content">
 
-      <div class="badge">
+        <div class="badge">
 
-        <span class="dot"></span>
+          <span class="dot"></span>
 
-        <span data-i18n="hero_badge">
-          BNB SMART CHAIN
-        </span>
+          <span data-i18n="badge">
+            BNB SMART CHAIN
+          </span>
+
+        </div>
+
+
+        <h1>
+          CHI<span>LI</span>
+        </h1>
+
+
+        <p
+          class="hero-text"
+          data-i18n="heroText"
+        >
+          小辣椒 CHILI，一个建立在 BNB Smart Chain
+          上的社区驱动型代币。
+        </p>
+
+
+        <div class="hero-actions">
+
+          <a
+            href="#contract"
+            class="btn btn-red"
+            data-i18n="viewContract"
+          >
+            查看合约
+          </a>
+
+          <a
+            href="#tokenomics"
+            class="btn btn-outline"
+            data-i18n="viewToken"
+          >
+            查看代币
+          </a>
+
+        </div>
 
       </div>
 
 
-      <h1>
-        CHI<span>LI</span>
-      </h1>
+      <div class="hero-logo">
 
-
-      <p
-        class="hero-text"
-        data-i18n="hero_text"
-      >
-        给这个有时候太严肃的加密世界，
-        加一点热。
-      </p>
-
-
-      <div class="hero-actions">
-
-        <a
-          href="#story"
-          class="btn btn-red"
-          data-i18n="hero_btn_story"
+        <img
+          src="https://raw.githubusercontent.com/ayudekaka/ChiLi/main/logo.png"
+          alt="CHILI Logo"
+          onerror="this.style.display='none'"
         >
-          认识 CHILI
-        </a>
-
-
-        <a
-          href="#contract"
-          class="btn btn-outline"
-          data-i18n="hero_btn_contract"
-        >
-          查看合约
-        </a>
 
       </div>
 
-    </div>
-
-
-    <div class="hero-logo">
-
-      <img
-        src="https://raw.githubusercontent.com/ayudekaka/ChiLi/main/logo.png"
-        alt="CHILI Logo"
-      >
 
     </div>
 
@@ -1607,251 +1552,77 @@ footer{
 </section>
 
 
-<!-- =========================================================
-     CORE DATA
-========================================================= -->
+<!-- =========================
+     CORE
+========================= -->
 
 <section class="core">
 
-  <div class="container core-grid">
-
-
-    <div class="core-item">
-
-      <div class="core-number">
-        20.15M
-      </div>
-
-      <div
-        class="core-label"
-        data-i18n="core_supply"
-      >
-        TOTAL SUPPLY
-      </div>
-
-    </div>
-
-
-    <div class="core-item">
-
-      <div class="core-number">
-        0%
-      </div>
-
-      <div
-        class="core-label"
-        data-i18n="core_tax"
-      >
-        TAX
-      </div>
-
-    </div>
-
-
-    <div class="core-item">
-
-      <div class="core-number">
-        BSC
-      </div>
-
-      <div
-        class="core-label"
-        data-i18n="core_network"
-      >
-        NETWORK
-      </div>
-
-    </div>
-
-
-    <div class="core-item">
-
-      <div class="core-number">
-        CHILI
-      </div>
-
-      <div
-        class="core-label"
-        data-i18n="core_symbol"
-      >
-        SYMBOL
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================================
-     STORY
-========================================================= -->
-
-<section
-  class="section story"
-  id="story"
->
-
-  <div class="container story-grid">
-
-
-    <div>
-
-      <div
-        class="section-label"
-        data-i18n="story_label"
-      >
-        THE STORY
-      </div>
-
-
-      <h2
-        class="story-big"
-        data-i18n="story_title"
-      >
-        WHAT IF
-        CRYPTO
-        COULD BE
-        A LITTLE
-        <span>MORE FUN?</span>
-      </h2>
-
-    </div>
-
-
-    <div class="story-copy">
-
-      <p data-i18n="story_p1">
-        CHILI 是一个诞生于 BNB Smart Chain
-        的社区 Meme Token。
-      </p>
-
-
-      <p data-i18n="story_p2">
-        它没有复杂的故事。
-        它只是想给这个有时候太严肃的加密世界，
-        加一点热。
-      </p>
-
-
-      <p data-i18n="story_p3">
-        一颗小小的辣椒，
-        一个简单的 Meme，
-        一群因为喜欢它而聚在一起的人。
-      </p>
-
-
-      <div
-        class="story-quote"
-        data-i18n="story_quote"
-      >
-        Small token.<br>
-        Big community.<br>
-        A little heat.
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================================
-     WHY CHILI
-========================================================= -->
-
-<section
-  class="section why"
-  id="why"
->
-
   <div class="container">
 
-
-    <div
-      class="section-label"
-      data-i18n="why_label"
-    >
-      WHY A CHILI?
-    </div>
+    <div class="core-grid">
 
 
-    <h2
-      class="section-title"
-      data-i18n="why_title"
-    >
-      SMALL.
-      <span>SPICY.</span>
-      UNFORGETTABLE.
-    </h2>
+      <div class="core-item">
 
-
-    <p
-      class="section-intro"
-      data-i18n="why_intro"
-    >
-      辣椒很小，但一点点辣，
-      就足以改变一整道菜。
-      CHILI 也一样。
-    </p>
-
-
-    <div class="why-grid">
-
-
-      <div class="why-item">
-
-        <div class="why-number">
-          01
+        <div class="core-number">
+          20.15M
         </div>
 
-        <h3 data-i18n="why_1_title">
-          A LITTLE HEAT
-        </h3>
-
-        <p data-i18n="why_1_text">
-          加密世界已经足够严肃。
-          CHILI 想做的，只是让它有趣一点。
-        </p>
+        <div
+          class="core-label"
+          data-i18n="supply"
+        >
+          TOTAL SUPPLY
+        </div>
 
       </div>
 
 
-      <div class="why-item">
+      <div class="core-item">
 
-        <div class="why-number">
-          02
+        <div class="core-number">
+          0%
         </div>
 
-        <h3 data-i18n="why_2_title">
-          COMMUNITY
-        </h3>
-
-        <p data-i18n="why_2_text">
-          Meme 可以很简单。
-          社区也可以因为一个简单的东西聚在一起。
-        </p>
+        <div
+          class="core-label"
+          data-i18n="tax"
+        >
+          TAX
+        </div>
 
       </div>
 
 
-      <div class="why-item">
+      <div class="core-item">
 
-        <div class="why-number">
-          03
+        <div class="core-number">
+          BSC
         </div>
 
-        <h3 data-i18n="why_3_title">
-          JUST CHILI
-        </h3>
+        <div
+          class="core-label"
+          data-i18n="network"
+        >
+          NETWORK
+        </div>
 
-        <p data-i18n="why_3_text">
-          不需要复杂的身份。
-          喜欢这个 Meme，喜欢这颗辣椒，
-          就已经足够。
-        </p>
+      </div>
+
+
+      <div class="core-item">
+
+        <div class="core-number">
+          CHILI
+        </div>
+
+        <div
+          class="core-label"
+          data-i18n="symbol"
+        >
+          SYMBOL
+        </div>
 
       </div>
 
@@ -1863,319 +1634,173 @@ footer{
 </section>
 
 
-<!-- =========================================================
+<!-- =========================
      TOKENOMICS
-========================================================= -->
+========================= -->
 
 <section
-  class="section"
+  class="section tokenomics"
   id="tokenomics"
 >
 
   <div class="container">
 
 
-    <div
-      class="section-label"
-      data-i18n="token_label"
-    >
-      TOKENOMICS
+    <div class="section-header">
+
+      <div>
+
+        <div
+          class="section-label"
+          data-i18n="tokenLabel"
+        >
+          TOKENOMICS
+        </div>
+
+        <h2
+          class="section-title"
+          data-i18n="tokenTitle"
+        >
+          Simple.
+        </h2>
+
+      </div>
+
+
+      <p
+        class="section-desc"
+        data-i18n="tokenDesc"
+      >
+        简单、透明，只保留真正重要的代币信息。
+      </p>
+
     </div>
-
-
-    <h2
-      class="section-title"
-      data-i18n="token_title"
-    >
-      KEEP IT
-      <span>SIMPLE.</span>
-    </h2>
-
-
-    <p
-      class="section-intro"
-      data-i18n="token_intro"
-    >
-      没有复杂的数学游戏。
-      这里只展示最重要的信息。
-    </p>
 
 
     <div class="tokenomics-grid">
 
 
-      <div class="token-list">
+      <div class="token-item">
 
-
-        <div class="token-row">
-
-          <div
-            class="token-name"
-            data-i18n="token_name"
-          >
-            TOKEN
-          </div>
-
-          <div class="token-value">
-            CHILI
-          </div>
-
+        <div
+          class="token-key"
+          data-i18n="tokenName"
+        >
+          TOKEN
         </div>
 
-
-        <div class="token-row">
-
-          <div
-            class="token-name"
-            data-i18n="token_symbol"
-          >
-            SYMBOL
-          </div>
-
-          <div class="token-value">
-            CHILI
-          </div>
-
+        <div class="token-value red">
+          CHILI
         </div>
-
-
-        <div class="token-row">
-
-          <div
-            class="token-name"
-            data-i18n="token_supply"
-          >
-            TOTAL SUPPLY
-          </div>
-
-          <div class="token-value">
-            20,150,822
-          </div>
-
-        </div>
-
-
-        <div class="token-row">
-
-          <div
-            class="token-name"
-            data-i18n="token_network"
-          >
-            NETWORK
-          </div>
-
-          <div class="token-value">
-            BNB Smart Chain
-          </div>
-
-        </div>
-
 
       </div>
+
+
+      <div class="token-item">
+
+        <div
+          class="token-key"
+          data-i18n="tokenSupply"
+        >
+          TOTAL SUPPLY
+        </div>
+
+        <div class="token-value">
+          20,150,822
+        </div>
+
+      </div>
+
+
+      <div class="token-item">
+
+        <div
+          class="token-key"
+          data-i18n="tokenTax"
+        >
+          TAX
+        </div>
+
+        <div class="token-value red">
+          0%
+        </div>
+
+      </div>
+
+
+      <div class="token-item">
+
+        <div
+          class="token-key"
+          data-i18n="tokenNetwork"
+        >
+          NETWORK
+        </div>
+
+        <div class="token-value">
+          BNB Chain
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     STORY
+========================= -->
+
+<section
+  class="section story"
+  id="story"
+>
+
+  <div class="container">
+
+    <div class="story-grid">
 
 
       <div>
 
-
-        <div class="token-list">
-
-
-          <div class="token-row">
-
-            <div
-              class="token-name"
-              data-i18n="token_tax"
-            >
-              TAX
-            </div>
-
-            <div class="token-value">
-              0%
-            </div>
-
-          </div>
-
-
-          <div class="token-row">
-
-            <div
-              class="token-name"
-              data-i18n="token_type"
-            >
-              TYPE
-            </div>
-
-            <div
-              class="token-value"
-              data-i18n="token_type_value"
-            >
-              Community Meme Token
-            </div>
-
-          </div>
-
-
+        <div
+          class="section-label"
+          data-i18n="storyLabel"
+        >
+          STORY
         </div>
+
+        <h2
+          class="section-title"
+          data-i18n="storyTitle"
+        >
+          A little heat.
+        </h2>
 
 
         <p
-          class="token-note"
-          data-i18n="token_note"
+          class="story-text"
+          data-i18n="storyText"
         >
-          以上信息用于公开透明展示。
-          实际链上数据请以区块链浏览器为准。
+          小辣椒 CHILI 从一个简单的想法开始：
+          <strong>让社区成为核心。</strong>
+          不需要复杂的叙事，也不需要堆砌概念。
+          CHILI 希望用简单直接的方式，
+          连接喜欢加密文化、社区和 Meme 的人。
         </p>
 
       </div>
 
-    </div>
 
-  </div>
+      <div class="story-mark">
 
-</section>
-
-
-<!-- =========================================================
-     WHY JOIN
-========================================================= -->
-
-<section class="section hold">
-
-  <div class="container hold-layout">
-
-
-    <div
-      class="hold-message"
-      data-i18n="hold_title"
-    >
-      YOU DON'T
-      NEED A
-      REASON.
-      <span>JUST LIKE CHILI.</span>
-    </div>
-
-
-    <div
-      class="hold-copy"
-      data-i18n="hold_text"
-    >
-      你不需要因为某个承诺，
-      才成为 CHILI 的一员。
-
-      <br><br>
-
-      喜欢这个 Meme。
-      喜欢这个社区。
-      喜欢这颗小辣椒。
-
-      <br><br>
-
-      <strong>
-        That's enough.
-      </strong>
-    </div>
-
-
-  </div>
-
-</section>
-
-
-<!-- =========================================================
-     ROADMAP
-========================================================= -->
-
-<section class="section roadmap">
-
-  <div class="container">
-
-
-    <div
-      class="section-label"
-      data-i18n="roadmap_label"
-    >
-      THE ROAD AHEAD
-    </div>
-
-
-    <h2
-      class="section-title"
-      data-i18n="roadmap_title"
-    >
-      LET'S SEE
-      HOW <span>HOT</span>
-      IT CAN GET.
-    </h2>
-
-
-    <div class="roadmap-list">
-
-
-      <div class="roadmap-item">
-
-        <div class="roadmap-number">
-          01
-        </div>
-
-        <div
-          class="roadmap-title"
-          data-i18n="roadmap_1_title"
-        >
-          LIGHT THE FIRE
-        </div>
-
-        <div
-          class="roadmap-text"
-          data-i18n="roadmap_1_text"
-        >
-          建立社区 · 让更多人认识 CHILI
-        </div>
-
-      </div>
-
-
-      <div class="roadmap-item">
-
-        <div class="roadmap-number">
-          02
-        </div>
-
-        <div
-          class="roadmap-title"
-          data-i18n="roadmap_2_title"
-        >
-          TURN UP THE HEAT
-        </div>
-
-        <div
-          class="roadmap-text"
-          data-i18n="roadmap_2_text"
-        >
-          社区互动 · 工具 · Meme
-        </div>
-
-      </div>
-
-
-      <div class="roadmap-item">
-
-        <div class="roadmap-number">
-          03
-        </div>
-
-        <div
-          class="roadmap-title"
-          data-i18n="roadmap_3_title"
-        >
-          MAKE CHILI EVERYWHERE
-        </div>
-
-        <div
-          class="roadmap-text"
-          data-i18n="roadmap_3_text"
-        >
-          扩大社区 · 合作 · 更多可能
-        </div>
+        <span>
+          🌶
+        </span>
 
       </div>
 
@@ -2187,9 +1812,9 @@ footer{
 </section>
 
 
-<!-- =========================================================
+<!-- =========================
      CONTRACT
-========================================================= -->
+========================= -->
 
 <section
   class="section contract"
@@ -2199,78 +1824,73 @@ footer{
   <div class="container">
 
 
-    <div
-      class="section-label"
-      data-i18n="contract_label"
-    >
-      VERIFY IT YOURSELF
-    </div>
-
-
-    <h2
-      class="section-title"
-      data-i18n="contract_title"
-    >
-      THE
-      <span>CONTRACT.</span>
-    </h2>
-
-
-    <p
-      class="section-intro"
-      data-i18n="contract_intro"
-    >
-      不需要相信我们。
-      直接在链上查看。
-    </p>
-
-
-    <div class="contract-box">
-
+    <div class="section-header">
 
       <div>
 
         <div
-          class="contract-label"
-          data-i18n="contract_address_label"
+          class="section-label"
+          data-i18n="contractLabel"
         >
-          CONTRACT ADDRESS
+          CONTRACT
         </div>
 
-
-        <div
-          class="contract-address"
-          id="contractAddress"
+        <h2
+          class="section-title"
+          data-i18n="contractTitle"
         >
-          0xed3caca4903256fb3e4997bc0c7830d19fb35f7c
-        </div>
+          CHILI.
+        </h2>
 
+      </div>
+
+
+      <p
+        class="section-desc"
+        data-i18n="contractDesc"
+      >
+        官方合约地址及链上查询入口。
+      </p>
+
+    </div>
+
+
+    <div class="contract-box">
+
+      <div
+        class="contract-label"
+        data-i18n="contractAddress"
+      >
+        CONTRACT ADDRESS
+      </div>
+
+
+      <div class="contract-address">
+        0xed3caca4903256fb3e4997bc0c7830d19fb35f7c
       </div>
 
 
       <div class="contract-actions">
 
-
-        <button
-          class="btn btn-red"
-          onclick="copyContract()"
-          data-i18n="copy"
-        >
-          复制地址
-        </button>
-
-
         <a
-          class="btn btn-outline"
           href="https://bscscan.com/address/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c"
           target="_blank"
           rel="noopener noreferrer"
+          class="btn btn-red"
           data-i18n="bscscan"
         >
           BscScan
         </a>
 
 
+        <button
+          class="btn btn-outline"
+          onclick="copyContract()"
+          data-i18n="copy"
+        >
+          复制地址
+        </button>
+
       </div>
 
     </div>
@@ -2280,69 +1900,109 @@ footer{
 </section>
 
 
-<!-- =========================================================
-     FINAL
-========================================================= -->
+<!-- =========================
+     COMMUNITY
+========================= -->
 
-<section class="final">
+<section class="community">
 
   <div class="container">
 
+    <div class="community-inner">
 
-    <div
-      class="final-small"
-      data-i18n="final_small"
-    >
-      ONE LITTLE CHILI
+
+      <div>
+
+        <h2
+          class="community-title"
+          data-i18n="communityTitle"
+        >
+          KEEP IT <span>SPICY.</span>
+        </h2>
+
+
+        <p
+          class="community-text"
+          data-i18n="communityText"
+        >
+          小辣椒，保持一点热度。
+        </p>
+
+      </div>
+
+
+      <a
+        href="#contract"
+        class="btn btn-red"
+        data-i18n="communityButton"
+      >
+        CHILI
+      </a>
+
+
     </div>
-
-
-    <h2 data-i18n="final_title">
-      KEEP IT
-      <span>SPICY.</span>
-    </h2>
-
-
-    <p data-i18n="final_text">
-      小辣椒，保持一点热度。
-    </p>
-
-
-    <a
-      href="#top"
-      class="btn btn-red"
-      data-i18n="back_top"
-    >
-      回到顶部
-    </a>
-
 
   </div>
 
 </section>
 
+</main>
 
-<!-- =========================================================
+
+<!-- =========================
      FOOTER
-========================================================= -->
+========================= -->
 
 <footer>
 
-  <div class="container footer-inner">
+  <div class="container">
+
+    <div class="footer-inner">
 
 
-    <div class="footer-logo">
-      🌶️ CHILI
+      <div class="footer-logo">
+
+        <div class="footer-logo-icon">
+          🌶️
+        </div>
+
+        CHILI
+
+      </div>
+
+
+      <div
+        class="footer-copy"
+        data-i18n="footer"
+      >
+        © 2026 CHILI. Built on BNB Smart Chain.
+      </div>
+
+
+      <div class="footer-links">
+
+        <a
+          href="https://bscscan.com/address/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-i18n="footerContract"
+        >
+          Contract
+        </a>
+
+        <a
+          href="https://gopluslabs.io/"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-i18n="footerSecurity"
+        >
+          Security
+        </a>
+
+      </div>
+
+
     </div>
-
-
-    <div
-      class="footer-copy"
-      data-i18n="footer"
-    >
-      © 2026 CHILI. Community Meme Token on BNB Smart Chain.
-    </div>
-
 
   </div>
 
@@ -2351,325 +2011,227 @@ footer{
 
 <script>
 
-/* =========================================================
+/* =========================
    TRANSLATIONS
-========================================================= */
+========================= */
 
 const translations = {
 
   zh: {
 
-    nav_story:"故事",
-    nav_why:"为什么是 CHILI",
-    nav_tokenomics:"代币信息",
-    nav_contract:"合约",
+    navTokenomics: "代币经济",
+    navStory: "故事",
+    navContract: "合约",
 
-    hero_badge:"BNB SMART CHAIN",
+    badge: "BNB SMART CHAIN",
 
-    hero_text:
-      "给这个有时候太严肃的加密世界，加一点热。",
+    heroText:
+      "小辣椒 CHILI，一个建立在 BNB Smart Chain 上的社区驱动型代币。",
 
-    hero_btn_story:"认识 CHILI",
-    hero_btn_contract:"查看合约",
+    viewContract:
+      "查看合约",
 
-    core_supply:"总供应量",
-    core_tax:"税费",
-    core_network:"网络",
-    core_symbol:"代币",
+    viewToken:
+      "查看代币",
 
-    story_label:"THE STORY",
+    supply:
+      "总供应量",
 
-    story_title:
-      "如果加密世界，可以更有趣一点呢？",
+    tax:
+      "税费",
 
-    story_p1:
-      "CHILI 是一个诞生于 BNB Smart Chain 的社区 Meme Token。",
+    network:
+      "网络",
 
-    story_p2:
-      "它没有复杂的故事。它只是想给这个有时候太严肃的加密世界，加一点热。",
+    symbol:
+      "代币符号",
 
-    story_p3:
-      "一颗小小的辣椒，一个简单的 Meme，一群因为喜欢它而聚在一起的人。",
+    tokenLabel:
+      "TOKENOMICS",
 
-    story_quote:
-      "Small token.<br>Big community.<br>A little heat.",
+    tokenTitle:
+      "简单。",
 
-    why_label:"WHY A CHILI?",
+    tokenDesc:
+      "简单、透明，只保留真正重要的代币信息。",
 
-    why_title:
-      "小。<span>辣。</span>让人记住。",
+    tokenName:
+      "代币",
 
-    why_intro:
-      "辣椒很小，但一点点辣，就足以改变一整道菜。CHILI 也一样。",
+    tokenSupply:
+      "总供应量",
 
-    why_1_title:
-      "一点热度",
+    tokenTax:
+      "税费",
 
-    why_1_text:
-      "加密世界已经足够严肃。CHILI 想做的，只是让它有趣一点。",
+    tokenNetwork:
+      "网络",
 
-    why_2_title:
-      "社区",
+    storyLabel:
+      "STORY",
 
-    why_2_text:
-      "Meme 可以很简单。社区也可以因为一个简单的东西聚在一起。",
+    storyTitle:
+      "一点热度。",
 
-    why_3_title:
-      "就是 CHILI",
+    storyText:
+      "小辣椒 CHILI 从一个简单的想法开始：让社区成为核心。不需要复杂的叙事，也不需要堆砌概念。CHILI 希望用简单直接的方式，连接喜欢加密文化、社区和 Meme 的人。",
 
-    why_3_text:
-      "不需要复杂的身份。喜欢这个 Meme，喜欢这颗辣椒，就已经足够。",
+    contractLabel:
+      "CONTRACT",
 
-    token_label:"TOKENOMICS",
+    contractTitle:
+      "CHILI.",
 
-    token_title:
-      "保持<span>简单。</span>",
+    contractDesc:
+      "官方合约地址及链上查询入口。",
 
-    token_intro:
-      "没有复杂的数学游戏。这里只展示最重要的信息。",
+    contractAddress:
+      "合约地址",
 
-    token_name:"代币",
-    token_symbol:"符号",
-    token_supply:"总供应量",
-    token_network:"网络",
-    token_tax:"税费",
-    token_type:"类型",
+    bscscan:
+      "查看 BscScan",
 
-    token_type_value:
-      "社区 Meme Token",
+    copy:
+      "复制地址",
 
-    token_note:
-      "以上信息用于公开透明展示。实际链上数据请以区块链浏览器为准。",
+    communityTitle:
+      "保持一点 <span>热度。</span>",
 
-    hold_title:
-      "你不需要一个理由。<span>只要喜欢 CHILI。</span>",
-
-    hold_text:
-      "你不需要因为某个承诺，才成为 CHILI 的一员。<br><br>喜欢这个 Meme。喜欢这个社区。喜欢这颗小辣椒。<br><br><strong>That's enough.</strong>",
-
-    roadmap_label:"THE ROAD AHEAD",
-
-    roadmap_title:
-      "看看它究竟能有多<span>辣。</span>",
-
-    roadmap_1_title:
-      "点燃火苗",
-
-    roadmap_1_text:
-      "建立社区 · 让更多人认识 CHILI",
-
-    roadmap_2_title:
-      "继续加热",
-
-    roadmap_2_text:
-      "社区互动 · 工具 · Meme",
-
-    roadmap_3_title:
-      "让 CHILI 到处都是",
-
-    roadmap_3_text:
-      "扩大社区 · 合作 · 更多可能",
-
-    contract_label:
-      "VERIFY IT YOURSELF",
-
-    contract_title:
-      "看看<span>合约。</span>",
-
-    contract_intro:
-      "不需要相信我们。直接在链上查看。",
-
-    contract_address_label:
-      "CONTRACT ADDRESS",
-
-    copy:"复制地址",
-
-    bscscan:"BscScan",
-
-    final_small:
-      "ONE LITTLE CHILI",
-
-    final_title:
-      "保持<span>一点辣。</span>",
-
-    final_text:
+    communityText:
       "小辣椒，保持一点热度。",
 
-    back_top:
-      "回到顶部",
+    communityButton:
+      "CHILI",
 
     footer:
-      "© 2026 CHILI. Community Meme Token on BNB Smart Chain."
+      "© 2026 CHILI. Built on BNB Smart Chain.",
+
+    footerContract:
+      "合约",
+
+    footerSecurity:
+      "安全"
 
   },
 
 
   en: {
 
-    nav_story:"STORY",
-    nav_why:"WHY CHILI",
-    nav_tokenomics:"TOKENOMICS",
-    nav_contract:"CONTRACT",
+    navTokenomics:
+      "TOKENOMICS",
 
-    hero_badge:"BNB SMART CHAIN",
+    navStory:
+      "STORY",
 
-    hero_text:
-      "A little heat for the crypto world.",
+    navContract:
+      "CONTRACT",
 
-    hero_btn_story:"MEET CHILI",
-    hero_btn_contract:"VERIFY CONTRACT",
+    badge:
+      "BNB SMART CHAIN",
 
-    core_supply:"TOTAL SUPPLY",
-    core_tax:"TAX",
-    core_network:"NETWORK",
-    core_symbol:"SYMBOL",
+    heroText:
+      "CHILI is a community-driven token built on BNB Smart Chain.",
 
-    story_label:"THE STORY",
+    viewContract:
+      "VIEW CONTRACT",
 
-    story_title:
-      "WHAT IF CRYPTO COULD BE A LITTLE MORE FUN?",
+    viewToken:
+      "VIEW TOKEN",
 
-    story_p1:
-      "CHILI is a community Meme Token born on BNB Smart Chain.",
+    supply:
+      "TOTAL SUPPLY",
 
-    story_p2:
-      "There is no complicated story. CHILI simply wants to add a little heat to a crypto world that can sometimes take itself too seriously.",
+    tax:
+      "TAX",
 
-    story_p3:
-      "One little chili. One simple Meme. A community of people who came together because they liked it.",
+    network:
+      "NETWORK",
 
-    story_quote:
-      "Small token.<br>Big community.<br>A little heat.",
+    symbol:
+      "SYMBOL",
 
-    why_label:"WHY A CHILI?",
+    tokenLabel:
+      "TOKENOMICS",
 
-    why_title:
-      "SMALL. <span>SPICY.</span> UNFORGETTABLE.",
+    tokenTitle:
+      "Simple.",
 
-    why_intro:
-      "A chili is small. But a little spice can change an entire dish. CHILI is the same.",
+    tokenDesc:
+      "Simple, transparent, and focused only on what matters.",
 
-    why_1_title:
-      "A LITTLE HEAT",
+    tokenName:
+      "TOKEN",
 
-    why_1_text:
-      "Crypto is already serious enough. CHILI just wants to make it a little more fun.",
+    tokenSupply:
+      "TOTAL SUPPLY",
 
-    why_2_title:
-      "COMMUNITY",
+    tokenTax:
+      "TAX",
 
-    why_2_text:
-      "A Meme can be simple. A community can come together around something simple too.",
+    tokenNetwork:
+      "NETWORK",
 
-    why_3_title:
-      "JUST CHILI",
+    storyLabel:
+      "STORY",
 
-    why_3_text:
-      "No complicated identity. Like the Meme. Like the chili. That's enough.",
+    storyTitle:
+      "A little heat.",
 
-    token_label:"TOKENOMICS",
+    storyText:
+      "CHILI started with a simple idea: put the community at the center. No complicated narratives and no unnecessary concepts. CHILI is about connecting people who enjoy crypto culture, communities, and Meme.",
 
-    token_title:
-      "KEEP IT <span>SIMPLE.</span>",
+    contractLabel:
+      "CONTRACT",
 
-    token_intro:
-      "No complicated math games. Just the information that matters.",
+    contractTitle:
+      "CHILI.",
 
-    token_name:"TOKEN",
-    token_symbol:"SYMBOL",
-    token_supply:"TOTAL SUPPLY",
-    token_network:"NETWORK",
-    token_tax:"TAX",
-    token_type:"TYPE",
+    contractDesc:
+      "Official contract address and on-chain verification.",
 
-    token_type_value:
-      "Community Meme Token",
-
-    token_note:
-      "This information is provided for transparency. Always verify on-chain data yourself.",
-
-    hold_title:
-      "YOU DON'T NEED A REASON. <span>JUST LIKE CHILI.</span>",
-
-    hold_text:
-      "You don't need a promise to become part of CHILI.<br><br>Like the Meme. Like the community. Like the little chili.<br><br><strong>That's enough.</strong>",
-
-    roadmap_label:"THE ROAD AHEAD",
-
-    roadmap_title:
-      "LET'S SEE HOW <span>HOT</span> IT CAN GET.",
-
-    roadmap_1_title:
-      "LIGHT THE FIRE",
-
-    roadmap_1_text:
-      "Build the community · Let more people discover CHILI",
-
-    roadmap_2_title:
-      "TURN UP THE HEAT",
-
-    roadmap_2_text:
-      "Community · Tools · Memes",
-
-    roadmap_3_title:
-      "MAKE CHILI EVERYWHERE",
-
-    roadmap_3_text:
-      "Grow the community · Partnerships · More possibilities",
-
-    contract_label:
-      "VERIFY IT YOURSELF",
-
-    contract_title:
-      "THE <span>CONTRACT.</span>",
-
-    contract_intro:
-      "You don't have to trust us. Check it on-chain.",
-
-    contract_address_label:
+    contractAddress:
       "CONTRACT ADDRESS",
 
-    copy:"COPY ADDRESS",
+    bscscan:
+      "VIEW BscScan",
 
-    bscscan:"BscScan",
+    copy:
+      "COPY ADDRESS",
 
-    final_small:
-      "ONE LITTLE CHILI",
-
-    final_title:
+    communityTitle:
       "KEEP IT <span>SPICY.</span>",
 
-    final_text:
-      "One little chili. A little heat.",
+    communityText:
+      "A little chili. A little heat.",
 
-    back_top:
-      "BACK TO TOP",
+    communityButton:
+      "CHILI",
 
     footer:
-      "© 2026 CHILI. Community Meme Token on BNB Smart Chain."
+      "© 2026 CHILI. Built on BNB Smart Chain.",
+
+    footerContract:
+      "Contract",
+
+    footerSecurity:
+      "Security"
 
   }
 
 };
 
 
-/* =========================================================
-   LANGUAGE
-========================================================= */
-
-let currentLanguage =
-  localStorage.getItem("chili-language") || "zh";
-
+/* =========================
+   LANGUAGE SWITCH
+========================= */
 
 function setLanguage(lang){
 
-  currentLanguage = lang;
+  const dict = translations[lang];
 
-  localStorage.setItem(
-    "chili-language",
-    lang
-  );
-
+  if(!dict){
+    return;
+  }
 
   document.documentElement.lang =
     lang === "zh"
@@ -2679,18 +2241,15 @@ function setLanguage(lang){
 
   document
     .querySelectorAll("[data-i18n]")
-    .forEach(el => {
+    .forEach(element => {
 
       const key =
-        el.getAttribute("data-i18n");
+        element.getAttribute("data-i18n");
 
-      if(
-        translations[lang] &&
-        translations[lang][key] !== undefined
-      ){
+      if(dict[key] !== undefined){
 
-        el.innerHTML =
-          translations[lang][key];
+        element.innerHTML =
+          dict[key];
 
       }
 
@@ -2712,138 +2271,36 @@ function setLanguage(lang){
       lang === "en"
     );
 
-}
 
-
-/* =========================================================
-   COPY CONTRACT
-========================================================= */
-
-function copyContract(){
-
-  const address =
-    document
-      .getElementById("contractAddress")
-      .innerText
-      .trim();
-
-
-  if(
-    navigator.clipboard &&
-    window.isSecureContext
-  ){
-
-    navigator.clipboard
-      .writeText(address)
-      .then(showCopied)
-      .catch(fallbackCopy);
-
-  }else{
-
-    fallbackCopy();
-
-  }
-
-
-  function showCopied(){
-
-    const btn =
-      document.querySelector(
-        '[data-i18n="copy"]'
-      );
-
-    btn.innerHTML =
-      currentLanguage === "zh"
-        ? "已复制 ✓"
-        : "COPIED ✓";
-
-
-    setTimeout(() => {
-
-      btn.innerHTML =
-        translations[
-          currentLanguage
-        ].copy;
-
-    },1800);
-
-  }
-
-
-  function fallbackCopy(){
-
-    const input =
-      document.createElement("textarea");
-
-    input.value = address;
-
-    input.style.position = "fixed";
-
-    input.style.opacity = "0";
-
-    document.body.appendChild(input);
-
-    input.focus();
-
-    input.select();
-
-    try{
-
-      document.execCommand("copy");
-
-      showCopied();
-
-    }catch(e){
-
-      alert(
-        currentLanguage === "zh"
-          ? "复制失败，请手动复制。"
-          : "Copy failed. Please copy manually."
-      );
-
-    }
-
-    document.body.removeChild(input);
-
-  }
-
-}
-
-
-/* =========================================================
-   MOBILE MENU
-========================================================= */
-
-function toggleMenu(){
-
-  const menu =
-    document.getElementById(
-      "mobileMenu"
+  document
+    .getElementById("mobileZhBtn")
+    .classList.toggle(
+      "active",
+      lang === "zh"
     );
 
 
-  menu.style.display =
-    menu.style.display === "block"
-      ? "none"
-      : "block";
+  document
+    .getElementById("mobileEnBtn")
+    .classList.toggle(
+      "active",
+      lang === "en"
+    );
+
+
+  localStorage.setItem(
+    "chili-language",
+    lang
+  );
 
 }
 
 
-function closeMenu(){
+/* =========================
+   INITIAL LANGUAGE
+========================= */
 
-  document.getElementById(
-    "mobileMenu"
-  ).style.display = "none";
-
-}
-
-
-/* =========================================================
-   AUTO LANGUAGE
-========================================================= */
-
-(function(){
+function initLanguage(){
 
   const saved =
     localStorage.getItem(
@@ -2851,7 +2308,7 @@ function closeMenu(){
     );
 
 
-  if(saved){
+  if(saved === "zh" || saved === "en"){
 
     setLanguage(saved);
 
@@ -2860,12 +2317,14 @@ function closeMenu(){
   }
 
 
-  const browser =
-    navigator.language || "";
+  const browserLanguage =
+    navigator.language ||
+    navigator.userLanguage ||
+    "zh-CN";
 
 
   if(
-    browser
+    browserLanguage
       .toLowerCase()
       .startsWith("zh")
   ){
@@ -2878,7 +2337,98 @@ function closeMenu(){
 
   }
 
-})();
+}
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+function toggleMenu(){
+
+  const menu =
+    document.getElementById(
+      "mobileMenu"
+    );
+
+  menu.classList.toggle(
+    "active"
+  );
+
+}
+
+
+function closeMenu(){
+
+  const menu =
+    document.getElementById(
+      "mobileMenu"
+    );
+
+  menu.classList.remove(
+    "active"
+  );
+
+}
+
+
+/* =========================
+   COPY CONTRACT
+========================= */
+
+function copyContract(){
+
+  const address =
+    "0xed3caca4903256fb3e4997bc0c7830d19fb35f7c";
+
+
+  navigator.clipboard
+    .writeText(address)
+    .then(() => {
+
+      const buttons =
+        document.querySelectorAll(
+          '[data-i18n="copy"]'
+        );
+
+      buttons.forEach(button => {
+
+        const original =
+          button.innerHTML;
+
+        button.innerHTML =
+          "✓ " +
+          (
+            document.documentElement.lang === "zh"
+              ? "已复制"
+              : "COPIED"
+          );
+
+
+        setTimeout(() => {
+
+          button.innerHTML =
+            original;
+
+        },1500);
+
+      });
+
+    })
+    .catch(() => {
+
+      alert(address);
+
+    });
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+initLanguage();
 
 </script>
 
