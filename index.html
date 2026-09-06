@@ -8,10 +8,6 @@
 <meta name="description" content="CHILI — A community-driven token on BNB Chain.">
 
 <style>
-/* =========================================================
-   GLOBAL
-========================================================= */
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -83,10 +79,7 @@ section {
   font-size: 16px;
 }
 
-
-/* =========================================================
-   HEADER
-========================================================= */
+/* HEADER */
 
 header {
   position: sticky;
@@ -198,10 +191,7 @@ header {
   transition: .3s;
 }
 
-
-/* =========================================================
-   HERO
-========================================================= */
+/* HERO */
 
 .hero {
   min-height: 730px;
@@ -321,10 +311,7 @@ header {
   background: rgba(255,255,255,0.04);
 }
 
-
-/* =========================================================
-   MARKET
-========================================================= */
+/* MARKET */
 
 .market-grid {
   display: grid;
@@ -368,10 +355,7 @@ header {
   color: #ff681c;
 }
 
-
-/* =========================================================
-   TOKEN
-========================================================= */
+/* TOKEN */
 
 .token-section {
   background:
@@ -452,10 +436,7 @@ header {
   color: #777;
 }
 
-
-/* =========================================================
-   TRANSACTIONS
-========================================================= */
+/* TRANSACTIONS */
 
 .transactions {
   margin-top: 45px;
@@ -507,10 +488,7 @@ header {
   color: #777;
 }
 
-
-/* =========================================================
-   ABOUT
-========================================================= */
+/* ABOUT */
 
 .about-grid {
   display: grid;
@@ -544,10 +522,7 @@ header {
   font-size: 14px;
 }
 
-
-/* =========================================================
-   COMMUNITY
-========================================================= */
+/* COMMUNITY */
 
 .community {
   text-align: center;
@@ -562,10 +537,7 @@ header {
   margin-top: 30px;
 }
 
-
-/* =========================================================
-   FOOTER
-========================================================= */
+/* FOOTER */
 
 footer {
   padding: 50px 0;
@@ -595,10 +567,7 @@ footer {
   color: #fff;
 }
 
-
-/* =========================================================
-   TABLET
-========================================================= */
+/* TABLET */
 
 @media (max-width: 1000px) {
 
@@ -619,11 +588,7 @@ footer {
   }
 }
 
-
-/* =========================================================
-   MOBILE
-   只影响手机端
-========================================================= */
+/* MOBILE */
 
 @media (max-width: 700px) {
 
@@ -634,8 +599,6 @@ footer {
   section {
     padding: 70px 0;
   }
-
-  /* ---------- HEADER ---------- */
 
   .nav {
     height: 66px;
@@ -703,8 +666,6 @@ footer {
     margin-top: 4px;
   }
 
-  /* ---------- HERO ---------- */
-
   .hero {
     min-height: auto;
     padding: 85px 0 70px;
@@ -734,8 +695,6 @@ footer {
     width: 100%;
   }
 
-  /* ---------- MARKET ---------- */
-
   .market-grid {
     grid-template-columns: 1fr 1fr;
     gap: 10px;
@@ -750,8 +709,6 @@ footer {
   .market-value {
     font-size: 21px;
   }
-
-  /* ---------- TOKEN ---------- */
 
   .token-layout {
     gap: 30px;
@@ -781,8 +738,6 @@ footer {
     text-align: left;
   }
 
-  /* ---------- TRANSACTIONS ---------- */
-
   .transactions {
     border-radius: 16px;
   }
@@ -805,8 +760,6 @@ footer {
     font-size: 11px;
   }
 
-  /* ---------- ABOUT ---------- */
-
   .about-grid {
     grid-template-columns: 1fr;
     gap: 12px;
@@ -815,8 +768,6 @@ footer {
   .about-card {
     min-height: auto;
   }
-
-  /* ---------- FOOTER ---------- */
 
   .footer-inner {
     flex-direction: column;
@@ -827,11 +778,6 @@ footer {
     flex-wrap: wrap;
   }
 }
-
-
-/* =========================================================
-   SMALL PHONES
-========================================================= */
 
 @media (max-width: 380px) {
 
@@ -859,12 +805,7 @@ footer {
 </style>
 </head>
 
-
 <body>
-
-<!-- =======================================================
-     HEADER
-======================================================= -->
 
 <header>
 
@@ -909,11 +850,6 @@ footer {
   </div>
 
 </header>
-
-
-<!-- =======================================================
-     HERO
-======================================================= -->
 
 <main>
 
@@ -979,11 +915,6 @@ footer {
 
 </section>
 
-
-<!-- =======================================================
-     MARKET
-======================================================= -->
-
 <section id="market">
 
   <div class="container">
@@ -1001,11 +932,10 @@ footer {
     </h2>
 
     <p class="section-description"
-       data-zh="这里显示 CHILI 的市场数据。数据接口可以接入 DexScreener 等公开市场数据源。"
-       data-en="Live CHILI market data can be connected here through public market data sources such as DexScreener.">
-      这里显示 CHILI 的市场数据。数据接口可以接入 DexScreener 等公开市场数据源。
+       data-zh="这里显示 CHILI 的实时市场数据。"
+       data-en="Live CHILI market data.">
+      这里显示 CHILI 的实时市场数据。
     </p>
-
 
     <div class="market-grid">
 
@@ -1039,11 +969,6 @@ footer {
 
 </section>
 
-
-<!-- =======================================================
-     TOKEN
-======================================================= -->
-
 <section class="token-section" id="token">
 
   <div class="container token-layout">
@@ -1067,7 +992,6 @@ footer {
          data-en="Key contract information is public and verifiable on BNB Chain.">
         所有关键合约信息公开透明，任何人都可以在 BNB Chain 上验证。
       </p>
-
 
       <div class="token-info">
 
@@ -1102,7 +1026,6 @@ footer {
 
     </div>
 
-
     <div class="token-card">
 
       <div class="token-logo">🌶️</div>
@@ -1122,11 +1045,6 @@ footer {
 
 </section>
 
-
-<!-- =======================================================
-     TRANSACTIONS
-======================================================= -->
-
 <section id="transactions">
 
   <div class="container">
@@ -1144,11 +1062,10 @@ footer {
     </h2>
 
     <p class="section-description"
-       data-zh="展示 CHILI 的最新链上交易。点击交易哈希可以直接查看 BscScan。"
-       data-en="Latest CHILI on-chain transactions. Click a transaction hash to view it on BscScan.">
-      展示 CHILI 的最新链上交易。点击交易哈希可以直接查看 BscScan。
+       data-zh="实时读取 CHILI/USDT 流动池的链上 Swap 交易。"
+       data-en="Live Swap transactions from the CHILI/USDT liquidity pool.">
+      实时读取 CHILI/USDT 流动池的链上 Swap 交易。
     </p>
-
 
     <div class="transactions">
 
@@ -1159,19 +1076,11 @@ footer {
         <div>TIME</div>
       </div>
 
-
       <div id="txList">
 
         <div class="tx-row">
           <div class="tx-type-buy">--</div>
-          <div class="tx-hash">正在加载链上交易...</div>
-          <div>--</div>
-          <div class="tx-time">--</div>
-        </div>
-
-        <div class="tx-row">
-          <div class="tx-type-sell">--</div>
-          <div class="tx-hash">等待真实交易数据</div>
+          <div class="tx-hash">正在读取 BSC 链上交易...</div>
           <div>--</div>
           <div class="tx-time">--</div>
         </div>
@@ -1183,11 +1092,6 @@ footer {
   </div>
 
 </section>
-
-
-<!-- =======================================================
-     ABOUT
-======================================================= -->
 
 <section id="about">
 
@@ -1207,15 +1111,13 @@ footer {
 
     <p class="section-description"
        data-zh="CHILI 的核心不是复杂的故事，而是社区、透明和持续建设。"
-       data-en="CHILI is built around community, transparency and continuous development.">
+       data-en="CHILI is built around community, transparency and continuous building.">
       CHILI 的核心不是复杂的故事，而是社区、透明和持续建设。
     </p>
-
 
     <div class="about-grid">
 
       <div class="about-card">
-
         <div class="about-number">01</div>
 
         <h3
@@ -1231,12 +1133,9 @@ footer {
         >
           CHILI 的发展方向由社区参与和共同建设推动。
         </p>
-
       </div>
 
-
       <div class="about-card">
-
         <div class="about-number">02</div>
 
         <h3
@@ -1252,12 +1151,9 @@ footer {
         >
           合约地址公开，链上数据可以由任何人独立验证。
         </p>
-
       </div>
 
-
       <div class="about-card">
-
         <div class="about-number">03</div>
 
         <h3
@@ -1273,7 +1169,6 @@ footer {
         >
           从社区到产品，从官网到生态，持续完善 CHILI 的基础设施。
         </p>
-
       </div>
 
     </div>
@@ -1281,11 +1176,6 @@ footer {
   </div>
 
 </section>
-
-
-<!-- =======================================================
-     COMMUNITY
-======================================================= -->
 
 <section class="community" id="community">
 
@@ -1311,7 +1201,6 @@ footer {
 
     <div class="buttons community-buttons">
 
-      <!-- 把下面链接换成你的真实 Telegram -->
       <a
         class="btn btn-primary"
         href="#"
@@ -1339,11 +1228,6 @@ footer {
 </section>
 
 </main>
-
-
-<!-- =======================================================
-     FOOTER
-======================================================= -->
 
 <footer>
 
@@ -1377,142 +1261,839 @@ footer {
 
 </footer>
 
-
 <script>
 
 /* =========================================================
-   MOBILE MENU
+   CHILI CONFIG
 ========================================================= */
 
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
+const CHILI =
+  "0xEd3Caca4903256fB3E4997BC0C7830D19Fb35F7c";
 
-menuToggle.addEventListener("click", () => {
-  navLinks.classList.toggle("open");
-});
+const USDT =
+  "0x55d398326f99059fF775485246999027B3197955";
 
-document.querySelectorAll(".nav-links a").forEach(link => {
-  link.addEventListener("click", () => {
-    navLinks.classList.remove("open");
-  });
-});
+const PANCAKE_FACTORY =
+  "0xCA143Ce32Fe78f1f7019d7d551a6402fC5350c73";
+
+const RPC_LIST = [
+  "https://bsc-dataseed.binance.org/",
+  "https://bsc-dataseed1.binance.org/",
+  "https://bsc-dataseed2.binance.org/"
+];
+
+const SWAP_TOPIC =
+  "0xd78ad95fa46c994b6551d0da85fc275fe6138c1c5b8f5e0a8f5a6b3d7e7c6b6d";
 
 
 /* =========================================================
-   LANGUAGE
+   RPC
 ========================================================= */
 
-const zhBtn = document.getElementById("zhBtn");
-const enBtn = document.getElementById("enBtn");
+let rpcIndex = 0;
 
-function setLanguage(lang) {
+async function rpcCall(method, params = []) {
 
-  document.documentElement.lang =
-    lang === "zh" ? "zh-CN" : "en";
+  let lastError = null;
 
-  document.querySelectorAll("[data-zh]").forEach(el => {
+  for (let i = 0; i < RPC_LIST.length; i++) {
 
-    if (el.dataset[lang]) {
-      el.textContent = el.dataset[lang];
+    const rpc =
+      RPC_LIST[(rpcIndex + i) % RPC_LIST.length];
+
+    try {
+
+      const response = await fetch(rpc, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          jsonrpc: "2.0",
+          id: Date.now(),
+          method,
+          params
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error("RPC HTTP " + response.status);
+      }
+
+      const data = await response.json();
+
+      if (data.error) {
+        throw new Error(data.error.message || "RPC error");
+      }
+
+      rpcIndex =
+        (rpcIndex + i) % RPC_LIST.length;
+
+      return data.result;
+
+    } catch (error) {
+
+      lastError = error;
     }
+  }
 
-  });
-
-  zhBtn.classList.toggle("active", lang === "zh");
-  enBtn.classList.toggle("active", lang === "en");
-
-  localStorage.setItem("chili-language", lang);
+  throw lastError || new Error("RPC unavailable");
 }
 
-zhBtn.addEventListener("click", () => {
-  setLanguage("zh");
-});
 
-enBtn.addEventListener("click", () => {
-  setLanguage("en");
-});
+/* =========================================================
+   ETH CALL
+========================================================= */
+
+async function ethCall(to, data) {
+
+  return await rpcCall(
+    "eth_call",
+    [
+      {
+        to,
+        data
+      },
+      "latest"
+    ]
+  );
+}
 
 
-const savedLanguage =
-  localStorage.getItem("chili-language") || "zh";
+/* =========================================================
+   ERC20 FUNCTIONS
+========================================================= */
 
-setLanguage(savedLanguage);
+function encodeAddress(address) {
+
+  return address
+    .toLowerCase()
+    .replace("0x", "")
+    .padStart(64, "0");
+}
+
+
+/* ERC20 decimals() */
+
+async function getDecimals(token) {
+
+  try {
+
+    const result =
+      await ethCall(
+        token,
+        "0x313ce567"
+      );
+
+    return parseInt(result, 16);
+
+  } catch (error) {
+
+    return 18;
+  }
+}
+
+
+/* =========================================================
+   PANCAKESWAP FACTORY getPair()
+========================================================= */
+
+async function getPair(tokenA, tokenB) {
+
+  const selector =
+    "0xe6a43905";
+
+  const data =
+    selector +
+    encodeAddress(tokenA) +
+    encodeAddress(tokenB);
+
+  const result =
+    await ethCall(
+      PANCAKE_FACTORY,
+      data
+    );
+
+  if (
+    !result ||
+    result === "0x" ||
+    /^0x0+$/.test(result)
+  ) {
+    return null;
+  }
+
+  return "0x" + result.slice(-40);
+}
+
+
+/* =========================================================
+   PAIR token0()
+========================================================= */
+
+async function getToken0(pair) {
+
+  const result =
+    await ethCall(
+      pair,
+      "0x0dfe1681"
+    );
+
+  return "0x" + result.slice(-40);
+}
+
+
+/* =========================================================
+   FORMAT NUMBERS
+========================================================= */
+
+function formatNumber(value, decimals = 18) {
+
+  try {
+
+    const number =
+      Number(value) /
+      Math.pow(10, decimals);
+
+    if (!Number.isFinite(number)) {
+      return "--";
+    }
+
+    if (number === 0) {
+      return "0";
+    }
+
+    return number.toLocaleString(
+      "en-US",
+      {
+        maximumFractionDigits: 6
+      }
+    );
+
+  } catch (error) {
+
+    return "--";
+  }
+}
+
+
+/* =========================================================
+   FORMAT TIME
+========================================================= */
+
+function formatAge(seconds) {
+
+  if (!Number.isFinite(seconds)) {
+    return "--";
+  }
+
+  if (seconds < 60) {
+    return Math.max(1, Math.floor(seconds)) + "秒前";
+  }
+
+  if (seconds < 3600) {
+    return Math.floor(seconds / 60) + "分钟前";
+  }
+
+  if (seconds < 86400) {
+    return Math.floor(seconds / 3600) + "小时前";
+  }
+
+  return Math.floor(seconds / 86400) + "天前";
+}
+
+
+/* =========================================================
+   HEX → BIGINT
+========================================================= */
+
+function hexToBigInt(value) {
+
+  if (!value || value === "0x") {
+    return 0n;
+  }
+
+  return BigInt(value);
+}
+
+
+/* =========================================================
+   DECODE SWAP EVENT
+========================================================= */
+
+function decodeSwap(log, token0) {
+
+  const data =
+    log.data.replace("0x", "");
+
+  if (data.length < 256) {
+    return null;
+  }
+
+  const amount0In =
+    hexToBigInt(
+      "0x" + data.slice(0, 64)
+    );
+
+  const amount1In =
+    hexToBigInt(
+      "0x" + data.slice(64, 128)
+    );
+
+  const amount0Out =
+    hexToBigInt(
+      "0x" + data.slice(128, 192)
+    );
+
+  const amount1Out =
+    hexToBigInt(
+      "0x" + data.slice(192, 256)
+    );
+
+  const chiliIsToken0 =
+    token0.toLowerCase() ===
+    CHILI.toLowerCase();
+
+  let chiliIn;
+  let chiliOut;
+  let usdtIn;
+  let usdtOut;
+
+  if (chiliIsToken0) {
+
+    chiliIn = amount0In;
+    chiliOut = amount0Out;
+
+    usdtIn = amount1In;
+    usdtOut = amount1Out;
+
+  } else {
+
+    chiliIn = amount1In;
+    chiliOut = amount1Out;
+
+    usdtIn = amount0In;
+    usdtOut = amount0Out;
+  }
+
+  let type = null;
+
+  /*
+    买入 CHILI：
+    USDT 进入池子
+    CHILI 从池子出去
+  */
+
+  if (
+    usdtIn > 0n &&
+    chiliOut > 0n
+  ) {
+
+    type = "BUY";
+  }
+
+  /*
+    卖出 CHILI：
+    CHILI 进入池子
+    USDT 从池子出去
+  */
+
+  if (
+    chiliIn > 0n &&
+    usdtOut > 0n
+  ) {
+
+    type = "SELL";
+  }
+
+  if (!type) {
+    return null;
+  }
+
+  const chiliValue =
+    type === "BUY"
+      ? chiliOut
+      : chiliIn;
+
+  const usdtValue =
+    type === "BUY"
+      ? usdtIn
+      : usdtOut;
+
+  return {
+
+    type,
+
+    chiliValue,
+
+    usdtValue,
+
+    hash: log.transactionHash,
+
+    blockNumber:
+      parseInt(
+        log.blockNumber,
+        16
+      )
+
+  };
+}
+
+
+/* =========================================================
+   LOAD BLOCK TIMESTAMP
+========================================================= */
+
+const blockTimeCache = new Map();
+
+async function getBlockTime(blockNumber) {
+
+  if (blockTimeCache.has(blockNumber)) {
+
+    return blockTimeCache.get(blockNumber);
+  }
+
+  try {
+
+    const block =
+      await rpcCall(
+        "eth_getBlockByNumber",
+        [
+          "0x" +
+          blockNumber.toString(16),
+          false
+        ]
+      );
+
+    if (!block) {
+      return null;
+    }
+
+    const timestamp =
+      parseInt(
+        block.timestamp,
+        16
+      );
+
+    blockTimeCache.set(
+      blockNumber,
+      timestamp
+    );
+
+    return timestamp;
+
+  } catch (error) {
+
+    return null;
+  }
+}
+
+
+/* =========================================================
+   LOAD CHILI / USDT TRANSACTIONS
+========================================================= */
+
+async function loadTransactions() {
+
+  const txList =
+    document.getElementById("txList");
+
+  try {
+
+    /*
+      找 PancakeSwap CHILI/USDT Pair
+    */
+
+    const pair =
+      await getPair(
+        CHILI,
+        USDT
+      );
+
+    if (!pair) {
+
+      txList.innerHTML = `
+        <div class="tx-row">
+          <div class="tx-type-sell">--</div>
+          <div class="tx-hash">
+            找不到 CHILI / USDT 流动池
+          </div>
+          <div>--</div>
+          <div class="tx-time">--</div>
+        </div>
+      `;
+
+      return;
+    }
+
+    /*
+      获取 Pair 的 token0
+    */
+
+    const token0 =
+      await getToken0(pair);
+
+    /*
+      获取当前区块
+    */
+
+    const latestBlockHex =
+      await rpcCall(
+        "eth_blockNumber"
+      );
+
+    const latestBlock =
+      parseInt(
+        latestBlockHex,
+        16
+      );
+
+    /*
+      最近约 500 个区块。
+
+      BSC 出块速度较快，
+      如果交易很多，可以适当增加。
+    */
+
+    const fromBlock =
+      Math.max(
+        0,
+        latestBlock - 500
+      );
+
+    /*
+      Swap Event
+
+      注意：
+      这里使用标准 UniswapV2/PancakeSwap
+      Swap(address,uint256,uint256,uint256,uint256,address)
+      的 topic。
+    */
+
+    const swapTopic =
+      "0xd78ad95fa46c994b6551d0da85fc275fe6138c1c5b8f5e0a8f5a6b3d7e7c6b6d";
+
+    const logs =
+      await rpcCall(
+        "eth_getLogs",
+        [
+          {
+            address: pair,
+            fromBlock:
+              "0x" +
+              fromBlock.toString(16),
+            toBlock:
+              "0x" +
+              latestBlock.toString(16),
+            topics: [
+              swapTopic
+            ]
+          }
+        ]
+      );
+
+    if (!logs || logs.length === 0) {
+
+      txList.innerHTML = `
+        <div class="tx-row">
+          <div class="tx-type-buy">--</div>
+          <div class="tx-hash">
+            暂时没有读取到新的 Swap 交易
+          </div>
+          <div>--</div>
+          <div class="tx-time">
+            ${new Date().toLocaleTimeString()}
+          </div>
+        </div>
+      `;
+
+      return;
+    }
+
+    /*
+      最新的放前面
+    */
+
+    const sortedLogs =
+      logs
+        .slice()
+        .reverse();
+
+    const transactions = [];
+
+    for (
+      const log of sortedLogs
+    ) {
+
+      const tx =
+        decodeSwap(
+          log,
+          token0
+        );
+
+      if (tx) {
+
+        transactions.push(tx);
+      }
+
+      if (transactions.length >= 8) {
+        break;
+      }
+    }
+
+    if (transactions.length === 0) {
+
+      txList.innerHTML = `
+        <div class="tx-row">
+          <div class="tx-type-buy">--</div>
+          <div class="tx-hash">
+            暂时没有找到 CHILI Swap
+          </div>
+          <div>--</div>
+          <div class="tx-time">--</div>
+        </div>
+      `;
+
+      return;
+    }
+
+    /*
+      创建交易列表
+    */
+
+    let html = "";
+
+    const now =
+      Math.floor(
+        Date.now() / 1000
+      );
+
+    for (
+      const tx of transactions
+    ) {
+
+      const blockTime =
+        await getBlockTime(
+          tx.blockNumber
+        );
+
+      const age =
+        blockTime
+          ? formatAge(
+              now - blockTime
+            )
+          : "--";
+
+      const chiliAmount =
+        formatNumber(
+          tx.chiliValue,
+          18
+        );
+
+      const usdtAmount =
+        formatNumber(
+          tx.usdtValue,
+          18
+        );
+
+      const shortHash =
+        tx.hash.slice(0, 8) +
+        "..." +
+        tx.hash.slice(-6);
+
+      const typeClass =
+        tx.type === "BUY"
+          ? "tx-type-buy"
+          : "tx-type-sell";
+
+      const typeText =
+        tx.type === "BUY"
+          ? "BUY"
+          : "SELL";
+
+      html += `
+
+        <div class="tx-row">
+
+          <div class="${typeClass}">
+            ${typeText}
+          </div>
+
+          <div class="tx-hash">
+
+            <a
+              href="https://bscscan.com/tx/${tx.hash}"
+              target="_blank"
+              rel="noopener"
+              title="${tx.hash}"
+            >
+              ${shortHash}
+            </a>
+
+          </div>
+
+          <div>
+            ${chiliAmount} CHILI
+            <br>
+            <span style="color:#777;font-size:11px">
+              ≈ ${usdtAmount} USDT
+            </span>
+          </div>
+
+          <div class="tx-time">
+            ${age}
+          </div>
+
+        </div>
+
+      `;
+    }
+
+    txList.innerHTML = html;
+
+  } catch (error) {
+
+    console.error(
+      "CHILI transaction error:",
+      error
+    );
+
+    txList.innerHTML = `
+
+      <div class="tx-row">
+
+        <div class="tx-type-sell">
+          --
+        </div>
+
+        <div class="tx-hash">
+          暂时无法读取 BSC 链上交易
+        </div>
+
+        <div>
+          --
+        </div>
+
+        <div class="tx-time">
+          请稍后刷新
+        </div>
+
+      </div>
+
+    `;
+  }
+}
 
 
 /* =========================================================
    MARKET DATA
-   =========================================================
-   注意：
-
-   这里没有伪造价格。
-
-   后续可以接入真实 DexScreener 数据接口。
 ========================================================= */
 
 async function loadMarketData() {
 
-  const priceEl = document.getElementById("price");
-  const changeEl = document.getElementById("change");
-  const liquidityEl = document.getElementById("liquidity");
-  const volumeEl = document.getElementById("volume");
+  const priceEl =
+    document.getElementById("price");
+
+  const changeEl =
+    document.getElementById("change");
+
+  const liquidityEl =
+    document.getElementById("liquidity");
+
+  const volumeEl =
+    document.getElementById("volume");
 
   try {
 
-    const response = await fetch(
-      "https://api.dexscreener.com/latest/dex/tokens/0xEd3Caca4903256fB3E4997BC0C7830D19Fb35F7c"
-    );
+    const response =
+      await fetch(
+        "https://api.dexscreener.com/latest/dex/tokens/" +
+        CHILI
+      );
 
     if (!response.ok) {
-      throw new Error("Market API unavailable");
+      throw new Error(
+        "Market API unavailable"
+      );
     }
 
-    const data = await response.json();
+    const data =
+      await response.json();
 
-    if (!data.pairs || data.pairs.length === 0) {
-      throw new Error("No pair found");
+    if (
+      !data.pairs ||
+      data.pairs.length === 0
+    ) {
+      throw new Error(
+        "No pair found"
+      );
     }
 
-    /*
-      优先寻找 BSC 的 CHILI/USDT，
-      如果没有则使用第一个 BSC 交易对。
-    */
-
-    const bscPairs = data.pairs.filter(
-      pair => pair.chainId === "bsc"
-    );
+    const bscPairs =
+      data.pairs.filter(
+        pair =>
+          pair.chainId === "bsc"
+      );
 
     let pair =
-      bscPairs.find(pair => {
+      bscPairs.find(
+        pair => {
 
-        const base = pair.baseToken?.symbol;
-        const quote = pair.quoteToken?.symbol;
+          const base =
+            pair.baseToken?.symbol;
 
-        return (
-          base === "CHILI" &&
-          ["USDT", "USDC", "WBNB", "BNB"].includes(quote)
-        );
+          const quote =
+            pair.quoteToken?.symbol;
 
-      }) || bscPairs[0];
+          return (
+            base === "CHILI" &&
+            quote === "USDT"
+          );
+
+        }
+      );
+
+    /*
+      如果没有直接找到 CHILI/USDT，
+      使用 BSC 上第一个交易对。
+    */
 
     if (!pair) {
-      throw new Error("No BSC pair found");
+
+      pair =
+        bscPairs[0];
+    }
+
+    if (!pair) {
+
+      throw new Error(
+        "No BSC pair found"
+      );
     }
 
     const price =
-      Number(pair.priceUsd || 0);
+      Number(
+        pair.priceUsd || 0
+      );
 
     const change =
-      Number(pair.priceChange?.h24 || 0);
+      Number(
+        pair.priceChange?.h24 || 0
+      );
 
     const liquidity =
-      Number(pair.liquidity?.usd || 0);
+      Number(
+        pair.liquidity?.usd || 0
+      );
 
     const volume =
-      Number(pair.volume?.h24 || 0);
+      Number(
+        pair.volume?.h24 || 0
+      );
 
     priceEl.textContent =
       price > 0
-        ? "$" + price.toLocaleString(
+        ? "$" +
+          price.toLocaleString(
             "en-US",
             {
               maximumSignificantDigits: 8
@@ -1525,10 +2106,15 @@ async function loadMarketData() {
 
     changeEl.className =
       "market-value " +
-      (change >= 0 ? "green" : "orange");
+      (
+        change >= 0
+          ? "green"
+          : "orange"
+      );
 
     liquidityEl.textContent =
-      "$" + liquidity.toLocaleString(
+      "$" +
+      liquidity.toLocaleString(
         "en-US",
         {
           maximumFractionDigits: 0
@@ -1536,7 +2122,8 @@ async function loadMarketData() {
       );
 
     volumeEl.textContent =
-      "$" + volume.toLocaleString(
+      "$" +
+      volume.toLocaleString(
         "en-US",
         {
           maximumFractionDigits: 0
@@ -1545,31 +2132,175 @@ async function loadMarketData() {
 
   } catch (error) {
 
-    console.log("Market data error:", error);
+    console.error(
+      "Market data error:",
+      error
+    );
 
-    priceEl.textContent = "--";
-    changeEl.textContent = "--";
-    liquidityEl.textContent = "--";
-    volumeEl.textContent = "--";
+    priceEl.textContent =
+      "--";
+
+    changeEl.textContent =
+      "--";
+
+    liquidityEl.textContent =
+      "--";
+
+    volumeEl.textContent =
+      "--";
   }
 }
 
 
 /* =========================================================
-   LOAD MARKET
+   MOBILE MENU
+========================================================= */
+
+const menuToggle =
+  document.getElementById(
+    "menuToggle"
+  );
+
+const navLinks =
+  document.getElementById(
+    "navLinks"
+  );
+
+menuToggle.addEventListener(
+  "click",
+  () => {
+
+    navLinks.classList.toggle(
+      "open"
+    );
+
+  }
+);
+
+document
+  .querySelectorAll(
+    ".nav-links a"
+  )
+  .forEach(
+    link => {
+
+      link.addEventListener(
+        "click",
+        () => {
+
+          navLinks.classList.remove(
+            "open"
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+/* =========================================================
+   LANGUAGE
+========================================================= */
+
+const zhBtn =
+  document.getElementById(
+    "zhBtn"
+  );
+
+const enBtn =
+  document.getElementById(
+    "enBtn"
+  );
+
+function setLanguage(lang) {
+
+  document.documentElement.lang =
+    lang === "zh"
+      ? "zh-CN"
+      : "en";
+
+  document
+    .querySelectorAll(
+      "[data-zh]"
+    )
+    .forEach(
+      el => {
+
+        if (
+          el.dataset[lang]
+        ) {
+
+          el.textContent =
+            el.dataset[lang];
+
+        }
+
+      }
+    );
+
+  zhBtn.classList.toggle(
+    "active",
+    lang === "zh"
+  );
+
+  enBtn.classList.toggle(
+    "active",
+    lang === "en"
+  );
+
+  localStorage.setItem(
+    "chili-language",
+    lang
+  );
+}
+
+zhBtn.addEventListener(
+  "click",
+  () => {
+    setLanguage("zh");
+  }
+);
+
+enBtn.addEventListener(
+  "click",
+  () => {
+    setLanguage("en");
+  }
+);
+
+const savedLanguage =
+  localStorage.getItem(
+    "chili-language"
+  ) || "zh";
+
+setLanguage(
+  savedLanguage
+);
+
+
+/* =========================================================
+   INITIAL LOAD
 ========================================================= */
 
 loadMarketData();
 
-/*
-   每 60 秒更新一次行情
-*/
-setInterval(loadMarketData, 60000);
+loadTransactions();
 
 
 /* =========================================================
-   END
+   AUTO REFRESH
 ========================================================= */
+
+setInterval(
+  loadMarketData,
+  60000
+);
+
+setInterval(
+  loadTransactions,
+  30000
+);
 
 </script>
 
