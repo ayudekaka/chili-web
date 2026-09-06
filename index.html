@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
 
 <meta charset="UTF-8">
 
 <meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
 >
 
 <title>CHILI — BNB Chain</title>
 
 <meta
-  name="description"
-  content="CHILI — A community-driven token on BNB Chain."
+    name="description"
+    content="CHILI — A community-driven token on BNB Smart Chain."
 >
 
 <style>
@@ -25,23 +26,18 @@
 
 :root {
 
-  --white: #ffffff;
+    --white: #ffffff;
+    --black: #111111;
+    --dark: #181818;
 
-  --black: #111111;
+    --gray: #666666;
+    --light-gray: #999999;
 
-  --dark: #181818;
+    --border: #e7e7e7;
+    --light: #f7f7f5;
 
-  --gray: #666666;
-
-  --light-gray: #999999;
-
-  --border: #e7e7e7;
-
-  --light: #f7f7f5;
-
-  --red: #e51b23;
-
-  --red-dark: #c9141b;
+    --red: #e51b23;
+    --red-dark: #c9141b;
 
 }
 
@@ -51,75 +47,66 @@
 ========================================================= */
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html {
-  scroll-behavior: smooth;
-
-  max-width: 100%;
-
-  overflow-x: hidden;
+    scroll-behavior: smooth;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 body {
 
-  width: 100%;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 
-  max-width: 100%;
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
 
-  overflow-x: hidden;
+    background: var(--white);
+    color: var(--black);
 
-  font-family:
-    Inter,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Arial,
-    sans-serif;
-
-  background: var(--white);
-
-  color: var(--black);
-
-  line-height: 1.6;
+    line-height: 1.6;
 }
 
 a {
-  color: inherit;
-
-  text-decoration: none;
+    color: inherit;
+    text-decoration: none;
 }
 
 button {
-  font: inherit;
+    font: inherit;
 }
 
 img {
-  max-width: 100%;
-
-  display: block;
+    max-width: 100%;
+    display: block;
 }
 
 .container {
 
-  width: min(
-    1180px,
-    calc(100% - 40px)
-  );
+    width: min(
+        1180px,
+        calc(100% - 40px)
+    );
 
-  margin: auto;
-
-  max-width: 100%;
+    margin: auto;
+    max-width: 100%;
 }
 
 section {
 
-  padding: 110px 0;
-
-  max-width: 100%;
+    padding: 110px 0;
+    max-width: 100%;
 }
 
 
@@ -129,44 +116,44 @@ section {
 
 .section-label {
 
-  color: var(--red);
+    color: var(--red);
 
-  font-size: 11px;
+    font-size: 11px;
 
-  font-weight: 900;
+    font-weight: 900;
 
-  letter-spacing: 2px;
+    letter-spacing: 2px;
 
-  text-transform: uppercase;
+    text-transform: uppercase;
 
-  margin-bottom: 12px;
+    margin-bottom: 12px;
 }
 
 .section-title {
 
-  font-size:
-    clamp(42px, 6vw, 78px);
+    font-size:
+        clamp(42px, 6vw, 78px);
 
-  line-height: .95;
+    line-height: .95;
 
-  letter-spacing: -4px;
+    letter-spacing: -4px;
 
-  font-weight: 950;
+    font-weight: 950;
 
-  color: var(--black);
+    color: var(--black);
 
-  margin-bottom: 22px;
+    margin-bottom: 22px;
 }
 
 .section-description {
 
-  max-width: 650px;
+    max-width: 650px;
 
-  color: var(--gray);
+    color: var(--gray);
 
-  font-size: 16px;
+    font-size: 16px;
 
-  line-height: 1.8;
+    line-height: 1.8;
 }
 
 
@@ -176,224 +163,241 @@ section {
 
 header {
 
-  position: sticky;
+    position: sticky;
 
-  top: 0;
+    top: 0;
 
-  z-index: 1000;
+    z-index: 1000;
 
-  background:
-    rgba(255,255,255,.94);
+    background:
+        rgba(255,255,255,.94);
 
-  backdrop-filter:
-    blur(18px);
+    backdrop-filter:
+        blur(18px);
 
-  border-bottom:
-    1px solid
-    rgba(0,0,0,.07);
+    border-bottom:
+        1px solid
+        rgba(0,0,0,.07);
+
 }
 
 .nav {
 
-  height: 76px;
+    height: 76px;
 
-  display: flex;
+    display: flex;
 
-  align-items: center;
+    align-items: center;
 
-  justify-content: space-between;
-}
+    justify-content: space-between;
 
-
-/* ---------- LOGO ---------- */
-
-.logo {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 11px;
-
-  font-size: 25px;
-
-  font-weight: 950;
-
-  letter-spacing: -1.5px;
-
-  flex-shrink: 0;
-}
-
-.logo-mark {
-
-  width: 40px;
-
-  height: 40px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  border-radius: 12px;
-
-  background: var(--red);
-
-  color: white;
-
-  box-shadow: none;
-
-  flex-shrink: 0;
-
-  font-size: 20px;
-}
-
-
-/* ---------- NAV ---------- */
-
-.nav-links {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 28px;
-
-  color: #555;
-
-  font-size: 14px;
-
-  font-weight: 700;
-}
-
-.nav-links a {
-
-  transition:
-    color .2s ease;
-}
-
-.nav-links a:hover {
-
-  color: var(--red);
-}
-
-
-/* ---------- LANGUAGE ---------- */
-
-.language {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 4px;
-
-  padding: 4px;
-
-  border-radius: 999px;
-
-  border:
-    1px solid
-    var(--border);
-
-  background: white;
-}
-
-.language button {
-
-  border: none;
-
-  background: transparent;
-
-  color: #888;
-
-  cursor: pointer;
-
-  padding: 6px 9px;
-
-  border-radius: 999px;
-
-  font-size: 12px;
-
-  font-weight: 800;
-}
-
-.language button.active {
-
-  color: white;
-
-  background: var(--red);
-}
-
-
-/* ---------- BUY BUTTON ---------- */
-
-.nav-buy {
-
-  padding: 11px 20px;
-
-  border-radius: 999px;
-
-  color: white !important;
-
-  background: var(--red);
-
-  font-weight: 900;
-
-  box-shadow: none;
-
-  transition:
-    background .2s ease,
-    transform .2s ease;
-}
-
-.nav-buy:hover {
-
-  background: var(--red-dark);
-
-  transform: translateY(-1px);
 }
 
 
 /* =========================================================
-   MOBILE MENU
+   LOGO
+========================================================= */
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    font-size: 25px;
+
+    font-weight: 950;
+
+    letter-spacing: -1.5px;
+
+    flex-shrink: 0;
+}
+
+.logo-mark {
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: var(--red);
+
+    color: white;
+
+    font-size: 20px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.nav-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 28px;
+
+    color: #555;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+.nav-links a {
+
+    transition:
+        color .2s ease;
+}
+
+.nav-links a:hover {
+
+    color: var(--red);
+}
+
+
+/* =========================================================
+   LANGUAGE
+========================================================= */
+
+.language {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 2px;
+
+    padding: 3px;
+
+    border-radius: 999px;
+
+    border:
+        1px solid
+        var(--border);
+
+    background: #fff;
+}
+
+.language button {
+
+    border: none;
+
+    background: transparent;
+
+    color: #777;
+
+    cursor: pointer;
+
+    padding: 7px 11px;
+
+    min-width: 38px;
+
+    border-radius: 999px;
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: .3px;
+
+    transition:
+        all .2s ease;
+}
+
+.language button:hover {
+
+    color: var(--black);
+}
+
+.language button.active {
+
+    color: white;
+
+    background: var(--red);
+}
+
+
+/* =========================================================
+   BUY BUTTON
+========================================================= */
+
+.nav-buy {
+
+    padding: 11px 20px;
+
+    border-radius: 999px;
+
+    color: white !important;
+
+    background: var(--red);
+
+    font-weight: 900;
+
+    transition:
+        background .2s ease,
+        transform .2s ease;
+}
+
+.nav-buy:hover {
+
+    background: var(--red-dark);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================================
+   MOBILE MENU BUTTON
 ========================================================= */
 
 .menu-toggle {
 
-  display: none;
+    display: none;
 
-  flex-direction: column;
+    flex-direction: column;
 
-  justify-content: space-between;
+    justify-content: space-between;
 
-  width: 28px;
+    width: 28px;
 
-  height: 20px;
+    height: 20px;
 
-  background: transparent;
+    background: transparent;
 
-  border: none;
+    border: none;
 
-  cursor: pointer;
+    cursor: pointer;
 
-  z-index: 1001;
+    z-index: 1001;
 }
 
 .menu-toggle span {
 
-  display: block;
+    display: block;
 
-  width: 100%;
+    width: 100%;
 
-  height: 2px;
+    height: 2px;
 
-  background: var(--black);
+    background: var(--black);
 
-  border-radius: 2px;
+    border-radius: 2px;
 
-  transition: .3s;
+    transition: .3s;
 }
 
 
@@ -403,55 +407,53 @@ header {
 
 .hero {
 
-  min-height: 730px;
+    min-height: 730px;
 
-  display: flex;
+    display: flex;
 
-  align-items: center;
+    align-items: center;
 
-  padding:
-    100px 0 110px;
+    padding:
+        100px 0
+        110px;
 
-  position: relative;
+    position: relative;
 
-  overflow: hidden;
+    overflow: hidden;
 
-  background: var(--white);
+    background: var(--white);
 }
-
-
-/* ---------- VERY SUBTLE RED ELEMENT ---------- */
 
 .hero::after {
 
-  content: "";
+    content: "";
 
-  position: absolute;
+    position: absolute;
 
-  width: 500px;
+    width: 500px;
 
-  height: 500px;
+    height: 500px;
 
-  right: -260px;
+    right: -260px;
 
-  top: 80px;
+    top: 80px;
 
-  border-radius: 50%;
+    border-radius: 50%;
 
-  border:
-    1px solid
-    rgba(229,27,35,.12);
+    border:
+        1px solid
+        rgba(229,27,35,.12);
 
-  pointer-events: none;
+    pointer-events: none;
 }
 
 .hero-content {
 
-  max-width: 950px;
+    max-width: 950px;
 
-  position: relative;
+    position: relative;
 
-  z-index: 2;
+    z-index: 2;
 }
 
 
@@ -461,42 +463,41 @@ header {
 
 .badge {
 
-  display: inline-flex;
+    display: inline-flex;
 
-  align-items: center;
+    align-items: center;
 
-  gap: 8px;
+    gap: 8px;
 
-  padding: 7px 13px;
+    padding:
+        7px 13px;
 
-  border:
-    1px solid
-    #dddddd;
+    border:
+        1px solid
+        #dddddd;
 
-  background: white;
+    background: white;
 
-  border-radius: 999px;
+    border-radius: 999px;
 
-  color: #666;
+    color: #666;
 
-  font-size: 12px;
+    font-size: 12px;
 
-  font-weight: 800;
+    font-weight: 800;
 
-  margin-bottom: 27px;
+    margin-bottom: 27px;
 }
 
 .dot {
 
-  width: 7px;
+    width: 7px;
 
-  height: 7px;
+    height: 7px;
 
-  border-radius: 50%;
+    border-radius: 50%;
 
-  background: var(--red);
-
-  box-shadow: none;
+    background: var(--red);
 }
 
 
@@ -506,44 +507,28 @@ header {
 
 .hero h1 {
 
-  font-size:
-    clamp(76px, 14vw, 170px);
+    font-size:
+        clamp(76px, 14vw, 170px);
 
-  line-height: .78;
+    line-height: .78;
 
-  letter-spacing: -8px;
+    letter-spacing: -8px;
 
-  font-weight: 950;
+    font-weight: 950;
 
-  margin-bottom: 36px;
+    margin-bottom: 36px;
 
-  color: var(--black);
+    color: var(--black);
 }
-
-
-/*
-   IMPORTANT
-
-   不再使用原来的：
-
-   linear-gradient(...)
-   橙色
-   发光
-
-   改成黑 + CHILI 红
-*/
 
 .hero h1 .red {
 
-  color: var(--red);
+    color: var(--red);
 }
-
-
-/* 如果你的标题使用 span */
 
 .hero h1 span {
 
-  display: inline-block;
+    display: inline-block;
 }
 
 
@@ -553,22 +538,22 @@ header {
 
 .hero-description {
 
-  max-width: 620px;
+    max-width: 620px;
 
-  color: var(--gray);
+    color: var(--gray);
 
-  font-size: 18px;
+    font-size: 18px;
 
-  line-height: 1.75;
+    line-height: 1.75;
 
-  margin-bottom: 35px;
+    margin-bottom: 35px;
 }
 
 .hero-description strong {
 
-  color: var(--black);
+    color: var(--black);
 
-  font-weight: 850;
+    font-weight: 850;
 }
 
 
@@ -578,142 +563,133 @@ header {
 
 .hero-buttons {
 
-  display: flex;
+    display: flex;
 
-  align-items: center;
+    align-items: center;
 
-  gap: 12px;
+    gap: 12px;
 
-  flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 
 .btn {
 
-  min-height: 50px;
+    min-height: 50px;
 
-  padding:
-    0 25px;
+    padding:
+        0 25px;
 
-  display: inline-flex;
+    display: inline-flex;
 
-  align-items: center;
+    align-items: center;
 
-  justify-content: center;
+    justify-content: center;
 
-  border-radius: 999px;
+    border-radius: 999px;
 
-  font-size: 13px;
+    font-size: 13px;
 
-  font-weight: 900;
+    font-weight: 900;
 
-  transition:
-    .2s ease;
+    transition:
+        .2s ease;
 }
 
 .btn-primary {
 
-  color: white;
+    color: white;
 
-  background: var(--red);
+    background: var(--red);
 }
 
 .btn-primary:hover {
 
-  background: var(--red-dark);
+    background: var(--red-dark);
 
-  transform:
-    translateY(-2px);
+    transform:
+        translateY(-2px);
 }
 
 .btn-outline {
 
-  color: var(--black);
+    color: var(--black);
 
-  background: white;
+    background: white;
 
-  border:
-    1px solid
-    #222;
+    border:
+        1px solid
+        #222;
 }
 
 .btn-outline:hover {
 
-  color: var(--red);
+    color: var(--red);
 
-  border-color: var(--red);
+    border-color: var(--red);
 
-  transform:
-    translateY(-2px);
+    transform:
+        translateY(-2px);
 }
 
 
 /* =========================================================
-   HERO LOGO / VISUAL
+   HERO LOGO
 ========================================================= */
 
 .hero-visual {
 
-  position: absolute;
+    position: absolute;
 
-  right: 0;
+    right: 0;
 
-  top: 50%;
+    top: 50%;
 
-  transform:
-    translateY(-50%);
+    transform:
+        translateY(-50%);
 
-  width: 390px;
+    width: 390px;
 
-  height: 390px;
+    height: 390px;
 
-  display: flex;
+    display: flex;
 
-  align-items: center;
+    align-items: center;
 
-  justify-content: center;
+    justify-content: center;
 
-  pointer-events: none;
+    pointer-events: none;
 }
-
-
-/*
-   如果你原来的 HTML 里面有：
-
-   .hero-visual img
-
-   这里会自动套用。
-*/
 
 .hero-visual img {
 
-  width: 330px;
+    width: 330px;
 
-  height: 330px;
+    height: 330px;
 
-  object-fit: contain;
+    object-fit: contain;
 
-  filter: none;
-
-  animation:
-    chiliFloat 5s ease-in-out infinite;
+    animation:
+        chiliFloat 5s
+        ease-in-out
+        infinite;
 }
 
 @keyframes chiliFloat {
 
-  0%,
-  100% {
+    0%,
+    100% {
 
-    transform:
-      translateY(0)
-      rotate(-2deg);
-  }
+        transform:
+            translateY(0)
+            rotate(-2deg);
+    }
 
-  50% {
+    50% {
 
-    transform:
-      translateY(-10px)
-      rotate(2deg);
-  }
+        transform:
+            translateY(-10px)
+            rotate(2deg);
+    }
 }
 
 
@@ -723,62 +699,63 @@ header {
 
 .stats {
 
-  border-top:
-    1px solid
-    #222;
+    border-top:
+        1px solid
+        #222;
 
-  border-bottom:
-    1px solid
-    #222;
+    border-bottom:
+        1px solid
+        #222;
 
-  display: grid;
+    display: grid;
 
-  grid-template-columns:
-    repeat(4, 1fr);
+    grid-template-columns:
+        repeat(4, 1fr);
 }
 
 .stat {
 
-  padding: 38px 25px;
+    padding:
+        38px 25px;
 
-  border-right:
-    1px solid
-    #ddd;
+    border-right:
+        1px solid
+        #ddd;
 }
 
 .stat:last-child {
 
-  border-right: none;
+    border-right: none;
 }
 
 .stat-number {
 
-  font-size:
-    clamp(35px, 4vw, 55px);
+    font-size:
+        clamp(35px, 4vw, 55px);
 
-  line-height: 1;
+    line-height: 1;
 
-  font-weight: 950;
+    font-weight: 950;
 
-  letter-spacing: -3px;
+    letter-spacing: -3px;
 }
 
 .stat-number.red {
 
-  color: var(--red);
+    color: var(--red);
 }
 
 .stat-label {
 
-  margin-top: 12px;
+    margin-top: 12px;
 
-  color: #999;
+    color: #999;
 
-  font-size: 10px;
+    font-size: 10px;
 
-  font-weight: 800;
+    font-weight: 800;
 
-  letter-spacing: 1.5px;
+    letter-spacing: 1.5px;
 }
 
 
@@ -788,30 +765,31 @@ header {
 
 .red-bar {
 
-  background: var(--red);
+    background: var(--red);
 
-  color: white;
+    color: white;
 
-  padding: 22px 0;
+    padding:
+        22px 0;
 
-  overflow: hidden;
+    overflow: hidden;
 }
 
 .red-bar-inner {
 
-  display: flex;
+    display: flex;
 
-  justify-content: space-between;
+    justify-content: space-between;
 
-  align-items: center;
+    align-items: center;
 
-  gap: 30px;
+    gap: 30px;
 
-  font-size: 12px;
+    font-size: 12px;
 
-  font-weight: 900;
+    font-weight: 900;
 
-  letter-spacing: 1.5px;
+    letter-spacing: 1.5px;
 }
 
 
@@ -821,150 +799,151 @@ header {
 
 .tokenomics {
 
-  background: var(--light);
+    background: var(--light);
 }
 
 .tokenomics-grid {
 
-  margin-top: 60px;
+    margin-top: 60px;
 
-  display: grid;
+    display: grid;
 
-  grid-template-columns:
-    .85fr
-    1.15fr;
+    grid-template-columns:
+        .85fr
+        1.15fr;
 
-  gap: 70px;
+    gap: 70px;
 
-  align-items: stretch;
+    align-items: stretch;
 }
 
 .token-card {
 
-  background: var(--red);
+    background: var(--red);
 
-  color: white;
+    color: white;
 
-  border-radius: 20px;
+    border-radius: 20px;
 
-  padding: 45px;
+    padding: 45px;
 
-  min-height: 390px;
+    min-height: 390px;
 
-  display: flex;
+    display: flex;
 
-  flex-direction: column;
+    flex-direction: column;
 
-  justify-content: space-between;
+    justify-content: space-between;
 
-  overflow: hidden;
+    overflow: hidden;
 
-  position: relative;
+    position: relative;
 }
 
 .token-card::after {
 
-  content: "CHILI";
+    content: "CHILI";
 
-  position: absolute;
+    position: absolute;
 
-  right: -30px;
+    right: -30px;
 
-  bottom: -30px;
+    bottom: -30px;
 
-  font-size: 120px;
+    font-size: 120px;
 
-  line-height: 1;
+    line-height: 1;
 
-  font-weight: 950;
+    font-weight: 950;
 
-  letter-spacing: -8px;
+    letter-spacing: -8px;
 
-  opacity: .08;
+    opacity: .08;
 
-  transform:
-    rotate(-8deg);
+    transform:
+        rotate(-8deg);
 }
 
 .token-card-label {
 
-  font-size: 11px;
+    font-size: 11px;
 
-  font-weight: 800;
+    font-weight: 800;
 
-  letter-spacing: 2px;
+    letter-spacing: 2px;
 
-  opacity: .75;
+    opacity: .75;
 }
 
 .token-card-title {
 
-  font-size: 80px;
+    font-size: 80px;
 
-  line-height: .8;
+    line-height: .8;
 
-  font-weight: 950;
+    font-weight: 950;
 
-  letter-spacing: -6px;
+    letter-spacing: -6px;
 }
 
 .token-card-sub {
 
-  font-size: 18px;
+    font-size: 18px;
 
-  font-weight: 800;
+    font-weight: 800;
 }
 
 .token-info {
 
-  display: flex;
+    display: flex;
 
-  flex-direction: column;
+    flex-direction: column;
 }
 
 .token-row {
 
-  display: grid;
+    display: grid;
 
-  grid-template-columns:
-    1fr
-    1fr;
+    grid-template-columns:
+        1fr
+        1fr;
 
-  padding: 22px 0;
+    padding:
+        22px 0;
 
-  border-bottom:
-    1px solid
-    #ddd;
+    border-bottom:
+        1px solid
+        #ddd;
 }
 
 .token-row:first-child {
 
-  border-top:
-    1px solid
-    #ddd;
+    border-top:
+        1px solid
+        #ddd;
 }
 
 .token-key {
 
-  color: #888;
+    color: #888;
 
-  font-size: 13px;
+    font-size: 13px;
 
-  font-weight: 700;
+    font-weight: 700;
 }
 
 .token-value {
 
-  text-align: right;
+    text-align: right;
 
-  font-size: 15px;
+    font-size: 15px;
 
-  font-weight: 900;
+    font-weight: 900;
 }
 
 .token-value.red {
 
-  color: var(--red);
+    color: var(--red);
 }
 
 
@@ -974,64 +953,65 @@ header {
 
 .contract-box {
 
-  margin-top: 50px;
+    margin-top: 50px;
 
-  border:
-    1px solid
-    #222;
+    border:
+        1px solid
+        #222;
 
-  border-radius: 16px;
+    border-radius: 16px;
 
-  padding: 22px 25px;
+    padding:
+        22px 25px;
 
-  display: flex;
+    display: flex;
 
-  align-items: center;
+    align-items: center;
 
-  justify-content: space-between;
+    justify-content: space-between;
 
-  gap: 20px;
+    gap: 20px;
 }
 
 .contract-address {
 
-  font-family:
-    "SFMono-Regular",
-    Consolas,
-    monospace;
+    font-family:
+        "SFMono-Regular",
+        Consolas,
+        monospace;
 
-  font-size: 13px;
+    font-size: 13px;
 
-  word-break: break-all;
+    word-break: break-all;
 
-  color: #333;
+    color: #333;
 }
 
 .copy-btn {
 
-  flex-shrink: 0;
+    flex-shrink: 0;
 
-  border: none;
+    border: none;
 
-  background: var(--red);
+    background: var(--red);
 
-  color: white;
+    color: white;
 
-  padding:
-    11px 17px;
+    padding:
+        11px 17px;
 
-  border-radius: 999px;
+    border-radius: 999px;
 
-  cursor: pointer;
+    cursor: pointer;
 
-  font-size: 11px;
+    font-size: 11px;
 
-  font-weight: 900;
+    font-weight: 900;
 }
 
 .copy-btn:hover {
 
-  background: var(--red-dark);
+    background: var(--red-dark);
 }
 
 
@@ -1041,70 +1021,70 @@ header {
 
 .story {
 
-  background: var(--black);
+    background: var(--black);
 
-  color: white;
+    color: white;
 }
 
 .story .section-label {
 
-  color: #ff3340;
+    color: #ff3340;
 }
 
 .story-grid {
 
-  display: grid;
+    display: grid;
 
-  grid-template-columns:
-    .75fr
-    1.25fr;
+    grid-template-columns:
+        .75fr
+        1.25fr;
 
-  gap: 100px;
+    gap: 100px;
 }
 
 .story-title {
 
-  font-size:
-    clamp(55px, 8vw, 105px);
+    font-size:
+        clamp(55px, 8vw, 105px);
 
-  line-height: .85;
+    line-height: .85;
 
-  font-weight: 950;
+    font-weight: 950;
 
-  letter-spacing: -6px;
+    letter-spacing: -6px;
 }
 
 .story-title span {
 
-  color: var(--red);
+    color: var(--red);
 }
 
 .story-text {
 
-  font-size:
-    clamp(22px, 3vw, 35px);
+    font-size:
+        clamp(22px, 3vw, 35px);
 
-  line-height: 1.35;
+    line-height: 1.35;
 
-  font-weight: 650;
+    font-weight: 650;
 
-  letter-spacing: -.5px;
+    letter-spacing: -.5px;
 }
 
 .story-text strong {
 
-  color: #ff3340;
+    color: #ff3340;
 }
 
 .story-small {
 
-  margin-top: 30px;
+    margin-top: 30px;
 
-  color: #999;
+    color: #999;
 
-  font-size: 15px;
+    font-size: 15px;
 
-  line-height: 1.8;
+    line-height: 1.8;
 }
 
 
@@ -1114,78 +1094,78 @@ header {
 
 .security-grid {
 
-  margin-top: 55px;
+    margin-top: 55px;
 
-  display: grid;
+    display: grid;
 
-  grid-template-columns:
-    repeat(3, 1fr);
+    grid-template-columns:
+        repeat(3, 1fr);
 
-  border-top:
-    1px solid
-    #ddd;
+    border-top:
+        1px solid
+        #ddd;
 
-  border-left:
-    1px solid
-    #ddd;
+    border-left:
+        1px solid
+        #ddd;
 }
 
 .security-item {
 
-  padding: 30px;
+    padding: 30px;
 
-  min-height: 170px;
+    min-height: 170px;
 
-  border-right:
-    1px solid
-    #ddd;
+    border-right:
+        1px solid
+        #ddd;
 
-  border-bottom:
-    1px solid
-    #ddd;
+    border-bottom:
+        1px solid
+        #ddd;
 
-  background: white;
+    background: white;
 }
 
 .security-icon {
 
-  width: 34px;
+    width: 34px;
 
-  height: 34px;
+    height: 34px;
 
-  display: flex;
+    display: flex;
 
-  align-items: center;
+    align-items: center;
 
-  justify-content: center;
+    justify-content: center;
 
-  border-radius: 50%;
+    border-radius: 50%;
 
-  background: #fff0f1;
+    background: #fff0f1;
 
-  color: var(--red);
+    color: var(--red);
 
-  font-size: 13px;
+    font-size: 13px;
 
-  font-weight: 900;
+    font-weight: 900;
 
-  margin-bottom: 22px;
+    margin-bottom: 22px;
 }
 
 .security-item h3 {
 
-  font-size: 17px;
+    font-size: 17px;
 
-  margin-bottom: 7px;
+    margin-bottom: 7px;
 }
 
 .security-item p {
 
-  color: #888;
+    color: #888;
 
-  font-size: 13px;
+    font-size: 13px;
 
-  line-height: 1.6;
+    line-height: 1.6;
 }
 
 
@@ -1195,86 +1175,86 @@ header {
 
 .community {
 
-  background: var(--red);
+    background: var(--red);
 
-  color: white;
+    color: white;
 
-  text-align: center;
+    text-align: center;
 
-  padding:
-    130px 0;
+    padding:
+        130px 0;
 }
 
 .community .section-label {
 
-  color: white;
+    color: white;
 
-  opacity: .75;
+    opacity: .75;
 }
 
 .community-title {
 
-  font-size:
-    clamp(60px, 10vw, 135px);
+    font-size:
+        clamp(60px, 10vw, 135px);
 
-  line-height: .8;
+    line-height: .8;
 
-  font-weight: 950;
+    font-weight: 950;
 
-  letter-spacing: -8px;
+    letter-spacing: -8px;
 }
 
 .community-description {
 
-  max-width: 560px;
+    max-width: 560px;
 
-  margin:
-    30px auto;
+    margin:
+        30px auto;
 
-  font-size: 17px;
+    font-size: 17px;
 
-  line-height: 1.7;
+    line-height: 1.7;
 
-  opacity: .9;
+    opacity: .9;
 }
 
 .community-buttons {
 
-  display: flex;
+    display: flex;
 
-  justify-content: center;
+    justify-content: center;
 
-  gap: 12px;
+    gap: 12px;
 
-  flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 
 .community .btn-primary {
 
-  background: white;
+    background: white;
 
-  color: var(--red);
+    color: var(--red);
 }
 
 .community .btn-primary:hover {
 
-  background: #f5f5f5;
+    background: #f5f5f5;
 }
 
 .community .btn-outline {
 
-  border-color: white;
+    border-color: white;
 
-  color: white;
+    color: white;
 
-  background: transparent;
+    background: transparent;
 }
 
 .community .btn-outline:hover {
 
-  background: white;
+    background: white;
 
-  color: var(--red);
+    color: var(--red);
 }
 
 
@@ -1284,200 +1264,270 @@ header {
 
 footer {
 
-  background: white;
+    background: white;
 
-  padding:
-    50px 0 30px;
+    padding:
+        50px 0
+        30px;
 }
 
 .footer-top {
 
-  display: flex;
+    display: flex;
 
-  align-items: flex-start;
+    align-items: flex-start;
 
-  justify-content: space-between;
+    justify-content: space-between;
 
-  gap: 30px;
+    gap: 30px;
 
-  padding-bottom: 40px;
+    padding-bottom: 40px;
 
-  border-bottom:
-    1px solid
-    #ddd;
+    border-bottom:
+        1px solid
+        #ddd;
 }
 
 .footer-brand {
 
-  font-size: 25px;
+    font-size: 25px;
 
-  font-weight: 950;
+    font-weight: 950;
 
-  letter-spacing: -1px;
+    letter-spacing: -1px;
 }
 
 .footer-brand span {
 
-  color: var(--red);
+    color: var(--red);
 }
 
 .footer-description {
 
-  margin-top: 8px;
+    margin-top: 8px;
 
-  color: #999;
+    color: #999;
 
-  font-size: 13px;
+    font-size: 13px;
 }
 
 .footer-links {
 
-  display: flex;
+    display: flex;
 
-  flex-wrap: wrap;
+    flex-wrap: wrap;
 
-  gap: 20px;
+    gap: 20px;
 
-  font-size: 12px;
+    font-size: 12px;
 
-  font-weight: 800;
+    font-weight: 800;
 }
 
 .footer-links a:hover {
 
-  color: var(--red);
+    color: var(--red);
 }
 
 .footer-bottom {
 
-  padding-top: 22px;
+    padding-top: 22px;
 
-  display: flex;
+    display: flex;
 
-  justify-content: space-between;
+    justify-content: space-between;
 
-  color: #aaa;
+    color: #aaa;
 
-  font-size: 10px;
+    font-size: 10px;
 }
 
 
 /* =========================================================
-   MOBILE
+   MOBILE NAV
 ========================================================= */
 
 @media (max-width: 900px) {
 
-  .container {
+    .container {
 
-    width:
-      calc(100% - 32px);
-  }
+        width:
+            calc(100% - 32px);
+    }
 
-  .nav {
+    .nav {
 
-    height: 68px;
-  }
+        height: 68px;
+    }
 
-  .nav-links {
+    .nav-links {
 
-    display: none;
-  }
+        display: none;
+    }
 
-  .menu-toggle {
+    .menu-toggle {
 
-    display: flex;
-  }
+        display: flex;
+    }
 
-  .hero {
+    .nav-links.mobile-open {
 
-    min-height: auto;
+        display: flex;
 
-    padding:
-      80px 0 90px;
-  }
+        position: absolute;
 
-  .hero h1 {
+        top: 76px;
 
-    font-size:
-      clamp(75px, 20vw, 130px);
+        left: 16px;
 
-    letter-spacing:
-      -6px;
-  }
+        right: 16px;
 
-  .hero-visual {
+        flex-direction: column;
 
-    position: relative;
+        align-items: stretch;
 
-    top: auto;
+        gap: 0;
 
-    right: auto;
+        padding: 12px;
 
-    transform: none;
+        background:
+            rgba(255,255,255,.98);
 
-    width: 100%;
+        border:
+            1px solid
+            var(--border);
 
-    height: 330px;
+        border-radius: 18px;
 
-    margin-top: 35px;
-  }
+        box-shadow:
+            0 20px 50px
+            rgba(0,0,0,.10);
 
-  .hero-visual img {
+        z-index: 1000;
+    }
 
-    width: 270px;
+    .nav-links.mobile-open a {
 
-    height: 270px;
-  }
+        padding:
+            14px 12px;
 
-  .stats {
+        border-bottom:
+            1px solid
+            #eee;
+    }
 
-    grid-template-columns:
-      repeat(2, 1fr);
-  }
+    .nav-links.mobile-open .language {
 
-  .stat {
+        margin:
+            10px 0;
 
-    border-bottom:
-      1px solid
-      #ddd;
-  }
+        width:
+            fit-content;
+    }
 
-  .stat:nth-child(2) {
+    .nav-links.mobile-open .nav-buy {
 
-    border-right: none;
-  }
+        text-align: center;
 
-  .tokenomics-grid {
+        margin-top: 5px;
 
-    grid-template-columns: 1fr;
+        border-bottom: none;
+    }
 
-    gap: 45px;
-  }
+    .hero {
 
-  .story-grid {
+        min-height: auto;
 
-    grid-template-columns: 1fr;
+        padding:
+            80px 0
+            90px;
+    }
 
-    gap: 50px;
-  }
+    .hero h1 {
 
-  .security-grid {
+        font-size:
+            clamp(
+                75px,
+                20vw,
+                130px
+            );
 
-    grid-template-columns: 1fr;
-  }
+        letter-spacing:
+            -6px;
+    }
 
-  .footer-top {
+    .hero-visual {
 
-    flex-direction: column;
-  }
+        position: relative;
 
-  .footer-bottom {
+        top: auto;
 
-    flex-direction: column;
+        right: auto;
 
-    gap: 8px;
-  }
+        transform: none;
+
+        width: 100%;
+
+        height: 330px;
+
+        margin-top: 35px;
+    }
+
+    .hero-visual img {
+
+        width: 270px;
+
+        height: 270px;
+    }
+
+    .stats {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .stat {
+
+        border-bottom:
+            1px solid
+            #ddd;
+    }
+
+    .stat:nth-child(2) {
+
+        border-right: none;
+    }
+
+    .tokenomics-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+    }
+
+    .story-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 50px;
+    }
+
+    .security-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .footer-top {
+
+        flex-direction: column;
+    }
+
+    .footer-bottom {
+
+        flex-direction: column;
+
+        gap: 8px;
+    }
 }
 
 
@@ -1487,110 +1537,121 @@ footer {
 
 @media (max-width: 560px) {
 
-  section {
+    section {
 
-    padding:
-      80px 0;
-  }
+        padding:
+            80px 0;
+    }
 
-  .hero h1 {
+    .hero h1 {
 
-    font-size:
-      23vw;
+        font-size: 23vw;
 
-    letter-spacing:
-      -5px;
-  }
+        letter-spacing:
+            -5px;
+    }
 
-  .hero-description {
+    .hero-description {
 
-    font-size: 16px;
-  }
+        font-size: 16px;
+    }
 
-  .hero-buttons {
+    .hero-buttons {
 
-    width: 100%;
-  }
+        width: 100%;
+    }
 
-  .btn {
+    .btn {
 
-    flex: 1;
+        flex: 1;
 
-    min-width: 135px;
-  }
+        min-width: 135px;
+    }
 
-  .stats {
+    .stats {
 
-    grid-template-columns: 1fr;
-  }
+        grid-template-columns: 1fr;
+    }
 
-  .stat {
+    .stat {
 
-    border-right: none;
+        border-right: none;
 
-    border-bottom:
-      1px solid
-      #ddd;
-  }
+        border-bottom:
+            1px solid
+            #ddd;
+    }
 
-  .stat:last-child {
+    .stat:last-child {
 
-    border-bottom: none;
-  }
+        border-bottom: none;
+    }
 
-  .token-card {
+    .token-card {
 
-    min-height: 300px;
+        min-height: 300px;
 
-    padding: 32px;
-  }
+        padding: 32px;
+    }
 
-  .token-card-title {
+    .token-card-title {
 
-    font-size: 62px;
-  }
+        font-size: 62px;
+    }
 
-  .token-row {
+    .token-row {
 
-    grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
 
-    gap: 7px;
-  }
+        gap: 7px;
+    }
 
-  .token-value {
+    .token-value {
 
-    text-align: left;
-  }
+        text-align: left;
+    }
 
-  .contract-box {
+    .contract-box {
 
-    align-items: flex-start;
+        align-items:
+            flex-start;
 
-    flex-direction: column;
-  }
+        flex-direction:
+            column;
+    }
 
-  .copy-btn {
+    .copy-btn {
 
-    width: 100%;
-  }
+        width: 100%;
+    }
 
-  .community {
+    .community {
 
-    padding:
-      100px 0;
-  }
+        padding:
+            100px 0;
+    }
 
-  .community-buttons {
+    .community-buttons {
 
-    width: 100%;
-  }
+        width: 100%;
+    }
 
-  .community-buttons .btn {
+    .community-buttons .btn {
 
-    flex:
-      1 1 100%;
-  }
+        flex:
+            1 1 100%;
+    }
 
+    .red-bar-inner {
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        gap: 12px 20px;
+
+        text-align: center;
+    }
 }
 
 
@@ -1600,24 +1661,26 @@ footer {
 
 @media (prefers-reduced-motion: reduce) {
 
-  html {
+    html {
 
-    scroll-behavior: auto;
-  }
+        scroll-behavior:
+            auto;
+    }
 
-  *,
-  *::before,
-  *::after {
+    *,
+    *::before,
+    *::after {
 
-    animation: none !important;
+        animation: none !important;
 
-    transition: none !important;
-  }
+        transition: none !important;
+    }
 }
 
 </style>
 
 </head>
+
 
 <body>
 
@@ -1633,71 +1696,94 @@ footer {
 <nav class="nav">
 
 
-<a href="index.html" class="logo">
+<!-- LOGO -->
 
-<div class="logo-mark">
-🌶
-</div>
+<a
+    href="index.html"
+    class="logo"
+>
 
-CHILI
+    <div class="logo-mark">
+        🌶
+    </div>
+
+    CHILI
 
 </a>
 
+
+<!-- NAVIGATION -->
 
 <div class="nav-links">
 
-<a href="#tokenomics">
-Tokenomics
-</a>
 
-<a href="#story">
-Story
-</a>
+    <a href="#tokenomics">
+        代币经济
+    </a>
 
-<a href="#security">
-Security
-</a>
 
-<a href="#contract">
-Contract
-</a>
+    <a href="#story">
+        小辣椒故事
+    </a>
 
-<div class="language">
 
-<button
-  class="active"
-  onclick="setLanguage('EN')"
->
-EN
-</button>
+    <a href="#security">
+        安全与透明
+    </a>
 
-<button
-  onclick="setLanguage('CN')"
->
-中
-</button>
+
+    <a href="#contract">
+        合约
+    </a>
+
+
+    <!-- LANGUAGE -->
+
+    <div class="language">
+
+        <button
+            id="langCN"
+            class="active"
+            onclick="setLanguage('CN')"
+        >
+            中文
+        </button>
+
+        <button
+            id="langEN"
+            onclick="setLanguage('EN')"
+        >
+            EN
+        </button>
+
+    </div>
+
+
+    <!-- BUY -->
+
+    <a
+        href="#community"
+        class="nav-buy"
+    >
+        购买 CHILI
+    </a>
+
 
 </div>
 
-<a
-  href="#community"
-  class="nav-buy"
->
-BUY CHILI
-</a>
 
-</div>
-
+<!-- MOBILE MENU -->
 
 <button
-  class="menu-toggle"
-  id="menuToggle"
-  aria-label="Open menu"
+    class="menu-toggle"
+    id="menuToggle"
+    aria-label="Open menu"
+    aria-expanded="false"
 >
 
-<span></span>
-<span></span>
-<span></span>
+    <span></span>
+    <span></span>
+    <span></span>
 
 </button>
 
@@ -1707,6 +1793,7 @@ BUY CHILI
 </div>
 
 </header>
+
 
 
 <!-- =======================================================
@@ -1722,54 +1809,55 @@ BUY CHILI
 
 <div class="badge">
 
-<span class="dot"></span>
+    <span class="dot"></span>
 
-BNB SMART CHAIN
+    BNB SMART CHAIN
 
 </div>
 
 
 <h1>
 
-<span>CHI</span><br>
+    <span>CHI</span><br>
 
-<span class="red">LI.</span>
+    <span class="red">LI.</span>
 
 </h1>
 
 
 <p class="hero-description">
 
-<strong>
-SPICE UP THE BLOCKCHAIN.
-</strong>
+    <strong>
+        让区块链更有辣味。
+    </strong>
 
-<br><br>
+    <br><br>
 
-CHILI is a community-driven token
-built on BNB Smart Chain.
-
-小辣椒，不只是一个名字，
-也是属于社区的共同符号。
+    CHILI 是一个建立在 BNB Smart Chain
+    上的社区驱动型代币。
+    小辣椒，不只是一个名字，也是属于社区的共同符号。
 
 </p>
 
 
 <div class="hero-buttons">
 
-<a
-  href="#contract"
-  class="btn btn-primary"
->
-BUY / CONTRACT
-</a>
 
 <a
-  href="#story"
-  class="btn btn-outline"
+    href="#contract"
+    class="btn btn-primary"
 >
-EXPLORE CHILI
+    购买 / 合约
 </a>
+
+
+<a
+    href="#story"
+    class="btn btn-outline"
+>
+    探索 CHILI
+</a>
+
 
 </div>
 
@@ -1780,8 +1868,8 @@ EXPLORE CHILI
 <div class="hero-visual">
 
 <img
-  src="https://raw.githubusercontent.com/ayudekaka/ChiLi/main/logo.png"
-  alt="CHILI"
+    src="https://raw.githubusercontent.com/ayudekaka/ChiLi/main/logo.png"
+    alt="CHILI"
 >
 
 </div>
@@ -1792,6 +1880,7 @@ EXPLORE CHILI
 </section>
 
 
+
 <!-- =======================================================
      STATS
 ======================================================= -->
@@ -1800,74 +1889,81 @@ EXPLORE CHILI
 
 <div class="container">
 
+
 <div class="section-label">
-CHILI / AT A GLANCE
+    CHILI / 项目概览
 </div>
 
+
 <div class="section-title">
-Small token.<br>
-Big story.
+
+    小小代币。<br>
+    大大的故事。
+
 </div>
 
 
 <div class="stats">
 
-<div class="stat">
-
-<div class="stat-number">
-20,150,822
-</div>
-
-<div class="stat-label">
-TOTAL SUPPLY
-</div>
-
-</div>
-
 
 <div class="stat">
 
-<div class="stat-number red">
-0%
-</div>
+    <div class="stat-number">
+        20,150,822
+    </div>
 
-<div class="stat-label">
-BUY / SELL / TRANSFER TAX
-</div>
+    <div class="stat-label">
+        总供应量
+    </div>
 
 </div>
 
 
 <div class="stat">
 
-<div class="stat-number">
-BSC
-</div>
+    <div class="stat-number red">
+        0%
+    </div>
 
-<div class="stat-label">
-NETWORK
-</div>
+    <div class="stat-label">
+        买入 / 卖出 / 转账税
+    </div>
 
 </div>
 
 
 <div class="stat">
 
-<div class="stat-number">
-CHILI
+    <div class="stat-number">
+        BSC
+    </div>
+
+    <div class="stat-label">
+        网络
+    </div>
+
 </div>
 
-<div class="stat-label">
-TOKEN SYMBOL
-</div>
+
+<div class="stat">
+
+    <div class="stat-number">
+        CHILI
+    </div>
+
+    <div class="stat-label">
+        代币符号
+    </div>
 
 </div>
+
 
 </div>
 
 </div>
 
 </section>
+
 
 
 <!-- =======================================================
@@ -1880,31 +1976,22 @@ TOKEN SYMBOL
 
 <div class="red-bar-inner">
 
-<span>
-CHILI
-</span>
+    <span>CHILI</span>
 
-<span>
-BNB CHAIN
-</span>
+    <span>BNB CHAIN</span>
 
-<span>
-0% TAX
-</span>
+    <span>0% TAX</span>
 
-<span>
-COMMUNITY
-</span>
+    <span>社区</span>
 
-<span>
-SPICE UP THE BLOCKCHAIN
-</span>
+    <span>让区块链更有辣味</span>
 
 </div>
 
 </div>
 
 </div>
+
 
 
 <!-- =======================================================
@@ -1912,25 +1999,30 @@ SPICE UP THE BLOCKCHAIN
 ======================================================= -->
 
 <section
-  id="tokenomics"
-  class="tokenomics"
+    id="tokenomics"
+    class="tokenomics"
 >
 
 <div class="container">
 
+
 <div class="section-label">
-TOKENOMICS
+    代币经济
 </div>
 
+
 <div class="section-title">
-Simple.<br>
-Transparent.
+
+    简单。<br>
+    透明。
+
 </div>
+
 
 <p class="section-description">
 
-CHILI 保持简单、清晰的代币结构，
-让每一位参与者都能够快速了解基础信息。
+    CHILI 保持简单、清晰的代币结构，
+    让每一位参与者都能够快速了解基础信息。
 
 </p>
 
@@ -1940,112 +2032,118 @@ CHILI 保持简单、清晰的代币结构，
 
 <div class="token-card">
 
+
 <div class="token-card-label">
-TOKEN
+    TOKEN
 </div>
+
 
 <div class="token-card-title">
-CHILI
+    CHILI
 </div>
 
+
 <div class="token-card-sub">
-小辣椒
+    小辣椒
 </div>
+
 
 </div>
 
 
 <div class="token-info">
 
-<div class="token-row">
-
-<div class="token-key">
-Token Name
-</div>
-
-<div class="token-value">
-小辣椒 CHILI
-</div>
-
-</div>
-
 
 <div class="token-row">
 
-<div class="token-key">
-Symbol
-</div>
+    <div class="token-key">
+        代币名称
+    </div>
 
-<div class="token-value red">
-CHILI
-</div>
+    <div class="token-value">
+        小辣椒 CHILI
+    </div>
 
 </div>
 
 
 <div class="token-row">
 
-<div class="token-key">
-Network
-</div>
+    <div class="token-key">
+        代币符号
+    </div>
 
-<div class="token-value">
-BNB Smart Chain
-</div>
-
-</div>
-
-
-<div class="token-row">
-
-<div class="token-key">
-Total Supply
-</div>
-
-<div class="token-value">
-20,150,822 CHILI
-</div>
+    <div class="token-value red">
+        CHILI
+    </div>
 
 </div>
 
 
 <div class="token-row">
 
-<div class="token-key">
-Buy Tax
-</div>
+    <div class="token-key">
+        网络
+    </div>
 
-<div class="token-value red">
-0%
-</div>
-
-</div>
-
-
-<div class="token-row">
-
-<div class="token-key">
-Sell Tax
-</div>
-
-<div class="token-value red">
-0%
-</div>
+    <div class="token-value">
+        BNB Smart Chain
+    </div>
 
 </div>
 
 
 <div class="token-row">
 
-<div class="token-key">
-Transfer Tax
+    <div class="token-key">
+        总供应量
+    </div>
+
+    <div class="token-value">
+        20,150,822 CHILI
+    </div>
+
 </div>
 
-<div class="token-value red">
-0%
-</div>
+
+<div class="token-row">
+
+    <div class="token-key">
+        买入税
+    </div>
+
+    <div class="token-value red">
+        0%
+    </div>
 
 </div>
+
+
+<div class="token-row">
+
+    <div class="token-key">
+        卖出税
+    </div>
+
+    <div class="token-value red">
+        0%
+    </div>
+
+</div>
+
+
+<div class="token-row">
+
+    <div class="token-key">
+        转账税
+    </div>
+
+    <div class="token-value red">
+        0%
+    </div>
+
+</div>
+
 
 </div>
 
@@ -2054,6 +2152,7 @@ Transfer Tax
 </div>
 
 </section>
+
 
 
 <!-- =======================================================
@@ -2064,44 +2163,55 @@ Transfer Tax
 
 <div class="container">
 
+
 <div class="section-label">
-OFFICIAL CONTRACT
+    官方合约
 </div>
 
+
 <div class="section-title">
-Verify.<br>
-Then decide.
+
+    验证。<br>
+    再决定。
+
 </div>
+
 
 <p class="section-description">
 
-始终通过官方渠道确认 CHILI 合约地址。
-请勿相信未经验证的第三方合约。
+    始终通过官方渠道确认 CHILI 合约地址。
+    请勿相信未经验证的第三方合约。
 
 </p>
 
 
 <div class="contract-box">
 
+
 <div class="contract-address">
 
-0xed3caca4903256fb3e4997bc0c7830d19fb35f7c
+    0xed3caca4903256fb3e4997bc0c7830d19fb35f7c
 
 </div>
 
 
 <button
-  class="copy-btn"
-  onclick="copyContract()"
+    class="copy-btn"
+    onclick="copyContract()"
 >
-COPY CONTRACT
+
+    复制合约
+
 </button>
 
+
 </div>
+
 
 </div>
 
 </section>
+
 
 
 <!-- =======================================================
@@ -2109,8 +2219,8 @@ COPY CONTRACT
 ======================================================= -->
 
 <section
-  id="story"
-  class="story"
+    id="story"
+    class="story"
 >
 
 <div class="container">
@@ -2120,69 +2230,73 @@ COPY CONTRACT
 
 <div>
 
+
 <div class="section-label">
-THE STORY
+    小辣椒的故事
 </div>
+
 
 <div class="story-title">
 
-小辣椒<br>
+    小辣椒<br>
 
-<span>CHILI.</span>
+    <span>CHILI.</span>
 
 </div>
+
 
 </div>
 
 
 <div>
 
+
 <div class="story-text">
 
-普通人的故事。
+    普通人的故事。
 
-<br><br>
+    <br><br>
 
-人生会结束，
-名字会被遗忘，
+    人生会结束，名字会被遗忘，
+    但
+    <strong>
+        社区的信念与记忆可以延续。
+    </strong>
 
-但
-<strong>
-社区的信念与记忆可以延续。
-</strong>
+    <br><br>
 
-<br><br>
-
-每一位参与者，
-都是小辣椒的守护者。
+    每一位参与者，都是小辣椒的守护者。
 
 </div>
 
 
 <div class="story-small">
 
-它不是某个人的专属，
-而是一群人的共同符号。
+    它不是某个人的专属，
+    而是一群人的共同符号。
 
-<br><br>
+    <br><br>
 
-人会消失，币会留下，
-故事会继续燃烧。
+    人会消失，币会留下，
+    故事会继续燃烧。
 
-<br><br>
+    <br><br>
 
-小辣椒代表平凡人的希望与坚持，
-让每次参与都有意义。
+    小辣椒代表平凡人的希望与坚持，
+    让每次参与都有意义。
+
+</div>
+
 
 </div>
 
-</div>
 
 </div>
 
 </div>
 
 </section>
+
 
 
 <!-- =======================================================
@@ -2193,14 +2307,18 @@ THE STORY
 
 <div class="container">
 
+
 <div class="section-label">
-SECURITY / TRANSPARENCY
+    安全 / 透明
 </div>
 
+
 <div class="section-title">
-Open.<br>
-Clear.<br>
-Verifiable.
+
+    开放。<br>
+    清晰。<br>
+    可验证。
+
 </div>
 
 
@@ -2209,102 +2327,102 @@ Verifiable.
 
 <div class="security-item">
 
-<div class="security-icon">
-✓
-</div>
+    <div class="security-icon">
+        ✓
+    </div>
 
-<h3>
-Verified Source
-</h3>
+    <h3>
+        源码已验证
+    </h3>
 
-<p>
-合约源码已公开验证。
-</p>
-
-</div>
-
-
-<div class="security-item">
-
-<div class="security-icon">
-0
-</div>
-
-<h3>
-No Mint
-</h3>
-
-<p>
-当前公开信息没有额外铸币机制。
-</p>
+    <p>
+        合约源码已公开验证。
+    </p>
 
 </div>
 
 
 <div class="security-item">
 
-<div class="security-icon">
-0
-</div>
+    <div class="security-icon">
+        0
+    </div>
 
-<h3>
-0% Tax
-</h3>
+    <h3>
+        无额外铸币
+    </h3>
 
-<p>
-买入、卖出及转账税率为 0%。
-</p>
-
-</div>
-
-
-<div class="security-item">
-
-<div class="security-icon">
-✓
-</div>
-
-<h3>
-No Proxy
-</h3>
-
-<p>
-当前合约不是代理升级结构。
-</p>
+    <p>
+        当前公开信息没有额外铸币机制。
+    </p>
 
 </div>
 
 
 <div class="security-item">
 
-<div class="security-icon">
-✓
-</div>
+    <div class="security-icon">
+        0
+    </div>
 
-<h3>
-No Blacklist
-</h3>
+    <h3>
+        0% 税
+    </h3>
 
-<p>
-当前公开信息没有黑名单机制。
-</p>
+    <p>
+        买入、卖出及转账税率为 0%。
+    </p>
 
 </div>
 
 
 <div class="security-item">
 
-<div class="security-icon">
-✓
+    <div class="security-icon">
+        ✓
+    </div>
+
+    <h3>
+        无代理升级
+    </h3>
+
+    <p>
+        当前合约不是代理升级结构。
+    </p>
+
 </div>
 
-<h3>
-Trading
-</h3>
 
-<p>
-当前公开信息没有发现暂停交易机制。
-</p>
+<div class="security-item">
+
+    <div class="security-icon">
+        ✓
+    </div>
+
+    <h3>
+        无黑名单
+    </h3>
+
+    <p>
+        当前公开信息没有黑名单机制。
+    </p>
+
+</div>
+
+
+<div class="security-item">
+
+    <div class="security-icon">
+        ✓
+    </div>
+
+    <h3>
+        交易机制
+    </h3>
+
+    <p>
+        当前公开信息没有发现暂停交易机制。
+    </p>
 
 </div>
 
@@ -2314,6 +2432,7 @@ Trading
 </div>
 
 </section>
+
 
 
 <!-- =======================================================
@@ -2321,55 +2440,62 @@ Trading
 ======================================================= -->
 
 <section
-  id="community"
-  class="community"
+    id="community"
+    class="community"
 >
 
 <div class="container">
 
+
 <div class="section-label">
-JOIN CHILI
+    加入 CHILI
 </div>
+
 
 <div class="community-title">
 
-KEEP IT<br>
-SPICY.
+    保持<br>
+    辣味。
 
 </div>
 
+
 <p class="community-description">
 
-CHILI 的未来不由一个人定义。
-
-它来自每一个参与者，
-每一次讨论，
-以及每一个留下来的故事。
+    CHILI 的未来不由一个人定义。
+    它来自每一个参与者、每一次讨论，
+    以及每一个留下来的故事。
 
 </p>
 
 
 <div class="community-buttons">
 
-<a
-  href="#"
-  class="btn btn-primary"
->
-JOIN TELEGRAM
-</a>
 
 <a
-  href="#contract"
-  class="btn btn-outline"
+    href="#"
+    class="btn btn-primary"
+    id="telegramButton"
 >
-VIEW CONTRACT
+    加入 Telegram
 </a>
+
+
+<a
+    href="#contract"
+    class="btn btn-outline"
+>
+    查看合约
+</a>
+
 
 </div>
+
 
 </div>
 
 </section>
+
 
 
 <!-- =======================================================
@@ -2380,79 +2506,94 @@ VIEW CONTRACT
 
 <div class="container">
 
+
 <div class="footer-top">
+
 
 <div>
 
+
 <div class="footer-brand">
 
-小辣椒
-<span>
-CHILI
-</span>
+    小辣椒
+    <span>CHILI</span>
 
 </div>
+
 
 <div class="footer-description">
 
-Community-driven token
-on BNB Smart Chain.
+    BNB Smart Chain 上的社区驱动型代币。
 
 </div>
+
 
 </div>
 
 
 <div class="footer-links">
 
+
 <a href="index.html">
-HOME
+    首页
 </a>
+
 
 <a href="whitepaper.html">
-WHITEPAPER
+    白皮书
 </a>
+
 
 <a href="tokenomics.html">
-TOKENOMICS
+    代币经济
 </a>
+
 
 <a href="roadmap.html">
-ROADMAP
+    路线图
 </a>
+
 
 <a href="contact.html">
-CONTACT
+    联系我们
 </a>
+
 
 <a
-  href="https://bscscan.com/address/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c"
-  target="_blank"
-  rel="noopener"
+    href="https://bscscan.com/address/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c"
+    target="_blank"
+    rel="noopener"
 >
-BscScan ↗
+    BscScan ↗
 </a>
 
+
 </div>
+
 
 </div>
 
 
 <div class="footer-bottom">
 
-<div>
-© 2026 CHILI. ALL RIGHTS RESERVED.
-</div>
 
 <div>
-BNB SMART CHAIN · CHILI
+    © 2026 CHILI. 保留所有权利。
 </div>
 
+
+<div>
+    BNB SMART CHAIN · CHILI
 </div>
+
+
+</div>
+
 
 </div>
 
 </footer>
+
 
 
 <!-- =======================================================
@@ -2463,74 +2604,1120 @@ BNB SMART CHAIN · CHILI
 
 
 /* =========================================================
-   COPY CONTRACT
+   CONTRACT
 ========================================================= */
+
+const CONTRACT_ADDRESS =
+    "0xed3caca4903256fb3e4997bc0c7830d19fb35f7c";
+
 
 function copyContract() {
 
-  const address =
-    "0xed3caca4903256fb3e4997bc0c7830d19fb35f7c";
-
-  navigator.clipboard
-    .writeText(address)
-    .then(() => {
-
-      const button =
+    const button =
         document.querySelector(".copy-btn");
 
-      const oldText =
-        button.textContent;
 
-      button.textContent =
-        "COPIED ✓";
+    navigator.clipboard
+        .writeText(CONTRACT_ADDRESS)
 
-      setTimeout(() => {
+        .then(() => {
 
-        button.textContent =
-          oldText;
+            const oldText =
+                button.textContent;
 
-      }, 1800);
+            button.textContent =
+                "已复制 ✓";
 
-    })
-    .catch(() => {
 
-      alert(
-        "复制失败，请手动复制合约地址。"
-      );
+            setTimeout(() => {
 
-    });
+                const language =
+                    localStorage.getItem(
+                        "chili-language"
+                    ) || "CN";
+
+
+                button.textContent =
+                    language === "CN"
+                        ? "复制合约"
+                        : "COPY CONTRACT";
+
+            }, 1800);
+
+        })
+
+        .catch(() => {
+
+            alert(
+                "复制失败，请手动复制合约地址。"
+            );
+
+        });
 
 }
 
 
+
 /* =========================================================
-   LANGUAGE
+   TRANSLATIONS
+========================================================= */
+
+const translations = {
+
+
+/* =======================================================
+   CHINESE
+======================================================= */
+
+CN: {
+
+    navTokenomics: "代币经济",
+    navStory: "小辣椒故事",
+    navSecurity: "安全与透明",
+    navContract: "合约",
+    navBuy: "购买 CHILI",
+
+    heroBadge:
+        "BNB SMART CHAIN",
+
+    heroDescription:
+        "<strong>让区块链更有辣味。</strong>" +
+        "<br><br>" +
+        "CHILI 是一个建立在 BNB Smart Chain 上的社区驱动型代币。" +
+        "小辣椒，不只是一个名字，也是属于社区的共同符号。",
+
+    heroBuy:
+        "购买 / 合约",
+
+    heroExplore:
+        "探索 CHILI",
+
+    glanceLabel:
+        "CHILI / 项目概览",
+
+    glanceTitle:
+        "小小代币。<br>大大的故事。",
+
+    supplyLabel:
+        "总供应量",
+
+    taxLabel:
+        "买入 / 卖出 / 转账税",
+
+    networkLabel:
+        "网络",
+
+    symbolLabel:
+        "代币符号",
+
+    redChili:
+        "CHILI",
+
+    redChain:
+        "BNB CHAIN",
+
+    redTax:
+        "0% TAX",
+
+    redCommunity:
+        "社区",
+
+    redSpicy:
+        "让区块链更有辣味",
+
+    tokenomicsLabel:
+        "代币经济",
+
+    tokenomicsTitle:
+        "简单。<br>透明。",
+
+    tokenomicsDescription:
+        "CHILI 保持简单、清晰的代币结构，" +
+        "让每一位参与者都能够快速了解基础信息。",
+
+    tokenLabel:
+        "代币",
+
+    tokenChinese:
+        "小辣椒",
+
+    tokenName:
+        "代币名称",
+
+    symbol:
+        "代币符号",
+
+    network:
+        "网络",
+
+    totalSupply:
+        "总供应量",
+
+    buyTax:
+        "买入税",
+
+    sellTax:
+        "卖出税",
+
+    transferTax:
+        "转账税",
+
+    contractLabel:
+        "官方合约",
+
+    contractTitle:
+        "验证。<br>再决定。",
+
+    contractDescription:
+        "始终通过官方渠道确认 CHILI 合约地址。" +
+        "请勿相信未经验证的第三方合约。",
+
+    copyContract:
+        "复制合约",
+
+    storyLabel:
+        "小辣椒的故事",
+
+    storyTitle:
+        "小辣椒<br><span>CHILI.</span>",
+
+    storyText:
+        "普通人的故事。" +
+        "<br><br>" +
+        "人生会结束，名字会被遗忘，" +
+        "但 <strong>社区的信念与记忆可以延续。</strong>" +
+        "<br><br>" +
+        "每一位参与者，都是小辣椒的守护者。",
+
+    storySmall:
+        "它不是某个人的专属，而是一群人的共同符号。" +
+        "<br><br>" +
+        "人会消失，币会留下，故事会继续燃烧。" +
+        "<br><br>" +
+        "小辣椒代表平凡人的希望与坚持，让每次参与都有意义。",
+
+    securityLabel:
+        "安全 / 透明",
+
+    securityTitle:
+        "开放。<br>清晰。<br>可验证。",
+
+    verifiedTitle:
+        "源码已验证",
+
+    verifiedText:
+        "合约源码已公开验证。",
+
+    mintTitle:
+        "无额外铸币",
+
+    mintText:
+        "当前公开信息没有额外铸币机制。",
+
+    taxTitle:
+        "0% 税",
+
+    taxText:
+        "买入、卖出及转账税率为 0%。",
+
+    proxyTitle:
+        "无代理升级",
+
+    proxyText:
+        "当前合约不是代理升级结构。",
+
+    blacklistTitle:
+        "无黑名单",
+
+    blacklistText:
+        "当前公开信息没有黑名单机制。",
+
+    tradingTitle:
+        "交易机制",
+
+    tradingText:
+        "当前公开信息没有发现暂停交易机制。",
+
+    communityLabel:
+        "加入 CHILI",
+
+    communityTitle:
+        "保持<br>辣味。",
+
+    communityDescription:
+        "CHILI 的未来不由一个人定义。" +
+        "它来自每一个参与者、每一次讨论，以及每一个留下来的故事。",
+
+    telegram:
+        "加入 Telegram",
+
+    viewContract:
+        "查看合约",
+
+    footerDescription:
+        "BNB Smart Chain 上的社区驱动型代币。",
+
+    home:
+        "首页",
+
+    whitepaper:
+        "白皮书",
+
+    footerTokenomics:
+        "代币经济",
+
+    roadmap:
+        "路线图",
+
+    contact:
+        "联系我们",
+
+    bscscan:
+        "BscScan ↗",
+
+    copyright:
+        "© 2026 CHILI. 保留所有权利。",
+
+    footerChain:
+        "BNB SMART CHAIN · CHILI"
+},
+
+
+
+/* =======================================================
+   ENGLISH
+======================================================= */
+
+EN: {
+
+    navTokenomics:
+        "TOKENOMICS",
+
+    navStory:
+        "STORY",
+
+    navSecurity:
+        "SECURITY",
+
+    navContract:
+        "CONTRACT",
+
+    navBuy:
+        "BUY CHILI",
+
+    heroBadge:
+        "BNB SMART CHAIN",
+
+    heroDescription:
+        "<strong>SPICE UP THE BLOCKCHAIN.</strong>" +
+        "<br><br>" +
+        "CHILI is a community-driven token built on BNB Smart Chain. " +
+        "More than a name, CHILI is a shared symbol of the community.",
+
+    heroBuy:
+        "BUY / CONTRACT",
+
+    heroExplore:
+        "EXPLORE CHILI",
+
+    glanceLabel:
+        "CHILI / AT A GLANCE",
+
+    glanceTitle:
+        "Small token.<br>Big story.",
+
+    supplyLabel:
+        "TOTAL SUPPLY",
+
+    taxLabel:
+        "BUY / SELL / TRANSFER TAX",
+
+    networkLabel:
+        "NETWORK",
+
+    symbolLabel:
+        "TOKEN SYMBOL",
+
+    redChili:
+        "CHILI",
+
+    redChain:
+        "BNB CHAIN",
+
+    redTax:
+        "0% TAX",
+
+    redCommunity:
+        "COMMUNITY",
+
+    redSpicy:
+        "SPICE UP THE BLOCKCHAIN",
+
+    tokenomicsLabel:
+        "TOKENOMICS",
+
+    tokenomicsTitle:
+        "Simple.<br>Transparent.",
+
+    tokenomicsDescription:
+        "CHILI keeps its token structure simple and clear, " +
+        "so everyone can quickly understand the basic information.",
+
+    tokenLabel:
+        "TOKEN",
+
+    tokenChinese:
+        "XIAO LA JIAO",
+
+    tokenName:
+        "Token Name",
+
+    symbol:
+        "Symbol",
+
+    network:
+        "Network",
+
+    totalSupply:
+        "Total Supply",
+
+    buyTax:
+        "Buy Tax",
+
+    sellTax:
+        "Sell Tax",
+
+    transferTax:
+        "Transfer Tax",
+
+    contractLabel:
+        "OFFICIAL CONTRACT",
+
+    contractTitle:
+        "Verify.<br>Then decide.",
+
+    contractDescription:
+        "Always verify the official CHILI contract address " +
+        "through official channels. Never trust unverified third-party contracts.",
+
+    copyContract:
+        "COPY CONTRACT",
+
+    storyLabel:
+        "THE STORY",
+
+    storyTitle:
+        "XIAO LA JIAO<br><span>CHILI.</span>",
+
+    storyText:
+        "A story of ordinary people." +
+        "<br><br>" +
+        "Life ends. Names are forgotten. " +
+        "But <strong>the belief and memories of a community can live on.</strong>" +
+        "<br><br>" +
+        "Every participant is a guardian of CHILI.",
+
+    storySmall:
+        "CHILI does not belong to one person. " +
+        "It is a shared symbol created by a community." +
+        "<br><br>" +
+        "People may disappear. The token remains. The story continues to burn." +
+        "<br><br>" +
+        "CHILI represents the hope and persistence of ordinary people, " +
+        "making every participation meaningful.",
+
+    securityLabel:
+        "SECURITY / TRANSPARENCY",
+
+    securityTitle:
+        "Open.<br>Clear.<br>Verifiable.",
+
+    verifiedTitle:
+        "Verified Source",
+
+    verifiedText:
+        "The contract source code has been publicly verified.",
+
+    mintTitle:
+        "No Mint",
+
+    mintText:
+        "Current public information shows no additional mint mechanism.",
+
+    taxTitle:
+        "0% Tax",
+
+    taxText:
+        "Buy, sell and transfer tax are currently 0%.",
+
+    proxyTitle:
+        "No Proxy",
+
+    proxyText:
+        "The current contract is not using a proxy upgrade structure.",
+
+    blacklistTitle:
+        "No Blacklist",
+
+    blacklistText:
+        "Current public information shows no blacklist mechanism.",
+
+    tradingTitle:
+        "Trading",
+
+    tradingText:
+        "Current public information shows no trading pause mechanism.",
+
+    communityLabel:
+        "JOIN CHILI",
+
+    communityTitle:
+        "KEEP IT<br>SPICY.",
+
+    communityDescription:
+        "The future of CHILI is not defined by one person. " +
+        "It comes from every participant, every conversation, " +
+        "and every story that remains.",
+
+    telegram:
+        "JOIN TELEGRAM",
+
+    viewContract:
+        "VIEW CONTRACT",
+
+    footerDescription:
+        "A community-driven token on BNB Smart Chain.",
+
+    home:
+        "HOME",
+
+    whitepaper:
+        "WHITEPAPER",
+
+    footerTokenomics:
+        "TOKENOMICS",
+
+    roadmap:
+        "ROADMAP",
+
+    contact:
+        "CONTACT",
+
+    bscscan:
+        "BscScan ↗",
+
+    copyright:
+        "© 2026 CHILI. ALL RIGHTS RESERVED.",
+
+    footerChain:
+        "BNB SMART CHAIN · CHILI"
+}
+
+};
+
+
+
+/* =========================================================
+   SET LANGUAGE
 ========================================================= */
 
 function setLanguage(language) {
 
-  const buttons =
-    document.querySelectorAll(
-      ".language button"
+    const lang =
+        translations[language];
+
+    if (!lang) return;
+
+
+    /* =====================================================
+       NAV
+    ===================================================== */
+
+    const navLinks =
+        document.querySelectorAll(
+            ".nav-links > a"
+        );
+
+    if (navLinks.length >= 5) {
+
+        navLinks[0].textContent =
+            lang.navTokenomics;
+
+        navLinks[1].textContent =
+            lang.navStory;
+
+        navLinks[2].textContent =
+            lang.navSecurity;
+
+        navLinks[3].textContent =
+            lang.navContract;
+
+        navLinks[4].textContent =
+            lang.navBuy;
+    }
+
+
+    /* =====================================================
+       LANGUAGE BUTTON
+    ===================================================== */
+
+    document
+        .getElementById("langCN")
+        .classList.toggle(
+            "active",
+            language === "CN"
+        );
+
+    document
+        .getElementById("langEN")
+        .classList.toggle(
+            "active",
+            language === "EN"
+        );
+
+
+    /* =====================================================
+       HERO
+    ===================================================== */
+
+    document
+        .querySelector(".badge")
+        .innerHTML =
+            '<span class="dot"></span>' +
+            lang.heroBadge;
+
+
+    document
+        .querySelector(".hero-description")
+        .innerHTML =
+            lang.heroDescription;
+
+
+    document
+        .querySelector(
+            ".hero-buttons .btn-primary"
+        )
+        .textContent =
+            lang.heroBuy;
+
+
+    document
+        .querySelector(
+            ".hero-buttons .btn-outline"
+        )
+        .textContent =
+            lang.heroExplore;
+
+
+
+    /* =====================================================
+       STATS
+    ===================================================== */
+
+    const firstSection =
+        document.querySelector(
+            "section:not(#tokenomics):not(#contract):not(#story):not(#security):not(#community)"
+        );
+
+
+    if (firstSection) {
+
+        firstSection
+            .querySelector(".section-label")
+            .textContent =
+                lang.glanceLabel;
+
+
+        firstSection
+            .querySelector(".section-title")
+            .innerHTML =
+                lang.glanceTitle;
+    }
+
+
+    const stats =
+        document.querySelectorAll(
+            ".stat-label"
+        );
+
+
+    if (stats.length >= 4) {
+
+        stats[0].textContent =
+            lang.supplyLabel;
+
+        stats[1].textContent =
+            lang.taxLabel;
+
+        stats[2].textContent =
+            lang.networkLabel;
+
+        stats[3].textContent =
+            lang.symbolLabel;
+    }
+
+
+
+    /* =====================================================
+       RED BAR
+    ===================================================== */
+
+    const redBar =
+        document.querySelectorAll(
+            ".red-bar-inner span"
+        );
+
+
+    if (redBar.length >= 5) {
+
+        redBar[0].textContent =
+            lang.redChili;
+
+        redBar[1].textContent =
+            lang.redChain;
+
+        redBar[2].textContent =
+            lang.redTax;
+
+        redBar[3].textContent =
+            lang.redCommunity;
+
+        redBar[4].textContent =
+            lang.redSpicy;
+    }
+
+
+
+    /* =====================================================
+       TOKENOMICS
+    ===================================================== */
+
+    const tokenomics =
+        document.querySelector(
+            "#tokenomics"
+        );
+
+
+    tokenomics
+        .querySelector(".section-label")
+        .textContent =
+            lang.tokenomicsLabel;
+
+
+    tokenomics
+        .querySelector(".section-title")
+        .innerHTML =
+            lang.tokenomicsTitle;
+
+
+    tokenomics
+        .querySelector(".section-description")
+        .textContent =
+            lang.tokenomicsDescription;
+
+
+    tokenomics
+        .querySelector(".token-card-label")
+        .textContent =
+            lang.tokenLabel;
+
+
+    tokenomics
+        .querySelector(".token-card-sub")
+        .textContent =
+            lang.tokenChinese;
+
+
+    const tokenRows =
+        tokenomics.querySelectorAll(
+            ".token-row"
+        );
+
+
+    tokenRows[0]
+        .querySelector(".token-key")
+        .textContent =
+            lang.tokenName;
+
+
+    tokenRows[1]
+        .querySelector(".token-key")
+        .textContent =
+            lang.symbol;
+
+
+    tokenRows[2]
+        .querySelector(".token-key")
+        .textContent =
+            lang.network;
+
+
+    tokenRows[3]
+        .querySelector(".token-key")
+        .textContent =
+            lang.totalSupply;
+
+
+    tokenRows[4]
+        .querySelector(".token-key")
+        .textContent =
+            lang.buyTax;
+
+
+    tokenRows[5]
+        .querySelector(".token-key")
+        .textContent =
+            lang.sellTax;
+
+
+    tokenRows[6]
+        .querySelector(".token-key")
+        .textContent =
+            lang.transferTax;
+
+
+
+    /* =====================================================
+       CONTRACT
+    ===================================================== */
+
+    const contract =
+        document.querySelector(
+            "#contract"
+        );
+
+
+    contract
+        .querySelector(".section-label")
+        .textContent =
+            lang.contractLabel;
+
+
+    contract
+        .querySelector(".section-title")
+        .innerHTML =
+            lang.contractTitle;
+
+
+    contract
+        .querySelector(".section-description")
+        .textContent =
+            lang.contractDescription;
+
+
+    contract
+        .querySelector(".copy-btn")
+        .textContent =
+            lang.copyContract;
+
+
+
+    /* =====================================================
+       STORY
+    ===================================================== */
+
+    const story =
+        document.querySelector(
+            "#story"
+        );
+
+
+    story
+        .querySelector(".section-label")
+        .textContent =
+            lang.storyLabel;
+
+
+    story
+        .querySelector(".story-title")
+        .innerHTML =
+            lang.storyTitle;
+
+
+    story
+        .querySelector(".story-text")
+        .innerHTML =
+            lang.storyText;
+
+
+    story
+        .querySelector(".story-small")
+        .innerHTML =
+            lang.storySmall;
+
+
+
+    /* =====================================================
+       SECURITY
+    ===================================================== */
+
+    const security =
+        document.querySelector(
+            "#security"
+        );
+
+
+    security
+        .querySelector(".section-label")
+        .textContent =
+            lang.securityLabel;
+
+
+    security
+        .querySelector(".section-title")
+        .innerHTML =
+            lang.securityTitle;
+
+
+    const securityItems =
+        security.querySelectorAll(
+            ".security-item"
+        );
+
+
+    securityItems[0]
+        .querySelector("h3")
+        .textContent =
+            lang.verifiedTitle;
+
+
+    securityItems[0]
+        .querySelector("p")
+        .textContent =
+            lang.verifiedText;
+
+
+    securityItems[1]
+        .querySelector("h3")
+        .textContent =
+            lang.mintTitle;
+
+
+    securityItems[1]
+        .querySelector("p")
+        .textContent =
+            lang.mintText;
+
+
+    securityItems[2]
+        .querySelector("h3")
+        .textContent =
+            lang.taxTitle;
+
+
+    securityItems[2]
+        .querySelector("p")
+        .textContent =
+            lang.taxText;
+
+
+    securityItems[3]
+        .querySelector("h3")
+        .textContent =
+            lang.proxyTitle;
+
+
+    securityItems[3]
+        .querySelector("p")
+        .textContent =
+            lang.proxyText;
+
+
+    securityItems[4]
+        .querySelector("h3")
+        .textContent =
+            lang.blacklistTitle;
+
+
+    securityItems[4]
+        .querySelector("p")
+        .textContent =
+            lang.blacklistText;
+
+
+    securityItems[5]
+        .querySelector("h3")
+        .textContent =
+            lang.tradingTitle;
+
+
+    securityItems[5]
+        .querySelector("p")
+        .textContent =
+            lang.tradingText;
+
+
+
+    /* =====================================================
+       COMMUNITY
+    ===================================================== */
+
+    const community =
+        document.querySelector(
+            "#community"
+        );
+
+
+    community
+        .querySelector(".section-label")
+        .textContent =
+            lang.communityLabel;
+
+
+    community
+        .querySelector(".community-title")
+        .innerHTML =
+            lang.communityTitle;
+
+
+    community
+        .querySelector(".community-description")
+        .textContent =
+            lang.communityDescription;
+
+
+    community
+        .querySelector(
+            ".community-buttons .btn-primary"
+        )
+        .textContent =
+            lang.telegram;
+
+
+    community
+        .querySelector(
+            ".community-buttons .btn-outline"
+        )
+        .textContent =
+            lang.viewContract;
+
+
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    document
+        .querySelector(".footer-description")
+        .textContent =
+            lang.footerDescription;
+
+
+    const footerLinks =
+        document.querySelectorAll(
+            ".footer-links a"
+        );
+
+
+    if (footerLinks.length >= 6) {
+
+        footerLinks[0].textContent =
+            lang.home;
+
+        footerLinks[1].textContent =
+            lang.whitepaper;
+
+        footerLinks[2].textContent =
+            lang.footerTokenomics;
+
+        footerLinks[3].textContent =
+            lang.roadmap;
+
+        footerLinks[4].textContent =
+            lang.contact;
+
+        footerLinks[5].textContent =
+            lang.bscscan;
+    }
+
+
+    document
+        .querySelector(
+            ".footer-bottom div:first-child"
+        )
+        .textContent =
+            lang.copyright;
+
+
+    document
+        .querySelector(
+            ".footer-bottom div:last-child"
+        )
+        .textContent =
+            lang.footerChain;
+
+
+
+    /* =====================================================
+       SAVE
+    ===================================================== */
+
+    localStorage.setItem(
+        "chili-language",
+        language
     );
 
-  buttons.forEach(button => {
 
-    button.classList.remove("active");
+    document.documentElement.lang =
+        language === "CN"
+            ? "zh-CN"
+            : "en";
 
-  });
 
-  if (language === "EN") {
+    /* =====================================================
+       CLOSE MOBILE MENU
+    ===================================================== */
 
-    buttons[0].classList.add("active");
+    const nav =
+        document.querySelector(
+            ".nav-links"
+        );
 
-  } else {
+    if (
+        nav &&
+        nav.classList.contains(
+            "mobile-open"
+        )
+    ) {
 
-    buttons[1].classList.add("active");
+        nav.classList.remove(
+            "mobile-open"
+        );
 
-  }
+        document
+            .getElementById(
+                "menuToggle"
+            )
+            .setAttribute(
+                "aria-expanded",
+                "false"
+            );
+    }
 
 }
+
+
+
+/* =========================================================
+   LOAD LANGUAGE
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        const savedLanguage =
+            localStorage.getItem(
+                "chili-language"
+            ) || "CN";
+
+        setLanguage(
+            savedLanguage
+        );
+
+    }
+);
+
 
 
 /* =========================================================
@@ -2538,30 +3725,77 @@ function setLanguage(language) {
 ========================================================= */
 
 const menuToggle =
-  document.getElementById(
-    "menuToggle"
-  );
+    document.getElementById(
+        "menuToggle"
+    );
 
 const navLinks =
-  document.querySelector(
-    ".nav-links"
-  );
+    document.querySelector(
+        ".nav-links"
+    );
 
 
 if (menuToggle) {
 
-  menuToggle.addEventListener(
-    "click",
-    () => {
+    menuToggle.addEventListener(
+        "click",
+        () => {
 
-      navLinks.classList.toggle(
-        "mobile-open"
-      );
+            const opened =
+                navLinks.classList.toggle(
+                    "mobile-open"
+                );
 
-    }
-  );
+
+            menuToggle.setAttribute(
+                "aria-expanded",
+                opened
+                    ? "true"
+                    : "false"
+            );
+
+        }
+    );
 
 }
+
+
+
+/* =========================================================
+   CLOSE MOBILE MENU WHEN CLICKING LINK
+========================================================= */
+
+document
+    .querySelectorAll(
+        ".nav-links a"
+    )
+    .forEach(link => {
+
+        link.addEventListener(
+            "click",
+            () => {
+
+                if (
+                    navLinks.classList.contains(
+                        "mobile-open"
+                    )
+                ) {
+
+                    navLinks.classList.remove(
+                        "mobile-open"
+                    );
+
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+                }
+
+            }
+        );
+
+    });
+
 
 
 /* =========================================================
@@ -2569,31 +3803,35 @@ if (menuToggle) {
 ========================================================= */
 
 window.addEventListener(
-  "scroll",
-  () => {
+    "scroll",
+    () => {
 
-    const header =
-      document.querySelector(
-        "header"
-      );
+        const header =
+            document.querySelector(
+                "header"
+            );
 
-    if (window.scrollY > 20) {
 
-      header.style.boxShadow =
-        "0 8px 30px rgba(0,0,0,.05)";
+        if (
+            window.scrollY > 20
+        ) {
 
-    } else {
+            header.style.boxShadow =
+                "0 8px 30px rgba(0,0,0,.05)";
 
-      header.style.boxShadow =
-        "none";
+        } else {
+
+            header.style.boxShadow =
+                "none";
+
+        }
 
     }
-
-  }
 );
 
 
 </script>
 
 </body>
+
 </html>
