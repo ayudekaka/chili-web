@@ -67,7 +67,6 @@ button{
   color:#fff;
 }
 
-
 /* =========================================================
    GLOBAL GRID
 ========================================================= */
@@ -98,7 +97,6 @@ button{
       transparent 32%
     );
 }
-
 
 /* =========================================================
    HEADER
@@ -217,7 +215,6 @@ header{
   height:38px;
 }
 
-
 /* =========================================================
    BUTTONS
 ========================================================= */
@@ -264,7 +261,6 @@ header{
   color:var(--red);
   transform:translateY(-2px);
 }
-
 
 /* =========================================================
    HERO
@@ -391,7 +387,6 @@ header{
   font-size:9px;
   font-weight:900;
 }
-
 
 /* =========================================================
    HERO CORE
@@ -560,7 +555,6 @@ header{
   color:var(--red);
 }
 
-
 /* =========================================================
    SECTION
 ========================================================= */
@@ -610,7 +604,6 @@ section{
   font-size:13px;
   line-height:1.8;
 }
-
 
 /* =========================================================
    LIVE TERMINAL
@@ -777,7 +770,6 @@ section{
   border-radius:50%;
   background:var(--red);
 }
-
 
 /* terminal main */
 
@@ -988,7 +980,6 @@ section{
   text-overflow:ellipsis;
 }
 
-
 /* metrics */
 
 .metrics-grid{
@@ -1108,7 +1099,6 @@ section{
   transition:width 1s ease;
 }
 
-
 /* terminal bottom */
 
 .terminal-bottom{
@@ -1184,7 +1174,6 @@ section{
   background:var(--red-light);
 }
 
-
 /* stream */
 
 .data-stream{
@@ -1221,7 +1210,6 @@ section{
 
   background:var(--red);
 }
-
 
 /* =========================================================
    ABOUT
@@ -1278,7 +1266,6 @@ section{
   font-size:13px;
   line-height:1.9;
 }
-
 
 /* =========================================================
    WHY
@@ -1341,7 +1328,6 @@ section{
   font-size:11px;
   line-height:1.75;
 }
-
 
 /* =========================================================
    TOKENOMICS
@@ -1506,7 +1492,6 @@ section{
   font-weight:900;
 }
 
-
 /* =========================================================
    STORY
 ========================================================= */
@@ -1554,7 +1539,6 @@ section{
     );
 }
 
-
 /* =========================================================
    SECURITY
 ========================================================= */
@@ -1600,7 +1584,6 @@ section{
   font-weight:900;
   letter-spacing:.14em;
 }
-
 
 /* =========================================================
    CONTRACT
@@ -1674,7 +1657,6 @@ section{
   margin-top:28px;
 }
 
-
 /* =========================================================
    COMMUNITY
 ========================================================= */
@@ -1734,7 +1716,6 @@ section{
   margin-top:28px;
 }
 
-
 /* =========================================================
    FOOTER
 ========================================================= */
@@ -1773,7 +1754,6 @@ footer{
   letter-spacing:.12em;
 }
 
-
 /* =========================================================
    REVEAL
 ========================================================= */
@@ -1790,7 +1770,6 @@ footer{
   opacity:1;
   transform:none;
 }
-
 
 /* =========================================================
    TOAST
@@ -1826,7 +1805,6 @@ footer{
   opacity:1;
   transform:translate(-50%,0);
 }
-
 
 /* =========================================================
    MOBILE
@@ -1873,9 +1851,7 @@ footer{
   .why-grid{
     grid-template-columns:1fr 1fr;
   }
-
 }
-
 
 @media(max-width:650px){
 
@@ -1996,11 +1972,9 @@ footer{
     flex-direction:column;
     align-items:flex-start;
   }
-
 }
 </style>
 </head>
-
 
 <body>
 
@@ -2025,18 +1999,33 @@ footer{
 
     </a>
 
-
     <div class="nav-links">
 
-      <a href="#terminal">MARKET</a>
-      <a href="#about">ABOUT</a>
-      <a href="#tokenomics">TOKENOMICS</a>
-      <a href="#story">STORY</a>
-      <a href="#security">SECURITY</a>
-      <a href="#contract">CONTRACT</a>
+      <a href="#terminal" data-i18n="nav-market">
+        MARKET
+      </a>
+
+      <a href="#about" data-i18n="nav-about">
+        ABOUT
+      </a>
+
+      <a href="#tokenomics" data-i18n="nav-tokenomics">
+        TOKENOMICS
+      </a>
+
+      <a href="#story" data-i18n="nav-story">
+        STORY
+      </a>
+
+      <a href="#security" data-i18n="nav-security">
+        SECURITY
+      </a>
+
+      <a href="#contract" data-i18n="nav-contract">
+        CONTRACT
+      </a>
 
     </div>
-
 
     <div class="nav-right">
 
@@ -2058,7 +2047,6 @@ footer{
 
 </header>
 
-
 <main id="top">
 
 <!-- =========================================================
@@ -2072,8 +2060,13 @@ footer{
     <div class="hero-copy">
 
       <div class="hero-kicker">
+
         <i></i>
-        BNB SMART CHAIN // SYSTEM ONLINE
+
+        <span data-i18n="hero-kicker">
+          BNB SMART CHAIN // SYSTEM ONLINE
+        </span>
+
       </div>
 
       <h1>
@@ -2082,16 +2075,17 @@ footer{
 
       <p
         class="hero-subtitle"
-        data-en="A community-driven token built for the next wave of on-chain culture."
-        data-zh="一个面向下一代链上文化的社区驱动型代币。">
-        A community-driven token built for the next wave of on-chain culture.
+        data-i18n="hero-subtitle">
+        A community-driven token built for the next wave of
+        on-chain culture.
       </p>
 
       <div class="hero-actions">
 
         <a
           class="btn btn-red"
-          href="#terminal">
+          href="#terminal"
+          data-i18n="hero-enter">
           ENTER TERMINAL →
         </a>
 
@@ -2099,16 +2093,18 @@ footer{
           class="btn btn-light"
           href="https://bscscan.com/address/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c"
           target="_blank"
-          rel="noopener">
+          rel="noopener"
+          data-i18n="hero-contract">
           VIEW CONTRACT ↗
         </a>
 
       </div>
 
-
       <div class="contract-mini">
 
-        <span>CA:</span>
+        <span data-i18n="hero-ca">
+          CA:
+        </span>
 
         <strong>
           0xed3c...35f7c
@@ -2116,14 +2112,14 @@ footer{
 
         <button
           class="copy-mini"
-          id="heroCopy">
+          id="heroCopy"
+          data-i18n="hero-copy">
           COPY
         </button>
 
       </div>
 
     </div>
-
 
     <div class="hero-core">
 
@@ -2137,15 +2133,46 @@ footer{
         🌶
       </div>
 
-      <div class="core-label red">
+      <div
+        class="core-label red"
+        data-i18n="core-label">
         CHILI CORE
       </div>
 
       <div class="core-data">
-        NETWORK <b>BNB</b><br>
-        STATUS <b>ONLINE</b><br>
-        TAX <b>0%</b><br>
-        TOKEN <b>CHILI</b>
+
+        <span data-i18n="core-network">
+          NETWORK
+        </span>
+
+        <b>BNB</b>
+
+        <br>
+
+        <span data-i18n="core-status">
+          STATUS
+        </span>
+
+        <b data-i18n="core-online">
+          ONLINE
+        </b>
+
+        <br>
+
+        <span data-i18n="core-tax">
+          TAX
+        </span>
+
+        <b>0%</b>
+
+        <br>
+
+        <span data-i18n="core-token">
+          TOKEN
+        </span>
+
+        <b>CHILI</b>
+
       </div>
 
     </div>
@@ -2153,7 +2180,6 @@ footer{
   </div>
 
 </section>
-
 
 <!-- =========================================================
      LIVE MARKET TERMINAL
@@ -2173,11 +2199,15 @@ footer{
 
         <div>
 
-          <div class="terminal-code">
+          <div
+            class="terminal-code"
+            data-i18n="terminal-code">
             CHILI // ON-CHAIN CORE
           </div>
 
-          <div class="terminal-title">
+          <div
+            class="terminal-title"
+            data-i18n="terminal-title">
             LIVE MARKET TERMINAL
           </div>
 
@@ -2185,22 +2215,27 @@ footer{
 
       </div>
 
-
       <div class="terminal-status">
 
-        <span class="chain-chip">
+        <span
+          class="chain-chip"
+          data-i18n="terminal-chain">
           BNB SMART CHAIN
         </span>
 
         <span class="live-chip">
+
           <i></i>
-          <b id="marketStatus">SYNC</b>
+
+          <b id="marketStatus">
+            SYNC
+          </b>
+
         </span>
 
       </div>
 
     </div>
-
 
     <div class="terminal-main">
 
@@ -2215,21 +2250,25 @@ footer{
 
         <div class="module-header">
 
-          <span>
+          <span data-i18n="market-pair">
             MARKET PAIR
           </span>
 
-          <span class="module-live">
+          <span
+            class="module-live"
+            data-i18n="realtime">
             ● REALTIME
           </span>
 
         </div>
 
+        <!-- REAL DATA - DO NOT TRANSLATE -->
 
-        <div class="pair-name">
+        <div
+          class="pair-name"
+          id="displayPair">
           CHILI <span>/</span> USDT
         </div>
-
 
         <div class="price-row">
 
@@ -2247,17 +2286,17 @@ footer{
 
         </div>
 
-
-        <div class="price-label">
+        <div
+          class="price-label"
+          data-i18n="current-price">
           CURRENT MARKET PRICE
         </div>
-
 
         <div class="pulse-area">
 
           <div class="pulse-head">
 
-            <span>
+            <span data-i18n="price-pulse">
               LIVE PRICE PULSE
             </span>
 
@@ -2266,7 +2305,6 @@ footer{
             </span>
 
           </div>
-
 
           <svg
             id="pricePulse"
@@ -2282,45 +2320,60 @@ footer{
 
         </div>
 
-
         <div class="price-footer">
 
           <div>
-            <span>PAIR</span>
+
+            <span data-i18n="pair">
+              PAIR
+            </span>
+
             <strong id="pairName">
               CHILI / USDT
             </strong>
+
           </div>
 
           <div>
-            <span>DEX</span>
+
+            <span data-i18n="dex">
+              DEX
+            </span>
+
             <strong id="dexName">
               —
             </strong>
+
           </div>
 
           <div>
-            <span>BLOCK</span>
+
+            <span data-i18n="block">
+              BLOCK
+            </span>
+
             <strong id="blockNumber">
               —
             </strong>
+
           </div>
 
         </div>
 
       </div>
 
-
       <!-- METRICS -->
 
       <div class="metrics-grid">
-
 
         <div class="metric">
 
           <div class="metric-top">
             <b>01</b>
-            <span>LIQUIDITY</span>
+
+            <span data-i18n="liquidity">
+              LIQUIDITY
+            </span>
           </div>
 
           <div
@@ -2333,18 +2386,22 @@ footer{
             <i></i>
           </div>
 
-          <div class="metric-label">
+          <div
+            class="metric-label"
+            data-i18n="pool-depth">
             POOL DEPTH / USD
           </div>
 
         </div>
 
-
         <div class="metric">
 
           <div class="metric-top">
             <b>02</b>
-            <span>24H VOLUME</span>
+
+            <span data-i18n="volume">
+              24H VOLUME
+            </span>
           </div>
 
           <div
@@ -2357,18 +2414,22 @@ footer{
             <i></i>
           </div>
 
-          <div class="metric-label">
+          <div
+            class="metric-label"
+            data-i18n="market-flow">
             MARKET FLOW / 24H
           </div>
 
         </div>
 
-
         <div class="metric">
 
           <div class="metric-top">
             <b>03</b>
-            <span>MARKET CAP</span>
+
+            <span data-i18n="market-cap">
+              MARKET CAP
+            </span>
           </div>
 
           <div
@@ -2381,18 +2442,22 @@ footer{
             <i></i>
           </div>
 
-          <div class="metric-label">
+          <div
+            class="metric-label"
+            data-i18n="network-valuation">
             NETWORK VALUATION
           </div>
 
         </div>
 
-
         <div class="metric">
 
           <div class="metric-top">
             <b>04</b>
-            <span>24H TXNS</span>
+
+            <span data-i18n="txns">
+              24H TXNS
+            </span>
           </div>
 
           <div
@@ -2405,18 +2470,22 @@ footer{
             <i></i>
           </div>
 
-          <div class="metric-label">
+          <div
+            class="metric-label"
+            data-i18n="total-transactions">
             TOTAL TRANSACTIONS
           </div>
 
         </div>
 
-
         <div class="metric">
 
           <div class="metric-top">
             <b>05</b>
-            <span>BUYS</span>
+
+            <span data-i18n="buys">
+              BUYS
+            </span>
           </div>
 
           <div
@@ -2429,18 +2498,22 @@ footer{
             <i id="buyBar"></i>
           </div>
 
-          <div class="metric-label">
+          <div
+            class="metric-label"
+            data-i18n="buy-pressure">
             BUY PRESSURE
           </div>
 
         </div>
 
-
         <div class="metric">
 
           <div class="metric-top">
             <b>06</b>
-            <span>SELLS</span>
+
+            <span data-i18n="sells">
+              SELLS
+            </span>
           </div>
 
           <div
@@ -2453,7 +2526,9 @@ footer{
             <i id="sellBar"></i>
           </div>
 
-          <div class="metric-label">
+          <div
+            class="metric-label"
+            data-i18n="sell-pressure">
             SELL PRESSURE
           </div>
 
@@ -2463,7 +2538,6 @@ footer{
 
     </div>
 
-
     <div class="terminal-bottom">
 
       <div class="terminal-info">
@@ -2471,39 +2545,58 @@ footer{
         <span class="network-dot"></span>
 
         <div>
-          <small>NETWORK</small>
-          <strong>BNB SMART CHAIN</strong>
+
+          <small data-i18n="network">
+            NETWORK
+          </small>
+
+          <strong>
+            BNB SMART CHAIN
+          </strong>
+
         </div>
 
       </div>
-
 
       <div class="terminal-info">
 
         <div>
-          <small>PAIR ADDRESS</small>
-          <strong id="pairAddress">—</strong>
+
+          <small data-i18n="pair-address">
+            PAIR ADDRESS
+          </small>
+
+          <strong id="pairAddress">
+            —
+          </strong>
+
         </div>
 
       </div>
-
 
       <div class="terminal-info">
 
         <div>
-          <small>LAST UPDATE</small>
-          <strong id="lastUpdate">—</strong>
+
+          <small data-i18n="last-update">
+            LAST UPDATE
+          </small>
+
+          <strong id="lastUpdate">
+            —
+          </strong>
+
         </div>
 
       </div>
-
 
       <a
         id="chartLink"
         class="chart-link"
         href="https://dexscreener.com/bsc"
         target="_blank"
-        rel="noopener">
+        rel="noopener"
+        data-i18n="open-chart">
 
         OPEN LIVE CHART ↗
 
@@ -2511,32 +2604,47 @@ footer{
 
     </div>
 
-
     <div class="data-stream">
 
-      <span>CHILI CORE</span>
+      <span data-i18n="stream-core">
+        CHILI CORE
+      </span>
+
       <i></i>
 
-      <span>MARKET SYNC</span>
+      <span data-i18n="stream-sync">
+        MARKET SYNC
+      </span>
+
       <i></i>
 
-      <span>LIQUIDITY MATRIX</span>
+      <span data-i18n="stream-liquidity">
+        LIQUIDITY MATRIX
+      </span>
+
       <i></i>
 
-      <span>BSC BLOCK SYNC</span>
+      <span data-i18n="stream-block">
+        BSC BLOCK SYNC
+      </span>
+
       <i></i>
 
-      <span>REALTIME DATA</span>
+      <span data-i18n="stream-realtime">
+        REALTIME DATA
+      </span>
+
       <i></i>
 
-      <span>ON-CHAIN ACTIVE</span>
+      <span data-i18n="stream-active">
+        ON-CHAIN ACTIVE
+      </span>
 
     </div>
 
   </div>
 
 </section>
-
 
 <!-- =========================================================
      ABOUT
@@ -2551,40 +2659,47 @@ footer{
     <div class="section-head">
 
       <div>
-        <div class="section-code">
+
+        <div
+          class="section-code"
+          data-i18n="about-code">
           01 // SYSTEM
         </div>
 
-        <h2 class="section-title">
+        <h2
+          class="section-title"
+          data-i18n="about-title">
           ABOUT<br>CHILI
         </h2>
+
       </div>
 
       <p
         class="section-description"
-        data-en="CHILI is designed around community, transparency and on-chain participation."
-        data-zh="CHILI 围绕社区、透明度以及链上参与而构建。">
-        CHILI is designed around community, transparency and on-chain participation.
+        data-i18n="about-description">
+        CHILI is designed around community,
+        transparency and on-chain participation.
       </p>
 
     </div>
-
 
     <div class="about-grid reveal">
 
       <div class="about-card red">
 
-        <div class="about-number">
+        <div
+          class="about-number"
+          data-i18n="about-core1">
           CORE / 001
         </div>
 
-        <h3>
+        <h3 data-i18n="about-title1">
           SIMPLE.<br>
           VISIBLE.<br>
           ON-CHAIN.
         </h3>
 
-        <p>
+        <p data-i18n="about-text1">
           CHILI keeps the core idea simple:
           build a recognizable community token
           with transparent on-chain information.
@@ -2592,19 +2707,20 @@ footer{
 
       </div>
 
-
       <div class="about-card">
 
-        <div class="about-number">
+        <div
+          class="about-number"
+          data-i18n="about-core2">
           CORE / 002
         </div>
 
-        <h3>
+        <h3 data-i18n="about-title2">
           BUILT FOR<br>
           COMMUNITY.
         </h3>
 
-        <p>
+        <p data-i18n="about-text2">
           The CHILI identity is powered by the people
           who participate, create, share and build around
           the ecosystem.
@@ -2618,7 +2734,6 @@ footer{
 
 </section>
 
-
 <!-- =========================================================
      WHY CHILI
 ========================================================= -->
@@ -2630,23 +2745,30 @@ footer{
     <div class="section-head">
 
       <div>
-        <div class="section-code">
+
+        <div
+          class="section-code"
+          data-i18n="why-code">
           02 // ARCHITECTURE
         </div>
 
-        <h2 class="section-title">
+        <h2
+          class="section-title"
+          data-i18n="why-title">
           WHY<br>CHILI?
         </h2>
+
       </div>
 
     </div>
-
 
     <div class="why-grid reveal">
 
       <div class="why-card">
 
-        <div class="why-index">
+        <div
+          class="why-index"
+          data-i18n="why-node1">
           NODE / 01
         </div>
 
@@ -2654,21 +2776,22 @@ footer{
           ◉
         </div>
 
-        <h3>
+        <h3 data-i18n="why1-title">
           Community First
         </h3>
 
-        <p>
+        <p data-i18n="why1-text">
           CHILI is built around an open,
           recognizable community identity.
         </p>
 
       </div>
 
-
       <div class="why-card">
 
-        <div class="why-index">
+        <div
+          class="why-index"
+          data-i18n="why-node2">
           NODE / 02
         </div>
 
@@ -2676,21 +2799,22 @@ footer{
           ⛓
         </div>
 
-        <h3>
+        <h3 data-i18n="why2-title">
           On-Chain
         </h3>
 
-        <p>
+        <p data-i18n="why2-text">
           Market information and contract activity
           can be independently viewed on BNB Smart Chain.
         </p>
 
       </div>
 
-
       <div class="why-card">
 
-        <div class="why-index">
+        <div
+          class="why-index"
+          data-i18n="why-node3">
           NODE / 03
         </div>
 
@@ -2698,11 +2822,11 @@ footer{
           ✦
         </div>
 
-        <h3>
+        <h3 data-i18n="why3-title">
           Built To Evolve
         </h3>
 
-        <p>
+        <p data-i18n="why3-text">
           The website and community layer are designed
           to expand as the CHILI ecosystem grows.
         </p>
@@ -2714,7 +2838,6 @@ footer{
   </div>
 
 </section>
-
 
 <!-- =========================================================
      TOKENOMICS
@@ -2729,24 +2852,30 @@ footer{
     <div class="section-head">
 
       <div>
-        <div class="section-code">
+
+        <div
+          class="section-code"
+          data-i18n="token-code">
           03 // TOKEN MATRIX
         </div>
 
-        <h2 class="section-title">
+        <h2
+          class="section-title"
+          data-i18n="token-title">
           TOKENOMICS
         </h2>
+
       </div>
 
-      <p class="section-description">
+      <p
+        class="section-description"
+        data-i18n="token-description">
         Core CHILI token parameters.
       </p>
 
     </div>
 
-
     <div class="token-grid reveal">
-
 
       <div class="token-core">
 
@@ -2757,8 +2886,15 @@ footer{
           <div class="token-center">
 
             <div>
-              <strong>CHILI</strong>
-              <span>ON-CHAIN ASSET</span>
+
+              <strong>
+                CHILI
+              </strong>
+
+              <span data-i18n="token-onchain">
+                ON-CHAIN ASSET
+              </span>
+
             </div>
 
           </div>
@@ -2767,43 +2903,45 @@ footer{
 
       </div>
 
-
       <div class="token-stats">
-
 
         <div class="token-stat">
 
-          <span>TOKEN SYMBOL</span>
+          <span data-i18n="token-symbol">
+            TOKEN SYMBOL
+          </span>
 
           <strong>
             CHILI
           </strong>
 
-          <em>
+          <em data-i18n="token-active">
             ACTIVE
           </em>
 
         </div>
 
-
         <div class="token-stat">
 
-          <span>NETWORK</span>
+          <span data-i18n="token-network">
+            NETWORK
+          </span>
 
           <strong>
             BSC
           </strong>
 
-          <em>
+          <em data-i18n="token-bsc">
             BNB SMART CHAIN
           </em>
 
         </div>
 
-
         <div class="token-stat">
 
-          <span>TOTAL SUPPLY</span>
+          <span data-i18n="token-supply">
+            TOTAL SUPPLY
+          </span>
 
           <strong>
             20.15M
@@ -2815,16 +2953,17 @@ footer{
 
         </div>
 
-
         <div class="token-stat">
 
-          <span>PROJECT TAX</span>
+          <span data-i18n="token-tax">
+            PROJECT TAX
+          </span>
 
           <strong>
             0%
           </strong>
 
-          <em>
+          <em data-i18n="token-project-tax">
             PROJECT-STATED
           </em>
 
@@ -2837,7 +2976,6 @@ footer{
   </div>
 
 </section>
-
 
 <!-- =========================================================
      STORY
@@ -2852,17 +2990,22 @@ footer{
     <div class="section-head">
 
       <div>
-        <div class="section-code">
+
+        <div
+          class="section-code"
+          data-i18n="story-code">
           04 // TRANSMISSION
         </div>
 
-        <h2 class="section-title">
+        <h2
+          class="section-title"
+          data-i18n="story-title">
           THE<br>STORY
         </h2>
+
       </div>
 
     </div>
-
 
     <div class="story-grid reveal">
 
@@ -2875,22 +3018,21 @@ footer{
 
       </div>
 
-
       <div class="story-text">
 
-        <p>
+        <p data-i18n="story-text1">
           CHILI started with a simple idea:
           create something recognizable, energetic
           and easy for a community to rally around.
         </p>
 
-        <p>
+        <p data-i18n="story-text2">
           The chili represents energy.
           The chain represents transparency.
           The community creates the movement.
         </p>
 
-        <p>
+        <p data-i18n="story-text3">
           As CHILI grows, the goal is to keep the
           experience simple while continuously expanding
           the tools and infrastructure around it.
@@ -2906,7 +3048,6 @@ footer{
 
 </section>
 
-
 <!-- =========================================================
      SECURITY
 ========================================================= -->
@@ -2920,96 +3061,113 @@ footer{
     <div class="section-head">
 
       <div>
-        <div class="section-code">
+
+        <div
+          class="section-code"
+          data-i18n="security-code">
           05 // TRANSPARENCY
         </div>
 
-        <h2 class="section-title">
+        <h2
+          class="section-title"
+          data-i18n="security-title">
           SECURITY<br>& DATA
         </h2>
+
       </div>
 
-      <p class="section-description">
-        Important information should be independently verifiable on-chain.
+      <p
+        class="section-description"
+        data-i18n="security-description">
+        Important information should be independently
+        verifiable on-chain.
       </p>
 
     </div>
 
-
     <div class="security-grid reveal">
-
 
       <div class="security-card">
 
         <div class="security-card-top">
 
-          <span class="section-code">
+          <span
+            class="section-code"
+            data-i18n="security-contract">
             CONTRACT
           </span>
 
-          <span class="security-status">
+          <span
+            class="security-status"
+            data-i18n="security-onchain">
             ON-CHAIN
           </span>
 
         </div>
 
-        <h3>
+        <h3 data-i18n="security-title1">
           Public Contract
         </h3>
 
-        <p>
+        <p data-i18n="security-text1">
           The CHILI contract address is publicly accessible
           on BNB Smart Chain and can be independently inspected.
         </p>
 
       </div>
 
-
       <div class="security-card">
 
         <div class="security-card-top">
 
-          <span class="section-code">
+          <span
+            class="section-code"
+            data-i18n="security-market">
             MARKET
           </span>
 
-          <span class="security-status">
+          <span
+            class="security-status"
+            data-i18n="security-realtime">
             REALTIME
           </span>
 
         </div>
 
-        <h3>
+        <h3 data-i18n="security-title2">
           Live Market Data
         </h3>
 
-        <p>
+        <p data-i18n="security-text2">
           Price, liquidity, volume and transaction information
           displayed above is retrieved from live market data.
         </p>
 
       </div>
 
-
       <div class="security-card">
 
         <div class="security-card-top">
 
-          <span class="section-code">
+          <span
+            class="section-code"
+            data-i18n="security-network">
             NETWORK
           </span>
 
-          <span class="security-status">
+          <span
+            class="security-status"
+            data-i18n="security-bsc">
             BSC
           </span>
 
         </div>
 
-        <h3>
+        <h3 data-i18n="security-title3">
           BNB Smart Chain
         </h3>
 
-        <p>
+        <p data-i18n="security-text3">
           CHILI operates on BNB Smart Chain,
           allowing transactions and contract activity
           to be publicly viewed.
@@ -3017,26 +3175,29 @@ footer{
 
       </div>
 
-
       <div class="security-card">
 
         <div class="security-card-top">
 
-          <span class="section-code">
+          <span
+            class="section-code"
+            data-i18n="security-data">
             DATA
           </span>
 
-          <span class="security-status">
+          <span
+            class="security-status"
+            data-i18n="security-no-fake">
             NO FAKE TICKER
           </span>
 
         </div>
 
-        <h3>
+        <h3 data-i18n="security-title4">
           No Fabricated Market Data
         </h3>
 
-        <p>
+        <p data-i18n="security-text4">
           If live market information cannot be retrieved,
           the terminal displays a sync/offline state instead
           of inventing numbers.
@@ -3050,7 +3211,6 @@ footer{
 
 </section>
 
-
 <!-- =========================================================
      CONTRACT
 ========================================================= -->
@@ -3063,7 +3223,9 @@ footer{
 
     <div class="contract-box reveal">
 
-      <div class="contract-label">
+      <div
+        class="contract-label"
+        data-i18n="contract-label">
         CHILI // CONTRACT IDENTIFIER
       </div>
 
@@ -3071,12 +3233,12 @@ footer{
         0xed3caca4903256fb3e4997bc0c7830d19fb35f7c
       </div>
 
-
       <div class="contract-actions">
 
         <button
           class="btn btn-red"
-          id="copyContract">
+          id="copyContract"
+          data-i18n="copy-contract">
           COPY CONTRACT
         </button>
 
@@ -3084,7 +3246,8 @@ footer{
           class="btn btn-light"
           href="https://bscscan.com/address/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c"
           target="_blank"
-          rel="noopener">
+          rel="noopener"
+          data-i18n="bscscan">
           BSCSCAN ↗
         </a>
 
@@ -3092,7 +3255,8 @@ footer{
           class="btn btn-light"
           href="https://dexscreener.com/bsc"
           target="_blank"
-          rel="noopener">
+          rel="noopener"
+          data-i18n="dexscreener">
           DEXSCREENER ↗
         </a>
 
@@ -3104,7 +3268,6 @@ footer{
 
 </section>
 
-
 <!-- =========================================================
      COMMUNITY
 ========================================================= -->
@@ -3115,16 +3278,18 @@ footer{
 
     <div class="community-box reveal">
 
-      <div class="section-code">
+      <div
+        class="section-code"
+        data-i18n="community-code">
         06 // COMMUNITY NETWORK
       </div>
 
-      <h2>
+      <h2 data-i18n="community-title">
         FEEL THE<br>
         <span>HEAT.</span>
       </h2>
 
-      <p>
+      <p data-i18n="community-text">
         CHILI is more than a token address.
         It is a community identity built on-chain.
       </p>
@@ -3134,7 +3299,8 @@ footer{
         <a
           class="btn btn-red"
           href="#"
-          onclick="return false;">
+          onclick="return false;"
+          data-i18n="telegram">
           TELEGRAM ↗
         </a>
 
@@ -3142,7 +3308,8 @@ footer{
           class="btn btn-light"
           href="https://bscscan.com/address/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c"
           target="_blank"
-          rel="noopener">
+          rel="noopener"
+          data-i18n="explore-bsc">
           EXPLORE ON BSC ↗
         </a>
 
@@ -3156,7 +3323,6 @@ footer{
 
 </main>
 
-
 <!-- =========================================================
      FOOTER
 ========================================================= -->
@@ -3169,7 +3335,9 @@ footer{
       <span>🌶</span> CHILI
     </div>
 
-    <div class="footer-copy">
+    <div
+      class="footer-copy"
+      data-i18n="footer">
       © 2026 CHILI // BNB SMART CHAIN
     </div>
 
@@ -3177,13 +3345,11 @@ footer{
 
 </footer>
 
-
 <div
   class="toast"
   id="toast">
   COPIED
 </div>
-
 
 <script>
 /* =========================================================
@@ -3191,19 +3357,899 @@ footer{
 ========================================================= */
 
 const CHILI_ADDRESS =
-  "0xed3caca4903256fb3e4997bc0c7830d19fb35f7c";
+  "0xed3caca4903256fb3e4997bc0c7830d19fb35f7c".toLowerCase();
 
-const DEX_API =
-  `https://api.dexscreener.com/tokens/v1/bsc/${CHILI_ADDRESS}`;
+
+/* =========================================================
+   DEXSCREENER
+========================================================= */
+
+const DEX_ENDPOINTS = [
+
+  "https://api.dexscreener.com/token-pairs/v1/bsc/" +
+  CHILI_ADDRESS,
+
+  "https://api.dexscreener.com/tokens/v1/bsc/" +
+  CHILI_ADDRESS
+
+];
+
+
+/* =========================================================
+   BSC RPC
+========================================================= */
 
 const BSC_RPCS = [
+
   "https://bsc-dataseed.binance.org/",
+  "https://bsc-dataseed1.binance.org/",
+  "https://bsc-dataseed2.binance.org/",
+  "https://bsc-dataseed3.binance.org/",
   "https://bsc-dataseed1.defibit.io/",
   "https://bsc-dataseed1.ninicoin.io/"
+
 ];
+
 
 let priceHistory = [];
 let currentPair = null;
+let marketLoadedOnce = false;
+
+
+/* =========================================================
+   TRANSLATIONS
+========================================================= */
+
+const translations = {
+
+  en: {
+
+    "nav-market":"MARKET",
+    "nav-about":"ABOUT",
+    "nav-tokenomics":"TOKENOMICS",
+    "nav-story":"STORY",
+    "nav-security":"SECURITY",
+    "nav-contract":"CONTRACT",
+
+    "hero-kicker":
+      "BNB SMART CHAIN // SYSTEM ONLINE",
+
+    "hero-subtitle":
+      "A community-driven token built for the next wave of on-chain culture.",
+
+    "hero-enter":
+      "ENTER TERMINAL →",
+
+    "hero-contract":
+      "VIEW CONTRACT ↗",
+
+    "hero-ca":
+      "CA:",
+
+    "hero-copy":
+      "COPY",
+
+    "core-label":
+      "CHILI CORE",
+
+    "core-network":
+      "NETWORK",
+
+    "core-status":
+      "STATUS",
+
+    "core-tax":
+      "TAX",
+
+    "core-token":
+      "TOKEN",
+
+    "core-online":
+      "ONLINE",
+
+    "terminal-code":
+      "CHILI // ON-CHAIN CORE",
+
+    "terminal-title":
+      "LIVE MARKET TERMINAL",
+
+    "terminal-chain":
+      "BNB SMART CHAIN",
+
+    "terminal-sync":
+      "SYNC",
+
+    "terminal-live":
+      "LIVE",
+
+    "terminal-offline":
+      "OFFLINE",
+
+    "terminal-reconnecting":
+      "RECONNECTING",
+
+    "market-pair":
+      "MARKET PAIR",
+
+    "realtime":
+      "● REALTIME",
+
+    "current-price":
+      "CURRENT MARKET PRICE",
+
+    "price-pulse":
+      "LIVE PRICE PULSE",
+
+    "waiting":
+      "WAITING FOR DATA...",
+
+    "pair":
+      "PAIR",
+
+    "dex":
+      "DEX",
+
+    "block":
+      "BLOCK",
+
+    "liquidity":
+      "LIQUIDITY",
+
+    "volume":
+      "24H VOLUME",
+
+    "market-cap":
+      "MARKET CAP",
+
+    "txns":
+      "24H TXNS",
+
+    "buys":
+      "BUYS",
+
+    "sells":
+      "SELLS",
+
+    "pool-depth":
+      "POOL DEPTH / USD",
+
+    "market-flow":
+      "MARKET FLOW / 24H",
+
+    "network-valuation":
+      "NETWORK VALUATION",
+
+    "total-transactions":
+      "TOTAL TRANSACTIONS",
+
+    "buy-pressure":
+      "BUY PRESSURE",
+
+    "sell-pressure":
+      "SELL PRESSURE",
+
+    "network":
+      "NETWORK",
+
+    "pair-address":
+      "PAIR ADDRESS",
+
+    "last-update":
+      "LAST UPDATE",
+
+    "open-chart":
+      "OPEN LIVE CHART ↗",
+
+    "stream-core":
+      "CHILI CORE",
+
+    "stream-sync":
+      "MARKET SYNC",
+
+    "stream-liquidity":
+      "LIQUIDITY MATRIX",
+
+    "stream-block":
+      "BSC BLOCK SYNC",
+
+    "stream-realtime":
+      "REALTIME DATA",
+
+    "stream-active":
+      "ON-CHAIN ACTIVE",
+
+    "about-code":
+      "01 // SYSTEM",
+
+    "about-title":
+      "ABOUT<br>CHILI",
+
+    "about-description":
+      "CHILI is designed around community, transparency and on-chain participation.",
+
+    "about-core1":
+      "CORE / 001",
+
+    "about-title1":
+      "SIMPLE.<br>VISIBLE.<br>ON-CHAIN.",
+
+    "about-text1":
+      "CHILI keeps the core idea simple: build a recognizable community token with transparent on-chain information.",
+
+    "about-core2":
+      "CORE / 002",
+
+    "about-title2":
+      "BUILT FOR<br>COMMUNITY.",
+
+    "about-text2":
+      "The CHILI identity is powered by the people who participate, create, share and build around the ecosystem.",
+
+    "why-code":
+      "02 // ARCHITECTURE",
+
+    "why-title":
+      "WHY<br>CHILI?",
+
+    "why-node1":
+      "NODE / 01",
+
+    "why1-title":
+      "Community First",
+
+    "why1-text":
+      "CHILI is built around an open, recognizable community identity.",
+
+    "why-node2":
+      "NODE / 02",
+
+    "why2-title":
+      "On-Chain",
+
+    "why2-text":
+      "Market information and contract activity can be independently viewed on BNB Smart Chain.",
+
+    "why-node3":
+      "NODE / 03",
+
+    "why3-title":
+      "Built To Evolve",
+
+    "why3-text":
+      "The website and community layer are designed to expand as the CHILI ecosystem grows.",
+
+    "token-code":
+      "03 // TOKEN MATRIX",
+
+    "token-title":
+      "TOKENOMICS",
+
+    "token-description":
+      "Core CHILI token parameters.",
+
+    "token-symbol":
+      "TOKEN SYMBOL",
+
+    "token-network":
+      "NETWORK",
+
+    "token-supply":
+      "TOTAL SUPPLY",
+
+    "token-tax":
+      "PROJECT TAX",
+
+    "token-active":
+      "ACTIVE",
+
+    "token-bsc":
+      "BNB SMART CHAIN",
+
+    "token-project-tax":
+      "PROJECT-STATED",
+
+    "token-onchain":
+      "ON-CHAIN ASSET",
+
+    "story-code":
+      "04 // TRANSMISSION",
+
+    "story-title":
+      "THE<br>STORY",
+
+    "story-text1":
+      "CHILI started with a simple idea: create something recognizable, energetic and easy for a community to rally around.",
+
+    "story-text2":
+      "The chili represents energy. The chain represents transparency. The community creates the movement.",
+
+    "story-text3":
+      "As CHILI grows, the goal is to keep the experience simple while continuously expanding the tools and infrastructure around it.",
+
+    "security-code":
+      "05 // TRANSPARENCY",
+
+    "security-title":
+      "SECURITY<br>& DATA",
+
+    "security-description":
+      "Important information should be independently verifiable on-chain.",
+
+    "security-contract":
+      "CONTRACT",
+
+    "security-market":
+      "MARKET",
+
+    "security-network":
+      "NETWORK",
+
+    "security-data":
+      "DATA",
+
+    "security-onchain":
+      "ON-CHAIN",
+
+    "security-realtime":
+      "REALTIME",
+
+    "security-bsc":
+      "BSC",
+
+    "security-no-fake":
+      "NO FAKE TICKER",
+
+    "security-title1":
+      "Public Contract",
+
+    "security-text1":
+      "The CHILI contract address is publicly accessible on BNB Smart Chain and can be independently inspected.",
+
+    "security-title2":
+      "Live Market Data",
+
+    "security-text2":
+      "Price, liquidity, volume and transaction information displayed above is retrieved from live market data.",
+
+    "security-title3":
+      "BNB Smart Chain",
+
+    "security-text3":
+      "CHILI operates on BNB Smart Chain, allowing transactions and contract activity to be publicly viewed.",
+
+    "security-title4":
+      "No Fabricated Market Data",
+
+    "security-text4":
+      "If live market information cannot be retrieved, the terminal displays a sync/offline state instead of inventing numbers.",
+
+    "contract-label":
+      "CHILI // CONTRACT IDENTIFIER",
+
+    "copy-contract":
+      "COPY CONTRACT",
+
+    "bscscan":
+      "BSCSCAN ↗",
+
+    "dexscreener":
+      "DEXSCREENER ↗",
+
+    "community-code":
+      "06 // COMMUNITY NETWORK",
+
+    "community-title":
+      "FEEL THE<br><span>HEAT.</span>",
+
+    "community-text":
+      "CHILI is more than a token address. It is a community identity built on-chain.",
+
+    "telegram":
+      "TELEGRAM ↗",
+
+    "explore-bsc":
+      "EXPLORE ON BSC ↗",
+
+    "footer":
+      "© 2026 CHILI // BNB SMART CHAIN",
+
+    "copied":
+      "COPIED"
+  },
+
+
+  zh: {
+
+    "nav-market":
+      "市场",
+
+    "nav-about":
+      "关于 CHILI",
+
+    "nav-tokenomics":
+      "代币经济",
+
+    "nav-story":
+      "故事",
+
+    "nav-security":
+      "安全与数据",
+
+    "nav-contract":
+      "合约",
+
+    "hero-kicker":
+      "BNB 智能链 // 系统在线",
+
+    "hero-subtitle":
+      "一个面向下一代链上文化的社区驱动型代币。",
+
+    "hero-enter":
+      "进入终端 →",
+
+    "hero-contract":
+      "查看合约 ↗",
+
+    "hero-ca":
+      "合约：",
+
+    "hero-copy":
+      "复制",
+
+    "core-label":
+      "CHILI 核心",
+
+    "core-network":
+      "网络",
+
+    "core-status":
+      "状态",
+
+    "core-tax":
+      "税率",
+
+    "core-token":
+      "代币",
+
+    "core-online":
+      "在线",
+
+    "terminal-code":
+      "CHILI // 链上核心",
+
+    "terminal-title":
+      "实时市场终端",
+
+    "terminal-chain":
+      "BNB 智能链",
+
+    "terminal-sync":
+      "同步中",
+
+    "terminal-live":
+      "实时",
+
+    "terminal-offline":
+      "离线",
+
+    "terminal-reconnecting":
+      "重新连接",
+
+    "market-pair":
+      "交易对",
+
+    "realtime":
+      "● 实时数据",
+
+    "current-price":
+      "当前市场价格",
+
+    "price-pulse":
+      "实时价格脉冲",
+
+    "waiting":
+      "等待数据...",
+
+    "pair":
+      "交易对",
+
+    "dex":
+      "DEX",
+
+    "block":
+      "区块",
+
+    "liquidity":
+      "流动性",
+
+    "volume":
+      "24小时交易量",
+
+    "market-cap":
+      "市值",
+
+    "txns":
+      "24小时交易笔数",
+
+    "buys":
+      "买入",
+
+    "sells":
+      "卖出",
+
+    "pool-depth":
+      "流动性深度 / USD",
+
+    "market-flow":
+      "市场流量 / 24H",
+
+    "network-valuation":
+      "网络估值",
+
+    "total-transactions":
+      "总交易笔数",
+
+    "buy-pressure":
+      "买入压力",
+
+    "sell-pressure":
+      "卖出压力",
+
+    "network":
+      "网络",
+
+    "pair-address":
+      "交易对地址",
+
+    "last-update":
+      "最后更新",
+
+    "open-chart":
+      "打开实时图表 ↗",
+
+    "stream-core":
+      "CHILI 核心",
+
+    "stream-sync":
+      "市场同步",
+
+    "stream-liquidity":
+      "流动性矩阵",
+
+    "stream-block":
+      "BSC 区块同步",
+
+    "stream-realtime":
+      "实时数据",
+
+    "stream-active":
+      "链上运行中",
+
+    "about-code":
+      "01 // 系统",
+
+    "about-title":
+      "关于<br>CHILI",
+
+    "about-description":
+      "CHILI 围绕社区、透明度以及链上参与而构建。",
+
+    "about-core1":
+      "核心 / 001",
+
+    "about-title1":
+      "简单。<br>可见。<br>链上。",
+
+    "about-text1":
+      "CHILI 保持核心理念简单：打造一个具有辨识度，并拥有透明链上信息的社区型代币。",
+
+    "about-core2":
+      "核心 / 002",
+
+    "about-title2":
+      "为社区<br>而生。",
+
+    "about-text2":
+      "CHILI 的身份由每一位参与、创造、分享并建设生态的社区成员共同推动。",
+
+    "why-code":
+      "02 // 架构",
+
+    "why-title":
+      "为什么<br>选择 CHILI？",
+
+    "why-node1":
+      "节点 / 01",
+
+    "why1-title":
+      "社区优先",
+
+    "why1-text":
+      "CHILI 建立在开放且具有辨识度的社区身份之上。",
+
+    "why-node2":
+      "节点 / 02",
+
+    "why2-title":
+      "链上透明",
+
+    "why2-text":
+      "市场信息和合约活动都可以在 BNB 智能链上独立查看。",
+
+    "why-node3":
+      "节点 / 03",
+
+    "why3-title":
+      "持续进化",
+
+    "why3-text":
+      "网站与社区基础设施将随着 CHILI 生态的发展不断扩展。",
+
+    "token-code":
+      "03 // 代币矩阵",
+
+    "token-title":
+      "代币经济",
+
+    "token-description":
+      "CHILI 核心代币参数。",
+
+    "token-symbol":
+      "代币符号",
+
+    "token-network":
+      "网络",
+
+    "token-supply":
+      "总供应量",
+
+    "token-tax":
+      "项目税率",
+
+    "token-active":
+      "运行中",
+
+    "token-bsc":
+      "BNB 智能链",
+
+    "token-project-tax":
+      "项目公开信息",
+
+    "token-onchain":
+      "链上资产",
+
+    "story-code":
+      "04 // 信息传输",
+
+    "story-title":
+      "CHILI<br>故事",
+
+    "story-text1":
+      "CHILI 始于一个简单的想法：创造一个具有辨识度、充满活力，并且能够让社区共同参与的品牌。",
+
+    "story-text2":
+      "辣椒代表能量。区块链代表透明度。社区创造真正的运动。",
+
+    "story-text3":
+      "随着 CHILI 不断发展，我们希望保持简单的体验，同时持续扩展周边工具与基础设施。",
+
+    "security-code":
+      "05 // 透明度",
+
+    "security-title":
+      "安全<br>与数据",
+
+    "security-description":
+      "重要信息应该能够在链上被独立验证。",
+
+    "security-contract":
+      "合约",
+
+    "security-market":
+      "市场",
+
+    "security-network":
+      "网络",
+
+    "security-data":
+      "数据",
+
+    "security-onchain":
+      "链上",
+
+    "security-realtime":
+      "实时",
+
+    "security-bsc":
+      "BSC",
+
+    "security-no-fake":
+      "无虚假行情",
+
+    "security-title1":
+      "公开合约",
+
+    "security-text1":
+      "CHILI 合约地址公开存在于 BNB 智能链上，任何人都可以独立查看和验证。",
+
+    "security-title2":
+      "实时市场数据",
+
+    "security-text2":
+      "上方显示的价格、流动性、交易量和交易数据均来自实时市场数据。",
+
+    "security-title3":
+      "BNB 智能链",
+
+    "security-text3":
+      "CHILI 运行于 BNB 智能链，交易与合约活动均可以公开查看。",
+
+    "security-title4":
+      "不伪造市场数据",
+
+    "security-text4":
+      "如果无法获取实时市场信息，终端会显示同步中或离线状态，而不是编造数据。",
+
+    "contract-label":
+      "CHILI // 合约标识",
+
+    "copy-contract":
+      "复制合约",
+
+    "bscscan":
+      "BSCSCAN ↗",
+
+    "dexscreener":
+      "DEXSCREENER ↗",
+
+    "community-code":
+      "06 // 社区网络",
+
+    "community-title":
+      "感受<br><span>CHILI 热度。</span>",
+
+    "community-text":
+      "CHILI 不只是一个合约地址，更是一个建立在链上的社区身份。",
+
+    "telegram":
+      "TELEGRAM ↗",
+
+    "explore-bsc":
+      "在 BSC 上探索 ↗",
+
+    "footer":
+      "© 2026 CHILI // BNB 智能链",
+
+    "copied":
+      "已复制"
+  }
+
+};
+
+
+/* =========================================================
+   LANGUAGE ENGINE
+========================================================= */
+
+let currentLanguage =
+  localStorage.getItem("chili-language") || "en";
+
+
+function t(key){
+
+  return (
+    translations[currentLanguage] &&
+    translations[currentLanguage][key]
+  ) || key;
+
+}
+
+
+function translatePage(){
+
+  document
+    .querySelectorAll("[data-i18n]")
+    .forEach(element=>{
+
+      const key =
+        element.getAttribute("data-i18n");
+
+      if(
+        translations[currentLanguage] &&
+        translations[currentLanguage][key] !== undefined
+      ){
+
+        element.innerHTML =
+          translations[currentLanguage][key];
+
+      }
+
+    });
+
+
+  $("langBtn").textContent =
+    currentLanguage === "en"
+      ? "中文"
+      : "EN";
+
+
+  /*
+    REALTIME DATA NEVER GETS TRANSLATED
+  */
+
+  if(
+    $("marketStatus")
+  ){
+
+    const status =
+      $("marketStatus").dataset.status;
+
+    if(status === "live"){
+
+      $("marketStatus").textContent =
+        t("terminal-live");
+
+    }
+
+    else if(status === "offline"){
+
+      $("marketStatus").textContent =
+        t("terminal-offline");
+
+    }
+
+    else if(status === "reconnecting"){
+
+      $("marketStatus").textContent =
+        t("terminal-reconnecting");
+
+    }
+
+    else{
+
+      $("marketStatus").textContent =
+        t("terminal-sync");
+
+    }
+
+  }
+
+
+  /*
+    Pulse waiting text
+  */
+
+  if(
+    priceHistory.length === 0 &&
+    $("pulseTime")
+  ){
+
+    $("pulseTime").textContent =
+      t("waiting");
+
+  }
+
+}
+
+
+$("langBtn").addEventListener(
+  "click",
+  ()=>{
+
+    currentLanguage =
+      currentLanguage === "en"
+        ? "zh"
+        : "en";
+
+    localStorage.setItem(
+      "chili-language",
+      currentLanguage
+    );
+
+    translatePage();
+
+  }
+);
 
 
 /* =========================================================
@@ -3225,24 +4271,41 @@ function formatMoney(value){
     return "—";
   }
 
-  const n = Number(value);
+  const n =
+    Number(value);
 
   if(n >= 1000000000){
-    return "$" + (n / 1000000000).toFixed(2) + "B";
+
+    return "$" +
+      (n / 1000000000).toFixed(2) +
+      "B";
+
   }
 
   if(n >= 1000000){
-    return "$" + (n / 1000000).toFixed(2) + "M";
+
+    return "$" +
+      (n / 1000000).toFixed(2) +
+      "M";
+
   }
 
   if(n >= 1000){
-    return "$" + (n / 1000).toFixed(2) + "K";
+
+    return "$" +
+      (n / 1000).toFixed(2) +
+      "K";
+
   }
 
   return "$" +
-    n.toLocaleString(undefined,{
-      maximumFractionDigits:6
-    });
+    n.toLocaleString(
+      undefined,
+      {
+        maximumFractionDigits:6
+      }
+    );
+
 }
 
 
@@ -3253,10 +4316,13 @@ function formatNumber(value){
     value === undefined ||
     !isFinite(Number(value))
   ){
+
     return "—";
+
   }
 
   return Number(value).toLocaleString();
+
 }
 
 
@@ -3267,32 +4333,48 @@ function formatPrice(value){
     value === undefined ||
     !isFinite(Number(value))
   ){
+
     return "—";
+
   }
 
-  const n = Number(value);
+  const n =
+    Number(value);
 
   if(n === 0){
     return "$0";
   }
 
   if(n < 0.000001){
-    return "$" + n.toFixed(10);
+
+    return "$" +
+      n.toFixed(10);
+
   }
 
   if(n < 0.001){
-    return "$" + n.toFixed(8);
+
+    return "$" +
+      n.toFixed(8);
+
   }
 
   if(n < 1){
-    return "$" + n.toFixed(6);
+
+    return "$" +
+      n.toFixed(6);
+
   }
 
   return "$" +
-    n.toLocaleString(undefined,{
-      minimumFractionDigits:2,
-      maximumFractionDigits:6
-    });
+    n.toLocaleString(
+      undefined,
+      {
+        minimumFractionDigits:2,
+        maximumFractionDigits:6
+      }
+    );
+
 }
 
 
@@ -3307,6 +4389,7 @@ function shortenAddress(address){
     "..." +
     address.slice(-6)
   );
+
 }
 
 
@@ -3320,16 +4403,21 @@ async function copyText(text){
 
     await navigator.clipboard.writeText(text);
 
-    showToast("COPIED");
+    showToast(
+      translations[currentLanguage].copied
+    );
 
   }catch(error){
 
     const textarea =
       document.createElement("textarea");
 
-    textarea.value = text;
+    textarea.value =
+      text;
 
-    document.body.appendChild(textarea);
+    document.body.appendChild(
+      textarea
+    );
 
     textarea.select();
 
@@ -3337,22 +4425,32 @@ async function copyText(text){
 
     textarea.remove();
 
-    showToast("COPIED");
+    showToast(
+      translations[currentLanguage].copied
+    );
+
   }
+
 }
 
 
 function showToast(message){
 
-  const toast = $("toast");
+  const toast =
+    $("toast");
 
-  toast.textContent = message;
+  toast.textContent =
+    message;
 
   toast.classList.add("show");
 
-  setTimeout(()=>{
-    toast.classList.remove("show");
-  },1800);
+  setTimeout(
+    ()=>{
+      toast.classList.remove("show");
+    },
+    1800
+  );
+
 }
 
 
@@ -3373,6 +4471,58 @@ $("heroCopy").addEventListener(
 
 
 /* =========================================================
+   FETCH JSON
+========================================================= */
+
+async function fetchJSON(url){
+
+  const controller =
+    new AbortController();
+
+  const timeout =
+    setTimeout(
+      ()=>{
+        controller.abort();
+      },
+      10000
+    );
+
+  try{
+
+    const response =
+      await fetch(
+        url,
+        {
+          method:"GET",
+          cache:"no-store",
+          signal:controller.signal,
+          headers:{
+            "Accept":"application/json"
+          }
+        }
+      );
+
+    if(!response.ok){
+
+      throw new Error(
+        "HTTP " +
+        response.status
+      );
+
+    }
+
+    return await response.json();
+
+  }finally{
+
+    clearTimeout(timeout);
+
+  }
+
+}
+
+
+/* =========================================================
    RPC
 ========================================================= */
 
@@ -3383,7 +4533,9 @@ async function rpcRequest(
 
   let lastError;
 
-  for(const rpc of BSC_RPCS){
+  for(
+    const rpc of BSC_RPCS
+  ){
 
     try{
 
@@ -3394,47 +4546,62 @@ async function rpcRequest(
             method:"POST",
 
             headers:{
-              "Content-Type":"application/json"
+              "Content-Type":
+                "application/json"
             },
 
             body:JSON.stringify({
+
               jsonrpc:"2.0",
+
               id:Date.now(),
+
               method,
+
               params
+
             })
           }
         );
 
       if(!response.ok){
+
         throw new Error(
           "RPC HTTP " +
           response.status
         );
+
       }
 
       const data =
         await response.json();
 
       if(data.error){
+
         throw new Error(
           data.error.message
         );
+
       }
 
       return data.result;
 
     }catch(error){
 
-      lastError = error;
+      lastError =
+        error;
 
     }
+
   }
 
   throw (
     lastError ||
-    new Error("BSC RPC unavailable")
+    new Error(
+      "BSC RPC unavailable"
+    )
   );
+
 }
 
 
@@ -3452,16 +4619,28 @@ async function updateBlock(){
       );
 
     const block =
-      parseInt(result,16);
+      parseInt(
+        result,
+        16
+      );
 
     $("blockNumber").textContent =
       block.toLocaleString();
 
   }catch(error){
 
-    $("blockNumber").textContent =
-      "—";
+    /*
+      Do not destroy previous block
+      if temporary RPC failure.
+    */
+
+    console.warn(
+      "BSC block error:",
+      error
+    );
+
   }
+
 }
 
 
@@ -3478,44 +4657,58 @@ function selectBestPair(pairs){
   const token =
     CHILI_ADDRESS.toLowerCase();
 
+
   const valid =
-    pairs.filter(pair=>{
+    pairs.filter(
+      pair=>{
 
-      if(!pair){
-        return false;
+        if(!pair){
+          return false;
+        }
+
+        if(
+          String(pair.chainId)
+            .toLowerCase()
+          !== "bsc"
+        ){
+
+          return false;
+
+        }
+
+
+        const base =
+          pair.baseToken &&
+          pair.baseToken.address
+            ? pair.baseToken.address
+                .toLowerCase()
+            : "";
+
+
+        const quote =
+          pair.quoteToken &&
+          pair.quoteToken.symbol
+            ? pair.quoteToken.symbol
+                .toUpperCase()
+            : "";
+
+
+        return (
+
+          base === token &&
+
+          [
+            "USDT",
+            "USDC",
+            "BUSD",
+            "WBNB",
+            "BNB"
+          ].includes(quote)
+
+        );
+
       }
-
-      if(
-        String(pair.chainId).toLowerCase()
-        !== "bsc"
-      ){
-        return false;
-      }
-
-      const base =
-        pair.baseToken &&
-        pair.baseToken.address
-        ? pair.baseToken.address.toLowerCase()
-        : "";
-
-      const quote =
-        pair.quoteToken &&
-        pair.quoteToken.symbol
-        ? pair.quoteToken.symbol.toUpperCase()
-        : "";
-
-      return (
-        base === token &&
-        [
-          "USDT",
-          "USDC",
-          "BUSD",
-          "WBNB",
-          "BNB"
-        ].includes(quote)
-      );
-
-    });
+    );
 
 
   valid.sort(
@@ -3523,20 +4716,24 @@ function selectBestPair(pairs){
       Number(
         b.liquidity &&
         b.liquidity.usd
-        ? b.liquidity.usd
-        : 0
+          ? b.liquidity.usd
+          : 0
       )
       -
       Number(
         a.liquidity &&
         a.liquidity.usd
-        ? a.liquidity.usd
-        : 0
+          ? a.liquidity.usd
+          : 0
       )
   );
 
 
-  return valid[0] || null;
+  return (
+    valid[0] ||
+    null
+  );
+
 }
 
 
@@ -3546,69 +4743,169 @@ function selectBestPair(pairs){
 
 async function loadMarket(){
 
-  try{
-
-    $("marketStatus").textContent =
-      "SYNC";
+  let lastError = null;
 
 
-    const response =
-      await fetch(
-        DEX_API +
-        "?_=" +
-        Date.now(),
-        {
-          cache:"no-store"
-        }
+  setMarketStatus(
+    "sync"
+  );
+
+
+  for(
+    const endpoint of DEX_ENDPOINTS
+  ){
+
+    try{
+
+      const data =
+        await fetchJSON(
+          endpoint +
+          (
+            endpoint.includes("?")
+              ? "&"
+              : "?"
+          ) +
+          "_=" +
+          Date.now()
+        );
+
+
+      const pairs =
+        Array.isArray(data)
+          ? data
+          : (
+              data &&
+              Array.isArray(data.pairs)
+                ? data.pairs
+                : []
+            );
+
+
+      const pair =
+        selectBestPair(
+          pairs
+        );
+
+
+      if(!pair){
+
+        throw new Error(
+          "No valid CHILI pair found"
+        );
+
+      }
+
+
+      currentPair =
+        pair;
+
+
+      marketLoadedOnce =
+        true;
+
+
+      updateMarket(
+        pair
       );
 
 
-    if(!response.ok){
+      setMarketStatus(
+        "live"
+      );
 
-      throw new Error(
-        "DexScreener HTTP " +
-        response.status
+
+      return;
+
+
+    }catch(error){
+
+      lastError =
+        error;
+
+      console.warn(
+        "Dex endpoint failed:",
+        endpoint,
+        error
       );
 
     }
 
-
-    const pairs =
-      await response.json();
+  }
 
 
-    const pair =
-      selectBestPair(pairs);
+  /*
+    If there was already valid data,
+    preserve it instead of showing fake data.
+  */
 
+  if(marketLoadedOnce){
 
-    if(!pair){
-
-      throw new Error(
-        "No CHILI market pair"
-      );
-
-    }
-
-
-    currentPair = pair;
-
-
-    updateMarket(pair);
-
-    $("marketStatus").textContent =
-      "LIVE";
-
-
-  }catch(error){
-
-    console.error(
-      "CHILI market error:",
-      error
+    setMarketStatus(
+      "reconnecting"
     );
 
-    $("marketStatus").textContent =
-      "OFFLINE";
+  }else{
+
+    setMarketStatus(
+      "offline"
+    );
+
   }
+
+
+  console.error(
+    "CHILI market error:",
+    lastError
+  );
+
+}
+
+
+/* =========================================================
+   MARKET STATUS
+========================================================= */
+
+function setMarketStatus(status){
+
+  const element =
+    $("marketStatus");
+
+  if(!element){
+    return;
+  }
+
+  element.dataset.status =
+    status;
+
+
+  if(status === "live"){
+
+    element.textContent =
+      t("terminal-live");
+
+  }
+
+  else if(status === "offline"){
+
+    element.textContent =
+      t("terminal-offline");
+
+  }
+
+  else if(status === "reconnecting"){
+
+    element.textContent =
+      t("terminal-reconnecting");
+
+  }
+
+  else{
+
+    element.textContent =
+      t("terminal-sync");
+
+  }
+
 }
 
 
@@ -3619,31 +4916,37 @@ async function loadMarket(){
 function updateMarket(pair){
 
   const price =
-    Number(pair.priceUsd || 0);
+    Number(
+      pair.priceUsd || 0
+    );
+
 
   const change =
     Number(
       pair.priceChange &&
       pair.priceChange.h24
-      ? pair.priceChange.h24
-      : 0
+        ? pair.priceChange.h24
+        : 0
     );
+
 
   const liquidity =
     Number(
       pair.liquidity &&
       pair.liquidity.usd
-      ? pair.liquidity.usd
-      : 0
+        ? pair.liquidity.usd
+        : 0
     );
+
 
   const volume =
     Number(
       pair.volume &&
       pair.volume.h24
-      ? pair.volume.h24
-      : 0
+        ? pair.volume.h24
+        : 0
     );
+
 
   const marketCap =
     Number(
@@ -3652,43 +4955,57 @@ function updateMarket(pair){
       0
     );
 
+
   const buys =
     Number(
       pair.txns &&
       pair.txns.h24 &&
       pair.txns.h24.buys
-      ? pair.txns.h24.buys
-      : 0
+        ? pair.txns.h24.buys
+        : 0
     );
+
 
   const sells =
     Number(
       pair.txns &&
       pair.txns.h24 &&
       pair.txns.h24.sells
-      ? pair.txns.h24.sells
-      : 0
+        ? pair.txns.h24.sells
+        : 0
     );
 
+
   const transactions =
-    buys + sells;
+    buys +
+    sells;
 
 
-  /* PRICE */
+  /* =====================================================
+     PRICE
+  ===================================================== */
 
   $("livePrice").textContent =
     formatPrice(price);
 
 
-  /* CHANGE */
+  /* =====================================================
+     CHANGE
+  ===================================================== */
 
   const changeElement =
     $("priceChange");
 
+
   changeElement.textContent =
-    (change >= 0 ? "+" : "") +
+    (
+      change >= 0
+        ? "+"
+        : ""
+    ) +
     change.toFixed(2) +
     "% 24H";
+
 
   changeElement.classList.toggle(
     "down",
@@ -3696,53 +5013,91 @@ function updateMarket(pair){
   );
 
 
-  /* METRICS */
+  /* =====================================================
+     METRICS
+  ===================================================== */
 
   $("liquidity").textContent =
-    formatMoney(liquidity);
+    formatMoney(
+      liquidity
+    );
+
 
   $("volume24h").textContent =
-    formatMoney(volume);
+    formatMoney(
+      volume
+    );
+
 
   $("marketCap").textContent =
-    formatMoney(marketCap);
+    formatMoney(
+      marketCap
+    );
+
 
   $("transactions").textContent =
-    formatNumber(transactions);
+    formatNumber(
+      transactions
+    );
+
 
   $("buys").textContent =
-    formatNumber(buys);
+    formatNumber(
+      buys
+    );
+
 
   $("sells").textContent =
-    formatNumber(sells);
+    formatNumber(
+      sells
+    );
 
 
-  /* BUY / SELL */
+  /* =====================================================
+     BUY / SELL
+  ===================================================== */
 
   const total =
-    buys + sells;
+    buys +
+    sells;
 
-  let buyPercent = 0;
-  let sellPercent = 0;
+
+  let buyPercent =
+    0;
+
+  let sellPercent =
+    0;
+
 
   if(total > 0){
 
     buyPercent =
-      buys / total * 100;
+      buys /
+      total *
+      100;
+
 
     sellPercent =
-      sells / total * 100;
+      sells /
+      total *
+      100;
 
   }
 
+
   $("buyBar").style.width =
-    buyPercent + "%";
+    buyPercent +
+    "%";
+
 
   $("sellBar").style.width =
-    sellPercent + "%";
+    sellPercent +
+    "%";
 
 
-  /* PAIR */
+  /* =====================================================
+     PAIR
+  ===================================================== */
 
   const quote =
     pair.quoteToken &&
@@ -3750,17 +5105,33 @@ function updateMarket(pair){
       ? pair.quoteToken.symbol
       : "USDT";
 
+
   $("pairName").textContent =
-    "CHILI / " + quote;
+    "CHILI / " +
+    quote;
 
 
-  /* DEX */
+  /*
+    Display the actual live pair
+  */
+
+  $("displayPair").innerHTML =
+    "CHILI <span>/</span> " +
+    quote;
+
+
+  /* =====================================================
+     DEX
+  ===================================================== */
 
   $("dexName").textContent =
-    pair.dexId || "DEX";
+    pair.dexId ||
+    "DEX";
 
 
-  /* PAIR ADDRESS */
+  /* =====================================================
+     PAIR ADDRESS
+  ===================================================== */
 
   $("pairAddress").textContent =
     shortenAddress(
@@ -3768,7 +5139,9 @@ function updateMarket(pair){
     );
 
 
-  /* CHART */
+  /* =====================================================
+     CHART
+  ===================================================== */
 
   if(pair.url){
 
@@ -3778,26 +5151,42 @@ function updateMarket(pair){
   }
 
 
-  /* HISTORY */
+  /* =====================================================
+     PRICE HISTORY
+  ===================================================== */
 
   if(price > 0){
 
-    priceHistory.push(price);
+    priceHistory.push(
+      price
+    );
 
-    if(priceHistory.length > 45){
+
+    if(
+      priceHistory.length > 45
+    ){
+
       priceHistory.shift();
+
     }
+
 
     drawPulse();
 
   }
 
 
+  const now =
+    new Date();
+
+
   $("pulseTime").textContent =
-    new Date().toLocaleTimeString();
+    now.toLocaleTimeString();
+
 
   $("lastUpdate").textContent =
-    new Date().toLocaleTimeString();
+    now.toLocaleTimeString();
+
 }
 
 
@@ -3810,52 +5199,92 @@ function drawPulse(){
   const path =
     $("pulsePath");
 
+
   if(
     !path ||
     priceHistory.length < 2
   ){
+
     return;
+
   }
 
 
-  const width = 900;
-  const height = 220;
-  const padding = 10;
+  const width =
+    900;
+
+
+  const height =
+    220;
+
+
+  const padding =
+    10;
 
 
   let min =
-    Math.min(...priceHistory);
+    Math.min(
+      ...priceHistory
+    );
+
 
   let max =
-    Math.max(...priceHistory);
+    Math.max(
+      ...priceHistory
+    );
+
 
   const range =
-    max - min || 1;
+    max -
+    min ||
+    1;
 
 
   const points =
     priceHistory.map(
-      (price,index)=>{
+      (
+        price,
+        index
+      )=>{
 
         const x =
           padding +
           index /
-          (priceHistory.length - 1) *
-          (width - padding * 2);
+          (
+            priceHistory.length -
+            1
+          ) *
+          (
+            width -
+            padding *
+            2
+          );
 
 
         const normalized =
-          (price - min) / range;
+          (
+            price -
+            min
+          ) /
+          range;
 
 
         const y =
           height -
           padding -
           normalized *
-          (height - padding * 2);
+          (
+            height -
+            padding *
+            2
+          );
 
 
-        return {x,y};
+        return {
+          x,
+          y
+        };
+
       }
     );
 
@@ -3873,11 +5302,17 @@ function drawPulse(){
     const previous =
       points[i-1];
 
+
     const current =
       points[i];
 
+
     const center =
-      (previous.x + current.x) / 2;
+      (
+        previous.x +
+        current.x
+      ) /
+      2;
 
 
     d +=
@@ -3897,70 +5332,23 @@ function drawPulse(){
   path.style.strokeDasharray =
     "1600";
 
+
   path.style.strokeDashoffset =
     "1600";
+
 
   path.style.transition =
     "stroke-dashoffset 1.8s ease";
 
-  requestAnimationFrame(()=>{
-    path.style.strokeDashoffset = "0";
-  });
-}
 
-
-/* =========================================================
-   LANGUAGE
-========================================================= */
-
-let currentLanguage =
-  localStorage.getItem(
-    "chili-language"
-  ) || "en";
-
-
-function updateLanguage(){
-
-  document
-    .querySelectorAll("[data-en]")
-    .forEach(element=>{
-
-      element.textContent =
-        currentLanguage === "zh"
-          ? element.dataset.zh
-          : element.dataset.en;
-
-    });
-
-
-  $("langBtn").textContent =
-    currentLanguage === "en"
-      ? "中文"
-      : "EN";
+  requestAnimationFrame(
+    ()=>{
+      path.style.strokeDashoffset =
+        "0";
+    }
+  );
 
 }
-
-
-$("langBtn").addEventListener(
-  "click",
-  ()=>{
-
-    currentLanguage =
-      currentLanguage === "en"
-        ? "zh"
-        : "en";
-
-    localStorage.setItem(
-      "chili-language",
-      currentLanguage
-    );
-
-    updateLanguage();
-
-  }
-);
-
-updateLanguage();
 
 
 /* =========================================================
@@ -3976,46 +5364,115 @@ $("menuBtn").addEventListener(
         ".nav-links"
       );
 
+
     if(
-      links.style.display === "flex"
+      links.style.display ===
+      "flex"
     ){
 
-      links.style.display = "";
+      links.style.display =
+        "";
 
-    }else{
-
-      links.style.position = "absolute";
-      links.style.top = "68px";
-      links.style.left = "12px";
-      links.style.right = "12px";
-
-      links.style.display = "flex";
-      links.style.flexDirection = "column";
-      links.style.alignItems = "stretch";
-      links.style.gap = "0";
-
-      links.style.padding = "8px";
-
-      links.style.background = "#fff";
-
-      links.style.border =
-        "1px solid #e8e8e8";
-
-      links.style.boxShadow =
-        "0 20px 50px rgba(0,0,0,.08)";
-
-      links
-        .querySelectorAll("a")
-        .forEach(a=>{
-
-          a.style.padding = "15px";
-
-        });
+      return;
 
     }
 
+
+    links.style.position =
+      "absolute";
+
+
+    links.style.top =
+      "68px";
+
+
+    links.style.left =
+      "12px";
+
+
+    links.style.right =
+      "12px";
+
+
+    links.style.display =
+      "flex";
+
+
+    links.style.flexDirection =
+      "column";
+
+
+    links.style.alignItems =
+      "stretch";
+
+
+    links.style.gap =
+      "0";
+
+
+    links.style.padding =
+      "8px";
+
+
+    links.style.background =
+      "#fff";
+
+
+    links.style.border =
+      "1px solid #e8e8e8";
+
+
+    links.style.boxShadow =
+      "0 20px 50px rgba(0,0,0,.08)";
+
+
+    links
+      .querySelectorAll("a")
+      .forEach(
+        a=>{
+
+          a.style.padding =
+            "15px";
+
+        }
+      );
+
   }
 );
+
+
+/* =========================================================
+   CLOSE MOBILE MENU AFTER CLICK
+========================================================= */
+
+document
+  .querySelectorAll(".nav-links a")
+  .forEach(
+    link=>{
+
+      link.addEventListener(
+        "click",
+        ()=>{
+
+          if(
+            window.innerWidth <=
+            1000
+          ){
+
+            document
+              .querySelector(
+                ".nav-links"
+              )
+              .style.display =
+              "";
+
+          }
+
+        }
+      );
+
+    }
+  );
 
 
 /* =========================================================
@@ -4026,17 +5483,21 @@ const observer =
   new IntersectionObserver(
     entries=>{
 
-      entries.forEach(entry=>{
+      entries.forEach(
+        entry=>{
 
-        if(entry.isIntersecting){
+          if(
+            entry.isIntersecting
+          ){
 
-          entry.target.classList.add(
-            "visible"
-          );
+            entry.target.classList.add(
+              "visible"
+            );
+
+          }
 
         }
-
-      });
+      );
 
     },
     {
@@ -4047,9 +5508,13 @@ const observer =
 
 document
   .querySelectorAll(".reveal")
-  .forEach(element=>{
-    observer.observe(element);
-  });
+  .forEach(
+    element=>{
+      observer.observe(
+        element
+      );
+    }
+  );
 
 
 /* =========================================================
@@ -4058,6 +5523,17 @@ document
 
 async function startChiliSystem(){
 
+  /*
+    Apply language first
+  */
+
+  translatePage();
+
+
+  /*
+    Initial live data
+  */
+
   await Promise.allSettled([
     loadMarket(),
     updateBlock()
@@ -4065,8 +5541,8 @@ async function startChiliSystem(){
 
 
   /*
-    Market data:
-    refresh every 15 seconds
+    Market refresh:
+    every 15 seconds
   */
 
   setInterval(
@@ -4077,7 +5553,7 @@ async function startChiliSystem(){
 
   /*
     BSC block:
-    refresh every 15 seconds
+    every 15 seconds
   */
 
   setInterval(
