@@ -1,8 +1,3 @@
-// ========================================
-// CHILI Web3 Website
-// app.js
-// ========================================
-
 (function () {
     "use strict";
 
@@ -26,13 +21,9 @@
     }
 
     function initProjectInfo() {
-        if (CHILI_CONFIG.site.title) {
-            document.title = CHILI_CONFIG.site.title;
-        }
+        if (CHILI_CONFIG.site.title) document.title = CHILI_CONFIG.site.title;
         const description = document.querySelector('meta[name="description"]');
-        if (description) {
-            description.setAttribute("content", CHILI_CONFIG.site.description);
-        }
+        if (description) description.setAttribute("content", CHILI_CONFIG.site.description);
     }
 
     function initLogo() {
@@ -64,35 +55,25 @@
             link.addEventListener("click", function (event) {
                 const targetId = link.getAttribute("href");
                 if (!targetId || targetId === "#") return;
-
                 const target = document.querySelector(targetId);
                 if (!target) return;
-
                 event.preventDefault();
-
-                const header = document.querySelector(".nav"); // 修正为 .nav
+                const header = document.querySelector(".nav");
                 let offset = 20;
-                if (header) {
-                    offset = header.offsetHeight + 15;
-                }
-
+                if (header) offset = header.offsetHeight + 15;
                 const position = target.getBoundingClientRect().top + window.scrollY - offset;
                 window.scrollTo({ top: position, behavior: "smooth" });
-
                 closeMobileMenu();
             });
         });
     }
 
-    // 修正了移动端菜单的选择器，匹配 index.html 的 ID
     function initMobileMenu() {
         const menuButton = document.getElementById("mobileToggle");
         const menu = document.getElementById("navLinks");
-
         if (!menuButton || !menu) return;
-
         menuButton.addEventListener("click", function () {
-            const opened = menu.classList.toggle("open"); // 修正为匹配 CSS 的 .open 类
+            const opened = menu.classList.toggle("open");
             menuButton.classList.toggle("is-active", opened);
             menuButton.setAttribute("aria-expanded", opened);
         });
@@ -101,27 +82,19 @@
     function closeMobileMenu() {
         const menu = document.getElementById("navLinks");
         const menuButton = document.getElementById("mobileToggle");
-
         if (!menu) return;
         menu.classList.remove("open");
-
         if (menuButton) {
             menuButton.classList.remove("is-active");
             menuButton.setAttribute("aria-expanded", "false");
         }
     }
 
-    // 修正了复制按钮的 ID 绑定
     function initCopyButtons() {
         const copyHero = document.getElementById("copyHero");
         const copyContract = document.getElementById("copyContract");
-
-        if (copyHero) {
-            copyHero.addEventListener("click", function() { copyContractAddress(copyHero); });
-        }
-        if (copyContract) {
-            copyContract.addEventListener("click", function() { copyContractAddress(copyContract); });
-        }
+        if (copyHero) copyHero.addEventListener("click", function() { copyContractAddress(copyHero); });
+        if (copyContract) copyContract.addEventListener("click", function() { copyContractAddress(copyContract); });
     }
 
     async function copyContractAddress(button) {
@@ -236,35 +209,24 @@
 
     function initExternalLinks() {
         document.querySelectorAll("[data-contract-link]").forEach(function (link) {
-            link.href = getExplorerUrl();
-            link.target = "_blank";
-            link.rel = "noopener noreferrer";
+            link.href = getExplorerUrl(); link.target = "_blank"; link.rel = "noopener noreferrer";
         });
         document.querySelectorAll("[data-swap-link]").forEach(function (link) {
-            link.href = getSwapUrl();
-            link.target = "_blank";
-            link.rel = "noopener noreferrer";
+            link.href = getSwapUrl(); link.target = "_blank"; link.rel = "noopener noreferrer";
         });
         document.querySelectorAll("[data-telegram-link]").forEach(function (link) {
-            link.href = CHILI_CONFIG.social.telegram;
-            link.target = "_blank";
-            link.rel = "noopener noreferrer";
+            link.href = CHILI_CONFIG.social.telegram; link.target = "_blank"; link.rel = "noopener noreferrer";
         });
         document.querySelectorAll("[data-twitter-link]").forEach(function (link) {
-            link.href = CHILI_CONFIG.social.twitter;
-            link.target = "_blank";
-            link.rel = "noopener noreferrer";
+            link.href = CHILI_CONFIG.social.twitter; link.target = "_blank"; link.rel = "noopener noreferrer";
         });
         document.querySelectorAll("[data-github-link]").forEach(function (link) {
-            link.href = CHILI_CONFIG.social.github;
-            link.target = "_blank";
-            link.rel = "noopener noreferrer";
+            link.href = CHILI_CONFIG.social.github; link.target = "_blank"; link.rel = "noopener noreferrer";
         });
     }
 
-    // 修正了滚动吸顶的类名匹配
     function initScrollEffects() {
-        const header = document.querySelector(".nav"); // 修正为 .nav
+        const header = document.querySelector(".nav");
         if (!header) return;
         window.addEventListener("scroll", function () {
             if (window.scrollY > 20) {
@@ -279,11 +241,8 @@
         const button = document.querySelector("[data-back-to-top]");
         if (!button) return;
         window.addEventListener("scroll", function () {
-            if (window.scrollY > 500) {
-                button.classList.add("show");
-            } else {
-                button.classList.remove("show");
-            }
+            if (window.scrollY > 500) button.classList.add("show");
+            else button.classList.remove("show");
         }, { passive: true });
         button.addEventListener("click", function () {
             window.scrollTo({ top: 0, behavior: "smooth" });
@@ -297,12 +256,11 @@
         });
     }
 
-    // 修正了 Toast 的类名为 .toast 匹配 CSS
     function showToast(message) {
         let toast = document.querySelector(".toast");
         if (!toast) {
             toast = document.createElement("div");
-            toast.className = "toast"; // 修正为 .toast
+            toast.className = "toast";
             document.body.appendChild(toast);
         }
         toast.textContent = message;
@@ -315,11 +273,8 @@
 
     if (window.ethereum) {
         window.ethereum.on("accountsChanged", function (accounts) {
-            if (accounts && accounts.length) {
-                updateWalletUI(accounts[0]);
-            } else {
-                document.body.classList.remove("wallet-connected");
-            }
+            if (accounts && accounts.length) updateWalletUI(accounts[0]);
+            else document.body.classList.remove("wallet-connected");
         });
         window.ethereum.on("chainChanged", function () {
             window.location.reload();
@@ -334,5 +289,4 @@
         shortenAddress: shortenAddress,
         switchToBNBChain: switchToBNBChain
     };
-
 })();
