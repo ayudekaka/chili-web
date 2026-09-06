@@ -1,50 +1,34 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="CHILI — A next-generation community token on BNB Smart Chain.">
 <title>CHILI — BNB Smart Chain</title>
 
-<meta name="description"
-content="CHILI — A community-driven token built on BNB Smart Chain.">
-
-<meta name="theme-color" content="#ffffff">
-
-<link rel="icon" type="image/png" href="logo.png">
-
 <style>
-
 /* =========================================================
-   CHILI × VELORA UI
-   Standalone HTML / CSS / JS
+   CHILI // SINGLE FILE WEBSITE
+   WHITE FUTURISTIC WEB3 TERMINAL
 ========================================================= */
 
 :root{
   --red:#e51b23;
+  --red2:#ff4650;
   --red-dark:#c9151c;
-  --red-soft:#fff1f2;
-  --black:#0b0b0c;
-  --gray:#68686d;
-  --muted:#99999f;
-  --line:#e8e8eb;
-  --light:#f7f7f8;
+  --red-light:#fff1f2;
+  --black:#111111;
+  --gray:#666;
+  --gray2:#888;
+  --gray3:#aaa;
+  --line:#e8e8e8;
+  --line2:#dedede;
+  --soft:#f7f7f7;
   --white:#fff;
-
-  --max:1180px;
-
-  --shadow:
-    0 20px 60px rgba(0,0,0,.07);
-
-  --shadow-hover:
-    0 30px 80px rgba(0,0,0,.11);
+  --shadow:0 25px 70px rgba(0,0,0,.07);
+  --radius:2px;
 }
-
-
-/* =========================================================
-   RESET
-========================================================= */
 
 *{
   box-sizing:border-box;
@@ -54,7 +38,6 @@ content="CHILI — A community-driven token built on BNB Smart Chain.">
 
 html{
   scroll-behavior:smooth;
-  overflow-x:hidden;
 }
 
 body{
@@ -65,18 +48,9 @@ body{
     "Segoe UI",
     Arial,
     sans-serif;
-
   background:#fff;
   color:var(--black);
-
   overflow-x:hidden;
-
-  -webkit-font-smoothing:antialiased;
-}
-
-body::selection{
-  background:var(--red);
-  color:#fff;
 }
 
 a{
@@ -86,150 +60,43 @@ a{
 
 button{
   font:inherit;
-  cursor:pointer;
 }
 
-img{
-  display:block;
-  max-width:100%;
+::selection{
+  background:var(--red);
+  color:#fff;
 }
 
 
 /* =========================================================
-   GLOBAL GRID BACKGROUND
+   GLOBAL GRID
 ========================================================= */
 
-.grid-bg{
+.page-grid{
+  position:fixed;
+  inset:0;
+  z-index:-5;
+  pointer-events:none;
+  opacity:.42;
+
+  background-image:
+    linear-gradient(rgba(0,0,0,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,0,0,.025) 1px,transparent 1px);
+
+  background-size:42px 42px;
+}
+
+.page-grid:after{
+  content:"";
   position:absolute;
   inset:0;
 
-  pointer-events:none;
-
-  background-image:
-    linear-gradient(
-      rgba(0,0,0,.045) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(0,0,0,.045) 1px,
-      transparent 1px
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(229,27,35,.07),
+      transparent 32%
     );
-
-  background-size:42px 42px;
-
-  mask-image:
-    linear-gradient(
-      to bottom,
-      black 0%,
-      rgba(0,0,0,.7) 55%,
-      transparent 100%
-    );
-
-  -webkit-mask-image:
-    linear-gradient(
-      to bottom,
-      black 0%,
-      rgba(0,0,0,.7) 55%,
-      transparent 100%
-    );
-}
-
-.container{
-  width:min(var(--max),calc(100% - 40px));
-  margin:auto;
-  position:relative;
-  z-index:2;
-}
-
-
-/* =========================================================
-   ANIMATION
-========================================================= */
-
-.reveal{
-  opacity:0;
-  transform:translateY(28px);
-
-  transition:
-    opacity .8s ease,
-    transform .8s cubic-bezier(.22,1,.36,1);
-}
-
-.reveal.show{
-  opacity:1;
-  transform:none;
-}
-
-.delay-1{transition-delay:.08s}
-.delay-2{transition-delay:.16s}
-.delay-3{transition-delay:.24s}
-.delay-4{transition-delay:.32s}
-
-
-/* =========================================================
-   BUTTONS
-========================================================= */
-
-.btn{
-  min-height:50px;
-
-  padding:0 23px;
-
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:9px;
-
-  border-radius:999px;
-
-  border:1px solid transparent;
-
-  font-size:11px;
-  font-weight:850;
-
-  letter-spacing:.2px;
-
-  transition:
-    transform .25s ease,
-    box-shadow .25s ease,
-    background .25s ease,
-    color .25s ease;
-}
-
-.btn:hover{
-  transform:translateY(-3px);
-}
-
-.btn-red{
-  color:#fff;
-  background:var(--red);
-
-  box-shadow:
-    0 12px 30px rgba(229,27,35,.18);
-}
-
-.btn-red:hover{
-  background:var(--red-dark);
-
-  box-shadow:
-    0 18px 40px rgba(229,27,35,.25);
-}
-
-.btn-outline{
-  background:#fff;
-  color:#111;
-
-  border-color:#dedee2;
-}
-
-.btn-outline:hover{
-  border-color:#111;
-  background:#fff;
-}
-
-.btn-icon{
-  font-size:14px;
 }
 
 
@@ -238,213 +105,164 @@ img{
 ========================================================= */
 
 header{
-  height:72px;
-
   position:fixed;
   top:0;
   left:0;
   right:0;
-
   z-index:1000;
 
-  background:
-    rgba(255,255,255,.78);
+  height:76px;
 
+  background:rgba(255,255,255,.86);
   backdrop-filter:blur(18px);
   -webkit-backdrop-filter:blur(18px);
 
   border-bottom:1px solid rgba(0,0,0,.07);
 }
 
-.header-inner{
-  width:min(var(--max),calc(100% - 40px));
+.nav{
+  width:min(1380px,calc(100% - 40px));
   height:100%;
-
   margin:auto;
 
   display:flex;
   align-items:center;
+  justify-content:space-between;
 }
 
 .logo{
   display:flex;
   align-items:center;
-  gap:9px;
+  gap:10px;
 
-  font-size:19px;
+  font-size:22px;
   font-weight:950;
-
-  letter-spacing:-.8px;
+  letter-spacing:-.06em;
 }
 
 .logo-mark{
-  width:31px;
-  height:31px;
+  width:34px;
+  height:34px;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  border-radius:9px;
-
-  background:var(--red);
-
-  overflow:hidden;
-
-  box-shadow:
-    0 6px 18px rgba(229,27,35,.18);
-}
-
-.logo-mark img{
-  width:78%;
-  height:78%;
-
-  object-fit:contain;
-}
-
-.nav{
-  margin-left:auto;
-  margin-right:30px;
-
-  display:flex;
-  align-items:center;
-  gap:29px;
-}
-
-.nav a{
-  position:relative;
-
-  color:#66666b;
-
-  font-size:10px;
-  font-weight:800;
-
-  letter-spacing:.7px;
-
-  transition:.25s ease;
-}
-
-.nav a::after{
-  content:"";
-
-  position:absolute;
-
-  left:0;
-  right:0;
-  bottom:-7px;
-
-  height:1px;
-
-  background:var(--red);
-
-  transform:scaleX(0);
-  transform-origin:center;
-
-  transition:.25s ease;
-}
-
-.nav a:hover{
-  color:var(--black);
-}
-
-.nav a:hover::after{
-  transform:scaleX(1);
-}
-
-.header-right{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.lang{
-  display:flex;
-  padding:3px;
-
-  border:1px solid var(--line);
-  border-radius:999px;
-
-  background:#fff;
-}
-
-.lang button{
-  border:0;
-  background:transparent;
-
-  color:#888;
-
-  padding:5px 8px;
-
-  border-radius:999px;
-
-  font-size:9px;
-  font-weight:850;
-}
-
-.lang button.active{
-  background:var(--black);
-  color:#fff;
-}
-
-.menu{
-  display:none;
-
-  width:40px;
-  height:40px;
-
-  border:1px solid var(--line);
   border-radius:50%;
 
+  display:grid;
+  place-items:center;
+
+  background:var(--red);
+  color:#fff;
+
+  box-shadow:
+    0 0 0 5px rgba(229,27,35,.07),
+    0 8px 25px rgba(229,27,35,.22);
+
+  font-size:17px;
+}
+
+.logo small{
+  display:block;
+  font-size:7px;
+  letter-spacing:.2em;
+  color:#999;
+  font-weight:800;
+  margin-top:-2px;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:30px;
+}
+
+.nav-links a{
+  font-size:10px;
+  font-weight:850;
+  letter-spacing:.12em;
+  color:#555;
+  transition:.25s;
+}
+
+.nav-links a:hover{
+  color:var(--red);
+}
+
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+
+.lang-btn,
+.menu-btn{
+  border:1px solid var(--line);
   background:#fff;
+  cursor:pointer;
+}
+
+.lang-btn{
+  padding:9px 12px;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.12em;
+}
+
+.lang-btn:hover{
+  color:var(--red);
+  border-color:rgba(229,27,35,.3);
+}
+
+.menu-btn{
+  display:none;
+  width:38px;
+  height:38px;
 }
 
 
 /* =========================================================
-   MOBILE MENU
+   BUTTONS
 ========================================================= */
 
-.mobile-menu{
-  display:none;
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
 
-  position:fixed;
+  min-height:46px;
+  padding:0 19px;
 
-  top:72px;
-  left:0;
-  right:0;
+  border:1px solid var(--black);
 
-  z-index:999;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.13em;
 
-  padding:18px 20px 22px;
-
-  background:rgba(255,255,255,.96);
-
-  backdrop-filter:blur(20px);
-
-  border-bottom:1px solid var(--line);
-
-  box-shadow:0 15px 40px rgba(0,0,0,.06);
+  cursor:pointer;
+  transition:.3s;
 }
 
-.mobile-menu.active{
-  display:block;
+.btn-red{
+  color:#fff;
+  background:var(--red);
+  border-color:var(--red);
+
+  box-shadow:
+    0 12px 30px rgba(229,27,35,.18);
 }
 
-.mobile-nav{
-  display:flex;
-  flex-direction:column;
+.btn-red:hover{
+  background:var(--red-dark);
+  transform:translateY(-2px);
 }
 
-.mobile-nav a{
-  padding:15px 4px;
-
-  border-bottom:1px solid var(--line);
-
-  font-size:12px;
-  font-weight:850;
+.btn-light{
+  background:#fff;
 }
 
-.mobile-nav a:hover{
+.btn-light:hover{
+  border-color:var(--red);
   color:var(--red);
+  transform:translateY(-2px);
 }
 
 
@@ -453,13 +271,12 @@ header{
 ========================================================= */
 
 .hero{
-  min-height:820px;
-
   position:relative;
+  min-height:100vh;
 
   padding:
-    170px 0
-    110px;
+    150px 0
+    80px;
 
   display:flex;
   align-items:center;
@@ -467,412 +284,280 @@ header{
   overflow:hidden;
 }
 
-.hero-glow{
+.hero-container{
+  width:min(1380px,calc(100% - 40px));
+  margin:auto;
+
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:80px;
+  align-items:center;
+}
+
+.hero-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+
+  padding:8px 12px;
+
+  border:1px solid rgba(229,27,35,.22);
+  background:var(--red-light);
+
+  color:var(--red);
+
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.17em;
+}
+
+.hero-kicker i{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--red);
+  box-shadow:0 0 12px rgba(229,27,35,.5);
+  animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.4;transform:scale(.65)}
+}
+
+.hero h1{
+  margin-top:22px;
+
+  font-size:
+    clamp(90px,15vw,220px);
+
+  line-height:.78;
+  letter-spacing:-.095em;
+  font-weight:1000;
+
+  position:relative;
+}
+
+.hero h1 span{
+  color:var(--red);
+
+  text-shadow:
+    0 0 60px rgba(229,27,35,.1);
+}
+
+.hero-subtitle{
+  margin-top:30px;
+  max-width:600px;
+
+  color:#666;
+  font-size:16px;
+  line-height:1.75;
+}
+
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:30px;
+}
+
+.contract-mini{
+  margin-top:23px;
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  color:#999;
+
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    monospace;
+
+  font-size:9px;
+}
+
+.contract-mini strong{
+  color:#333;
+}
+
+.copy-mini{
+  border:0;
+  background:none;
+  color:var(--red);
+  cursor:pointer;
+  font-size:9px;
+  font-weight:900;
+}
+
+
+/* =========================================================
+   HERO CORE
+========================================================= */
+
+.hero-core{
+  position:relative;
+
+  width:min(510px,90vw);
+  aspect-ratio:1;
+
+  margin:auto;
+
+  display:grid;
+  place-items:center;
+}
+
+.core-glow{
   position:absolute;
-
-  width:700px;
-  height:700px;
-
-  top:-250px;
-  right:-160px;
+  inset:15%;
 
   border-radius:50%;
 
   background:
     radial-gradient(
       circle,
-      rgba(229,27,35,.15) 0%,
-      rgba(229,27,35,.055) 32%,
-      transparent 68%
+      rgba(229,27,35,.18),
+      rgba(229,27,35,.04) 45%,
+      transparent 70%
     );
 
-  filter:blur(12px);
+  filter:blur(25px);
 
-  pointer-events:none;
+  animation:coreGlow 4s ease-in-out infinite;
 }
 
-.hero-grid{
-  display:grid;
-
-  grid-template-columns:
-    minmax(0,1.05fr)
-    minmax(350px,.95fr);
-
-  align-items:center;
-
-  gap:70px;
+@keyframes coreGlow{
+  0%,100%{transform:scale(.92);opacity:.65}
+  50%{transform:scale(1.08);opacity:1}
 }
 
-.hero-content{
-  position:relative;
-  z-index:3;
-}
-
-.badge{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-
-  padding:8px 12px;
-
-  border:1px solid #dedee2;
-
-  background:rgba(255,255,255,.75);
-
-  border-radius:999px;
-
-  color:#68686d;
-
-  font-size:9px;
-  font-weight:850;
-
-  letter-spacing:1.2px;
-}
-
-.status-dot{
-  width:6px;
-  height:6px;
-
-  border-radius:50%;
-
-  background:var(--red);
-
-  box-shadow:
-    0 0 0 4px rgba(229,27,35,.08);
-}
-
-.hero h1{
-  margin-top:29px;
-
-  font-size:
-    clamp(90px,14vw,175px);
-
-  line-height:.78;
-
-  letter-spacing:-11px;
-
-  font-weight:950;
-
-  position:relative;
-
-  z-index:2;
-}
-
-.hero h1 .red{
-  color:var(--red);
-}
-
-.hero-sub{
-  margin-top:31px;
-
-  max-width:610px;
-
-  color:#65656a;
-
-  font-size:
-    clamp(16px,2vw,20px);
-
-  line-height:1.7;
-}
-
-.hero-actions{
-  margin-top:32px;
-
-  display:flex;
-  gap:10px;
-
-  flex-wrap:wrap;
-}
-
-
-/* =========================================================
-   HERO VISUAL
-========================================================= */
-
-.hero-visual{
-  position:relative;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.hero-orbit{
+.core-ring{
   position:absolute;
-
-  width:470px;
-  height:470px;
-
-  border:1px solid rgba(229,27,35,.13);
-
   border-radius:50%;
-
-  animation:
-    orbitRotate 20s linear infinite;
+  border:1px solid rgba(229,27,35,.22);
 }
 
-.hero-orbit::before{
+.ring-1{
+  inset:12%;
+  animation:spin 22s linear infinite;
+}
+
+.ring-2{
+  inset:20%;
+  border-style:dashed;
+  animation:spinReverse 17s linear infinite;
+}
+
+.ring-3{
+  inset:29%;
+  border-color:rgba(0,0,0,.08);
+  animation:spin 12s linear infinite;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+@keyframes spinReverse{
+  to{transform:rotate(-360deg)}
+}
+
+.core-ring:before,
+.core-ring:after{
   content:"";
-
   position:absolute;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--red);
+  box-shadow:0 0 18px rgba(229,27,35,.55);
+}
 
-  width:10px;
-  height:10px;
+.ring-1:before{
+  top:-4px;
+  left:50%;
+}
 
-  top:40px;
-  left:72px;
+.ring-2:after{
+  right:4%;
+  top:48%;
+}
+
+.ring-3:before{
+  bottom:-4px;
+  left:45%;
+}
+
+.core-logo{
+  position:relative;
+  z-index:5;
+
+  width:185px;
+  height:185px;
 
   border-radius:50%;
 
-  background:var(--red);
+  display:grid;
+  place-items:center;
 
-  box-shadow:
-    0 0 25px rgba(229,27,35,.45);
-}
-
-@keyframes orbitRotate{
-  to{
-    transform:rotate(360deg);
-  }
-}
-
-.hero-logo{
-  width:min(420px,100%);
-  aspect-ratio:1;
-
-  position:relative;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:60px;
-
+  color:#fff;
   background:
     radial-gradient(
-      circle at 35% 30%,
-      #ff4a51,
-      var(--red) 58%,
-      #bd1118 100%
+      circle at 35% 25%,
+      #ff626a,
+      var(--red) 45%,
+      var(--red-dark)
     );
 
-  border-radius:50%;
+  font-size:80px;
+  font-weight:1000;
+  letter-spacing:-.1em;
 
   box-shadow:
-    0 40px 100px rgba(229,27,35,.22);
-
-  animation:
-    heroFloat 5s ease-in-out infinite;
+    0 0 0 10px rgba(229,27,35,.05),
+    0 0 0 30px rgba(229,27,35,.025),
+    0 30px 90px rgba(229,27,35,.24);
 }
 
-@keyframes heroFloat{
-  0%,100%{
-    transform:translateY(0);
-  }
-
-  50%{
-    transform:translateY(-10px);
-  }
-}
-
-.hero-logo::before{
-  content:"";
-
+.core-label{
   position:absolute;
+  top:4%;
+  right:7%;
 
-  inset:15px;
+  padding:7px 10px;
 
-  border:1px solid rgba(255,255,255,.25);
-
-  border-radius:50%;
-}
-
-.hero-logo img{
-  width:74%;
-  height:74%;
-
-  object-fit:contain;
-
-  position:relative;
-
-  z-index:2;
-
-  filter:
-    drop-shadow(
-      0 12px 18px rgba(0,0,0,.12)
-    );
-}
-
-
-/* =========================================================
-   FLOATING INFO
-========================================================= */
-
-.float-card{
-  position:absolute;
-
-  padding:13px 15px;
-
-  min-width:145px;
-
-  background:
-    rgba(255,255,255,.88);
-
-  border:1px solid rgba(0,0,0,.08);
-
-  border-radius:15px;
-
-  box-shadow:
-    0 20px 50px rgba(0,0,0,.1);
-
-  backdrop-filter:blur(15px);
-
-  z-index:5;
-}
-
-.float-card.one{
-  top:8%;
-  left:-3%;
-
-  animation:
-    cardFloat1 5s ease-in-out infinite;
-}
-
-.float-card.two{
-  right:-4%;
-  bottom:12%;
-
-  animation:
-    cardFloat2 5.5s ease-in-out infinite;
-}
-
-@keyframes cardFloat1{
-  0%,100%{
-    transform:translateY(0);
-  }
-
-  50%{
-    transform:translateY(-8px);
-  }
-}
-
-@keyframes cardFloat2{
-  0%,100%{
-    transform:translateY(0);
-  }
-
-  50%{
-    transform:translateY(8px);
-  }
-}
-
-.float-label{
-  color:#999;
-
-  font-size:8px;
-  font-weight:850;
-
-  letter-spacing:1px;
-}
-
-.float-value{
-  margin-top:5px;
-
-  font-size:15px;
-  font-weight:950;
-}
-
-.float-value.red{
-  color:var(--red);
-}
-
-
-/* =========================================================
-   STATS
-========================================================= */
-
-.stats{
-  position:relative;
-
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-
+  border:1px solid var(--line);
   background:#fff;
+
+  font-size:7px;
+  font-weight:900;
+  letter-spacing:.15em;
 }
 
-.stats-grid{
-  display:grid;
-
-  grid-template-columns:
-    repeat(4,1fr);
-}
-
-.stat{
-  padding:31px 24px;
-
-  border-right:1px solid var(--line);
-
-  position:relative;
-
-  overflow:hidden;
-}
-
-.stat:first-child{
-  padding-left:0;
-}
-
-.stat:last-child{
-  border-right:0;
-  padding-right:0;
-}
-
-.stat::after{
-  content:"";
-
-  position:absolute;
-
-  left:0;
-  bottom:0;
-
-  width:35px;
-  height:2px;
-
-  background:var(--red);
-
-  transform:scaleX(0);
-  transform-origin:left;
-
-  transition:.35s ease;
-}
-
-.stat:hover::after{
-  transform:scaleX(1);
-}
-
-.stat-number{
-  font-size:
-    clamp(25px,3vw,39px);
-
-  line-height:1;
-
-  font-weight:950;
-
-  letter-spacing:-1.8px;
-}
-
-.stat-number.red{
+.core-label.red{
   color:var(--red);
 }
 
-.stat-label{
-  margin-top:9px;
+.core-data{
+  position:absolute;
+  left:0;
+  bottom:7%;
 
-  color:#99999f;
+  padding:13px 16px;
 
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.9);
+  backdrop-filter:blur(10px);
+
+  font-family:monospace;
   font-size:8px;
-  font-weight:850;
+  line-height:1.8;
+}
 
-  letter-spacing:1.3px;
+.core-data b{
+  color:var(--red);
 }
 
 
@@ -880,105 +565,661 @@ header{
    SECTION
 ========================================================= */
 
-.section{
+section{
   position:relative;
-
-  padding:
-    clamp(90px,11vw,145px)
-    0;
-
-  overflow:hidden;
 }
 
-.section-light{
-  background:var(--light);
+.section{
+  padding:120px 0;
+}
+
+.container{
+  width:min(1380px,calc(100% - 40px));
+  margin:auto;
 }
 
 .section-head{
   display:flex;
-  align-items:flex-end;
   justify-content:space-between;
-
-  gap:40px;
-
-  margin-bottom:55px;
+  align-items:flex-end;
+  gap:30px;
+  margin-bottom:42px;
 }
 
-.eyebrow{
+.section-code{
   color:var(--red);
-
-  font-size:9px;
-  font-weight:950;
-
-  letter-spacing:2px;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.2em;
 }
 
 .section-title{
-  margin-top:11px;
+  margin-top:9px;
 
   font-size:
-    clamp(42px,6vw,78px);
+    clamp(38px,5vw,68px);
 
-  line-height:.9;
-
-  letter-spacing:-5px;
-
+  line-height:.95;
+  letter-spacing:-.06em;
   font-weight:950;
 }
 
 .section-description{
-  max-width:440px;
-
-  color:#717177;
-
+  max-width:430px;
+  color:#777;
   font-size:13px;
-
   line-height:1.8;
 }
 
 
 /* =========================================================
-   SPOTLIGHT CARD
+   LIVE TERMINAL
 ========================================================= */
 
-.spotlight{
-  position:relative;
+.terminal-section{
+  padding:120px 0;
 
-  overflow:hidden;
+  background:
+    radial-gradient(
+      circle at 10% 30%,
+      rgba(229,27,35,.07),
+      transparent 27%
+    ),
+    radial-gradient(
+      circle at 90% 70%,
+      rgba(255,70,80,.05),
+      transparent 30%
+    );
 }
 
-.spotlight::before{
+.terminal-shell{
+  position:relative;
+
+  width:min(1380px,calc(100% - 40px));
+  margin:auto;
+
+  overflow:hidden;
+
+  border:1px solid #ddd;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.98),
+      rgba(248,248,248,.94)
+    );
+
+  box-shadow:var(--shadow);
+}
+
+.terminal-shell:before{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  pointer-events:none;
+
+  background-image:
+    linear-gradient(
+      rgba(0,0,0,.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,.025) 1px,
+      transparent 1px
+    );
+
+  background-size:34px 34px;
+}
+
+.terminal-shell:after{
+  content:"";
+
+  position:absolute;
+  left:0;
+  right:0;
+  top:-10%;
+
+  height:1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(229,27,35,.65),
+      transparent
+    );
+
+  animation:terminalScan 6s linear infinite;
+  pointer-events:none;
+}
+
+@keyframes terminalScan{
+  from{top:-5%}
+  to{top:105%}
+}
+
+.terminal-top{
+  position:relative;
+  z-index:2;
+
+  min-height:82px;
+  padding:18px 24px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  border-bottom:1px solid var(--line);
+}
+
+.terminal-brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.terminal-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--red);
+  box-shadow:0 0 14px rgba(229,27,35,.5);
+  animation:pulse 1.5s infinite;
+}
+
+.terminal-code{
+  color:var(--red);
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.2em;
+}
+
+.terminal-title{
+  margin-top:4px;
+  font-size:20px;
+  font-weight:950;
+  letter-spacing:-.04em;
+}
+
+.terminal-status{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.chain-chip,
+.live-chip{
+  padding:9px 12px;
+
+  border:1px solid var(--line);
+  background:#fff;
+
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.13em;
+}
+
+.live-chip{
+  display:flex;
+  align-items:center;
+  gap:7px;
+
+  color:var(--red);
+  border-color:rgba(229,27,35,.2);
+}
+
+.live-chip i{
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:var(--red);
+}
+
+
+/* terminal main */
+
+.terminal-main{
+  position:relative;
+  z-index:2;
+
+  display:grid;
+  grid-template-columns:1.25fr 1fr;
+  gap:15px;
+
+  padding:15px;
+}
+
+.price-module{
+  position:relative;
+
+  min-height:535px;
+  padding:30px;
+
+  overflow:hidden;
+
+  border:1px solid var(--line2);
+  background:#fff;
+}
+
+.hud-corner{
+  position:absolute;
+  width:18px;
+  height:18px;
+}
+
+.hud-tl{
+  top:0;
+  left:0;
+  border-top:2px solid var(--red);
+  border-left:2px solid var(--red);
+}
+
+.hud-tr{
+  top:0;
+  right:0;
+  border-top:2px solid var(--red);
+  border-right:2px solid var(--red);
+}
+
+.hud-bl{
+  bottom:0;
+  left:0;
+  border-bottom:2px solid var(--red);
+  border-left:2px solid var(--red);
+}
+
+.hud-br{
+  bottom:0;
+  right:0;
+  border-bottom:2px solid var(--red);
+  border-right:2px solid var(--red);
+}
+
+.module-header{
+  display:flex;
+  justify-content:space-between;
+
+  color:#999;
+
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.18em;
+}
+
+.module-live{
+  color:var(--red);
+}
+
+.pair-name{
+  margin-top:45px;
+
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:.15em;
+}
+
+.pair-name span{
+  color:var(--red);
+}
+
+.price-row{
+  display:flex;
+  align-items:flex-end;
+  flex-wrap:wrap;
+  gap:16px;
+
+  margin-top:9px;
+}
+
+.live-price{
+  font-size:
+    clamp(43px,6vw,76px);
+
+  line-height:1;
+
+  font-weight:1000;
+  letter-spacing:-.07em;
+
+  font-variant-numeric:tabular-nums;
+}
+
+.price-change{
+  margin-bottom:6px;
+
+  padding:6px 8px;
+
+  color:var(--red);
+  background:var(--red-light);
+
+  border:1px solid rgba(229,27,35,.18);
+
+  font-size:10px;
+  font-weight:900;
+}
+
+.price-change.down{
+  color:#666;
+  background:#f5f5f5;
+  border-color:#ddd;
+}
+
+.price-label{
+  margin-top:10px;
+
+  color:#aaa;
+
+  font-size:7px;
+  font-weight:900;
+  letter-spacing:.18em;
+}
+
+.pulse-area{
+  margin-top:44px;
+  padding-top:15px;
+
+  border-top:1px solid #eee;
+}
+
+.pulse-head{
+  display:flex;
+  justify-content:space-between;
+
+  color:#aaa;
+
+  font-size:7px;
+  font-weight:900;
+  letter-spacing:.14em;
+}
+
+#pricePulse{
+  width:100%;
+  height:170px;
+  margin-top:5px;
+  overflow:visible;
+}
+
+#pulsePath{
+  fill:none;
+  stroke:var(--red);
+  stroke-width:3.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+
+  filter:
+    drop-shadow(
+      0 0 5px rgba(229,27,35,.35)
+    );
+}
+
+.price-footer{
+  position:absolute;
+
+  left:30px;
+  right:30px;
+  bottom:24px;
+
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+
+  padding-top:15px;
+
+  border-top:1px solid #eee;
+}
+
+.price-footer span{
+  display:block;
+
+  color:#aaa;
+  font-size:7px;
+  letter-spacing:.14em;
+}
+
+.price-footer strong{
+  display:block;
+  margin-top:4px;
+
+  font-size:9px;
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+
+/* metrics */
+
+.metrics-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+}
+
+.metric{
+  position:relative;
+
+  min-height:168px;
+  padding:21px;
+
+  overflow:hidden;
+
+  border:1px solid var(--line2);
+  background:#fff;
+
+  transition:.35s;
+}
+
+.metric:hover{
+  transform:translateY(-4px);
+
+  border-color:rgba(229,27,35,.3);
+
+  box-shadow:
+    0 18px 45px rgba(229,27,35,.07);
+}
+
+.metric:after{
   content:"";
 
   position:absolute;
 
-  width:220px;
-  height:220px;
+  width:100px;
+  height:100px;
 
-  left:
-    calc(var(--mouse-x,50%) - 110px);
-
-  top:
-    calc(var(--mouse-y,50%) - 110px);
+  right:-50px;
+  bottom:-50px;
 
   border-radius:50%;
 
-  background:
-    radial-gradient(
-      circle,
-      rgba(229,27,35,.10),
-      transparent 70%
-    );
-
-  opacity:0;
-
-  transition:opacity .25s ease;
-
-  pointer-events:none;
+  background:rgba(229,27,35,.06);
+  filter:blur(10px);
 }
 
-.spotlight:hover::before{
-  opacity:1;
+.metric-top{
+  display:flex;
+  justify-content:space-between;
+
+  color:#aaa;
+
+  font-size:7px;
+  font-weight:900;
+  letter-spacing:.15em;
+}
+
+.metric-top b{
+  color:var(--red);
+}
+
+.metric-value{
+  margin-top:22px;
+
+  font-size:
+    clamp(20px,2.6vw,32px);
+
+  line-height:1;
+
+  font-weight:950;
+  letter-spacing:-.05em;
+
+  font-variant-numeric:tabular-nums;
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.metric-buy{
+  color:var(--red);
+}
+
+.metric-sell{
+  color:#555;
+}
+
+.metric-label{
+  position:absolute;
+  bottom:19px;
+
+  color:#aaa;
+
+  font-size:7px;
+  font-weight:800;
+  letter-spacing:.12em;
+}
+
+.metric-bar{
+  position:absolute;
+  left:21px;
+  right:21px;
+  bottom:38px;
+
+  height:2px;
+  background:#eee;
+}
+
+.metric-bar i{
+  display:block;
+  height:100%;
+  width:0;
+  background:var(--red);
+
+  transition:width 1s ease;
+}
+
+
+/* terminal bottom */
+
+.terminal-bottom{
+  position:relative;
+  z-index:2;
+
+  display:grid;
+  grid-template-columns:1fr 1.4fr 1fr auto;
+
+  border-top:1px solid var(--line);
+}
+
+.terminal-info{
+  min-height:73px;
+  padding:14px 19px;
+
+  border-right:1px solid var(--line);
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.terminal-info small{
+  display:block;
+
+  color:#aaa;
+  font-size:6px;
+  font-weight:900;
+  letter-spacing:.14em;
+}
+
+.terminal-info strong{
+  display:block;
+
+  margin-top:5px;
+
+  font-family:monospace;
+  font-size:9px;
+
+  max-width:230px;
+
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.network-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  flex-shrink:0;
+  background:var(--red);
+  box-shadow:0 0 12px rgba(229,27,35,.5);
+}
+
+.chart-link{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+
+  color:var(--red);
+
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.13em;
+
+  transition:.25s;
+}
+
+.chart-link:hover{
+  background:var(--red-light);
+}
+
+
+/* stream */
+
+.data-stream{
+  position:relative;
+  z-index:2;
+
+  min-height:38px;
+
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  padding:0 20px;
+
+  overflow:hidden;
+
+  color:#aaa;
+
+  border-top:1px solid var(--line);
+
+  font-size:6px;
+  font-weight:900;
+  letter-spacing:.18em;
+
+  white-space:nowrap;
+}
+
+.data-stream i{
+  width:3px;
+  height:3px;
+  flex-shrink:0;
+
+  border-radius:50%;
+
+  background:var(--red);
 }
 
 
@@ -988,228 +1229,117 @@ header{
 
 .about-grid{
   display:grid;
-
-  grid-template-columns:
-    1.05fr
-    .95fr;
-
-  gap:90px;
-
-  align-items:center;
-}
-
-.about-big{
-  font-size:
-    clamp(22px,3vw,31px);
-
-  line-height:1.65;
-
-  letter-spacing:-.7px;
-
-  color:#333;
-
-  max-width:650px;
-}
-
-.about-big strong{
-  color:var(--red);
-}
-
-.about-list{
-  display:grid;
-
-  gap:12px;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
 }
 
 .about-card{
-  padding:25px;
-
   position:relative;
 
-  border:1px solid var(--line);
-
-  background:#fff;
-
-  transition:
-    transform .3s ease,
-    box-shadow .3s ease,
-    border-color .3s ease;
-}
-
-.about-card:hover{
-  transform:translateY(-5px);
-
-  border-color:#dedee2;
-
-  box-shadow:var(--shadow);
-}
-
-.about-number{
-  color:var(--red);
-
-  font-size:9px;
-  font-weight:950;
-
-  letter-spacing:1.5px;
-}
-
-.about-card h3{
-  margin-top:8px;
-
-  font-size:19px;
-  font-weight:950;
-}
-
-.about-card p{
-  margin-top:8px;
-
-  color:#777;
-
-  font-size:12px;
-
-  line-height:1.7;
-}
-
-
-/* =========================================================
-   BENTO WHY
-========================================================= */
-
-.bento{
-  display:grid;
-
-  grid-template-columns:
-    1.35fr
-    .65fr
-    .65fr;
-
-  grid-template-rows:
-    250px
-    250px;
-
-  gap:14px;
-}
-
-.bento-card{
-  position:relative;
-
-  padding:30px;
-
-  overflow:hidden;
+  padding:40px;
 
   border:1px solid var(--line);
-
   background:#fff;
 
-  transition:
-    transform .35s cubic-bezier(.22,1,.36,1),
-    box-shadow .35s ease;
+  min-height:330px;
 }
 
-.bento-card:hover{
-  transform:translateY(-7px);
-
-  box-shadow:var(--shadow-hover);
-}
-
-.bento-card.large{
-  grid-row:span 2;
-
+.about-card.red{
   background:
     radial-gradient(
-      circle at 70% 30%,
-      rgba(229,27,35,.11),
-      transparent 48%
+      circle at 80% 20%,
+      rgba(229,27,35,.09),
+      transparent 35%
     ),
     #fff;
 }
 
-.bento-card.dark{
-  background:#101011;
-  color:#fff;
-
-  border-color:#101011;
+.about-number{
+  color:var(--red);
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.15em;
 }
 
-.bento-card.dark p{
-  color:#aaa;
+.about-card h3{
+  margin-top:60px;
+
+  font-size:38px;
+  line-height:1;
+  letter-spacing:-.06em;
 }
 
-.bento-card.red{
-  background:var(--red);
+.about-card p{
+  margin-top:20px;
 
-  color:#fff;
+  max-width:570px;
 
-  border-color:var(--red);
+  color:#777;
+  font-size:13px;
+  line-height:1.9;
 }
 
-.bento-card.red p{
-  color:rgba(255,255,255,.72);
+
+/* =========================================================
+   WHY
+========================================================= */
+
+.why-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
 }
 
-.bento-icon{
-  width:43px;
-  height:43px;
+.why-card{
+  position:relative;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  min-height:270px;
+  padding:28px;
 
-  border-radius:13px;
+  border:1px solid var(--line);
+  background:#fff;
 
-  background:var(--red-soft);
+  transition:.35s;
+}
+
+.why-card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(229,27,35,.25);
+}
+
+.why-index{
+  font-family:monospace;
+  color:var(--red);
+  font-size:10px;
+}
+
+.why-icon{
+  margin-top:45px;
+
+  width:44px;
+  height:44px;
+
+  display:grid;
+  place-items:center;
+
+  border:1px solid rgba(229,27,35,.25);
 
   color:var(--red);
 
-  font-size:20px;
+  font-size:16px;
 }
 
-.bento-card.dark .bento-icon{
-  background:#242426;
-  color:#fff;
+.why-card h3{
+  margin-top:22px;
+  font-size:21px;
+  letter-spacing:-.03em;
 }
 
-.bento-card.red .bento-icon{
-  background:rgba(255,255,255,.16);
-  color:#fff;
-}
-
-.bento h3{
-  margin-top:28px;
-
-  font-size:23px;
-  font-weight:950;
-
-  letter-spacing:-.8px;
-}
-
-.bento p{
+.why-card p{
   margin-top:10px;
-
-  max-width:440px;
-
-  color:#777;
-
-  font-size:12px;
-
+  color:#888;
+  font-size:11px;
   line-height:1.75;
-}
-
-.bento-number{
-  position:absolute;
-
-  right:25px;
-  bottom:18px;
-
-  font-size:90px;
-
-  line-height:1;
-
-  font-weight:950;
-
-  letter-spacing:-8px;
-
-  opacity:.045;
 }
 
 
@@ -1217,175 +1347,163 @@ header{
    TOKENOMICS
 ========================================================= */
 
-.token-wrap{
-  display:grid;
-
-  grid-template-columns:
-    .8fr
-    1.2fr;
-
-  gap:14px;
-}
-
-.token-main{
-  min-height:510px;
-
-  position:relative;
-
-  overflow:hidden;
-
-  padding:42px;
-
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-
-  background:#111;
-
-  color:#fff;
-
-  border-radius:2px;
-}
-
-.token-main::before{
-  content:"";
-
-  position:absolute;
-
-  width:420px;
-  height:420px;
-
-  right:-150px;
-  top:-120px;
-
-  border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(229,27,35,.7),
-      transparent 67%
-    );
-}
-
-.token-main-content{
-  position:relative;
-  z-index:2;
-}
-
-.token-mini-label{
-  color:#aaa;
-
-  font-size:9px;
-  font-weight:850;
-
-  letter-spacing:2px;
-}
-
-.token-name{
-  margin-top:18px;
-
-  font-size:
-    clamp(65px,9vw,110px);
-
-  line-height:.8;
-
-  letter-spacing:-8px;
-
-  font-weight:950;
-}
-
-.token-name span{
-  color:var(--red);
-}
-
-.token-main-bottom{
-  position:relative;
-  z-index:2;
-}
-
-.token-contract-mini{
-  color:#aaa;
-
-  font-family:
-    ui-monospace,
-    monospace;
-
-  font-size:10px;
-
-  word-break:break-all;
-
-  line-height:1.7;
+.tokenomics{
+  background:#fafafa;
 }
 
 .token-grid{
   display:grid;
-
-  grid-template-columns:
-    repeat(2,1fr);
-
-  gap:14px;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
 }
 
-.token-card{
-  min-height:248px;
+.token-core{
+  position:relative;
 
-  padding:30px;
+  min-height:480px;
 
   border:1px solid var(--line);
 
   background:#fff;
 
-  position:relative;
+  display:grid;
+  place-items:center;
 
   overflow:hidden;
-
-  transition:
-    transform .3s ease,
-    box-shadow .3s ease;
 }
 
-.token-card:hover{
-  transform:translateY(-5px);
+.token-circle{
+  position:relative;
 
-  box-shadow:var(--shadow);
+  width:290px;
+  height:290px;
+
+  border-radius:50%;
+
+  border:
+    1px solid rgba(229,27,35,.35);
+
+  box-shadow:
+    0 0 0 20px rgba(229,27,35,.025),
+    0 0 0 50px rgba(229,27,35,.015);
 }
 
-.token-card-label{
+.token-circle:before,
+.token-circle:after{
+  content:"";
+  position:absolute;
+  inset:22px;
+
+  border-radius:50%;
+  border:1px dashed rgba(0,0,0,.12);
+}
+
+.token-circle:after{
+  inset:70px;
+  border-style:solid;
+  border-color:rgba(229,27,35,.15);
+}
+
+.token-center{
+  position:absolute;
+  inset:0;
+
+  display:grid;
+  place-items:center;
+
+  text-align:center;
+}
+
+.token-center strong{
+  display:block;
+
+  color:var(--red);
+
+  font-size:50px;
+  font-weight:1000;
+  letter-spacing:-.08em;
+}
+
+.token-center span{
+  display:block;
+
+  margin-top:4px;
+
   color:#999;
 
   font-size:8px;
   font-weight:900;
-
-  letter-spacing:1.5px;
+  letter-spacing:.2em;
 }
 
-.token-card-value{
-  margin-top:20px;
-
-  font-size:
-    clamp(27px,4vw,43px);
-
-  line-height:1;
-
-  font-weight:950;
-
-  letter-spacing:-2px;
-}
-
-.token-card-value.red{
-  color:var(--red);
-}
-
-.token-card-note{
+.token-orbit{
   position:absolute;
 
-  left:30px;
-  bottom:27px;
+  top:-4px;
+  left:50%;
 
-  color:#999;
+  width:8px;
+  height:8px;
 
-  font-size:10px;
+  margin-left:-4px;
+
+  border-radius:50%;
+
+  background:var(--red);
+  box-shadow:0 0 18px rgba(229,27,35,.55);
+
+  animation:orbit 8s linear infinite;
+  transform-origin:4px 149px;
+}
+
+@keyframes orbit{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+.token-stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.token-stat{
+  min-height:225px;
+
+  padding:25px;
+
+  border:1px solid var(--line);
+  background:#fff;
+}
+
+.token-stat span{
+  color:#aaa;
+
+  font-size:7px;
+  font-weight:900;
+  letter-spacing:.16em;
+}
+
+.token-stat strong{
+  display:block;
+
+  margin-top:25px;
+
+  font-size:31px;
+  letter-spacing:-.05em;
+}
+
+.token-stat em{
+  display:block;
+
+  margin-top:12px;
+
+  color:var(--red);
+
+  font-size:8px;
+  font-style:normal;
+  font-weight:900;
 }
 
 
@@ -1395,177 +1513,92 @@ header{
 
 .story-grid{
   display:grid;
-
-  grid-template-columns:
-    1fr
-    1fr;
-
-  gap:100px;
-
-  align-items:center;
+  grid-template-columns:1fr 1.3fr;
+  gap:70px;
 }
 
-.story-copy{
-  max-width:650px;
-
-  color:#5d5d62;
-
+.story-big{
   font-size:
-    clamp(17px,2vw,21px);
+    clamp(42px,6vw,76px);
 
-  line-height:1.9;
+  line-height:.95;
+
+  letter-spacing:-.065em;
+  font-weight:950;
 }
 
-.story-copy strong{
+.story-big span{
   color:var(--red);
 }
 
-.story-art{
-  aspect-ratio:1;
+.story-text{
+  color:#777;
+  font-size:14px;
+  line-height:2;
+}
 
-  position:relative;
+.story-text p + p{
+  margin-top:20px;
+}
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+.story-line{
+  margin-top:40px;
 
-  border-radius:50%;
+  height:1px;
 
   background:
-    radial-gradient(
-      circle at 38% 32%,
-      #ff555b,
-      var(--red) 58%,
-      #b70f16
+    linear-gradient(
+      90deg,
+      var(--red),
+      transparent
     );
-
-  box-shadow:
-    0 40px 100px rgba(229,27,35,.2);
-}
-
-.story-art::before,
-.story-art::after{
-  content:"";
-
-  position:absolute;
-
-  border:1px solid rgba(255,255,255,.25);
-
-  border-radius:50%;
-}
-
-.story-art::before{
-  inset:8%;
-}
-
-.story-art::after{
-  inset:18%;
-}
-
-.story-art span{
-  position:relative;
-  z-index:3;
-
-  font-size:
-    clamp(90px,13vw,165px);
-
-  filter:
-    drop-shadow(
-      0 15px 20px rgba(0,0,0,.12)
-    );
-
-  animation:
-    chiliPulse 3.5s ease-in-out infinite;
-}
-
-@keyframes chiliPulse{
-  0%,100%{
-    transform:scale(1) rotate(-4deg);
-  }
-
-  50%{
-    transform:scale(1.05) rotate(4deg);
-  }
 }
 
 
 /* =========================================================
-   TRANSPARENCY
+   SECURITY
 ========================================================= */
 
-.transparency-grid{
+.security-grid{
   display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
-  gap:14px;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
 }
 
-.trans-card{
-  padding:32px;
-
-  min-height:230px;
-
-  background:#fff;
+.security-card{
+  padding:27px;
 
   border:1px solid var(--line);
-
-  position:relative;
-
-  overflow:hidden;
-
-  transition:
-    transform .3s ease,
-    box-shadow .3s ease;
+  background:#fff;
 }
 
-.trans-card:hover{
-  transform:translateY(-6px);
-
-  box-shadow:var(--shadow);
+.security-card-top{
+  display:flex;
+  justify-content:space-between;
 }
 
-.trans-card::after{
-  content:"";
+.security-card h3{
+  margin-top:35px;
 
-  position:absolute;
-
-  width:100px;
-  height:100px;
-
-  right:-40px;
-  bottom:-40px;
-
-  border-radius:50%;
-
-  background:var(--red-soft);
+  font-size:22px;
+  letter-spacing:-.04em;
 }
 
-.trans-label{
+.security-card p{
+  margin-top:12px;
+
+  color:#888;
+
+  font-size:11px;
+  line-height:1.8;
+}
+
+.security-status{
   color:var(--red);
 
-  font-size:8px;
-  font-weight:950;
-
-  letter-spacing:1.8px;
-}
-
-.trans-card h3{
-  margin-top:13px;
-
-  font-size:21px;
-  font-weight:950;
-}
-
-.trans-card p{
-  margin-top:10px;
-
-  color:#777;
-
-  font-size:12px;
-
-  line-height:1.75;
+  font-size:7px;
+  font-weight:900;
+  letter-spacing:.14em;
 }
 
 
@@ -1573,185 +1606,72 @@ header{
    CONTRACT
 ========================================================= */
 
-.contract-section{
-  background:#fff;
-}
-
 .contract-box{
   position:relative;
 
-  overflow:hidden;
+  padding:55px;
 
-  padding:
-    clamp(30px,5vw,55px);
-
-  background:#111;
-
-  color:#fff;
-
-  border-radius:3px;
-
-  box-shadow:
-    0 35px 90px rgba(0,0,0,.12);
-}
-
-.contract-box::before{
-  content:"";
-
-  position:absolute;
-
-  width:550px;
-  height:550px;
-
-  right:-250px;
-  top:-250px;
-
-  border-radius:50%;
+  border:1px solid #ddd;
 
   background:
     radial-gradient(
-      circle,
-      rgba(229,27,35,.55),
-      transparent 67%
-    );
+      circle at 90% 30%,
+      rgba(229,27,35,.08),
+      transparent 30%
+    ),
+    #fff;
+
+  overflow:hidden;
 }
 
-.contract-beam{
+.contract-box:before{
+  content:"CHILI";
+
   position:absolute;
 
-  top:0;
-  left:0;
+  right:-20px;
+  bottom:-55px;
 
-  width:35%;
+  color:rgba(229,27,35,.025);
 
-  height:1px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      var(--red),
-      transparent
-    );
-
-  animation:
-    beamMove 4s linear infinite;
+  font-size:210px;
+  font-weight:1000;
+  letter-spacing:-.1em;
 }
 
-@keyframes beamMove{
-  0%{
-    transform:translateX(-100%);
-  }
+.contract-label{
+  color:var(--red);
 
-  100%{
-    transform:translateX(400%);
-  }
-}
-
-.contract-content{
-  position:relative;
-  z-index:2;
-}
-
-.contract-top{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-
-  gap:30px;
-}
-
-.contract-eyebrow{
-  color:#999;
-
-  font-size:9px;
-  font-weight:850;
-
-  letter-spacing:2px;
-}
-
-.contract-title{
-  margin-top:10px;
-
-  font-size:
-    clamp(36px,6vw,70px);
-
-  line-height:.9;
-
-  letter-spacing:-4px;
-
-  font-weight:950;
-}
-
-.bsc-badge{
-  padding:9px 13px;
-
-  border:1px solid #333;
-
-  border-radius:999px;
-
-  color:#ccc;
-
-  font-size:9px;
-  font-weight:800;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.18em;
 }
 
 .contract-address{
-  margin-top:40px;
+  position:relative;
+  z-index:2;
 
-  padding:20px 22px;
+  margin-top:20px;
 
-  background:#181819;
-
-  border:1px solid #29292b;
-
-  border-radius:4px;
-
-  color:#fff;
-
-  font-family:
-    ui-monospace,
-    SFMono-Regular,
-    Menlo,
-    monospace;
+  font-family:monospace;
 
   font-size:
-    clamp(11px,1.5vw,15px);
+    clamp(13px,2vw,21px);
 
-  line-height:1.7;
+  line-height:1.5;
 
   word-break:break-all;
 }
 
 .contract-actions{
-  margin-top:18px;
+  position:relative;
+  z-index:2;
 
   display:flex;
+  flex-wrap:wrap;
   gap:10px;
 
-  flex-wrap:wrap;
-}
-
-.contract-note{
-  margin-top:20px;
-
-  color:#888;
-
-  font-size:10px;
-
-  line-height:1.7;
-}
-
-.contract-box .btn-outline{
-  background:transparent;
-
-  border-color:#444;
-
-  color:#fff;
-}
-
-.contract-box .btn-outline:hover{
-  border-color:#777;
+  margin-top:28px;
 }
 
 
@@ -1760,70 +1680,57 @@ header{
 ========================================================= */
 
 .community{
-  position:relative;
-
-  padding:
-    110px 0;
-
-  overflow:hidden;
-
-  border-top:1px solid var(--line);
+  padding-bottom:140px;
 }
 
-.community::before{
-  content:"";
+.community-box{
+  position:relative;
 
-  position:absolute;
+  padding:70px 50px;
 
-  width:600px;
-  height:600px;
+  text-align:center;
 
-  left:50%;
-  top:50%;
-
-  transform:translate(-50%,-50%);
-
-  border-radius:50%;
+  border:1px solid rgba(229,27,35,.2);
 
   background:
     radial-gradient(
-      circle,
-      rgba(229,27,35,.09),
-      transparent 68%
-    );
+      circle at 50% 100%,
+      rgba(229,27,35,.1),
+      transparent 45%
+    ),
+    #fff;
+
+  overflow:hidden;
 }
 
-.community-inner{
-  position:relative;
-  z-index:2;
-
-  text-align:center;
-}
-
-.community-title{
+.community-box h2{
   font-size:
-    clamp(45px,8vw,100px);
+    clamp(45px,7vw,90px);
 
   line-height:.9;
 
-  letter-spacing:-6px;
-
-  font-weight:950;
+  letter-spacing:-.075em;
 }
 
-.community-title span{
+.community-box h2 span{
   color:var(--red);
 }
 
-.community-text{
-  margin-top:18px;
+.community-box p{
+  max-width:520px;
+  margin:20px auto 0;
 
   color:#777;
-
-  font-size:14px;
+  font-size:13px;
+  line-height:1.8;
 }
 
-.community .btn{
+.community-actions{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+
   margin-top:28px;
 }
 
@@ -1833,659 +1740,796 @@ header{
 ========================================================= */
 
 footer{
-  padding:28px 0;
-
   border-top:1px solid var(--line);
+
+  padding:30px 0;
 
   background:#fff;
 }
 
 .footer-inner{
+  width:min(1380px,calc(100% - 40px));
+  margin:auto;
+
   display:flex;
-
-  align-items:center;
   justify-content:space-between;
-
+  align-items:center;
   gap:20px;
 }
 
 .footer-brand{
-  display:flex;
-  align-items:center;
-  gap:8px;
-
-  font-size:15px;
   font-weight:950;
+  font-size:18px;
+  letter-spacing:-.05em;
 }
 
-.footer-mark{
-  width:24px;
-  height:24px;
-
-  border-radius:7px;
-
-  background:var(--red);
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  overflow:hidden;
-}
-
-.footer-mark img{
-  width:75%;
-  height:75%;
-  object-fit:contain;
+.footer-brand span{
+  color:var(--red);
 }
 
 .footer-copy{
-  color:#999;
-
-  font-size:9px;
-}
-
-.footer-links{
-  display:flex;
-  gap:18px;
-}
-
-.footer-links a{
-  color:#777;
-
-  font-size:9px;
-  font-weight:800;
-}
-
-.footer-links a:hover{
-  color:var(--red);
+  color:#aaa;
+  font-size:8px;
+  letter-spacing:.12em;
 }
 
 
 /* =========================================================
-   RESPONSIVE
+   REVEAL
+========================================================= */
+
+.reveal{
+  opacity:0;
+  transform:translateY(25px);
+  transition:
+    opacity .8s ease,
+    transform .8s ease;
+}
+
+.reveal.visible{
+  opacity:1;
+  transform:none;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+  position:fixed;
+
+  left:50%;
+  bottom:25px;
+
+  transform:
+    translate(-50%,20px);
+
+  z-index:2000;
+
+  padding:11px 17px;
+
+  color:#fff;
+  background:#111;
+
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.1em;
+
+  opacity:0;
+  pointer-events:none;
+
+  transition:.3s;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+
+
+/* =========================================================
+   MOBILE
 ========================================================= */
 
 @media(max-width:1000px){
 
-  .hero-grid{
-    grid-template-columns:
-      1fr
-      360px;
+  .nav-links{
+    display:none;
   }
 
-  .hero{
-    min-height:760px;
+  .menu-btn{
+    display:block;
   }
 
-  .bento{
-    grid-template-columns:
-      1fr 1fr;
-
-    grid-template-rows:
-      250px 250px;
+  .hero-container{
+    grid-template-columns:1fr;
+    gap:50px;
   }
 
-  .bento-card.large{
-    grid-column:span 2;
-    grid-row:auto;
+  .hero-core{
+    width:min(440px,90vw);
   }
 
-  .token-wrap{
+  .terminal-main{
     grid-template-columns:1fr;
   }
 
-  .token-main{
-    min-height:390px;
+  .terminal-bottom{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .terminal-info{
+    border-bottom:1px solid var(--line);
+  }
+
+  .about-grid,
+  .token-grid,
+  .story-grid,
+  .security-grid{
+    grid-template-columns:1fr;
+  }
+
+  .why-grid{
+    grid-template-columns:1fr 1fr;
   }
 
 }
 
 
-@media(max-width:760px){
-
-  .container{
-    width:calc(100% - 28px);
-  }
+@media(max-width:650px){
 
   header{
-    height:64px;
-  }
-
-  .header-inner{
-    width:calc(100% - 28px);
+    height:68px;
   }
 
   .nav{
-    display:none;
-  }
-
-  .menu{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-
-  .mobile-menu{
-    top:64px;
+    width:calc(100% - 24px);
   }
 
   .hero{
-    min-height:auto;
-
-    padding:
-      125px 0
-      75px;
+    padding-top:120px;
   }
 
-  .hero-grid{
-    display:flex;
-    flex-direction:column;
-
-    align-items:stretch;
-
-    gap:60px;
+  .hero-container,
+  .container,
+  .terminal-shell{
+    width:calc(100% - 24px);
   }
 
   .hero h1{
-    font-size:
-      clamp(76px,23vw,125px);
-
-    letter-spacing:-7px;
+    font-size:27vw;
   }
 
-  .hero-sub{
-    font-size:15px;
+  .hero-subtitle{
+    font-size:13px;
   }
 
-  .hero-visual{
+  .hero-core{
+    width:94vw;
+  }
+
+  .core-logo{
+    width:135px;
+    height:135px;
+    font-size:57px;
+  }
+
+  .terminal-section,
+  .section{
+    padding:85px 0;
+  }
+
+  .terminal-top{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:14px;
+  }
+
+  .terminal-status{
     width:100%;
   }
 
-  .hero-logo{
-    width:min(320px,75vw);
-
-    padding:42px;
+  .chain-chip,
+  .live-chip{
+    flex:1;
+    text-align:center;
+    justify-content:center;
   }
 
-  .hero-orbit{
-    width:min(360px,90vw);
-    height:min(360px,90vw);
+  .price-module{
+    min-height:500px;
+    padding:22px;
   }
 
-  .float-card.one{
-    left:0;
+  .price-footer{
+    left:22px;
+    right:22px;
   }
 
-  .float-card.two{
-    right:0;
+  .metrics-grid{
+    gap:9px;
   }
 
-  .stats-grid{
-    grid-template-columns:1fr 1fr;
+  .metric{
+    min-height:140px;
+    padding:16px;
   }
 
-  .stat{
-    padding:23px 15px;
+  .metric-value{
+    font-size:19px;
   }
 
-  .stat:nth-child(2){
+  .metric-bar{
+    left:16px;
+    right:16px;
+  }
+
+  .terminal-bottom{
+    grid-template-columns:1fr;
+  }
+
+  .terminal-info{
     border-right:0;
   }
 
-  .stat:nth-child(3),
-  .stat:nth-child(4){
-    border-top:1px solid var(--line);
-  }
-
-  .stat:first-child{
-    padding-left:0;
-  }
-
-  .stat-number{
-    font-size:24px;
-  }
-
-  .section{
-    padding:
-      78px 0;
-  }
-
-  .section-head{
-    display:block;
-
-    margin-bottom:35px;
-  }
-
-  .section-title{
-    font-size:
-      clamp(43px,13vw,65px);
-
-    letter-spacing:-4px;
-  }
-
-  .section-description{
-    margin-top:20px;
-
-    font-size:12px;
-  }
-
-  .about-grid{
-    grid-template-columns:1fr;
-
-    gap:42px;
-  }
-
-  .about-big{
-    font-size:18px;
-    line-height:1.75;
-  }
-
-  .bento{
-    grid-template-columns:1fr;
-    grid-template-rows:auto;
-  }
-
-  .bento-card.large{
-    grid-column:auto;
-
-    min-height:300px;
-  }
-
-  .bento-card{
-    min-height:220px;
-  }
-
-  .token-grid{
+  .why-grid,
+  .token-stats{
     grid-template-columns:1fr;
   }
 
-  .token-card{
-    min-height:210px;
+  .about-card{
+    padding:27px;
+    min-height:280px;
   }
 
-  .token-main{
-    min-height:360px;
-    padding:30px;
+  .contract-box{
+    padding:30px 22px;
   }
 
-  .token-name{
-    font-size:75px;
-    letter-spacing:-6px;
-  }
-
-  .story-grid{
-    grid-template-columns:1fr;
-
-    gap:55px;
-  }
-
-  .story-copy{
-    font-size:17px;
-  }
-
-  .story-art{
-    width:min(300px,78vw);
-
-    margin:auto;
-  }
-
-  .transparency-grid{
-    grid-template-columns:1fr;
-  }
-
-  .trans-card{
-    min-height:205px;
-  }
-
-  .contract-top{
-    display:block;
-  }
-
-  .bsc-badge{
-    display:inline-flex;
-
-    margin-top:18px;
-  }
-
-  .contract-address{
-    margin-top:28px;
-
-    font-size:10px;
-  }
-
-  .contract-actions{
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-  }
-
-  .contract-actions .btn{
-    width:100%;
-  }
-
-  .community{
-    padding:80px 0;
-  }
-
-  .community-title{
-    font-size:
-      clamp(47px,14vw,75px);
-
-    letter-spacing:-4px;
+  .community-box{
+    padding:55px 22px;
   }
 
   .footer-inner{
+    width:calc(100% - 24px);
     flex-direction:column;
-
     align-items:flex-start;
   }
 
 }
-
-
-@media(max-width:390px){
-
-  .hero h1{
-    font-size:69px;
-    letter-spacing:-5px;
-  }
-
-  .hero-actions{
-    display:grid;
-
-    grid-template-columns:1fr;
-  }
-
-  .hero-actions .btn{
-    width:100%;
-  }
-
-  .float-card{
-    transform:scale(.85);
-  }
-
-  .float-card.one{
-    left:-20px;
-  }
-
-  .float-card.two{
-    right:-20px;
-  }
-
-  .contract-actions{
-    grid-template-columns:1fr;
-  }
-
-}
-
-
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-
-@media(prefers-reduced-motion:reduce){
-
-  *,
-  *::before,
-  *::after{
-    animation-duration:.01ms !important;
-    animation-iteration-count:1 !important;
-    scroll-behavior:auto !important;
-    transition-duration:.01ms !important;
-  }
-
-}
-
 </style>
 </head>
 
 
-<body id="top">
+<body>
 
+<div class="page-grid"></div>
 
-<!-- =======================================================
+<!-- =========================================================
      HEADER
-======================================================= -->
+========================================================= -->
 
 <header>
 
-  <div class="header-inner">
+  <nav class="nav">
 
     <a href="#top" class="logo">
 
-      <div class="logo-mark">
-        <img src="logo.png" alt="CHILI">
-      </div>
+      <div class="logo-mark">🌶</div>
 
-      CHILI
+      <div>
+        CHILI
+        <small>ON-CHAIN</small>
+      </div>
 
     </a>
 
 
-    <nav class="nav">
+    <div class="nav-links">
 
-      <a href="#about" data-i18n="navAbout">
-        ABOUT
-      </a>
+      <a href="#terminal">MARKET</a>
+      <a href="#about">ABOUT</a>
+      <a href="#tokenomics">TOKENOMICS</a>
+      <a href="#story">STORY</a>
+      <a href="#security">SECURITY</a>
+      <a href="#contract">CONTRACT</a>
 
-      <a href="#why" data-i18n="navWhy">
-        WHY CHILI
-      </a>
-
-      <a href="#tokenomics" data-i18n="navTokenomics">
-        TOKENOMICS
-      </a>
-
-      <a href="#contract" data-i18n="navContract">
-        CONTRACT
-      </a>
-
-    </nav>
+    </div>
 
 
-    <div class="header-right">
-
-      <div class="lang">
-
-        <button
-          id="zhBtn"
-          class="active"
-          onclick="setLanguage('zh')"
-        >
-          中文
-        </button>
-
-        <button
-          id="enBtn"
-          onclick="setLanguage('en')"
-        >
-          EN
-        </button>
-
-      </div>
-
+    <div class="nav-right">
 
       <button
-        class="menu"
-        id="menuBtn"
-        aria-label="Menu"
-        onclick="toggleMenu()"
-      >
+        class="lang-btn"
+        id="langBtn">
+        中文
+      </button>
+
+      <button
+        class="menu-btn"
+        id="menuBtn">
         ☰
       </button>
 
     </div>
 
-  </div>
+  </nav>
 
 </header>
 
 
-<!-- =======================================================
-     MOBILE MENU
-======================================================= -->
+<main id="top">
 
-<div class="mobile-menu" id="mobileMenu">
-
-  <nav class="mobile-nav">
-
-    <a
-      href="#about"
-      data-i18n="navAbout"
-      onclick="closeMenu()"
-    >
-      ABOUT
-    </a>
-
-    <a
-      href="#why"
-      data-i18n="navWhy"
-      onclick="closeMenu()"
-    >
-      WHY CHILI
-    </a>
-
-    <a
-      href="#tokenomics"
-      data-i18n="navTokenomics"
-      onclick="closeMenu()"
-    >
-      TOKENOMICS
-    </a>
-
-    <a
-      href="#contract"
-      data-i18n="navContract"
-      onclick="closeMenu()"
-    >
-      CONTRACT
-    </a>
-
-  </nav>
-
-</div>
-
-
-<main>
-
-
-<!-- =======================================================
+<!-- =========================================================
      HERO
-======================================================= -->
+========================================================= -->
 
 <section class="hero">
 
-  <div class="grid-bg"></div>
+  <div class="hero-container">
 
-  <div class="hero-glow"></div>
+    <div class="hero-copy">
+
+      <div class="hero-kicker">
+        <i></i>
+        BNB SMART CHAIN // SYSTEM ONLINE
+      </div>
+
+      <h1>
+        CHI<span>LI</span>
+      </h1>
+
+      <p
+        class="hero-subtitle"
+        data-en="A community-driven token built for the next wave of on-chain culture."
+        data-zh="一个面向下一代链上文化的社区驱动型代币。">
+        A community-driven token built for the next wave of on-chain culture.
+      </p>
+
+      <div class="hero-actions">
+
+        <a
+          class="btn btn-red"
+          href="#terminal">
+          ENTER TERMINAL →
+        </a>
+
+        <a
+          class="btn btn-light"
+          href="https://bscscan.com/address/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c"
+          target="_blank"
+          rel="noopener">
+          VIEW CONTRACT ↗
+        </a>
+
+      </div>
 
 
-  <div class="container">
+      <div class="contract-mini">
 
-    <div class="hero-grid">
+        <span>CA:</span>
+
+        <strong>
+          0xed3c...35f7c
+        </strong>
+
+        <button
+          class="copy-mini"
+          id="heroCopy">
+          COPY
+        </button>
+
+      </div>
+
+    </div>
 
 
-      <div class="hero-content">
+    <div class="hero-core">
 
-        <div class="badge reveal">
+      <div class="core-glow"></div>
 
-          <span class="status-dot"></span>
+      <div class="core-ring ring-1"></div>
+      <div class="core-ring ring-2"></div>
+      <div class="core-ring ring-3"></div>
 
-          <span data-i18n="badge">
-            BUILT ON BNB SMART CHAIN
+      <div class="core-logo">
+        🌶
+      </div>
+
+      <div class="core-label red">
+        CHILI CORE
+      </div>
+
+      <div class="core-data">
+        NETWORK <b>BNB</b><br>
+        STATUS <b>ONLINE</b><br>
+        TAX <b>0%</b><br>
+        TOKEN <b>CHILI</b>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     LIVE MARKET TERMINAL
+========================================================= -->
+
+<section
+  id="terminal"
+  class="terminal-section">
+
+  <div class="terminal-shell">
+
+    <div class="terminal-top">
+
+      <div class="terminal-brand">
+
+        <div class="terminal-dot"></div>
+
+        <div>
+
+          <div class="terminal-code">
+            CHILI // ON-CHAIN CORE
+          </div>
+
+          <div class="terminal-title">
+            LIVE MARKET TERMINAL
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="terminal-status">
+
+        <span class="chain-chip">
+          BNB SMART CHAIN
+        </span>
+
+        <span class="live-chip">
+          <i></i>
+          <b id="marketStatus">SYNC</b>
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="terminal-main">
+
+      <!-- PRICE -->
+
+      <div class="price-module">
+
+        <div class="hud-corner hud-tl"></div>
+        <div class="hud-corner hud-tr"></div>
+        <div class="hud-corner hud-bl"></div>
+        <div class="hud-corner hud-br"></div>
+
+        <div class="module-header">
+
+          <span>
+            MARKET PAIR
+          </span>
+
+          <span class="module-live">
+            ● REALTIME
           </span>
 
         </div>
 
 
-        <h1 class="reveal delay-1">
-          CHI<span class="red">LI</span>
-        </h1>
+        <div class="pair-name">
+          CHILI <span>/</span> USDT
+        </div>
 
 
-        <p
-          class="hero-sub reveal delay-2"
-          data-i18n="heroText"
-        >
-          小辣椒 CHILI，一个建立在 BNB Smart Chain
-          上的社区驱动型代币。
-        </p>
+        <div class="price-row">
+
+          <div
+            class="live-price"
+            id="livePrice">
+            —
+          </div>
+
+          <div
+            class="price-change"
+            id="priceChange">
+            —
+          </div>
+
+        </div>
 
 
-        <div class="hero-actions reveal delay-3">
+        <div class="price-label">
+          CURRENT MARKET PRICE
+        </div>
 
-          <a
-            href="#contract"
-            class="btn btn-red"
-            data-i18n="viewContract"
-          >
-            VIEW CONTRACT
-            <span class="btn-icon">↗</span>
-          </a>
 
-          <a
-            href="#about"
-            class="btn btn-outline"
-            data-i18n="learnMore"
-          >
-            LEARN MORE
-          </a>
+        <div class="pulse-area">
+
+          <div class="pulse-head">
+
+            <span>
+              LIVE PRICE PULSE
+            </span>
+
+            <span id="pulseTime">
+              WAITING FOR DATA...
+            </span>
+
+          </div>
+
+
+          <svg
+            id="pricePulse"
+            viewBox="0 0 900 220"
+            preserveAspectRatio="none">
+
+            <path
+              id="pulsePath"
+              d="">
+            </path>
+
+          </svg>
+
+        </div>
+
+
+        <div class="price-footer">
+
+          <div>
+            <span>PAIR</span>
+            <strong id="pairName">
+              CHILI / USDT
+            </strong>
+          </div>
+
+          <div>
+            <span>DEX</span>
+            <strong id="dexName">
+              —
+            </strong>
+          </div>
+
+          <div>
+            <span>BLOCK</span>
+            <strong id="blockNumber">
+              —
+            </strong>
+          </div>
 
         </div>
 
       </div>
 
 
-      <div class="hero-visual reveal delay-2">
+      <!-- METRICS -->
+
+      <div class="metrics-grid">
 
 
-        <div class="hero-orbit"></div>
+        <div class="metric">
 
-
-        <div class="float-card one">
+          <div class="metric-top">
+            <b>01</b>
+            <span>LIQUIDITY</span>
+          </div>
 
           <div
-            class="float-label"
-            data-i18n="floatNetwork"
-          >
-            NETWORK
+            class="metric-value"
+            id="liquidity">
+            —
           </div>
 
-          <div class="float-value">
-            BNB Chain
+          <div class="metric-bar">
+            <i></i>
+          </div>
+
+          <div class="metric-label">
+            POOL DEPTH / USD
           </div>
 
         </div>
 
 
-        <div class="hero-logo">
+        <div class="metric">
 
-          <img
-            src="logo.png"
-            alt="CHILI Logo"
-          >
-
-        </div>
-
-
-        <div class="float-card two">
+          <div class="metric-top">
+            <b>02</b>
+            <span>24H VOLUME</span>
+          </div>
 
           <div
-            class="float-label"
-            data-i18n="floatTax"
-          >
-            TAX
+            class="metric-value"
+            id="volume24h">
+            —
           </div>
 
-          <div class="float-value red">
-            0%
+          <div class="metric-bar">
+            <i></i>
+          </div>
+
+          <div class="metric-label">
+            MARKET FLOW / 24H
           </div>
 
         </div>
 
+
+        <div class="metric">
+
+          <div class="metric-top">
+            <b>03</b>
+            <span>MARKET CAP</span>
+          </div>
+
+          <div
+            class="metric-value"
+            id="marketCap">
+            —
+          </div>
+
+          <div class="metric-bar">
+            <i></i>
+          </div>
+
+          <div class="metric-label">
+            NETWORK VALUATION
+          </div>
+
+        </div>
+
+
+        <div class="metric">
+
+          <div class="metric-top">
+            <b>04</b>
+            <span>24H TXNS</span>
+          </div>
+
+          <div
+            class="metric-value"
+            id="transactions">
+            —
+          </div>
+
+          <div class="metric-bar">
+            <i></i>
+          </div>
+
+          <div class="metric-label">
+            TOTAL TRANSACTIONS
+          </div>
+
+        </div>
+
+
+        <div class="metric">
+
+          <div class="metric-top">
+            <b>05</b>
+            <span>BUYS</span>
+          </div>
+
+          <div
+            class="metric-value metric-buy"
+            id="buys">
+            —
+          </div>
+
+          <div class="metric-bar">
+            <i id="buyBar"></i>
+          </div>
+
+          <div class="metric-label">
+            BUY PRESSURE
+          </div>
+
+        </div>
+
+
+        <div class="metric">
+
+          <div class="metric-top">
+            <b>06</b>
+            <span>SELLS</span>
+          </div>
+
+          <div
+            class="metric-value metric-sell"
+            id="sells">
+            —
+          </div>
+
+          <div class="metric-bar">
+            <i id="sellBar"></i>
+          </div>
+
+          <div class="metric-label">
+            SELL PRESSURE
+          </div>
+
+        </div>
 
       </div>
+
+    </div>
+
+
+    <div class="terminal-bottom">
+
+      <div class="terminal-info">
+
+        <span class="network-dot"></span>
+
+        <div>
+          <small>NETWORK</small>
+          <strong>BNB SMART CHAIN</strong>
+        </div>
+
+      </div>
+
+
+      <div class="terminal-info">
+
+        <div>
+          <small>PAIR ADDRESS</small>
+          <strong id="pairAddress">—</strong>
+        </div>
+
+      </div>
+
+
+      <div class="terminal-info">
+
+        <div>
+          <small>LAST UPDATE</small>
+          <strong id="lastUpdate">—</strong>
+        </div>
+
+      </div>
+
+
+      <a
+        id="chartLink"
+        class="chart-link"
+        href="https://dexscreener.com/bsc"
+        target="_blank"
+        rel="noopener">
+
+        OPEN LIVE CHART ↗
+
+      </a>
+
+    </div>
+
+
+    <div class="data-stream">
+
+      <span>CHILI CORE</span>
+      <i></i>
+
+      <span>MARKET SYNC</span>
+      <i></i>
+
+      <span>LIQUIDITY MATRIX</span>
+      <i></i>
+
+      <span>BSC BLOCK SYNC</span>
+      <i></i>
+
+      <span>REALTIME DATA</span>
+      <i></i>
+
+      <span>ON-CHAIN ACTIVE</span>
 
     </div>
 
@@ -2494,204 +2538,77 @@ footer{
 </section>
 
 
-<!-- =======================================================
-     STATS
-======================================================= -->
-
-<section class="stats">
-
-  <div class="container">
-
-    <div class="stats-grid">
-
-      <div class="stat reveal">
-
-        <div
-          class="stat-number"
-          data-counter="20150822"
-        >
-          20,150,822
-        </div>
-
-        <div
-          class="stat-label"
-          data-i18n="supply"
-        >
-          TOTAL SUPPLY
-        </div>
-
-      </div>
-
-
-      <div class="stat reveal delay-1">
-
-        <div class="stat-number red">
-          0%
-        </div>
-
-        <div
-          class="stat-label"
-          data-i18n="tax"
-        >
-          TAX
-        </div>
-
-      </div>
-
-
-      <div class="stat reveal delay-2">
-
-        <div class="stat-number">
-          BSC
-        </div>
-
-        <div
-          class="stat-label"
-          data-i18n="network"
-        >
-          NETWORK
-        </div>
-
-      </div>
-
-
-      <div class="stat reveal delay-3">
-
-        <div class="stat-number">
-          CHILI
-        </div>
-
-        <div
-          class="stat-label"
-          data-i18n="symbol"
-        >
-          SYMBOL
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =======================================================
+<!-- =========================================================
      ABOUT
-======================================================= -->
+========================================================= -->
 
 <section
-  class="section"
   id="about"
->
+  class="section">
 
   <div class="container">
 
-    <div class="section-head reveal">
+    <div class="section-head">
 
       <div>
-
-        <div
-          class="eyebrow"
-          data-i18n="aboutLabel"
-        >
-          ABOUT CHILI
+        <div class="section-code">
+          01 // SYSTEM
         </div>
 
-        <h2
-          class="section-title"
-          data-i18n="aboutTitle"
-        >
-          More than a token.
+        <h2 class="section-title">
+          ABOUT<br>CHILI
         </h2>
-
       </div>
-
 
       <p
         class="section-description"
-        data-i18n="aboutDesc"
-      >
-        CHILI 希望成为一个简单、开放、由社区共同参与的 Meme 文化项目。
+        data-en="CHILI is designed around community, transparency and on-chain participation."
+        data-zh="CHILI 围绕社区、透明度以及链上参与而构建。">
+        CHILI is designed around community, transparency and on-chain participation.
       </p>
 
     </div>
 
 
-    <div class="about-grid">
+    <div class="about-grid reveal">
 
+      <div class="about-card red">
 
-      <div class="reveal">
+        <div class="about-number">
+          CORE / 001
+        </div>
 
-        <p
-          class="about-big"
-          data-i18n="aboutText"
-        >
-          CHILI 从一个很简单的想法开始：
-          <strong>让社区成为故事的一部分。</strong>
-          在充满复杂概念的加密世界里，
-          CHILI 选择保持简单。
-          它是一种文化、一种态度，
-          也是喜欢加密世界的人共同创造的社区符号。
+        <h3>
+          SIMPLE.<br>
+          VISIBLE.<br>
+          ON-CHAIN.
+        </h3>
+
+        <p>
+          CHILI keeps the core idea simple:
+          build a recognizable community token
+          with transparent on-chain information.
         </p>
 
       </div>
 
 
-      <div class="about-list">
+      <div class="about-card">
 
-
-        <div class="about-card spotlight reveal">
-
-          <div class="about-number">
-            01
-          </div>
-
-          <h3 data-i18n="aboutPoint1Title">
-            Community
-          </h3>
-
-          <p data-i18n="aboutPoint1Text">
-            社区是 CHILI 故事的核心。
-          </p>
-
+        <div class="about-number">
+          CORE / 002
         </div>
 
+        <h3>
+          BUILT FOR<br>
+          COMMUNITY.
+        </h3>
 
-        <div class="about-card spotlight reveal delay-1">
-
-          <div class="about-number">
-            02
-          </div>
-
-          <h3 data-i18n="aboutPoint2Title">
-            Simplicity
-          </h3>
-
-          <p data-i18n="aboutPoint2Text">
-            简单的规则，清晰的代币信息。
-          </p>
-
-        </div>
-
-
-        <div class="about-card spotlight reveal delay-2">
-
-          <div class="about-number">
-            03
-          </div>
-
-          <h3 data-i18n="aboutPoint3Title">
-            Meme Culture
-          </h3>
-
-          <p data-i18n="aboutPoint3Text">
-            用轻松、有趣的方式参与加密文化。
-          </p>
-
-        </div>
-
+        <p>
+          The CHILI identity is powered by the people
+          who participate, create, share and build around
+          the ecosystem.
+        </p>
 
       </div>
 
@@ -2702,590 +2619,93 @@ footer{
 </section>
 
 
-<!-- =======================================================
+<!-- =========================================================
      WHY CHILI
-======================================================= -->
-
-<section
-  class="section section-light"
-  id="why"
->
-
-  <div class="container">
-
-    <div class="section-head reveal">
-
-      <div>
-
-        <div
-          class="eyebrow"
-          data-i18n="whyLabel"
-        >
-          WHY CHILI
-        </div>
-
-        <h2
-          class="section-title"
-          data-i18n="whyTitle"
-        >
-          Keep it simple.
-        </h2>
-
-      </div>
-
-
-      <p
-        class="section-description"
-        data-i18n="whyDesc"
-      >
-        不用复杂的承诺，只展示真正可以验证的信息。
-      </p>
-
-    </div>
-
-
-    <div class="bento">
-
-
-      <div class="bento-card large spotlight reveal">
-
-        <div class="bento-icon">
-          🌶️
-        </div>
-
-        <h3 data-i18n="why1Title">
-          Community First
-        </h3>
-
-        <p data-i18n="why1Text">
-          CHILI 的文化建立在社区参与和共同传播之上。
-        </p>
-
-        <div class="bento-number">
-          01
-        </div>
-
-      </div>
-
-
-      <div class="bento-card dark spotlight reveal delay-1">
-
-        <div class="bento-icon">
-          ◉
-        </div>
-
-        <h3 data-i18n="why2Title">
-          Simple Token
-        </h3>
-
-        <p data-i18n="why2Text">
-          供应量、税费和网络等核心信息清晰展示。
-        </p>
-
-        <div class="bento-number">
-          02
-        </div>
-
-      </div>
-
-
-      <div class="bento-card red spotlight reveal delay-2">
-
-        <div class="bento-icon">
-          ↗
-        </div>
-
-        <h3 data-i18n="why3Title">
-          On-chain
-        </h3>
-
-        <p data-i18n="why3Text">
-          合约地址公开，可以通过 BscScan 查看链上信息。
-        </p>
-
-        <div class="bento-number">
-          03
-        </div>
-
-      </div>
-
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =======================================================
-     TOKENOMICS
-======================================================= -->
-
-<section
-  class="section"
-  id="tokenomics"
->
-
-  <div class="container">
-
-    <div class="section-head reveal">
-
-      <div>
-
-        <div
-          class="eyebrow"
-          data-i18n="tokenLabel"
-        >
-          TOKENOMICS
-        </div>
-
-        <h2
-          class="section-title"
-          data-i18n="tokenTitle"
-        >
-          Simple.
-        </h2>
-
-      </div>
-
-
-      <p
-        class="section-description"
-        data-i18n="tokenDesc"
-      >
-        简单、透明，只保留真正重要的代币信息。
-      </p>
-
-    </div>
-
-
-    <div class="token-wrap">
-
-
-      <div class="token-main reveal">
-
-        <div class="token-main-content">
-
-          <div
-            class="token-mini-label"
-            data-i18n="tokenMainLabel"
-          >
-            COMMUNITY TOKEN
-          </div>
-
-          <div class="token-name">
-            CHI<span>LI</span>
-          </div>
-
-        </div>
-
-
-        <div class="token-main-bottom">
-
-          <div
-            class="token-contract-mini"
-          >
-            0xed3caca4903256fb3e4997bc0c7830d19fb35f7c
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="token-grid">
-
-
-        <div class="token-card spotlight reveal delay-1">
-
-          <div
-            class="token-card-label"
-            data-i18n="tokenName"
-          >
-            TOKEN
-          </div>
-
-          <div class="token-card-value red">
-            CHILI
-          </div>
-
-          <div
-            class="token-card-note"
-            data-i18n="tokenNameNote"
-          >
-            小辣椒 CHILI
-          </div>
-
-        </div>
-
-
-        <div class="token-card spotlight reveal delay-2">
-
-          <div
-            class="token-card-label"
-            data-i18n="tokenSupply"
-          >
-            TOTAL SUPPLY
-          </div>
-
-          <div class="token-card-value">
-            20,150,822
-          </div>
-
-          <div
-            class="token-card-note"
-            data-i18n="tokenSupplyNote"
-          >
-            Total token supply
-          </div>
-
-        </div>
-
-
-        <div class="token-card spotlight reveal delay-1">
-
-          <div
-            class="token-card-label"
-            data-i18n="tokenTax"
-          >
-            TAX
-          </div>
-
-          <div class="token-card-value red">
-            0%
-          </div>
-
-          <div
-            class="token-card-note"
-            data-i18n="tokenTaxNote"
-          >
-            Current token tax
-          </div>
-
-        </div>
-
-
-        <div class="token-card spotlight reveal delay-2">
-
-          <div
-            class="token-card-label"
-            data-i18n="tokenNetwork"
-          >
-            NETWORK
-          </div>
-
-          <div class="token-card-value">
-            BSC
-          </div>
-
-          <div
-            class="token-card-note"
-            data-i18n="tokenNetworkNote"
-          >
-            BNB Smart Chain
-          </div>
-
-        </div>
-
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =======================================================
-     STORY
-======================================================= -->
-
-<section
-  class="section section-light"
-  id="story"
->
-
-  <div class="container">
-
-    <div class="story-grid">
-
-
-      <div class="reveal">
-
-        <div
-          class="eyebrow"
-          data-i18n="storyLabel"
-        >
-          STORY
-        </div>
-
-        <h2
-          class="section-title"
-          data-i18n="storyTitle"
-        >
-          A little heat.
-        </h2>
-
-        <p
-          class="story-copy"
-          data-i18n="storyText"
-          style="margin-top:30px;"
-        >
-          小辣椒 CHILI 从一个简单的想法开始：
-          <strong>让社区成为核心。</strong>
-          不需要复杂的叙事，也不需要堆砌概念。
-          CHILI 希望用简单直接的方式，
-          连接喜欢加密文化、社区和 Meme 的人。
-
-          就像一颗小辣椒。
-          它不需要很大，
-          但只要出现，
-          就能让人感受到一点热度。
-        </p>
-
-      </div>
-
-
-      <div class="story-art reveal delay-2">
-
-        <span>🌶️</span>
-
-      </div>
-
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =======================================================
-     TRANSPARENCY
-======================================================= -->
+========================================================= -->
 
 <section class="section">
 
   <div class="container">
 
-    <div class="section-head reveal">
+    <div class="section-head">
 
       <div>
-
-        <div
-          class="eyebrow"
-          data-i18n="transparencyLabel"
-        >
-          TRANSPARENCY
-        </div>
-
-        <h2
-          class="section-title"
-          data-i18n="transparencyTitle"
-        >
-          Verify it.
-        </h2>
-
-      </div>
-
-
-      <p
-        class="section-description"
-        data-i18n="transparencyDesc"
-      >
-        不靠口号，让公开的信息自己说话。
-      </p>
-
-    </div>
-
-
-    <div class="transparency-grid">
-
-
-      <div class="trans-card spotlight reveal">
-
-        <div
-          class="trans-label"
-          data-i18n="transparency1Label"
-        >
-          CONTRACT
-        </div>
-
-        <h3 data-i18n="transparency1Title">
-          Public Contract
-        </h3>
-
-        <p data-i18n="transparency1Text">
-          合约地址公开，并提供 BscScan 链接进行查询。
-        </p>
-
-      </div>
-
-
-      <div class="trans-card spotlight reveal delay-1">
-
-        <div
-          class="trans-label"
-          data-i18n="transparency2Label"
-        >
-          TOKEN
-        </div>
-
-        <h3 data-i18n="transparency2Title">
-          Clear Information
-        </h3>
-
-        <p data-i18n="transparency2Text">
-          Token 名称、Symbol、供应量、税费和网络信息公开展示。
-        </p>
-
-      </div>
-
-
-      <div class="trans-card spotlight reveal delay-2">
-
-        <div
-          class="trans-label"
-          data-i18n="transparency3Label"
-        >
-          NETWORK
-        </div>
-
-        <h3 data-i18n="transparency3Title">
-          BNB Smart Chain
-        </h3>
-
-        <p data-i18n="transparency3Text">
-          CHILI 建立在 BNB Smart Chain 上。
-        </p>
-
-      </div>
-
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =======================================================
-     CONTRACT
-======================================================= -->
-
-<section
-  class="section contract-section"
-  id="contract"
->
-
-  <div class="container">
-
-    <div class="section-head reveal">
-
-      <div>
-
-        <div
-          class="eyebrow"
-          data-i18n="contractLabel"
-        >
-          CONTRACT
+        <div class="section-code">
+          02 // ARCHITECTURE
         </div>
 
         <h2 class="section-title">
-          CHILI.
+          WHY<br>CHILI?
         </h2>
-
       </div>
-
-
-      <p
-        class="section-description"
-        data-i18n="contractDesc"
-      >
-        官方合约地址及链上查询入口。
-      </p>
 
     </div>
 
 
-    <div class="contract-box reveal">
+    <div class="why-grid reveal">
 
-      <div class="contract-beam"></div>
+      <div class="why-card">
 
-
-      <div class="contract-content">
-
-
-        <div class="contract-top">
-
-          <div>
-
-            <div
-              class="contract-eyebrow"
-              data-i18n="contractAddress"
-            >
-              CONTRACT ADDRESS
-            </div>
-
-            <div
-              class="contract-title"
-              data-i18n="contractTitle"
-            >
-              Verify CHILI.
-            </div>
-
-          </div>
-
-
-          <div
-            class="bsc-badge"
-            data-i18n="bscBadge"
-          >
-            BNB SMART CHAIN
-          </div>
-
+        <div class="why-index">
+          NODE / 01
         </div>
 
-
-        <div class="contract-address">
-          0xed3caca4903256fb3e4997bc0c7830d19fb35f7c
+        <div class="why-icon">
+          ◉
         </div>
 
+        <h3>
+          Community First
+        </h3>
 
-        <div class="contract-actions">
+        <p>
+          CHILI is built around an open,
+          recognizable community identity.
+        </p>
 
-          <a
-            href="https://bscscan.com/address/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn btn-red"
-            data-i18n="bscscan"
-          >
-            VIEW BscScan
-            <span class="btn-icon">↗</span>
-          </a>
+      </div>
 
 
-          <button
-            class="btn btn-outline"
-            onclick="copyContract()"
-            id="copyBtn"
-            data-i18n="copy"
-          >
-            COPY ADDRESS
-          </button>
+      <div class="why-card">
 
+        <div class="why-index">
+          NODE / 02
         </div>
 
-
-        <div
-          class="contract-note"
-          data-i18n="contractNote"
-        >
-          Always verify the contract address through official channels.
+        <div class="why-icon">
+          ⛓
         </div>
 
+        <h3>
+          On-Chain
+        </h3>
+
+        <p>
+          Market information and contract activity
+          can be independently viewed on BNB Smart Chain.
+        </p>
+
+      </div>
+
+
+      <div class="why-card">
+
+        <div class="why-index">
+          NODE / 03
+        </div>
+
+        <div class="why-icon">
+          ✦
+        </div>
+
+        <h3>
+          Built To Evolve
+        </h3>
+
+        <p>
+          The website and community layer are designed
+          to expand as the CHILI ecosystem grows.
+        </p>
 
       </div>
 
@@ -3296,37 +2716,121 @@ footer{
 </section>
 
 
-<!-- =======================================================
-     COMMUNITY
-======================================================= -->
+<!-- =========================================================
+     TOKENOMICS
+========================================================= -->
 
-<section class="community">
+<section
+  id="tokenomics"
+  class="section tokenomics">
 
   <div class="container">
 
-    <div class="community-inner reveal">
+    <div class="section-head">
 
-      <h2
-        class="community-title"
-        data-i18n="communityTitle"
-      >
-        KEEP IT <span>SPICY.</span>
-      </h2>
+      <div>
+        <div class="section-code">
+          03 // TOKEN MATRIX
+        </div>
 
-      <p
-        class="community-text"
-        data-i18n="communityText"
-      >
-        A little chili. A little heat.
+        <h2 class="section-title">
+          TOKENOMICS
+        </h2>
+      </div>
+
+      <p class="section-description">
+        Core CHILI token parameters.
       </p>
 
-      <a
-        href="#contract"
-        class="btn btn-red"
-        data-i18n="communityButton"
-      >
-        EXPLORE CHILI
-      </a>
+    </div>
+
+
+    <div class="token-grid reveal">
+
+
+      <div class="token-core">
+
+        <div class="token-circle">
+
+          <div class="token-orbit"></div>
+
+          <div class="token-center">
+
+            <div>
+              <strong>CHILI</strong>
+              <span>ON-CHAIN ASSET</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="token-stats">
+
+
+        <div class="token-stat">
+
+          <span>TOKEN SYMBOL</span>
+
+          <strong>
+            CHILI
+          </strong>
+
+          <em>
+            ACTIVE
+          </em>
+
+        </div>
+
+
+        <div class="token-stat">
+
+          <span>NETWORK</span>
+
+          <strong>
+            BSC
+          </strong>
+
+          <em>
+            BNB SMART CHAIN
+          </em>
+
+        </div>
+
+
+        <div class="token-stat">
+
+          <span>TOTAL SUPPLY</span>
+
+          <strong>
+            20.15M
+          </strong>
+
+          <em>
+            CHILI
+          </em>
+
+        </div>
+
+
+        <div class="token-stat">
+
+          <span>PROJECT TAX</span>
+
+          <strong>
+            0%
+          </strong>
+
+          <em>
+            PROJECT-STATED
+          </em>
+
+        </div>
+
+      </div>
 
     </div>
 
@@ -3334,68 +2838,339 @@ footer{
 
 </section>
 
+
+<!-- =========================================================
+     STORY
+========================================================= -->
+
+<section
+  id="story"
+  class="section">
+
+  <div class="container">
+
+    <div class="section-head">
+
+      <div>
+        <div class="section-code">
+          04 // TRANSMISSION
+        </div>
+
+        <h2 class="section-title">
+          THE<br>STORY
+        </h2>
+      </div>
+
+    </div>
+
+
+    <div class="story-grid reveal">
+
+      <div class="story-big">
+
+        FROM<br>
+        <span>SPARK</span><br>
+        TO<br>
+        MOVEMENT.
+
+      </div>
+
+
+      <div class="story-text">
+
+        <p>
+          CHILI started with a simple idea:
+          create something recognizable, energetic
+          and easy for a community to rally around.
+        </p>
+
+        <p>
+          The chili represents energy.
+          The chain represents transparency.
+          The community creates the movement.
+        </p>
+
+        <p>
+          As CHILI grows, the goal is to keep the
+          experience simple while continuously expanding
+          the tools and infrastructure around it.
+        </p>
+
+        <div class="story-line"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     SECURITY
+========================================================= -->
+
+<section
+  id="security"
+  class="section">
+
+  <div class="container">
+
+    <div class="section-head">
+
+      <div>
+        <div class="section-code">
+          05 // TRANSPARENCY
+        </div>
+
+        <h2 class="section-title">
+          SECURITY<br>& DATA
+        </h2>
+      </div>
+
+      <p class="section-description">
+        Important information should be independently verifiable on-chain.
+      </p>
+
+    </div>
+
+
+    <div class="security-grid reveal">
+
+
+      <div class="security-card">
+
+        <div class="security-card-top">
+
+          <span class="section-code">
+            CONTRACT
+          </span>
+
+          <span class="security-status">
+            ON-CHAIN
+          </span>
+
+        </div>
+
+        <h3>
+          Public Contract
+        </h3>
+
+        <p>
+          The CHILI contract address is publicly accessible
+          on BNB Smart Chain and can be independently inspected.
+        </p>
+
+      </div>
+
+
+      <div class="security-card">
+
+        <div class="security-card-top">
+
+          <span class="section-code">
+            MARKET
+          </span>
+
+          <span class="security-status">
+            REALTIME
+          </span>
+
+        </div>
+
+        <h3>
+          Live Market Data
+        </h3>
+
+        <p>
+          Price, liquidity, volume and transaction information
+          displayed above is retrieved from live market data.
+        </p>
+
+      </div>
+
+
+      <div class="security-card">
+
+        <div class="security-card-top">
+
+          <span class="section-code">
+            NETWORK
+          </span>
+
+          <span class="security-status">
+            BSC
+          </span>
+
+        </div>
+
+        <h3>
+          BNB Smart Chain
+        </h3>
+
+        <p>
+          CHILI operates on BNB Smart Chain,
+          allowing transactions and contract activity
+          to be publicly viewed.
+        </p>
+
+      </div>
+
+
+      <div class="security-card">
+
+        <div class="security-card-top">
+
+          <span class="section-code">
+            DATA
+          </span>
+
+          <span class="security-status">
+            NO FAKE TICKER
+          </span>
+
+        </div>
+
+        <h3>
+          No Fabricated Market Data
+        </h3>
+
+        <p>
+          If live market information cannot be retrieved,
+          the terminal displays a sync/offline state instead
+          of inventing numbers.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     CONTRACT
+========================================================= -->
+
+<section
+  id="contract"
+  class="section">
+
+  <div class="container">
+
+    <div class="contract-box reveal">
+
+      <div class="contract-label">
+        CHILI // CONTRACT IDENTIFIER
+      </div>
+
+      <div class="contract-address">
+        0xed3caca4903256fb3e4997bc0c7830d19fb35f7c
+      </div>
+
+
+      <div class="contract-actions">
+
+        <button
+          class="btn btn-red"
+          id="copyContract">
+          COPY CONTRACT
+        </button>
+
+        <a
+          class="btn btn-light"
+          href="https://bscscan.com/address/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c"
+          target="_blank"
+          rel="noopener">
+          BSCSCAN ↗
+        </a>
+
+        <a
+          class="btn btn-light"
+          href="https://dexscreener.com/bsc"
+          target="_blank"
+          rel="noopener">
+          DEXSCREENER ↗
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     COMMUNITY
+========================================================= -->
+
+<section class="section community">
+
+  <div class="container">
+
+    <div class="community-box reveal">
+
+      <div class="section-code">
+        06 // COMMUNITY NETWORK
+      </div>
+
+      <h2>
+        FEEL THE<br>
+        <span>HEAT.</span>
+      </h2>
+
+      <p>
+        CHILI is more than a token address.
+        It is a community identity built on-chain.
+      </p>
+
+      <div class="community-actions">
+
+        <a
+          class="btn btn-red"
+          href="#"
+          onclick="return false;">
+          TELEGRAM ↗
+        </a>
+
+        <a
+          class="btn btn-light"
+          href="https://bscscan.com/address/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c"
+          target="_blank"
+          rel="noopener">
+          EXPLORE ON BSC ↗
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
 </main>
 
 
-<!-- =======================================================
+<!-- =========================================================
      FOOTER
-======================================================= -->
+========================================================= -->
 
 <footer>
 
-  <div class="container">
+  <div class="footer-inner">
 
-    <div class="footer-inner">
+    <div class="footer-brand">
+      <span>🌶</span> CHILI
+    </div>
 
-
-      <div class="footer-brand">
-
-        <div class="footer-mark">
-
-          <img
-            src="logo.png"
-            alt="CHILI"
-          >
-
-        </div>
-
-        CHILI
-
-      </div>
-
-
-      <div
-        class="footer-copy"
-        data-i18n="footer"
-      >
-        © 2026 CHILI. Built on BNB Smart Chain.
-      </div>
-
-
-      <div class="footer-links">
-
-        <a
-          href="https://bscscan.com/address/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c"
-          target="_blank"
-          rel="noopener noreferrer"
-          data-i18n="footerContract"
-        >
-          Contract
-        </a>
-
-        <a
-          href="https://gopluslabs.io/"
-          target="_blank"
-          rel="noopener noreferrer"
-          data-i18n="footerSecurity"
-        >
-          Security
-        </a>
-
-      </div>
-
-
+    <div class="footer-copy">
+      © 2026 CHILI // BNB SMART CHAIN
     </div>
 
   </div>
@@ -3403,1008 +3178,917 @@ footer{
 </footer>
 
 
-<script>
+<div
+  class="toast"
+  id="toast">
+  COPIED
+</div>
 
+
+<script>
 /* =========================================================
-   TRANSLATIONS
+   CHILI // JAVASCRIPT CORE
 ========================================================= */
 
-const translations = {
+const CHILI_ADDRESS =
+  "0xed3caca4903256fb3e4997bc0c7830d19fb35f7c";
 
-  zh: {
+const DEX_API =
+  `https://api.dexscreener.com/tokens/v1/bsc/${CHILI_ADDRESS}`;
 
-    pageTitle:
-      "CHILI — BNB 智能链社区代币",
+const BSC_RPCS = [
+  "https://bsc-dataseed.binance.org/",
+  "https://bsc-dataseed1.defibit.io/",
+  "https://bsc-dataseed1.ninicoin.io/"
+];
 
-    metaDesc:
-      "小辣椒 CHILI — 一个建立在 BNB Smart Chain 上的社区驱动型代币。",
+let priceHistory = [];
+let currentPair = null;
 
-    navAbout:
-      "关于 CHILI",
 
-    navWhy:
-      "为什么 CHILI",
+/* =========================================================
+   HELPERS
+========================================================= */
 
-    navTokenomics:
-      "代币经济",
+function $(id){
+  return document.getElementById(id);
+}
 
-    navContract:
-      "合约",
 
-    badge:
-      "BUILT ON BNB SMART CHAIN",
+function formatMoney(value){
 
-    heroText:
-      "小辣椒 CHILI，一个建立在 BNB Smart Chain 上的社区驱动型代币。",
-
-    viewContract:
-      "查看合约",
-
-    learnMore:
-      "了解 CHILI",
-
-    floatNetwork:
-      "NETWORK",
-
-    floatTax:
-      "TAX",
-
-    supply:
-      "总供应量",
-
-    tax:
-      "税费",
-
-    network:
-      "网络",
-
-    symbol:
-      "代币符号",
-
-    aboutLabel:
-      "ABOUT CHILI",
-
-    aboutTitle:
-      "不只是一个代币。",
-
-    aboutDesc:
-      "CHILI 希望成为一个简单、开放、由社区共同参与的 Meme 文化项目。",
-
-    aboutText:
-      "CHILI 从一个很简单的想法开始：<strong>让社区成为故事的一部分。</strong> 在充满复杂概念的加密世界里，CHILI 选择保持简单。它是一种文化、一种态度，也是喜欢加密世界的人共同创造的社区符号。",
-
-    aboutPoint1Title:
-      "社区",
-
-    aboutPoint1Text:
-      "社区是 CHILI 故事的核心。",
-
-    aboutPoint2Title:
-      "简单",
-
-    aboutPoint2Text:
-      "简单的规则，清晰的代币信息。",
-
-    aboutPoint3Title:
-      "Meme 文化",
-
-    aboutPoint3Text:
-      "用轻松、有趣的方式参与加密文化。",
-
-    whyLabel:
-      "WHY CHILI",
-
-    whyTitle:
-      "保持简单。",
-
-    whyDesc:
-      "不用复杂的承诺，只展示真正可以验证的信息。",
-
-    why1Title:
-      "社区优先",
-
-    why1Text:
-      "CHILI 的文化建立在社区参与和共同传播之上。",
-
-    why2Title:
-      "简单代币",
-
-    why2Text:
-      "供应量、税费和网络等核心信息清晰展示。",
-
-    why3Title:
-      "链上公开",
-
-    why3Text:
-      "合约地址公开，可以通过 BscScan 查看链上信息。",
-
-    tokenLabel:
-      "TOKENOMICS",
-
-    tokenTitle:
-      "简单。",
-
-    tokenDesc:
-      "简单、透明，只保留真正重要的代币信息。",
-
-    tokenMainLabel:
-      "COMMUNITY TOKEN",
-
-    tokenName:
-      "代币",
-
-    tokenNameNote:
-      "小辣椒 CHILI",
-
-    tokenSupply:
-      "总供应量",
-
-    tokenSupplyNote:
-      "代币总供应量",
-
-    tokenTax:
-      "税费",
-
-    tokenTaxNote:
-      "当前代币税费",
-
-    tokenNetwork:
-      "网络",
-
-    tokenNetworkNote:
-      "BNB Smart Chain",
-
-    storyLabel:
-      "STORY",
-
-    storyTitle:
-      "一点热度。",
-
-    storyText:
-      "小辣椒 CHILI 从一个简单的想法开始：<strong>让社区成为核心。</strong> 不需要复杂的叙事，也不需要堆砌概念。CHILI 希望用简单直接的方式，连接喜欢加密文化、社区和 Meme 的人。就像一颗小辣椒。它不需要很大，但只要出现，就能让人感受到一点热度。",
-
-    transparencyLabel:
-      "TRANSPARENCY",
-
-    transparencyTitle:
-      "自己验证。",
-
-    transparencyDesc:
-      "不靠口号，让公开的信息自己说话。",
-
-    transparency1Label:
-      "CONTRACT",
-
-    transparency1Title:
-      "公开合约",
-
-    transparency1Text:
-      "合约地址公开，并提供 BscScan 链接进行查询。",
-
-    transparency2Label:
-      "TOKEN",
-
-    transparency2Title:
-      "清晰资料",
-
-    transparency2Text:
-      "Token 名称、Symbol、供应量、税费和网络信息公开展示。",
-
-    transparency3Label:
-      "NETWORK",
-
-    transparency3Title:
-      "BNB Smart Chain",
-
-    transparency3Text:
-      "CHILI 建立在 BNB Smart Chain 上。",
-
-    contractLabel:
-      "CONTRACT",
-
-    contractDesc:
-      "官方合约地址及链上查询入口。",
-
-    contractAddress:
-      "合约地址",
-
-    contractTitle:
-      "验证 CHILI。",
-
-    bscBadge:
-      "BNB SMART CHAIN",
-
-    bscscan:
-      "查看 BscScan",
-
-    copy:
-      "复制地址",
-
-    contractNote:
-      "请始终通过官方渠道核对合约地址。",
-
-    communityTitle:
-      "保持一点 <span>热度。</span>",
-
-    communityText:
-      "小辣椒，保持一点热度。",
-
-    communityButton:
-      "探索 CHILI",
-
-    footer:
-      "© 2026 CHILI. Built on BNB Smart Chain.",
-
-    footerContract:
-      "合约",
-
-    footerSecurity:
-      "安全"
-  },
-
-
-  en: {
-
-    pageTitle:
-      "CHILI — BNB Smart Chain Token",
-
-    metaDesc:
-      "CHILI — A community-driven token built on BNB Smart Chain.",
-
-    navAbout:
-      "ABOUT",
-
-    navWhy:
-      "WHY CHILI",
-
-    navTokenomics:
-      "TOKENOMICS",
-
-    navContract:
-      "CONTRACT",
-
-    badge:
-      "BUILT ON BNB SMART CHAIN",
-
-    heroText:
-      "CHILI is a community-driven token built on BNB Smart Chain.",
-
-    viewContract:
-      "VIEW CONTRACT",
-
-    learnMore:
-      "LEARN MORE",
-
-    floatNetwork:
-      "NETWORK",
-
-    floatTax:
-      "TAX",
-
-    supply:
-      "TOTAL SUPPLY",
-
-    tax:
-      "TAX",
-
-    network:
-      "NETWORK",
-
-    symbol:
-      "SYMBOL",
-
-    aboutLabel:
-      "ABOUT CHILI",
-
-    aboutTitle:
-      "More than a token.",
-
-    aboutDesc:
-      "CHILI is a simple, open community project inspired by Meme culture.",
-
-    aboutText:
-      "CHILI started with a simple idea: <strong>let the community become part of the story.</strong> In a crypto world filled with complicated concepts, CHILI chooses to stay simple. It is a culture, an attitude, and a community symbol created by people who enjoy crypto.",
-
-    aboutPoint1Title:
-      "Community",
-
-    aboutPoint1Text:
-      "The community is at the heart of the CHILI story.",
-
-    aboutPoint2Title:
-      "Simplicity",
-
-    aboutPoint2Text:
-      "Simple rules and clear token information.",
-
-    aboutPoint3Title:
-      "Meme Culture",
-
-    aboutPoint3Text:
-      "A lighthearted way to participate in crypto culture.",
-
-    whyLabel:
-      "WHY CHILI",
-
-    whyTitle:
-      "Keep it simple.",
-
-    whyDesc:
-      "No complicated promises. Just information that can be verified.",
-
-    why1Title:
-      "Community First",
-
-    why1Text:
-      "CHILI's culture is built around community participation and sharing.",
-
-    why2Title:
-      "Simple Token",
-
-    why2Text:
-      "Core token information such as supply, tax and network is clearly presented.",
-
-    why3Title:
-      "On-chain",
-
-    why3Text:
-      "The contract is public and can be checked directly on BscScan.",
-
-    tokenLabel:
-      "TOKENOMICS",
-
-    tokenTitle:
-      "Simple.",
-
-    tokenDesc:
-      "Simple, transparent, and focused only on what matters.",
-
-    tokenMainLabel:
-      "COMMUNITY TOKEN",
-
-    tokenName:
-      "TOKEN",
-
-    tokenNameNote:
-      "CHILI",
-
-    tokenSupply:
-      "TOTAL SUPPLY",
-
-    tokenSupplyNote:
-      "Total token supply",
-
-    tokenTax:
-      "TAX",
-
-    tokenTaxNote:
-      "Current token tax",
-
-    tokenNetwork:
-      "NETWORK",
-
-    tokenNetworkNote:
-      "BNB Smart Chain",
-
-    storyLabel:
-      "STORY",
-
-    storyTitle:
-      "A little heat.",
-
-    storyText:
-      "CHILI started with a simple idea: <strong>put the community at the center.</strong> No complicated narratives and no unnecessary concepts. CHILI is about connecting people who enjoy crypto culture, communities, and Meme. Like a little chili pepper, it does not need to be big to make an impression. Sometimes, a little heat is enough.",
-
-    transparencyLabel:
-      "TRANSPARENCY",
-
-    transparencyTitle:
-      "Verify it.",
-
-    transparencyDesc:
-      "No slogans. Let the public information speak for itself.",
-
-    transparency1Label:
-      "CONTRACT",
-
-    transparency1Title:
-      "Public Contract",
-
-    transparency1Text:
-      "The contract address is public and can be checked through BscScan.",
-
-    transparency2Label:
-      "TOKEN",
-
-    transparency2Title:
-      "Clear Information",
-
-    transparency2Text:
-      "Token name, symbol, supply, tax and network information are publicly displayed.",
-
-    transparency3Label:
-      "NETWORK",
-
-    transparency3Title:
-      "BNB Smart Chain",
-
-    transparency3Text:
-      "CHILI is built on BNB Smart Chain.",
-
-    contractLabel:
-      "CONTRACT",
-
-    contractDesc:
-      "Official contract address and on-chain verification.",
-
-    contractAddress:
-      "CONTRACT ADDRESS",
-
-    contractTitle:
-      "Verify CHILI.",
-
-    bscBadge:
-      "BNB SMART CHAIN",
-
-    bscscan:
-      "VIEW BscScan",
-
-    copy:
-      "COPY ADDRESS",
-
-    contractNote:
-      "Always verify the contract address through official channels.",
-
-    communityTitle:
-      "KEEP IT <span>SPICY.</span>",
-
-    communityText:
-      "A little chili. A little heat.",
-
-    communityButton:
-      "EXPLORE CHILI",
-
-    footer:
-      "© 2026 CHILI. Built on BNB Smart Chain.",
-
-    footerContract:
-      "Contract",
-
-    footerSecurity:
-      "Security"
+  if(
+    value === null ||
+    value === undefined ||
+    !isFinite(Number(value))
+  ){
+    return "—";
   }
 
-};
+  const n = Number(value);
+
+  if(n >= 1000000000){
+    return "$" + (n / 1000000000).toFixed(2) + "B";
+  }
+
+  if(n >= 1000000){
+    return "$" + (n / 1000000).toFixed(2) + "M";
+  }
+
+  if(n >= 1000){
+    return "$" + (n / 1000).toFixed(2) + "K";
+  }
+
+  return "$" +
+    n.toLocaleString(undefined,{
+      maximumFractionDigits:6
+    });
+}
+
+
+function formatNumber(value){
+
+  if(
+    value === null ||
+    value === undefined ||
+    !isFinite(Number(value))
+  ){
+    return "—";
+  }
+
+  return Number(value).toLocaleString();
+}
+
+
+function formatPrice(value){
+
+  if(
+    value === null ||
+    value === undefined ||
+    !isFinite(Number(value))
+  ){
+    return "—";
+  }
+
+  const n = Number(value);
+
+  if(n === 0){
+    return "$0";
+  }
+
+  if(n < 0.000001){
+    return "$" + n.toFixed(10);
+  }
+
+  if(n < 0.001){
+    return "$" + n.toFixed(8);
+  }
+
+  if(n < 1){
+    return "$" + n.toFixed(6);
+  }
+
+  return "$" +
+    n.toLocaleString(undefined,{
+      minimumFractionDigits:2,
+      maximumFractionDigits:6
+    });
+}
+
+
+function shortenAddress(address){
+
+  if(!address){
+    return "—";
+  }
+
+  return (
+    address.slice(0,8) +
+    "..." +
+    address.slice(-6)
+  );
+}
+
+
+/* =========================================================
+   COPY
+========================================================= */
+
+async function copyText(text){
+
+  try{
+
+    await navigator.clipboard.writeText(text);
+
+    showToast("COPIED");
+
+  }catch(error){
+
+    const textarea =
+      document.createElement("textarea");
+
+    textarea.value = text;
+
+    document.body.appendChild(textarea);
+
+    textarea.select();
+
+    document.execCommand("copy");
+
+    textarea.remove();
+
+    showToast("COPIED");
+  }
+}
+
+
+function showToast(message){
+
+  const toast = $("toast");
+
+  toast.textContent = message;
+
+  toast.classList.add("show");
+
+  setTimeout(()=>{
+    toast.classList.remove("show");
+  },1800);
+}
+
+
+$("copyContract").addEventListener(
+  "click",
+  ()=>{
+    copyText(CHILI_ADDRESS);
+  }
+);
+
+
+$("heroCopy").addEventListener(
+  "click",
+  ()=>{
+    copyText(CHILI_ADDRESS);
+  }
+);
+
+
+/* =========================================================
+   RPC
+========================================================= */
+
+async function rpcRequest(
+  method,
+  params=[]
+){
+
+  let lastError;
+
+  for(const rpc of BSC_RPCS){
+
+    try{
+
+      const response =
+        await fetch(
+          rpc,
+          {
+            method:"POST",
+
+            headers:{
+              "Content-Type":"application/json"
+            },
+
+            body:JSON.stringify({
+              jsonrpc:"2.0",
+              id:Date.now(),
+              method,
+              params
+            })
+          }
+        );
+
+      if(!response.ok){
+        throw new Error(
+          "RPC HTTP " +
+          response.status
+        );
+      }
+
+      const data =
+        await response.json();
+
+      if(data.error){
+        throw new Error(
+          data.error.message
+        );
+      }
+
+      return data.result;
+
+    }catch(error){
+
+      lastError = error;
+
+    }
+  }
+
+  throw (
+    lastError ||
+    new Error("BSC RPC unavailable")
+  );
+}
+
+
+/* =========================================================
+   BLOCK
+========================================================= */
+
+async function updateBlock(){
+
+  try{
+
+    const result =
+      await rpcRequest(
+        "eth_blockNumber"
+      );
+
+    const block =
+      parseInt(result,16);
+
+    $("blockNumber").textContent =
+      block.toLocaleString();
+
+  }catch(error){
+
+    $("blockNumber").textContent =
+      "—";
+  }
+}
+
+
+/* =========================================================
+   SELECT BEST PAIR
+========================================================= */
+
+function selectBestPair(pairs){
+
+  if(!Array.isArray(pairs)){
+    return null;
+  }
+
+  const token =
+    CHILI_ADDRESS.toLowerCase();
+
+  const valid =
+    pairs.filter(pair=>{
+
+      if(!pair){
+        return false;
+      }
+
+      if(
+        String(pair.chainId).toLowerCase()
+        !== "bsc"
+      ){
+        return false;
+      }
+
+      const base =
+        pair.baseToken &&
+        pair.baseToken.address
+        ? pair.baseToken.address.toLowerCase()
+        : "";
+
+      const quote =
+        pair.quoteToken &&
+        pair.quoteToken.symbol
+        ? pair.quoteToken.symbol.toUpperCase()
+        : "";
+
+      return (
+        base === token &&
+        [
+          "USDT",
+          "USDC",
+          "BUSD",
+          "WBNB",
+          "BNB"
+        ].includes(quote)
+      );
+
+    });
+
+
+  valid.sort(
+    (a,b)=>
+      Number(
+        b.liquidity &&
+        b.liquidity.usd
+        ? b.liquidity.usd
+        : 0
+      )
+      -
+      Number(
+        a.liquidity &&
+        a.liquidity.usd
+        ? a.liquidity.usd
+        : 0
+      )
+  );
+
+
+  return valid[0] || null;
+}
+
+
+/* =========================================================
+   MARKET
+========================================================= */
+
+async function loadMarket(){
+
+  try{
+
+    $("marketStatus").textContent =
+      "SYNC";
+
+
+    const response =
+      await fetch(
+        DEX_API +
+        "?_=" +
+        Date.now(),
+        {
+          cache:"no-store"
+        }
+      );
+
+
+    if(!response.ok){
+
+      throw new Error(
+        "DexScreener HTTP " +
+        response.status
+      );
+
+    }
+
+
+    const pairs =
+      await response.json();
+
+
+    const pair =
+      selectBestPair(pairs);
+
+
+    if(!pair){
+
+      throw new Error(
+        "No CHILI market pair"
+      );
+
+    }
+
+
+    currentPair = pair;
+
+
+    updateMarket(pair);
+
+    $("marketStatus").textContent =
+      "LIVE";
+
+
+  }catch(error){
+
+    console.error(
+      "CHILI market error:",
+      error
+    );
+
+    $("marketStatus").textContent =
+      "OFFLINE";
+  }
+}
+
+
+/* =========================================================
+   MARKET UI
+========================================================= */
+
+function updateMarket(pair){
+
+  const price =
+    Number(pair.priceUsd || 0);
+
+  const change =
+    Number(
+      pair.priceChange &&
+      pair.priceChange.h24
+      ? pair.priceChange.h24
+      : 0
+    );
+
+  const liquidity =
+    Number(
+      pair.liquidity &&
+      pair.liquidity.usd
+      ? pair.liquidity.usd
+      : 0
+    );
+
+  const volume =
+    Number(
+      pair.volume &&
+      pair.volume.h24
+      ? pair.volume.h24
+      : 0
+    );
+
+  const marketCap =
+    Number(
+      pair.marketCap ||
+      pair.fdv ||
+      0
+    );
+
+  const buys =
+    Number(
+      pair.txns &&
+      pair.txns.h24 &&
+      pair.txns.h24.buys
+      ? pair.txns.h24.buys
+      : 0
+    );
+
+  const sells =
+    Number(
+      pair.txns &&
+      pair.txns.h24 &&
+      pair.txns.h24.sells
+      ? pair.txns.h24.sells
+      : 0
+    );
+
+  const transactions =
+    buys + sells;
+
+
+  /* PRICE */
+
+  $("livePrice").textContent =
+    formatPrice(price);
+
+
+  /* CHANGE */
+
+  const changeElement =
+    $("priceChange");
+
+  changeElement.textContent =
+    (change >= 0 ? "+" : "") +
+    change.toFixed(2) +
+    "% 24H";
+
+  changeElement.classList.toggle(
+    "down",
+    change < 0
+  );
+
+
+  /* METRICS */
+
+  $("liquidity").textContent =
+    formatMoney(liquidity);
+
+  $("volume24h").textContent =
+    formatMoney(volume);
+
+  $("marketCap").textContent =
+    formatMoney(marketCap);
+
+  $("transactions").textContent =
+    formatNumber(transactions);
+
+  $("buys").textContent =
+    formatNumber(buys);
+
+  $("sells").textContent =
+    formatNumber(sells);
+
+
+  /* BUY / SELL */
+
+  const total =
+    buys + sells;
+
+  let buyPercent = 0;
+  let sellPercent = 0;
+
+  if(total > 0){
+
+    buyPercent =
+      buys / total * 100;
+
+    sellPercent =
+      sells / total * 100;
+
+  }
+
+  $("buyBar").style.width =
+    buyPercent + "%";
+
+  $("sellBar").style.width =
+    sellPercent + "%";
+
+
+  /* PAIR */
+
+  const quote =
+    pair.quoteToken &&
+    pair.quoteToken.symbol
+      ? pair.quoteToken.symbol
+      : "USDT";
+
+  $("pairName").textContent =
+    "CHILI / " + quote;
+
+
+  /* DEX */
+
+  $("dexName").textContent =
+    pair.dexId || "DEX";
+
+
+  /* PAIR ADDRESS */
+
+  $("pairAddress").textContent =
+    shortenAddress(
+      pair.pairAddress
+    );
+
+
+  /* CHART */
+
+  if(pair.url){
+
+    $("chartLink").href =
+      pair.url;
+
+  }
+
+
+  /* HISTORY */
+
+  if(price > 0){
+
+    priceHistory.push(price);
+
+    if(priceHistory.length > 45){
+      priceHistory.shift();
+    }
+
+    drawPulse();
+
+  }
+
+
+  $("pulseTime").textContent =
+    new Date().toLocaleTimeString();
+
+  $("lastUpdate").textContent =
+    new Date().toLocaleTimeString();
+}
+
+
+/* =========================================================
+   SVG PRICE PULSE
+========================================================= */
+
+function drawPulse(){
+
+  const path =
+    $("pulsePath");
+
+  if(
+    !path ||
+    priceHistory.length < 2
+  ){
+    return;
+  }
+
+
+  const width = 900;
+  const height = 220;
+  const padding = 10;
+
+
+  let min =
+    Math.min(...priceHistory);
+
+  let max =
+    Math.max(...priceHistory);
+
+  const range =
+    max - min || 1;
+
+
+  const points =
+    priceHistory.map(
+      (price,index)=>{
+
+        const x =
+          padding +
+          index /
+          (priceHistory.length - 1) *
+          (width - padding * 2);
+
+
+        const normalized =
+          (price - min) / range;
+
+
+        const y =
+          height -
+          padding -
+          normalized *
+          (height - padding * 2);
+
+
+        return {x,y};
+      }
+    );
+
+
+  let d =
+    `M ${points[0].x} ${points[0].y}`;
+
+
+  for(
+    let i=1;
+    i<points.length;
+    i++
+  ){
+
+    const previous =
+      points[i-1];
+
+    const current =
+      points[i];
+
+    const center =
+      (previous.x + current.x) / 2;
+
+
+    d +=
+      ` C ${center} ${previous.y}, ` +
+      `${center} ${current.y}, ` +
+      `${current.x} ${current.y}`;
+
+  }
+
+
+  path.setAttribute(
+    "d",
+    d
+  );
+
+
+  path.style.strokeDasharray =
+    "1600";
+
+  path.style.strokeDashoffset =
+    "1600";
+
+  path.style.transition =
+    "stroke-dashoffset 1.8s ease";
+
+  requestAnimationFrame(()=>{
+    path.style.strokeDashoffset = "0";
+  });
+}
 
 
 /* =========================================================
    LANGUAGE
 ========================================================= */
 
-function setLanguage(lang){
+let currentLanguage =
+  localStorage.getItem(
+    "chili-language"
+  ) || "en";
 
-  const dict=translations[lang];
 
-  if(!dict){
-    return;
-  }
-
-  document.documentElement.lang=
-    lang==="zh"
-      ? "zh-CN"
-      : "en";
-
+function updateLanguage(){
 
   document
-    .querySelectorAll("[data-i18n]")
+    .querySelectorAll("[data-en]")
     .forEach(element=>{
 
-      const key=
-        element.getAttribute("data-i18n");
-
-      if(dict[key]!==undefined){
-
-        element.innerHTML=dict[key];
-
-      }
+      element.textContent =
+        currentLanguage === "zh"
+          ? element.dataset.zh
+          : element.dataset.en;
 
     });
 
 
-  document.title=dict.pageTitle;
-
-
-  const meta=
-    document.querySelector(
-      'meta[name="description"]'
-    );
-
-  if(meta){
-    meta.content=dict.metaDesc;
-  }
-
-
-  document
-    .getElementById("zhBtn")
-    .classList.toggle(
-      "active",
-      lang==="zh"
-    );
-
-
-  document
-    .getElementById("enBtn")
-    .classList.toggle(
-      "active",
-      lang==="en"
-    );
-
-
-  localStorage.setItem(
-    "chili-language",
-    lang
-  );
+  $("langBtn").textContent =
+    currentLanguage === "en"
+      ? "中文"
+      : "EN";
 
 }
 
 
-/* =========================================================
-   LANGUAGE INIT
-========================================================= */
+$("langBtn").addEventListener(
+  "click",
+  ()=>{
 
-function initLanguage(){
+    currentLanguage =
+      currentLanguage === "en"
+        ? "zh"
+        : "en";
 
-  const saved=
-    localStorage.getItem(
-      "chili-language"
+    localStorage.setItem(
+      "chili-language",
+      currentLanguage
     );
 
-  if(saved==="zh" || saved==="en"){
-
-    setLanguage(saved);
-
-    return;
+    updateLanguage();
 
   }
+);
 
-
-  const browserLanguage=
-    navigator.language || "zh-CN";
-
-
-  setLanguage(
-    browserLanguage
-      .toLowerCase()
-      .startsWith("zh")
-      ? "zh"
-      : "en"
-  );
-
-}
+updateLanguage();
 
 
 /* =========================================================
    MOBILE MENU
 ========================================================= */
 
-function toggleMenu(){
+$("menuBtn").addEventListener(
+  "click",
+  ()=>{
 
-  const menu=
-    document.getElementById(
-      "mobileMenu"
-    );
+    const links =
+      document.querySelector(
+        ".nav-links"
+      );
 
-  menu.classList.toggle(
-    "active"
-  );
+    if(
+      links.style.display === "flex"
+    ){
 
-}
+      links.style.display = "";
 
+    }else{
 
-function closeMenu(){
+      links.style.position = "absolute";
+      links.style.top = "68px";
+      links.style.left = "12px";
+      links.style.right = "12px";
 
-  document
-    .getElementById("mobileMenu")
-    .classList.remove(
-      "active"
-    );
+      links.style.display = "flex";
+      links.style.flexDirection = "column";
+      links.style.alignItems = "stretch";
+      links.style.gap = "0";
 
-}
+      links.style.padding = "8px";
 
+      links.style.background = "#fff";
 
-document.addEventListener(
-  "keydown",
-  event=>{
+      links.style.border =
+        "1px solid #e8e8e8";
 
-    if(event.key==="Escape"){
+      links.style.boxShadow =
+        "0 20px 50px rgba(0,0,0,.08)";
 
-      closeMenu();
+      links
+        .querySelectorAll("a")
+        .forEach(a=>{
+
+          a.style.padding = "15px";
+
+        });
 
     }
 
   }
 );
-
-
-/* =========================================================
-   COPY CONTRACT
-========================================================= */
-
-const CONTRACT=
-  "0xed3caca4903256fb3e4997bc0c7830d19fb35f7c";
-
-
-function copyContract(){
-
-  if(
-    navigator.clipboard &&
-    navigator.clipboard.writeText
-  ){
-
-    navigator.clipboard
-      .writeText(CONTRACT)
-      .then(showCopied)
-      .catch(()=>{
-        fallbackCopy(CONTRACT);
-      });
-
-  }else{
-
-    fallbackCopy(CONTRACT);
-
-  }
-
-}
-
-
-function fallbackCopy(text){
-
-  const textarea=
-    document.createElement("textarea");
-
-  textarea.value=text;
-
-  textarea.style.position="fixed";
-  textarea.style.left="-9999px";
-
-  document.body.appendChild(
-    textarea
-  );
-
-  textarea.select();
-
-  try{
-
-    document.execCommand("copy");
-
-    showCopied();
-
-  }catch{
-
-    alert(text);
-
-  }
-
-  document.body.removeChild(
-    textarea
-  );
-
-}
-
-
-let copyTimer;
-
-
-function showCopied(){
-
-  const button=
-    document.getElementById(
-      "copyBtn"
-    );
-
-  if(!button){
-    return;
-  }
-
-  const lang=
-    localStorage.getItem(
-      "chili-language"
-    ) || "zh";
-
-
-  button.innerHTML=
-    lang==="zh"
-      ? "✓ 已复制"
-      : "✓ COPIED";
-
-
-  clearTimeout(copyTimer);
-
-
-  copyTimer=
-    setTimeout(()=>{
-
-      const current=
-        localStorage.getItem(
-          "chili-language"
-        ) || "zh";
-
-      setLanguage(current);
-
-    },1600);
-
-}
 
 
 /* =========================================================
    SCROLL REVEAL
 ========================================================= */
 
-function initReveal(){
+const observer =
+  new IntersectionObserver(
+    entries=>{
 
-  const elements=
-    document.querySelectorAll(
-      ".reveal"
-    );
+      entries.forEach(entry=>{
 
+        if(entry.isIntersecting){
 
-  if(
-    !("IntersectionObserver" in window)
-  ){
+          entry.target.classList.add(
+            "visible"
+          );
 
-    elements.forEach(
-      element=>
-        element.classList.add("show")
-    );
+        }
 
-    return;
+      });
 
-  }
-
-
-  const observer=
-    new IntersectionObserver(
-      entries=>{
-
-        entries.forEach(entry=>{
-
-          if(entry.isIntersecting){
-
-            entry.target
-              .classList
-              .add("show");
-
-            observer.unobserve(
-              entry.target
-            );
-
-          }
-
-        });
-
-      },
-      {
-        threshold:.12,
-        rootMargin:"0px 0px -40px 0px"
-      }
-    );
+    },
+    {
+      threshold:.12
+    }
+  );
 
 
-  elements.forEach(
-    element=>
-      observer.observe(element)
+document
+  .querySelectorAll(".reveal")
+  .forEach(element=>{
+    observer.observe(element);
+  });
+
+
+/* =========================================================
+   START SYSTEM
+========================================================= */
+
+async function startChiliSystem(){
+
+  await Promise.allSettled([
+    loadMarket(),
+    updateBlock()
+  ]);
+
+
+  /*
+    Market data:
+    refresh every 15 seconds
+  */
+
+  setInterval(
+    loadMarket,
+    15000
+  );
+
+
+  /*
+    BSC block:
+    refresh every 15 seconds
+  */
+
+  setInterval(
+    updateBlock,
+    15000
   );
 
 }
 
 
-/* =========================================================
-   SPOTLIGHT MOUSE EFFECT
-========================================================= */
-
-function initSpotlight(){
-
-  document
-    .querySelectorAll(".spotlight")
-    .forEach(card=>{
-
-      card.addEventListener(
-        "mousemove",
-        event=>{
-
-          const rect=
-            card.getBoundingClientRect();
-
-          const x=
-            event.clientX -
-            rect.left;
-
-          const y=
-            event.clientY -
-            rect.top;
-
-
-          card.style.setProperty(
-            "--mouse-x",
-            x+"px"
-          );
-
-          card.style.setProperty(
-            "--mouse-y",
-            y+"px"
-          );
-
-        }
-      );
-
-    });
-
-}
-
-
-/* =========================================================
-   NUMBER TICKER
-========================================================= */
-
-function initCounters(){
-
-  const counters=
-    document.querySelectorAll(
-      "[data-counter]"
-    );
-
-
-  counters.forEach(
-    counter=>{
-
-      const target=
-        Number(
-          counter.dataset.counter
-        );
-
-      let started=false;
-
-
-      const run=()=>{
-
-        if(started){
-          return;
-        }
-
-        started=true;
-
-
-        const duration=1100;
-        const start=performance.now();
-
-
-        function update(now){
-
-          const progress=
-            Math.min(
-              (now-start)/duration,
-              1
-            );
-
-
-          const eased=
-            1-Math.pow(
-              1-progress,
-              3
-            );
-
-
-          const value=
-            Math.floor(
-              target*eased
-            );
-
-
-          counter.textContent=
-            value.toLocaleString(
-              "en-US"
-            );
-
-
-          if(progress<1){
-
-            requestAnimationFrame(
-              update
-            );
-
-          }
-
-        }
-
-
-        requestAnimationFrame(
-          update
-        );
-
-      };
-
-
-      if(
-        "IntersectionObserver"
-        in window
-      ){
-
-        const observer=
-          new IntersectionObserver(
-            entries=>{
-
-              entries.forEach(
-                entry=>{
-
-                  if(entry.isIntersecting){
-
-                    run();
-
-                    observer.unobserve(
-                      counter
-                    );
-
-                  }
-
-                }
-              );
-
-            },
-            {
-              threshold:.5
-            }
-          );
-
-        observer.observe(counter);
-
-      }else{
-
-        run();
-
-      }
-
-    }
-  );
-
-}
-
-
-/* =========================================================
-   CLOSE MOBILE MENU ON RESIZE
-========================================================= */
-
-window.addEventListener(
-  "resize",
-  ()=>{
-
-    if(window.innerWidth>760){
-
-      closeMenu();
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   START
-========================================================= */
-
-document.addEventListener(
-  "DOMContentLoaded",
-  ()=>{
-
-    initLanguage();
-
-    initReveal();
-
-    initSpotlight();
-
-    initCounters();
-
-  }
-);
+startChiliSystem();
 
 </script>
 
