@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
 <title>CHILI — BNB Chain</title>
-<meta name="description" content="CHILI — A community-driven token on BNB Chain.">
+
+<meta
+  name="description"
+  content="CHILI — A community-driven token on BNB Chain."
+>
 
 <style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -24,8 +38,15 @@ body {
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
-               Arial, sans-serif;
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
   background:
     radial-gradient(
       circle at 50% -10%,
@@ -33,6 +54,7 @@ body {
       transparent 38%
     ),
     #080808;
+
   color: #fff;
   line-height: 1.6;
 }
@@ -47,8 +69,13 @@ button {
 }
 
 .container {
-  width: min(1180px, calc(100% - 40px));
+  width: min(
+    1180px,
+    calc(100% - 40px)
+  );
+
   margin: auto;
+
   max-width: 100%;
 }
 
@@ -79,19 +106,28 @@ section {
   font-size: 16px;
 }
 
-/* HEADER */
+
+/* =========================================================
+   HEADER
+========================================================= */
 
 header {
   position: sticky;
   top: 0;
   z-index: 1000;
+
   backdrop-filter: blur(18px);
-  background: rgba(8, 8, 8, 0.82);
-  border-bottom: 1px solid rgba(255,255,255,0.07);
+
+  background:
+    rgba(8, 8, 8, 0.82);
+
+  border-bottom:
+    1px solid rgba(255,255,255,0.07);
 }
 
 .nav {
   height: 76px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -100,30 +136,49 @@ header {
 .logo {
   display: flex;
   align-items: center;
+
   gap: 10px;
+
   font-size: 25px;
   font-weight: 1000;
+
   letter-spacing: -1px;
+
   flex-shrink: 0;
 }
 
 .logo-mark {
   width: 39px;
   height: 39px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   border-radius: 12px;
-  background: linear-gradient(135deg, #ff4212, #ff9200);
-  box-shadow: 0 0 30px rgba(255,75,20,0.30);
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff4212,
+      #ff9200
+    );
+
+  box-shadow:
+    0 0 30px
+    rgba(255,75,20,0.30);
+
   flex-shrink: 0;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
+
   gap: 24px;
+
   color: #aaa;
+
   font-size: 14px;
 }
 
@@ -138,162 +193,270 @@ header {
 .language {
   display: flex;
   align-items: center;
+
   gap: 5px;
+
   padding: 5px;
+
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.035);
+
+  border:
+    1px solid
+    rgba(255,255,255,0.10);
+
+  background:
+    rgba(255,255,255,0.035);
 }
 
 .language button {
   border: none;
+
   background: transparent;
+
   color: #777;
+
   cursor: pointer;
+
   padding: 6px 9px;
+
   border-radius: 999px;
+
   font-size: 12px;
+
   font-weight: 800;
 }
 
 .language button.active {
   color: #fff;
-  background: linear-gradient(135deg, #ff4212, #ff8500);
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff4212,
+      #ff8500
+    );
 }
 
 .nav-buy {
   padding: 10px 18px;
+
   border-radius: 999px;
+
   color: #fff !important;
-  background: linear-gradient(135deg, #ff4212, #ff8500);
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff4212,
+      #ff8500
+    );
+
   font-weight: 900;
-  box-shadow: 0 10px 30px rgba(255,75,15,0.18);
+
+  box-shadow:
+    0 10px 30px
+    rgba(255,75,15,0.18);
 }
 
 .menu-toggle {
   display: none;
+
   flex-direction: column;
+
   justify-content: space-between;
+
   width: 28px;
   height: 20px;
+
   background: transparent;
+
   border: none;
+
   cursor: pointer;
+
   z-index: 1001;
 }
 
 .menu-toggle span {
   display: block;
+
   width: 100%;
   height: 2px;
+
   background: #fff;
+
   border-radius: 2px;
+
   transition: .3s;
 }
 
-/* HERO */
+
+/* =========================================================
+   HERO
+========================================================= */
 
 .hero {
   min-height: 730px;
+
   display: flex;
   align-items: center;
-  padding: 100px 0 90px;
+
+  padding:
+    100px 0 90px;
+
   position: relative;
+
   overflow: hidden;
 }
 
 .hero::after {
   content: "";
+
   position: absolute;
+
   width: 600px;
   height: 600px;
+
   right: -230px;
   top: 40px;
+
   border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(255,70,15,0.16),
-    transparent 70%
-  );
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,70,15,0.16),
+      transparent 70%
+    );
+
   pointer-events: none;
 }
 
 .hero-content {
   max-width: 850px;
+
   position: relative;
+
   z-index: 2;
 }
 
 .badge {
   display: inline-flex;
+
   align-items: center;
+
   gap: 8px;
+
   padding: 7px 13px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.035);
+
+  border:
+    1px solid
+    rgba(255,255,255,0.10);
+
+  background:
+    rgba(255,255,255,0.035);
+
   border-radius: 999px;
+
   color: #aaa;
+
   font-size: 12px;
+
   font-weight: 800;
+
   margin-bottom: 25px;
 }
 
 .dot {
   width: 7px;
   height: 7px;
+
   border-radius: 50%;
+
   background: #43df76;
-  box-shadow: 0 0 12px rgba(67,223,118,0.8);
+
+  box-shadow:
+    0 0 12px
+    rgba(67,223,118,0.8);
 }
 
 .hero h1 {
-  font-size: clamp(64px, 13vw, 155px);
+  font-size:
+    clamp(64px, 13vw, 155px);
+
   line-height: .82;
+
   letter-spacing: -6px;
+
   font-weight: 1000;
+
   margin-bottom: 32px;
-  background: linear-gradient(
-    135deg,
-    #fff 20%,
-    #ff5a1a 70%,
-    #ff9b00
-  );
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff 20%,
+      #ff5a1a 70%,
+      #ff9b00
+    );
+
   -webkit-background-clip: text;
+
   background-clip: text;
+
   color: transparent;
 }
 
 .hero h2 {
-  font-size: clamp(24px, 4vw, 46px);
+  font-size:
+    clamp(24px, 4vw, 46px);
+
   line-height: 1.1;
+
   max-width: 780px;
+
   margin-bottom: 22px;
+
   letter-spacing: -1px;
 }
 
 .hero p {
   color: #999;
+
   max-width: 680px;
+
   font-size: 17px;
+
   line-height: 1.85;
+
   margin-bottom: 30px;
 }
 
 .buttons {
   display: flex;
+
   flex-wrap: wrap;
+
   gap: 12px;
 }
 
 .btn {
   display: inline-flex;
+
   align-items: center;
+
   justify-content: center;
+
   padding: 14px 22px;
+
   border-radius: 12px;
+
   font-size: 14px;
+
   font-weight: 900;
+
   transition: .2s;
+
   cursor: pointer;
 }
 
@@ -302,48 +465,81 @@ header {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #ff4212, #ff8500);
-  box-shadow: 0 12px 35px rgba(255,75,15,0.20);
+  background:
+    linear-gradient(
+      135deg,
+      #ff4212,
+      #ff8500
+    );
+
+  box-shadow:
+    0 12px 35px
+    rgba(255,75,15,0.20);
 }
 
 .btn-secondary {
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.04);
+  border:
+    1px solid
+    rgba(255,255,255,0.10);
+
+  background:
+    rgba(255,255,255,0.04);
 }
 
-/* MARKET */
+
+/* =========================================================
+   MARKET
+========================================================= */
 
 .market-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
   gap: 14px;
+
   margin-top: 45px;
 }
 
 .market-card {
   padding: 24px;
+
   min-height: 145px;
+
   border-radius: 18px;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(255,255,255,0.035);
+
+  border:
+    1px solid
+    rgba(255,255,255,0.08);
+
+  background:
+    rgba(255,255,255,0.035);
 }
 
 .market-card small {
   display: block;
+
   color: #777;
+
   font-size: 12px;
+
   margin-bottom: 12px;
 }
 
 .market-value {
   font-size: 27px;
+
   font-weight: 900;
+
   letter-spacing: -1px;
 }
 
 .market-sub {
   margin-top: 5px;
+
   color: #777;
+
   font-size: 12px;
 }
 
@@ -355,7 +551,10 @@ header {
   color: #ff681c;
 }
 
-/* TOKEN */
+
+/* =========================================================
+   TOKEN
+========================================================= */
 
 .token-section {
   background:
@@ -368,8 +567,12 @@ header {
 
 .token-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+
+  grid-template-columns:
+    1fr 1fr;
+
   gap: 60px;
+
   align-items: center;
 }
 
@@ -379,10 +582,16 @@ header {
 
 .info-row {
   display: flex;
+
   justify-content: space-between;
+
   gap: 20px;
+
   padding: 17px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,0.07);
 }
 
 .info-row span:first-child {
@@ -391,19 +600,27 @@ header {
 
 .info-row span:last-child {
   text-align: right;
+
   font-weight: 800;
 }
 
 .contract {
   word-break: break-all;
+
   color: #ff7a32;
+
   font-size: 13px;
 }
 
 .token-card {
   padding: 45px;
+
   border-radius: 28px;
-  border: 1px solid rgba(255,255,255,0.09);
+
+  border:
+    1px solid
+    rgba(255,255,255,0.09);
+
   background:
     radial-gradient(
       circle at 50% 20%,
@@ -411,24 +628,41 @@ header {
       transparent 50%
     ),
     rgba(255,255,255,0.035);
+
   text-align: center;
 }
 
 .token-logo {
   width: 120px;
   height: 120px;
-  margin: 0 auto 25px;
+
+  margin:
+    0 auto 25px;
+
   display: flex;
+
   align-items: center;
   justify-content: center;
+
   border-radius: 35px;
+
   font-size: 58px;
-  background: linear-gradient(135deg, #ff4212, #ff9200);
-  box-shadow: 0 20px 70px rgba(255,75,20,0.25);
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff4212,
+      #ff9200
+    );
+
+  box-shadow:
+    0 20px 70px
+    rgba(255,75,20,0.25);
 }
 
 .token-card h3 {
   font-size: 42px;
+
   margin-bottom: 8px;
 }
 
@@ -436,23 +670,42 @@ header {
   color: #777;
 }
 
-/* TRANSACTIONS */
+
+/* =========================================================
+   TRANSACTIONS
+========================================================= */
 
 .transactions {
   margin-top: 45px;
-  border: 1px solid rgba(255,255,255,0.08);
+
+  border:
+    1px solid
+    rgba(255,255,255,0.08);
+
   border-radius: 20px;
+
   overflow: hidden;
-  background: rgba(255,255,255,0.025);
+
+  background:
+    rgba(255,255,255,0.025);
 }
 
 .tx-row {
   display: grid;
-  grid-template-columns: 100px 1fr 130px 120px;
+
+  grid-template-columns:
+    100px 1fr 180px 120px;
+
   gap: 20px;
+
   align-items: center;
+
   padding: 18px 22px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,0.06);
+
   font-size: 13px;
 }
 
@@ -462,67 +715,138 @@ header {
 
 .tx-header {
   color: #666;
+
   font-size: 11px;
+
   text-transform: uppercase;
+
   letter-spacing: 1px;
 }
 
 .tx-type-buy {
   color: #43df76;
+
   font-weight: 900;
 }
 
 .tx-type-sell {
   color: #ff6840;
+
   font-weight: 900;
 }
 
 .tx-hash {
   color: #ff7a32;
+
   overflow: hidden;
+
   text-overflow: ellipsis;
+
   white-space: nowrap;
+}
+
+.tx-hash a {
+  color: #ff7a32;
+}
+
+.tx-hash a:hover {
+  text-decoration: underline;
 }
 
 .tx-time {
   color: #777;
 }
 
-/* ABOUT */
+
+/* =========================================================
+   TRANSACTION STATUS
+========================================================= */
+
+.tx-loading {
+  color: #777;
+
+  text-align: center;
+
+  padding: 25px;
+
+  font-size: 13px;
+}
+
+.tx-error {
+  color: #ff6840;
+
+  text-align: center;
+
+  padding: 25px;
+
+  font-size: 13px;
+}
+
+.tx-source {
+  margin-top: 12px;
+
+  color: #555;
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
 
 .about-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
   gap: 15px;
+
   margin-top: 45px;
 }
 
 .about-card {
   padding: 30px;
+
   min-height: 220px;
+
   border-radius: 20px;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(255,255,255,0.035);
+
+  border:
+    1px solid
+    rgba(255,255,255,0.08);
+
+  background:
+    rgba(255,255,255,0.035);
 }
 
 .about-number {
   color: #ff681c;
+
   font-size: 13px;
+
   font-weight: 900;
+
   margin-bottom: 35px;
 }
 
 .about-card h3 {
   font-size: 22px;
+
   margin-bottom: 12px;
 }
 
 .about-card p {
   color: #888;
+
   font-size: 14px;
 }
 
-/* COMMUNITY */
+
+/* =========================================================
+   COMMUNITY
+========================================================= */
 
 .community {
   text-align: center;
@@ -534,32 +858,46 @@ header {
 
 .community-buttons {
   justify-content: center;
+
   margin-top: 30px;
 }
 
-/* FOOTER */
+
+/* =========================================================
+   FOOTER
+========================================================= */
 
 footer {
   padding: 50px 0;
-  border-top: 1px solid rgba(255,255,255,0.07);
+
+  border-top:
+    1px solid
+    rgba(255,255,255,0.07);
 }
 
 .footer-inner {
   display: flex;
+
   justify-content: space-between;
+
   align-items: center;
+
   gap: 30px;
 }
 
 .footer-left {
   color: #777;
+
   font-size: 12px;
 }
 
 .footer-links {
   display: flex;
+
   gap: 20px;
+
   color: #888;
+
   font-size: 12px;
 }
 
@@ -567,7 +905,10 @@ footer {
   color: #fff;
 }
 
-/* TABLET */
+
+/* =========================================================
+   TABLET
+========================================================= */
 
 @media (max-width: 1000px) {
 
@@ -576,7 +917,8 @@ footer {
   }
 
   .market-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns:
+      repeat(2, 1fr);
   }
 
   .token-layout {
@@ -584,16 +926,22 @@ footer {
   }
 
   .about-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+      1fr 1fr;
   }
+
 }
 
-/* MOBILE */
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width: 700px) {
 
   .container {
-    width: calc(100% - 28px);
+    width:
+      calc(100% - 28px);
   }
 
   section {
@@ -611,6 +959,7 @@ footer {
   .logo-mark {
     width: 34px;
     height: 34px;
+
     border-radius: 10px;
   }
 
@@ -620,70 +969,101 @@ footer {
 
   .nav-links {
     position: absolute;
+
     left: 14px;
     right: 14px;
-    top: 76px;
+
+    top: 66px;
 
     display: flex;
+
     flex-direction: column;
+
     align-items: stretch;
+
     gap: 0;
 
     padding: 12px;
+
     border-radius: 18px;
-    border: 1px solid rgba(255,255,255,0.08);
-    background: rgba(10,10,10,0.97);
+
+    border:
+      1px solid
+      rgba(255,255,255,0.08);
+
+    background:
+      rgba(10,10,10,0.97);
+
     backdrop-filter: blur(20px);
 
     opacity: 0;
+
     visibility: hidden;
-    transform: translateY(-10px);
+
+    transform:
+      translateY(-10px);
+
     transition: .25s;
   }
 
   .nav-links.open {
     opacity: 1;
+
     visibility: visible;
-    transform: translateY(0);
+
+    transform:
+      translateY(0);
   }
 
   .nav-links a {
     padding: 14px;
+
     border-radius: 10px;
   }
 
   .nav-links a:hover {
-    background: rgba(255,255,255,0.05);
+    background:
+      rgba(255,255,255,0.05);
   }
 
   .language {
     margin: 8px 0;
+
     justify-content: center;
   }
 
   .nav-buy {
     text-align: center;
+
     margin-top: 4px;
   }
 
   .hero {
     min-height: auto;
-    padding: 85px 0 70px;
+
+    padding:
+      85px 0 70px;
   }
 
   .hero h1 {
-    font-size: clamp(70px, 22vw, 105px);
+    font-size:
+      clamp(70px, 22vw, 105px);
+
     letter-spacing: -4px;
+
     line-height: .86;
+
     margin-bottom: 25px;
   }
 
   .hero h2 {
-    font-size: clamp(26px, 8vw, 38px);
+    font-size:
+      clamp(26px, 8vw, 38px);
   }
 
   .hero p {
     font-size: 15px;
+
     line-height: 1.75;
   }
 
@@ -696,13 +1076,17 @@ footer {
   }
 
   .market-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+      1fr 1fr;
+
     gap: 10px;
+
     margin-top: 30px;
   }
 
   .market-card {
     min-height: 125px;
+
     padding: 18px;
   }
 
@@ -721,7 +1105,9 @@ footer {
   .token-logo {
     width: 90px;
     height: 90px;
+
     font-size: 42px;
+
     border-radius: 27px;
   }
 
@@ -731,6 +1117,7 @@ footer {
 
   .info-row {
     flex-direction: column;
+
     gap: 5px;
   }
 
@@ -743,8 +1130,12 @@ footer {
   }
 
   .tx-row {
-    grid-template-columns: 70px 1fr;
-    gap: 8px 15px;
+    grid-template-columns:
+      65px 1fr;
+
+    gap:
+      8px 15px;
+
     padding: 16px;
   }
 
@@ -762,6 +1153,7 @@ footer {
 
   .about-grid {
     grid-template-columns: 1fr;
+
     gap: 12px;
   }
 
@@ -771,22 +1163,31 @@ footer {
 
   .footer-inner {
     flex-direction: column;
+
     align-items: flex-start;
   }
 
   .footer-links {
     flex-wrap: wrap;
   }
+
 }
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
 
 @media (max-width: 380px) {
 
   .container {
-    width: calc(100% - 22px);
+    width:
+      calc(100% - 22px);
   }
 
   .hero h1 {
     font-size: 68px;
+
     letter-spacing: -3px;
   }
 
@@ -801,34 +1202,112 @@ footer {
   .section-title {
     font-size: 38px;
   }
+
 }
+
 </style>
+
 </head>
 
+
 <body>
+
+
+<!-- =======================================================
+     HEADER
+======================================================= -->
 
 <header>
 
   <div class="container nav">
 
-    <a href="#home" class="logo">
-      <span class="logo-mark">🌶️</span>
-      <span>CHILI</span>
+    <a
+      href="#home"
+      class="logo"
+    >
+
+      <span class="logo-mark">
+        🌶️
+      </span>
+
+      <span>
+        CHILI
+      </span>
+
     </a>
 
-    <nav class="nav-links" id="navLinks">
 
-      <a href="#home" data-zh="首页" data-en="Home">首页</a>
-      <a href="#market" data-zh="行情" data-en="Market">行情</a>
-      <a href="#token" data-zh="代币" data-en="Token">代币</a>
-      <a href="#transactions" data-zh="交易" data-en="Transactions">交易</a>
-      <a href="#about" data-zh="关于" data-en="About">关于</a>
-      <a href="#community" data-zh="社区" data-en="Community">社区</a>
+    <nav
+      class="nav-links"
+      id="navLinks"
+    >
+
+      <a
+        href="#home"
+        data-zh="首页"
+        data-en="Home"
+      >
+        首页
+      </a>
+
+      <a
+        href="#market"
+        data-zh="行情"
+        data-en="Market"
+      >
+        行情
+      </a>
+
+      <a
+        href="#token"
+        data-zh="代币"
+        data-en="Token"
+      >
+        代币
+      </a>
+
+      <a
+        href="#transactions"
+        data-zh="交易"
+        data-en="Transactions"
+      >
+        交易
+      </a>
+
+      <a
+        href="#about"
+        data-zh="关于"
+        data-en="About"
+      >
+        关于
+      </a>
+
+      <a
+        href="#community"
+        data-zh="社区"
+        data-en="Community"
+      >
+        社区
+      </a>
+
 
       <div class="language">
-        <button id="zhBtn" class="active">中</button>
-        <button id="enBtn">EN</button>
+
+        <button
+          id="zhBtn"
+          class="active"
+        >
+          中
+        </button>
+
+        <button
+          id="enBtn"
+        >
+          EN
+        </button>
+
       </div>
+
 
       <a
         class="nav-buy"
@@ -837,36 +1316,65 @@ footer {
         rel="noopener"
         data-zh="交易 CHILI"
         data-en="Buy CHILI"
-      >交易 CHILI</a>
+      >
+        交易 CHILI
+      </a>
 
     </nav>
 
-    <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      aria-label="Menu"
+    >
+
       <span></span>
       <span></span>
       <span></span>
+
     </button>
 
   </div>
 
 </header>
 
+
 <main>
 
-<section class="hero" id="home">
+
+<!-- =======================================================
+     HERO
+======================================================= -->
+
+<section
+  class="hero"
+  id="home"
+>
 
   <div class="container">
 
     <div class="hero-content">
 
+
       <div class="badge">
+
         <span class="dot"></span>
-        <span data-zh="运行于 BNB Chain" data-en="Powered by BNB Chain">
+
+        <span
+          data-zh="运行于 BNB Chain"
+          data-en="Powered by BNB Chain"
+        >
           运行于 BNB Chain
         </span>
+
       </div>
 
-      <h1>CHILI</h1>
+
+      <h1>
+        CHILI
+      </h1>
+
 
       <h2
         data-zh="一点辣，一起玩。"
@@ -874,6 +1382,7 @@ footer {
       >
         一点辣，一起玩。
       </h2>
+
 
       <p
         data-zh="CHILI 是一个社区驱动的 BNB Chain 代币。简单、开放、有趣，让社区决定它接下来会走向哪里。"
@@ -883,7 +1392,9 @@ footer {
         简单、开放、有趣，让社区决定它接下来会走向哪里。
       </p>
 
+
       <div class="buttons">
+
 
         <a
           class="btn btn-primary"
@@ -896,6 +1407,7 @@ footer {
           交易 CHILI
         </a>
 
+
         <a
           class="btn btn-secondary"
           href="https://bscscan.com/token/0xEd3Caca4903256fB3E4997BC0C7830D19Fb35F7c"
@@ -907,6 +1419,7 @@ footer {
           查看合约
         </a>
 
+
       </div>
 
     </div>
@@ -914,54 +1427,138 @@ footer {
   </div>
 
 </section>
+
+
+<!-- =======================================================
+     MARKET
+======================================================= -->
 
 <section id="market">
 
   <div class="container">
 
-    <div class="section-label"
-         data-zh="实时行情"
-         data-en="LIVE MARKET">
+
+    <div
+      class="section-label"
+      data-zh="实时行情"
+      data-en="LIVE MARKET"
+    >
       实时行情
     </div>
 
-    <h2 class="section-title"
-        data-zh="CHILI 市场"
-        data-en="CHILI Market">
+
+    <h2
+      class="section-title"
+      data-zh="CHILI 市场"
+      data-en="CHILI Market"
+    >
       CHILI 市场
     </h2>
 
-    <p class="section-description"
-       data-zh="这里显示 CHILI 的实时市场数据。"
-       data-en="Live CHILI market data.">
+
+    <p
+      class="section-description"
+      data-zh="这里显示 CHILI 的实时市场数据。"
+      data-en="Live CHILI market data."
+    >
       这里显示 CHILI 的实时市场数据。
     </p>
 
+
     <div class="market-grid">
 
-      <div class="market-card">
-        <small data-zh="当前价格" data-en="PRICE">当前价格</small>
-        <div class="market-value" id="price">加载中...</div>
-        <div class="market-sub">CHILI / USDT</div>
-      </div>
 
       <div class="market-card">
-        <small data-zh="24H 涨跌" data-en="24H CHANGE">24H 涨跌</small>
-        <div class="market-value green" id="change">--</div>
-        <div class="market-sub">24H</div>
+
+        <small
+          data-zh="当前价格"
+          data-en="PRICE"
+        >
+          当前价格
+        </small>
+
+        <div
+          class="market-value"
+          id="price"
+        >
+          加载中...
+        </div>
+
+        <div class="market-sub">
+          CHILI / USDT
+        </div>
+
       </div>
 
-      <div class="market-card">
-        <small data-zh="流动性" data-en="LIQUIDITY">流动性</small>
-        <div class="market-value" id="liquidity">加载中...</div>
-        <div class="market-sub">USD</div>
-      </div>
 
       <div class="market-card">
-        <small data-zh="24H 成交量" data-en="24H VOLUME">24H 成交量</small>
-        <div class="market-value" id="volume">加载中...</div>
-        <div class="market-sub">USD</div>
+
+        <small
+          data-zh="24H 涨跌"
+          data-en="24H CHANGE"
+        >
+          24H 涨跌
+        </small>
+
+        <div
+          class="market-value green"
+          id="change"
+        >
+          --
+        </div>
+
+        <div class="market-sub">
+          24H
+        </div>
+
       </div>
+
+
+      <div class="market-card">
+
+        <small
+          data-zh="流动性"
+          data-en="LIQUIDITY"
+        >
+          流动性
+        </small>
+
+        <div
+          class="market-value"
+          id="liquidity"
+        >
+          加载中...
+        </div>
+
+        <div class="market-sub">
+          USD
+        </div>
+
+      </div>
+
+
+      <div class="market-card">
+
+        <small
+          data-zh="24H 成交量"
+          data-en="24H VOLUME"
+        >
+          24H 成交量
+        </small>
+
+        <div
+          class="market-value"
+          id="volume"
+        >
+          加载中...
+        </div>
+
+        <div class="market-sub">
+          USD
+        </div>
+
+      </div>
+
 
     </div>
 
@@ -969,156 +1566,293 @@ footer {
 
 </section>
 
-<section class="token-section" id="token">
 
-  <div class="container token-layout">
+<!-- =======================================================
+     TOKEN
+======================================================= -->
+
+<section
+  class="token-section"
+  id="token"
+>
+
+  <div
+    class="container token-layout"
+  >
+
 
     <div>
 
-      <div class="section-label"
-           data-zh="代币信息"
-           data-en="TOKEN">
+
+      <div
+        class="section-label"
+        data-zh="代币信息"
+        data-en="TOKEN"
+      >
         代币信息
       </div>
 
-      <h2 class="section-title"
-          data-zh="认识 CHILI"
-          data-en="Meet CHILI">
+
+      <h2
+        class="section-title"
+        data-zh="认识 CHILI"
+        data-en="Meet CHILI"
+      >
         认识 CHILI
       </h2>
 
-      <p class="section-description"
-         data-zh="所有关键合约信息公开透明，任何人都可以在 BNB Chain 上验证。"
-         data-en="Key contract information is public and verifiable on BNB Chain.">
+
+      <p
+        class="section-description"
+        data-zh="所有关键合约信息公开透明，任何人都可以在 BNB Chain 上验证。"
+        data-en="Key contract information is public and verifiable on BNB Chain."
+      >
         所有关键合约信息公开透明，任何人都可以在 BNB Chain 上验证。
       </p>
 
+
       <div class="token-info">
 
-        <div class="info-row">
-          <span data-zh="名称" data-en="Name">名称</span>
-          <span>CHILI</span>
-        </div>
 
         <div class="info-row">
-          <span data-zh="代号" data-en="Symbol">代号</span>
-          <span>CHILI</span>
+
+          <span
+            data-zh="名称"
+            data-en="Name"
+          >
+            名称
+          </span>
+
+          <span>
+            CHILI
+          </span>
+
         </div>
 
-        <div class="info-row">
-          <span data-zh="网络" data-en="Network">网络</span>
-          <span>BNB Smart Chain</span>
-        </div>
 
         <div class="info-row">
-          <span data-zh="合约地址" data-en="Contract">合约地址</span>
+
+          <span
+            data-zh="代号"
+            data-en="Symbol"
+          >
+            代号
+          </span>
+
+          <span>
+            CHILI
+          </span>
+
+        </div>
+
+
+        <div class="info-row">
+
+          <span
+            data-zh="网络"
+            data-en="Network"
+          >
+            网络
+          </span>
+
+          <span>
+            BNB Smart Chain
+          </span>
+
+        </div>
+
+
+        <div class="info-row">
+
+          <span
+            data-zh="合约地址"
+            data-en="Contract"
+          >
+            合约地址
+          </span>
+
           <span class="contract">
             0xEd3Caca4903256fB3E4997BC0C7830D19Fb35F7c
           </span>
+
         </div>
 
+
         <div class="info-row">
-          <span data-zh="Chain ID" data-en="Chain ID">Chain ID</span>
-          <span>56</span>
+
+          <span>
+            Chain ID
+          </span>
+
+          <span>
+            56
+          </span>
+
         </div>
+
 
       </div>
 
     </div>
+
 
     <div class="token-card">
 
-      <div class="token-logo">🌶️</div>
 
-      <h3>CHILI</h3>
+      <div class="token-logo">
+        🌶️
+      </div>
 
-      <p
-        data-zh="BNB Chain Community Token"
-        data-en="BNB Chain Community Token"
-      >
+
+      <h3>
+        CHILI
+      </h3>
+
+
+      <p>
         BNB Chain Community Token
       </p>
 
+
     </div>
+
 
   </div>
 
 </section>
 
-<section id="transactions">
+
+<!-- =======================================================
+     TRANSACTIONS
+======================================================= -->
+
+<section
+  id="transactions"
+>
 
   <div class="container">
 
-    <div class="section-label"
-         data-zh="链上数据"
-         data-en="ON-CHAIN">
+
+    <div
+      class="section-label"
+      data-zh="链上数据"
+      data-en="ON-CHAIN"
+    >
       链上数据
     </div>
 
-    <h2 class="section-title"
-        data-zh="最新交易"
-        data-en="Latest Transactions">
+
+    <h2
+      class="section-title"
+      data-zh="最新交易"
+      data-en="Latest Transactions"
+    >
       最新交易
     </h2>
 
-    <p class="section-description"
-       data-zh="实时读取 CHILI/USDT 流动池的链上 Swap 交易。"
-       data-en="Live Swap transactions from the CHILI/USDT liquidity pool.">
+
+    <p
+      class="section-description"
+      data-zh="实时读取 CHILI/USDT 流动池的链上 Swap 交易。"
+      data-en="Live Swap transactions from the CHILI/USDT liquidity pool."
+    >
       实时读取 CHILI/USDT 流动池的链上 Swap 交易。
     </p>
 
+
     <div class="transactions">
 
+
       <div class="tx-row tx-header">
-        <div>TYPE</div>
-        <div>TX HASH</div>
-        <div>VALUE</div>
-        <div>TIME</div>
-      </div>
 
-      <div id="txList">
+        <div>
+          TYPE
+        </div>
 
-        <div class="tx-row">
-          <div class="tx-type-buy">--</div>
-          <div class="tx-hash">正在读取 BSC 链上交易...</div>
-          <div>--</div>
-          <div class="tx-time">--</div>
+        <div>
+          TX HASH
+        </div>
+
+        <div>
+          VALUE
+        </div>
+
+        <div>
+          TIME
         </div>
 
       </div>
 
+
+      <div id="txList">
+
+        <div class="tx-loading">
+          正在连接 BSC 链读取交易...
+        </div>
+
+      </div>
+
+
     </div>
+
+
+    <div
+      class="tx-source"
+      id="txSource"
+    >
+      数据来源：BSC Chain · Swap Events
+    </div>
+
 
   </div>
 
 </section>
+
+
+<!-- =======================================================
+     ABOUT
+======================================================= -->
 
 <section id="about">
 
   <div class="container">
 
-    <div class="section-label"
-         data-zh="关于 CHILI"
-         data-en="ABOUT CHILI">
+
+    <div
+      class="section-label"
+      data-zh="关于 CHILI"
+      data-en="ABOUT CHILI"
+    >
       关于 CHILI
     </div>
 
-    <h2 class="section-title"
-        data-zh="简单。开放。社区。"
-        data-en="Simple. Open. Community.">
+
+    <h2
+      class="section-title"
+      data-zh="简单。开放。社区。"
+      data-en="Simple. Open. Community."
+    >
       简单。开放。社区。
     </h2>
 
-    <p class="section-description"
-       data-zh="CHILI 的核心不是复杂的故事，而是社区、透明和持续建设。"
-       data-en="CHILI is built around community, transparency and continuous building.">
+
+    <p
+      class="section-description"
+      data-zh="CHILI 的核心不是复杂的故事，而是社区、透明和持续建设。"
+      data-en="CHILI is built around community, transparency and continuous building."
+    >
       CHILI 的核心不是复杂的故事，而是社区、透明和持续建设。
     </p>
 
+
     <div class="about-grid">
 
+
       <div class="about-card">
-        <div class="about-number">01</div>
+
+        <div class="about-number">
+          01
+        </div>
 
         <h3
           data-zh="社区驱动"
@@ -1133,10 +1867,15 @@ footer {
         >
           CHILI 的发展方向由社区参与和共同建设推动。
         </p>
+
       </div>
 
+
       <div class="about-card">
-        <div class="about-number">02</div>
+
+        <div class="about-number">
+          02
+        </div>
 
         <h3
           data-zh="公开透明"
@@ -1151,10 +1890,15 @@ footer {
         >
           合约地址公开，链上数据可以由任何人独立验证。
         </p>
+
       </div>
 
+
       <div class="about-card">
-        <div class="about-number">03</div>
+
+        <div class="about-number">
+          03
+        </div>
 
         <h3
           data-zh="持续建设"
@@ -1169,7 +1913,9 @@ footer {
         >
           从社区到产品，从官网到生态，持续完善 CHILI 的基础设施。
         </p>
+
       </div>
+
 
     </div>
 
@@ -1177,29 +1923,50 @@ footer {
 
 </section>
 
-<section class="community" id="community">
+
+<!-- =======================================================
+     COMMUNITY
+======================================================= -->
+
+<section
+  class="community"
+  id="community"
+>
 
   <div class="container">
 
-    <div class="section-label"
-         data-zh="加入社区"
-         data-en="COMMUNITY">
+
+    <div
+      class="section-label"
+      data-zh="加入社区"
+      data-en="COMMUNITY"
+    >
       加入社区
     </div>
 
-    <h2 class="section-title"
-        data-zh="一起把 CHILI 做起来"
-        data-en="Let's Build CHILI Together">
+
+    <h2
+      class="section-title"
+      data-zh="一起把 CHILI 做起来"
+      data-en="Let's Build CHILI Together"
+    >
       一起把 CHILI 做起来
     </h2>
 
-    <p class="section-description"
-       data-zh="关注项目动态，参与社区讨论，一起建设 CHILI。"
-       data-en="Follow project updates, join the community and build CHILI together.">
+
+    <p
+      class="section-description"
+      data-zh="关注项目动态，参与社区讨论，一起建设 CHILI。"
+      data-en="Follow project updates, join the community and build CHILI together."
+    >
       关注项目动态，参与社区讨论，一起建设 CHILI。
     </p>
 
-    <div class="buttons community-buttons">
+
+    <div
+      class="buttons community-buttons"
+    >
+
 
       <a
         class="btn btn-primary"
@@ -1209,6 +1976,7 @@ footer {
       >
         加入 Telegram
       </a>
+
 
       <a
         class="btn btn-secondary"
@@ -1221,23 +1989,35 @@ footer {
         查看链上数据
       </a>
 
+
     </div>
 
   </div>
 
 </section>
 
+
 </main>
+
+
+<!-- =======================================================
+     FOOTER
+======================================================= -->
 
 <footer>
 
   <div class="container footer-inner">
 
+
     <div class="footer-left">
+
       © 2026 CHILI · BNB Chain
+
     </div>
 
+
     <div class="footer-links">
+
 
       <a
         href="https://bscscan.com/token/0xEd3Caca4903256fB3E4997BC0C7830D19Fb35F7c"
@@ -1247,6 +2027,7 @@ footer {
         BscScan
       </a>
 
+
       <a
         href="https://pancakeswap.finance/swap?outputCurrency=0xEd3Caca4903256fB3E4997BC0C7830D19Fb35F7c"
         target="_blank"
@@ -1255,13 +2036,17 @@ footer {
         PancakeSwap
       </a>
 
+
     </div>
+
 
   </div>
 
 </footer>
 
+
 <script>
+
 
 /* =========================================================
    CHILI CONFIG
@@ -1270,74 +2055,161 @@ footer {
 const CHILI =
   "0xEd3Caca4903256fB3E4997BC0C7830D19Fb35F7c";
 
+
 const USDT =
   "0x55d398326f99059fF775485246999027B3197955";
 
-const PANCAKE_FACTORY =
-  "0xCA143Ce32Fe78f1f7019d7d551a6402fC5350c73";
+
+const DEXSCREENER_API =
+  "https://api.dexscreener.com/latest/dex/tokens/" +
+  CHILI;
+
+
+/*
+  BSC Public RPC
+
+  不需要 BscScan API Key
+*/
 
 const RPC_LIST = [
+
   "https://bsc-dataseed.binance.org/",
+
   "https://bsc-dataseed1.binance.org/",
-  "https://bsc-dataseed2.binance.org/"
+
+  "https://bsc-dataseed2.binance.org/",
+
+  "https://bsc-dataseed3.binance.org/",
+
+  "https://bsc.publicnode.com"
+
 ];
+
 
 const SWAP_TOPIC =
   "0xd78ad95fa46c994b6551d0da85fc275fe6138c1c5b8f5e0a8f5a6b3d7e7c6b6d";
 
 
-/* =========================================================
-   RPC
-========================================================= */
-
 let rpcIndex = 0;
 
-async function rpcCall(method, params = []) {
+
+/*
+  当前真实交易池
+*/
+
+let currentPair = null;
+
+
+/* =========================================================
+   RPC CALL
+========================================================= */
+
+async function rpcCall(
+  method,
+  params = []
+) {
 
   let lastError = null;
 
-  for (let i = 0; i < RPC_LIST.length; i++) {
+
+  for (
+    let i = 0;
+    i < RPC_LIST.length;
+    i++
+  ) {
 
     const rpc =
-      RPC_LIST[(rpcIndex + i) % RPC_LIST.length];
+      RPC_LIST[
+        (rpcIndex + i) %
+        RPC_LIST.length
+      ];
+
 
     try {
 
-      const response = await fetch(rpc, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          jsonrpc: "2.0",
-          id: Date.now(),
-          method,
-          params
-        })
-      });
+      const response =
+        await fetch(
+          rpc,
+          {
+
+            method: "POST",
+
+            headers: {
+              "Content-Type":
+                "application/json"
+            },
+
+            body:
+              JSON.stringify({
+
+                jsonrpc: "2.0",
+
+                id:
+                  Date.now(),
+
+                method:
+                  method,
+
+                params:
+                  params
+
+              })
+
+          }
+        );
+
 
       if (!response.ok) {
-        throw new Error("RPC HTTP " + response.status);
+
+        throw new Error(
+          "RPC HTTP " +
+          response.status
+        );
+
       }
 
-      const data = await response.json();
+
+      const data =
+        await response.json();
+
 
       if (data.error) {
-        throw new Error(data.error.message || "RPC error");
+
+        throw new Error(
+          data.error.message ||
+          "RPC error"
+        );
+
       }
 
+
       rpcIndex =
-        (rpcIndex + i) % RPC_LIST.length;
+        (
+          rpcIndex + i
+        ) %
+        RPC_LIST.length;
+
 
       return data.result;
 
+
     } catch (error) {
 
-      lastError = error;
+      lastError =
+        error;
+
     }
+
   }
 
-  throw lastError || new Error("RPC unavailable");
+
+  throw (
+    lastError ||
+    new Error(
+      "BSC RPC unavailable"
+    )
+  );
+
 }
 
 
@@ -1345,37 +2217,49 @@ async function rpcCall(method, params = []) {
    ETH CALL
 ========================================================= */
 
-async function ethCall(to, data) {
+async function ethCall(
+  to,
+  data
+) {
 
   return await rpcCall(
     "eth_call",
     [
       {
-        to,
-        data
+        to: to,
+        data: data
       },
       "latest"
     ]
   );
+
 }
 
 
 /* =========================================================
-   ERC20 FUNCTIONS
+   ADDRESS
 ========================================================= */
 
-function encodeAddress(address) {
+function normalizeAddress(
+  address
+) {
 
-  return address
-    .toLowerCase()
-    .replace("0x", "")
-    .padStart(64, "0");
+  if (!address) {
+    return "";
+  }
+
+  return address.toLowerCase();
+
 }
 
 
-/* ERC20 decimals() */
+/* =========================================================
+   GET TOKEN DECIMALS
+========================================================= */
 
-async function getDecimals(token) {
+async function getTokenDecimals(
+  token
+) {
 
   try {
 
@@ -1385,272 +2269,206 @@ async function getDecimals(token) {
         "0x313ce567"
       );
 
-    return parseInt(result, 16);
+
+    return parseInt(
+      result,
+      16
+    );
+
 
   } catch (error) {
 
+    console.warn(
+      "decimals() failed:",
+      error
+    );
+
+
     return 18;
-  }
-}
 
-
-/* =========================================================
-   PANCAKESWAP FACTORY getPair()
-========================================================= */
-
-async function getPair(tokenA, tokenB) {
-
-  const selector =
-    "0xe6a43905";
-
-  const data =
-    selector +
-    encodeAddress(tokenA) +
-    encodeAddress(tokenB);
-
-  const result =
-    await ethCall(
-      PANCAKE_FACTORY,
-      data
-    );
-
-  if (
-    !result ||
-    result === "0x" ||
-    /^0x0+$/.test(result)
-  ) {
-    return null;
   }
 
-  return "0x" + result.slice(-40);
 }
 
 
 /* =========================================================
-   PAIR token0()
+   FORMAT TOKEN
 ========================================================= */
 
-async function getToken0(pair) {
-
-  const result =
-    await ethCall(
-      pair,
-      "0x0dfe1681"
-    );
-
-  return "0x" + result.slice(-40);
-}
-
-
-/* =========================================================
-   FORMAT NUMBERS
-========================================================= */
-
-function formatNumber(value, decimals = 18) {
+function formatTokenAmount(
+  raw,
+  decimals
+) {
 
   try {
 
-    const number =
-      Number(value) /
-      Math.pow(10, decimals);
+    const value =
+      Number(raw) /
+      Math.pow(
+        10,
+        decimals
+      );
 
-    if (!Number.isFinite(number)) {
+
+    if (
+      !Number.isFinite(
+        value
+      )
+    ) {
+
       return "--";
+
     }
 
-    if (number === 0) {
+
+    if (value === 0) {
       return "0";
     }
 
-    return number.toLocaleString(
+
+    return value.toLocaleString(
       "en-US",
       {
         maximumFractionDigits: 6
       }
     );
 
+
   } catch (error) {
 
     return "--";
+
   }
+
 }
 
 
 /* =========================================================
-   FORMAT TIME
+   SHORT HASH
 ========================================================= */
 
-function formatAge(seconds) {
+function shortHash(
+  hash
+) {
 
-  if (!Number.isFinite(seconds)) {
+  if (!hash) {
     return "--";
   }
 
-  if (seconds < 60) {
-    return Math.max(1, Math.floor(seconds)) + "秒前";
-  }
 
-  if (seconds < 3600) {
-    return Math.floor(seconds / 60) + "分钟前";
-  }
+  return (
+    hash.slice(0, 8) +
+    "..." +
+    hash.slice(-6)
+  );
 
-  if (seconds < 86400) {
-    return Math.floor(seconds / 3600) + "小时前";
-  }
-
-  return Math.floor(seconds / 86400) + "天前";
 }
 
 
 /* =========================================================
-   HEX → BIGINT
+   TIME
 ========================================================= */
 
-function hexToBigInt(value) {
+function formatAge(
+  timestamp
+) {
 
-  if (!value || value === "0x") {
-    return 0n;
+  if (!timestamp) {
+    return "--";
   }
 
-  return BigInt(value);
-}
 
-
-/* =========================================================
-   DECODE SWAP EVENT
-========================================================= */
-
-function decodeSwap(log, token0) {
-
-  const data =
-    log.data.replace("0x", "");
-
-  if (data.length < 256) {
-    return null;
-  }
-
-  const amount0In =
-    hexToBigInt(
-      "0x" + data.slice(0, 64)
+  const now =
+    Math.floor(
+      Date.now() /
+      1000
     );
 
-  const amount1In =
-    hexToBigInt(
-      "0x" + data.slice(64, 128)
+
+  const seconds =
+    Math.max(
+      0,
+      now - timestamp
     );
 
-  const amount0Out =
-    hexToBigInt(
-      "0x" + data.slice(128, 192)
-    );
-
-  const amount1Out =
-    hexToBigInt(
-      "0x" + data.slice(192, 256)
-    );
-
-  const chiliIsToken0 =
-    token0.toLowerCase() ===
-    CHILI.toLowerCase();
-
-  let chiliIn;
-  let chiliOut;
-  let usdtIn;
-  let usdtOut;
-
-  if (chiliIsToken0) {
-
-    chiliIn = amount0In;
-    chiliOut = amount0Out;
-
-    usdtIn = amount1In;
-    usdtOut = amount1Out;
-
-  } else {
-
-    chiliIn = amount1In;
-    chiliOut = amount1Out;
-
-    usdtIn = amount0In;
-    usdtOut = amount0Out;
-  }
-
-  let type = null;
-
-  /*
-    买入 CHILI：
-    USDT 进入池子
-    CHILI 从池子出去
-  */
 
   if (
-    usdtIn > 0n &&
-    chiliOut > 0n
+    seconds < 60
   ) {
 
-    type = "BUY";
+    return (
+      Math.max(
+        1,
+        seconds
+      ) +
+      "秒前"
+    );
+
   }
 
-  /*
-    卖出 CHILI：
-    CHILI 进入池子
-    USDT 从池子出去
-  */
 
   if (
-    chiliIn > 0n &&
-    usdtOut > 0n
+    seconds < 3600
   ) {
 
-    type = "SELL";
+    return (
+      Math.floor(
+        seconds / 60
+      ) +
+      "分钟前"
+    );
+
   }
 
-  if (!type) {
-    return null;
+
+  if (
+    seconds < 86400
+  ) {
+
+    return (
+      Math.floor(
+        seconds / 3600
+      ) +
+      "小时前"
+    );
+
   }
 
-  const chiliValue =
-    type === "BUY"
-      ? chiliOut
-      : chiliIn;
 
-  const usdtValue =
-    type === "BUY"
-      ? usdtIn
-      : usdtOut;
+  return (
+    Math.floor(
+      seconds / 86400
+    ) +
+    "天前"
+  );
 
-  return {
-
-    type,
-
-    chiliValue,
-
-    usdtValue,
-
-    hash: log.transactionHash,
-
-    blockNumber:
-      parseInt(
-        log.blockNumber,
-        16
-      )
-
-  };
 }
 
 
 /* =========================================================
-   LOAD BLOCK TIMESTAMP
+   GET BLOCK TIMESTAMP
 ========================================================= */
 
-const blockTimeCache = new Map();
+const blockTimeCache =
+  new Map();
 
-async function getBlockTime(blockNumber) {
 
-  if (blockTimeCache.has(blockNumber)) {
+async function getBlockTimestamp(
+  blockNumber
+) {
 
-    return blockTimeCache.get(blockNumber);
+  if (
+    blockTimeCache.has(
+      blockNumber
+    )
+  ) {
+
+    return blockTimeCache.get(
+      blockNumber
+    );
+
   }
+
 
   try {
 
@@ -1664,9 +2482,11 @@ async function getBlockTime(blockNumber) {
         ]
       );
 
+
     if (!block) {
       return null;
     }
+
 
     const timestamp =
       parseInt(
@@ -1674,249 +2494,884 @@ async function getBlockTime(blockNumber) {
         16
       );
 
+
     blockTimeCache.set(
       blockNumber,
       timestamp
     );
 
+
     return timestamp;
+
 
   } catch (error) {
 
+    console.warn(
+      "Block timestamp error:",
+      error
+    );
+
+
     return null;
+
   }
+
 }
 
 
 /* =========================================================
-   LOAD CHILI / USDT TRANSACTIONS
+   FIND REAL CHILI / USDT PAIR
+========================================================= */
+
+async function getRealPair() {
+
+  const response =
+    await fetch(
+      DEXSCREENER_API,
+      {
+        cache: "no-store"
+      }
+    );
+
+
+  if (!response.ok) {
+
+    throw new Error(
+      "DexScreener HTTP " +
+      response.status
+    );
+
+  }
+
+
+  const data =
+    await response.json();
+
+
+  if (
+    !data ||
+    !Array.isArray(
+      data.pairs
+    )
+  ) {
+
+    throw new Error(
+      "DexScreener 没有返回交易池"
+    );
+
+  }
+
+
+  const bscPairs =
+    data.pairs.filter(
+      pair =>
+        pair &&
+        pair.chainId === "bsc"
+    );
+
+
+  if (
+    bscPairs.length === 0
+  ) {
+
+    throw new Error(
+      "没有找到 BSC CHILI 交易池"
+    );
+
+  }
+
+
+  /*
+    第一优先：
+    CHILI / USDT
+  */
+
+  let pair =
+    bscPairs.find(
+      p => {
+
+        const base =
+          normalizeAddress(
+            p.baseToken?.address
+          );
+
+        const quote =
+          normalizeAddress(
+            p.quoteToken?.address
+          );
+
+
+        return (
+          base ===
+            normalizeAddress(
+              CHILI
+            ) &&
+
+          quote ===
+            normalizeAddress(
+              USDT
+            )
+        );
+
+      }
+    );
+
+
+  /*
+    第二优先：
+    USDT / CHILI
+  */
+
+  if (!pair) {
+
+    pair =
+      bscPairs.find(
+        p => {
+
+          const base =
+            normalizeAddress(
+              p.baseToken?.address
+            );
+
+          const quote =
+            normalizeAddress(
+              p.quoteToken?.address
+            );
+
+
+          return (
+            base ===
+              normalizeAddress(
+                USDT
+              ) &&
+
+            quote ===
+              normalizeAddress(
+                CHILI
+              )
+          );
+
+        }
+      );
+
+  }
+
+
+  /*
+    第三优先：
+    BSC 流动性最高的池
+  */
+
+  if (!pair) {
+
+    pair =
+      bscPairs
+        .slice()
+        .sort(
+          (a, b) => {
+
+            const aLiquidity =
+              Number(
+                a.liquidity?.usd ||
+                0
+              );
+
+            const bLiquidity =
+              Number(
+                b.liquidity?.usd ||
+                0
+              );
+
+
+            return (
+              bLiquidity -
+              aLiquidity
+            );
+
+          }
+        )[0];
+
+  }
+
+
+  if (
+    !pair ||
+    !pair.pairAddress
+  ) {
+
+    throw new Error(
+      "没有找到有效 Pair Address"
+    );
+
+  }
+
+
+  currentPair =
+    pair.pairAddress;
+
+
+  console.log(
+    "CHILI REAL PAIR:",
+    currentPair
+  );
+
+
+  console.log(
+    "DEX:",
+    pair.dexId
+  );
+
+
+  console.log(
+    "PAIR:",
+    pair
+  );
+
+
+  return pair;
+
+}
+
+
+/* =========================================================
+   GET PAIR TOKEN0 / TOKEN1
+========================================================= */
+
+async function getPairTokens(
+  pair
+) {
+
+  const token0Result =
+    await ethCall(
+      pair,
+      "0x0dfe1681"
+    );
+
+
+  const token1Result =
+    await ethCall(
+      pair,
+      "0xd21220a7"
+    );
+
+
+  return {
+
+    token0:
+      "0x" +
+      token0Result.slice(-40),
+
+    token1:
+      "0x" +
+      token1Result.slice(-40)
+
+  };
+
+}
+
+
+/* =========================================================
+   DECODE PANCAKESWAP V2 SWAP
+========================================================= */
+
+function decodeSwap(
+  log,
+  token0,
+  token1
+) {
+
+  try {
+
+    const raw =
+      log.data.replace(
+        "0x",
+        ""
+      );
+
+
+    if (
+      raw.length < 256
+    ) {
+
+      return null;
+
+    }
+
+
+    const amount0In =
+      BigInt(
+        "0x" +
+        raw.slice(
+          0,
+          64
+        )
+      );
+
+
+    const amount1In =
+      BigInt(
+        "0x" +
+        raw.slice(
+          64,
+          128
+        )
+      );
+
+
+    const amount0Out =
+      BigInt(
+        "0x" +
+        raw.slice(
+          128,
+          192
+        )
+      );
+
+
+    const amount1Out =
+      BigInt(
+        "0x" +
+        raw.slice(
+          192,
+          256
+        )
+      );
+
+
+    const chili =
+      normalizeAddress(
+        CHILI
+      );
+
+
+    const t0 =
+      normalizeAddress(
+        token0
+      );
+
+
+    const t1 =
+      normalizeAddress(
+        token1
+      );
+
+
+    let chiliIn = 0n;
+    let chiliOut = 0n;
+
+    let usdtIn = 0n;
+    let usdtOut = 0n;
+
+
+    /*
+      CHILI = token0
+    */
+
+    if (
+      t0 === chili
+    ) {
+
+      chiliIn =
+        amount0In;
+
+      chiliOut =
+        amount0Out;
+
+      usdtIn =
+        amount1In;
+
+      usdtOut =
+        amount1Out;
+
+    }
+
+
+    /*
+      CHILI = token1
+    */
+
+    else if (
+      t1 === chili
+    ) {
+
+      chiliIn =
+        amount1In;
+
+      chiliOut =
+        amount1Out;
+
+      usdtIn =
+        amount0In;
+
+      usdtOut =
+        amount0Out;
+
+    }
+
+
+    else {
+
+      return null;
+
+    }
+
+
+    /*
+      BUY
+
+      USDT → Pool
+      CHILI → Buyer
+    */
+
+    if (
+      usdtIn > 0n &&
+      chiliOut > 0n
+    ) {
+
+      return {
+
+        type:
+          "BUY",
+
+        chiliAmount:
+          chiliOut,
+
+        usdtAmount:
+          usdtIn,
+
+        hash:
+          log.transactionHash,
+
+        blockNumber:
+          parseInt(
+            log.blockNumber,
+            16
+          )
+
+      };
+
+    }
+
+
+    /*
+      SELL
+
+      CHILI → Pool
+      USDT → Seller
+    */
+
+    if (
+      chiliIn > 0n &&
+      usdtOut > 0n
+    ) {
+
+      return {
+
+        type:
+          "SELL",
+
+        chiliAmount:
+          chiliIn,
+
+        usdtAmount:
+          usdtOut,
+
+        hash:
+          log.transactionHash,
+
+        blockNumber:
+          parseInt(
+            log.blockNumber,
+            16
+          )
+
+      };
+
+    }
+
+
+    return null;
+
+
+  } catch (error) {
+
+    console.warn(
+      "Swap decode error:",
+      error
+    );
+
+
+    return null;
+
+  }
+
+}
+
+
+/* =========================================================
+   TRANSACTION MESSAGE
+========================================================= */
+
+function showTransactionMessage(
+  message,
+  error = false
+) {
+
+  const txList =
+    document.getElementById(
+      "txList"
+    );
+
+
+  txList.innerHTML = `
+
+    <div class="${
+      error
+        ? "tx-error"
+        : "tx-loading"
+    }">
+
+      ${message}
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   LOAD TRANSACTIONS
 ========================================================= */
 
 async function loadTransactions() {
 
-  const txList =
-    document.getElementById("txList");
-
   try {
 
+    showTransactionMessage(
+      "正在读取 BSC 链上交易..."
+    );
+
+
     /*
-      找 PancakeSwap CHILI/USDT Pair
+      1.
+      从 DexScreener 找真实交易池
     */
 
     const pair =
-      await getPair(
-        CHILI,
-        USDT
+      await getRealPair();
+
+
+    /*
+      2.
+      读取 Pair token0 / token1
+    */
+
+    const pairTokens =
+      await getPairTokens(
+        pair.pairAddress
       );
 
-    if (!pair) {
 
-      txList.innerHTML = `
-        <div class="tx-row">
-          <div class="tx-type-sell">--</div>
-          <div class="tx-hash">
-            找不到 CHILI / USDT 流动池
-          </div>
-          <div>--</div>
-          <div class="tx-time">--</div>
-        </div>
-      `;
+    console.log(
+      "TOKEN0:",
+      pairTokens.token0
+    );
 
-      return;
+
+    console.log(
+      "TOKEN1:",
+      pairTokens.token1
+    );
+
+
+    /*
+      3.
+      确认 Pair 包含 CHILI
+    */
+
+    const containsChili =
+      (
+        normalizeAddress(
+          pairTokens.token0
+        ) ===
+        normalizeAddress(
+          CHILI
+        )
+      ) ||
+
+      (
+        normalizeAddress(
+          pairTokens.token1
+        ) ===
+        normalizeAddress(
+          CHILI
+        )
+      );
+
+
+    if (!containsChili) {
+
+      throw new Error(
+        "找到的交易池不包含 CHILI"
+      );
+
     }
 
-    /*
-      获取 Pair 的 token0
-    */
-
-    const token0 =
-      await getToken0(pair);
 
     /*
-      获取当前区块
+      4.
+      读取 CHILI decimals
     */
 
-    const latestBlockHex =
+    const chiliDecimals =
+      await getTokenDecimals(
+        CHILI
+      );
+
+
+    console.log(
+      "CHILI decimals:",
+      chiliDecimals
+    );
+
+
+    /*
+      5.
+      获取最新区块
+    */
+
+    const latestHex =
       await rpcCall(
         "eth_blockNumber"
       );
 
+
     const latestBlock =
       parseInt(
-        latestBlockHex,
+        latestHex,
         16
       );
 
-    /*
-      最近约 500 个区块。
 
-      BSC 出块速度较快，
-      如果交易很多，可以适当增加。
+    /*
+      最近 2000 区块。
+
+      BSC 大约 3 秒一个区块，
+      大约覆盖 1-2 小时。
     */
 
     const fromBlock =
       Math.max(
         0,
-        latestBlock - 500
+        latestBlock - 2000
       );
 
+
+    console.log(
+      "BLOCK RANGE:",
+      fromBlock,
+      latestBlock
+    );
+
+
     /*
-      Swap Event
-
-      注意：
-      这里使用标准 UniswapV2/PancakeSwap
-      Swap(address,uint256,uint256,uint256,uint256,address)
-      的 topic。
+      6.
+      读取 Swap Events
     */
-
-    const swapTopic =
-      "0xd78ad95fa46c994b6551d0da85fc275fe6138c1c5b8f5e0a8f5a6b3d7e7c6b6d";
 
     const logs =
       await rpcCall(
         "eth_getLogs",
         [
           {
-            address: pair,
+
+            address:
+              pair.pairAddress,
+
             fromBlock:
               "0x" +
-              fromBlock.toString(16),
+              fromBlock.toString(
+                16
+              ),
+
             toBlock:
               "0x" +
-              latestBlock.toString(16),
+              latestBlock.toString(
+                16
+              ),
+
             topics: [
-              swapTopic
+              SWAP_TOPIC
             ]
+
           }
         ]
       );
 
-    if (!logs || logs.length === 0) {
 
-      txList.innerHTML = `
-        <div class="tx-row">
-          <div class="tx-type-buy">--</div>
-          <div class="tx-hash">
-            暂时没有读取到新的 Swap 交易
-          </div>
-          <div>--</div>
-          <div class="tx-time">
-            ${new Date().toLocaleTimeString()}
-          </div>
-        </div>
-      `;
+    console.log(
+      "SWAP LOG COUNT:",
+      logs
+        ? logs.length
+        : 0
+    );
+
+
+    if (
+      !logs ||
+      logs.length === 0
+    ) {
+
+      showTransactionMessage(
+        "这个 CHILI/USDT 交易池最近没有新的 Swap"
+      );
 
       return;
+
     }
 
+
     /*
-      最新的放前面
+      最新交易排前面
     */
 
-    const sortedLogs =
+    const reversed =
       logs
         .slice()
         .reverse();
 
+
     const transactions = [];
 
+
+    /*
+      最多显示 8 笔
+    */
+
     for (
-      const log of sortedLogs
+      const log of reversed
     ) {
 
       const tx =
         decodeSwap(
           log,
-          token0
+          pairTokens.token0,
+          pairTokens.token1
         );
+
 
       if (tx) {
 
-        transactions.push(tx);
+        /*
+          防止同一个交易重复
+        */
+
+        const exists =
+          transactions.some(
+            item =>
+              item.hash ===
+              tx.hash
+          );
+
+
+        if (!exists) {
+
+          transactions.push(
+            tx
+          );
+
+        }
+
       }
 
-      if (transactions.length >= 8) {
+
+      if (
+        transactions.length >= 8
+      ) {
+
         break;
+
       }
+
     }
 
-    if (transactions.length === 0) {
 
-      txList.innerHTML = `
-        <div class="tx-row">
-          <div class="tx-type-buy">--</div>
-          <div class="tx-hash">
-            暂时没有找到 CHILI Swap
-          </div>
-          <div>--</div>
-          <div class="tx-time">--</div>
-        </div>
-      `;
+    if (
+      transactions.length === 0
+    ) {
+
+      showTransactionMessage(
+        "暂时没有识别到 CHILI 买卖交易"
+      );
 
       return;
+
     }
 
+
     /*
-      创建交易列表
+      7.
+      生成 HTML
     */
 
     let html = "";
 
-    const now =
-      Math.floor(
-        Date.now() / 1000
-      );
 
     for (
       const tx of transactions
     ) {
 
-      const blockTime =
-        await getBlockTime(
+      const timestamp =
+        await getBlockTimestamp(
           tx.blockNumber
         );
 
+
       const age =
-        blockTime
+        timestamp
           ? formatAge(
-              now - blockTime
+              timestamp
             )
           : "--";
 
+
       const chiliAmount =
-        formatNumber(
-          tx.chiliValue,
-          18
+        formatTokenAmount(
+          tx.chiliAmount,
+          chiliDecimals
         );
+
 
       const usdtAmount =
-        formatNumber(
-          tx.usdtValue,
+        formatTokenAmount(
+          tx.usdtAmount,
           18
         );
 
-      const shortHash =
-        tx.hash.slice(0, 8) +
-        "..." +
-        tx.hash.slice(-6);
 
       const typeClass =
         tx.type === "BUY"
           ? "tx-type-buy"
           : "tx-type-sell";
 
+
       const typeText =
         tx.type === "BUY"
           ? "BUY"
           : "SELL";
 
+
       html += `
 
         <div class="tx-row">
 
-          <div class="${typeClass}">
+          <div
+            class="${typeClass}"
+          >
             ${typeText}
           </div>
+
 
           <div class="tx-hash">
 
@@ -1926,29 +3381,59 @@ async function loadTransactions() {
               rel="noopener"
               title="${tx.hash}"
             >
-              ${shortHash}
+              ${shortHash(tx.hash)}
             </a>
 
           </div>
 
+
           <div>
-            ${chiliAmount} CHILI
+
+            ${chiliAmount}
+            CHILI
+
             <br>
-            <span style="color:#777;font-size:11px">
-              ≈ ${usdtAmount} USDT
+
+            <span
+              style="
+                color:#777;
+                font-size:11px;
+              "
+            >
+              ≈
+              ${usdtAmount}
+              USDT
             </span>
+
           </div>
 
-          <div class="tx-time">
+
+          <div
+            class="tx-time"
+          >
             ${age}
           </div>
 
         </div>
 
       `;
+
     }
 
-    txList.innerHTML = html;
+
+    document.getElementById(
+      "txList"
+    ).innerHTML =
+      html;
+
+
+    document.getElementById(
+      "txSource"
+    ).textContent =
+      "数据来源：BSC Chain · " +
+      (pair.dexId || "DEX") +
+      " · Swap Events";
+
 
   } catch (error) {
 
@@ -1957,30 +3442,14 @@ async function loadTransactions() {
       error
     );
 
-    txList.innerHTML = `
 
-      <div class="tx-row">
+    showTransactionMessage(
+      "暂时无法读取 BSC 链上交易，请稍后刷新。",
+      true
+    );
 
-        <div class="tx-type-sell">
-          --
-        </div>
-
-        <div class="tx-hash">
-          暂时无法读取 BSC 链上交易
-        </div>
-
-        <div>
-          --
-        </div>
-
-        <div class="tx-time">
-          请稍后刷新
-        </div>
-
-      </div>
-
-    `;
   }
+
 }
 
 
@@ -1991,42 +3460,65 @@ async function loadTransactions() {
 async function loadMarketData() {
 
   const priceEl =
-    document.getElementById("price");
+    document.getElementById(
+      "price"
+    );
+
 
   const changeEl =
-    document.getElementById("change");
+    document.getElementById(
+      "change"
+    );
+
 
   const liquidityEl =
-    document.getElementById("liquidity");
+    document.getElementById(
+      "liquidity"
+    );
+
 
   const volumeEl =
-    document.getElementById("volume");
+    document.getElementById(
+      "volume"
+    );
+
 
   try {
 
     const response =
       await fetch(
-        "https://api.dexscreener.com/latest/dex/tokens/" +
-        CHILI
+        DEXSCREENER_API,
+        {
+          cache: "no-store"
+        }
       );
 
+
     if (!response.ok) {
+
       throw new Error(
-        "Market API unavailable"
+        "Market API HTTP " +
+        response.status
       );
+
     }
+
 
     const data =
       await response.json();
+
 
     if (
       !data.pairs ||
       data.pairs.length === 0
     ) {
+
       throw new Error(
         "No pair found"
       );
+
     }
+
 
     const bscPairs =
       data.pairs.filter(
@@ -2034,75 +3526,154 @@ async function loadMarketData() {
           pair.chainId === "bsc"
       );
 
+
+    if (
+      bscPairs.length === 0
+    ) {
+
+      throw new Error(
+        "No BSC pair"
+      );
+
+    }
+
+
+    /*
+      优先 CHILI/USDT
+    */
+
     let pair =
       bscPairs.find(
-        pair => {
+        p => {
 
           const base =
-            pair.baseToken?.symbol;
+            normalizeAddress(
+              p.baseToken?.address
+            );
 
           const quote =
-            pair.quoteToken?.symbol;
+            normalizeAddress(
+              p.quoteToken?.address
+            );
+
 
           return (
-            base === "CHILI" &&
-            quote === "USDT"
+            base ===
+              normalizeAddress(
+                CHILI
+              ) &&
+
+            quote ===
+              normalizeAddress(
+                USDT
+              )
           );
 
         }
       );
 
+
     /*
-      如果没有直接找到 CHILI/USDT，
-      使用 BSC 上第一个交易对。
+      如果没有，
+      选择流动性最高
     */
 
     if (!pair) {
 
       pair =
-        bscPairs[0];
+        bscPairs
+          .slice()
+          .sort(
+            (a, b) => {
+
+              const aLiquidity =
+                Number(
+                  a.liquidity?.usd ||
+                  0
+                );
+
+              const bLiquidity =
+                Number(
+                  b.liquidity?.usd ||
+                  0
+                );
+
+
+              return (
+                bLiquidity -
+                aLiquidity
+              );
+
+            }
+          )[0];
+
     }
+
 
     if (!pair) {
 
       throw new Error(
-        "No BSC pair found"
+        "No valid pair"
       );
+
     }
+
 
     const price =
       Number(
-        pair.priceUsd || 0
+        pair.priceUsd ||
+        0
       );
+
 
     const change =
       Number(
-        pair.priceChange?.h24 || 0
+        pair.priceChange?.h24 ||
+        0
       );
+
 
     const liquidity =
       Number(
-        pair.liquidity?.usd || 0
+        pair.liquidity?.usd ||
+        0
       );
+
 
     const volume =
       Number(
-        pair.volume?.h24 || 0
+        pair.volume?.h24 ||
+        0
       );
+
+
+    /*
+      PRICE
+    */
 
     priceEl.textContent =
       price > 0
+
         ? "$" +
           price.toLocaleString(
             "en-US",
             {
-              maximumSignificantDigits: 8
+              maximumSignificantDigits:
+                8
             }
           )
+
         : "--";
 
+
+    /*
+      CHANGE
+    */
+
     changeEl.textContent =
-      change.toFixed(2) + "%";
+      change.toFixed(2) +
+      "%";
+
 
     changeEl.className =
       "market-value " +
@@ -2112,23 +3683,36 @@ async function loadMarketData() {
           : "orange"
       );
 
+
+    /*
+      LIQUIDITY
+    */
+
     liquidityEl.textContent =
       "$" +
       liquidity.toLocaleString(
         "en-US",
         {
-          maximumFractionDigits: 0
+          maximumFractionDigits:
+            0
         }
       );
+
+
+    /*
+      VOLUME
+    */
 
     volumeEl.textContent =
       "$" +
       volume.toLocaleString(
         "en-US",
         {
-          maximumFractionDigits: 0
+          maximumFractionDigits:
+            0
         }
       );
+
 
   } catch (error) {
 
@@ -2137,18 +3721,24 @@ async function loadMarketData() {
       error
     );
 
+
     priceEl.textContent =
       "--";
+
 
     changeEl.textContent =
       "--";
 
+
     liquidityEl.textContent =
       "--";
 
+
     volumeEl.textContent =
       "--";
+
   }
+
 }
 
 
@@ -2161,10 +3751,12 @@ const menuToggle =
     "menuToggle"
   );
 
+
 const navLinks =
   document.getElementById(
     "navLinks"
   );
+
 
 menuToggle.addEventListener(
   "click",
@@ -2176,6 +3768,7 @@ menuToggle.addEventListener(
 
   }
 );
+
 
 document
   .querySelectorAll(
@@ -2208,17 +3801,22 @@ const zhBtn =
     "zhBtn"
   );
 
+
 const enBtn =
   document.getElementById(
     "enBtn"
   );
 
-function setLanguage(lang) {
+
+function setLanguage(
+  lang
+) {
 
   document.documentElement.lang =
     lang === "zh"
       ? "zh-CN"
       : "en";
+
 
   document
     .querySelectorAll(
@@ -2239,40 +3837,56 @@ function setLanguage(lang) {
       }
     );
 
+
   zhBtn.classList.toggle(
     "active",
     lang === "zh"
   );
+
 
   enBtn.classList.toggle(
     "active",
     lang === "en"
   );
 
+
   localStorage.setItem(
     "chili-language",
     lang
   );
+
 }
+
 
 zhBtn.addEventListener(
   "click",
   () => {
-    setLanguage("zh");
+
+    setLanguage(
+      "zh"
+    );
+
   }
 );
+
 
 enBtn.addEventListener(
   "click",
   () => {
-    setLanguage("en");
+
+    setLanguage(
+      "en"
+    );
+
   }
 );
+
 
 const savedLanguage =
   localStorage.getItem(
     "chili-language"
   ) || "zh";
+
 
 setLanguage(
   savedLanguage
@@ -2297,12 +3911,14 @@ setInterval(
   60000
 );
 
+
 setInterval(
   loadTransactions,
   30000
 );
 
 </script>
+
 
 </body>
 </html>
