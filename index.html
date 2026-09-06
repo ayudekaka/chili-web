@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHILI — BNB Smart Chain</title>
+  <meta name="description" content="CHILI — A next-generation community token on BNB Smart Chain.">
+  <link rel="icon" type="image/png" href="logo-TOU.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#home" class="brand">
+      <img src="logo-TOU.png" alt="CHILI" class="brand-logo" data-chili-logo>
+      <div><div class="brand-name">CHILI</div><span class="brand-small" data-i18n="logo-small">ON-CHAIN</span></div>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a class="nav-link active" href="#market" data-section="market" data-i18n="nav-market">MARKET</a>
+      <a class="nav-link" href="#about" data-section="about" data-i18n="nav-about">ABOUT</a>
+      <a class="nav-link" href="#tokenomics" data-section="tokenomics" data-i18n="nav-tokenomics">TOKENOMICS</a>
+      <a class="nav-link" href="#story" data-section="story" data-i18n="nav-story">STORY</a>
+      <a class="nav-link" href="#security" data-section="security" data-i18n="nav-security">SECURITY</a>
+      <a class="nav-link" href="#contract" data-section="contract" data-i18n="nav-contract">CONTRACT</a>
+    </nav>
+    <button class="lang-btn" id="langBtn">中文</button>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu"><span></span></button>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <div class="hero-kicker" data-i18n="hero-kicker">BNB SMART CHAIN // SYSTEM ONLINE</div>
+      <h1 class="hero-title">CHI<span>LI</span></h1>
+      <p class="hero-subtitle" data-i18n="hero-subtitle">A community-driven token built for the next wave of on-chain culture.</p>
+      <div class="hero-actions">
+        <a href="#market" class="btn btn-primary" data-i18n="hero-enter">ENTER TERMINAL →</a>
+        <a href="https://bscscan.com/address/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c" target="_blank" rel="noopener" class="btn" data-bscscan data-i18n="hero-contract">VIEW CONTRACT ↗</a>
+      </div>
+      <div class="contract-line"><span data-i18n="hero-ca">CA:</span><strong id="heroContract"></strong><button class="copy-mini" id="copyHero" data-i18n="hero-copy">COPY</button></div>
+    </div>
+    <div class="core-stage">
+      <div class="core">
+        <div class="core-ring r1"></div><div class="core-ring r2"></div><div class="core-ring r3"></div>
+        <div class="core-orbit"></div><div class="core-orbit o2"></div>
+        <div class="core-center"><div><div class="c">C</div><div class="label" data-i18n="core-label">CHILI CORE</div></div></div>
+        <div class="core-data d1"><div class="label" data-i18n="core-network">NETWORK</div><div class="value">BSC</div></div>
+        <div class="core-data d2"><div class="label" data-i18n="core-status">STATUS</div><div class="value" id="coreStatus">ONLINE</div></div>
+        <div class="core-data d3"><div class="label" data-i18n="core-tax">TAX</div><div class="value">0%</div></div>
+        <div class="core-data d4"><div class="label" data-i18n="core-token">TOKEN</div><div class="value" id="coreToken">CHILI</div></div>
+      </div>
+      <div class="hero-coordinates">BSC / CHILI / 0xED3C...35F7C / CORE ONLINE</div>
+    </div>
+  </div>
+</section>
+
+<div class="stream"><div class="stream-track">
+  <div class="stream-item" data-i18n="stream-core">CHILI CORE</div><div class="stream-item" data-i18n="stream-sync">MARKET SYNC</div>
+  <div class="stream-item" data-i18n="stream-liquidity">LIQUIDITY MATRIX</div><div class="stream-item" data-i18n="stream-block">BSC BLOCK SYNC</div>
+  <div class="stream-item" data-i18n="stream-realtime">REALTIME DATA</div><div class="stream-item" data-i18n="stream-active">ON-CHAIN ACTIVE</div>
+  <div class="stream-item" data-i18n="stream-core">CHILI CORE</div><div class="stream-item" data-i18n="stream-sync">MARKET SYNC</div>
+  <div class="stream-item" data-i18n="stream-liquidity">LIQUIDITY MATRIX</div><div class="stream-item" data-i18n="stream-block">BSC BLOCK SYNC</div>
+  <div class="stream-item" data-i18n="stream-realtime">REALTIME DATA</div><div class="stream-item" data-i18n="stream-active">ON-CHAIN ACTIVE</div>
+</div></div>
+
+<section class="section market" id="market"><div class="container">
+  <div class="market-header"><div><div class="section-code" data-i18n="terminal-code">CHILI // ON-CHAIN CORE</div><h2 class="section-title" data-i18n="terminal-title">LIVE MARKET TERMINAL</h2></div>
+  <div class="market-status"><span class="status-dot"></span><span id="marketStatusText">LOCAL</span></div></div>
+  <div class="terminal">
+    <div class="terminal-scan"></div>
+    <div class="terminal-top"><div class="terminal-title">CHILI // MARKET DATA FEED</div><div class="terminal-chain"><span data-i18n="terminal-chain">BNB SMART CHAIN</span> // <span data-i18n="realtime">● REALTIME</span></div></div>
+    <div class="terminal-body">
+      <div class="price-panel"><div class="price-label" data-i18n="current-price">CURRENT MARKET PRICE</div><div class="price" id="price">—</div><div class="price-unit">USD / CHILI</div>
+        <div class="pulse-line"><svg viewBox="0 0 500 80" preserveAspectRatio="none"><polyline fill="none" stroke="#ef2637" stroke-width="2" points="0,60 35,58 55,62 85,44 110,51 135,30 160,42 185,28 210,35 235,15 260,29 290,22 315,34 345,18 375,26 400,11 430,24 455,14 500,20"/></svg></div>
+        <div class="micro" data-i18n="price-pulse">LIVE PRICE PULSE</div>
+      </div>
+      <div class="market-main"><div class="chart-wrap"><div class="chart-grid"></div><svg viewBox="0 0 900 220" preserveAspectRatio="none"><defs><linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ef2637" stop-opacity=".18"/><stop offset="100%" stop-color="#ef2637" stop-opacity="0"/></linearGradient></defs><path d="M0,180 C40,175 55,150 90,158 S135,125 165,140 S205,115 240,130 S290,80 325,112 S365,95 400,105 S450,62 490,86 S530,98 565,70 S610,85 645,55 S690,73 730,48 S775,62 810,30 S850,50 900,22 L900,220 L0,220 Z" fill="url(#chartFill)"/><path d="M0,180 C40,175 55,150 90,158 S135,125 165,140 S205,115 240,130 S290,80 325,112 S365,95 400,105 S450,62 490,86 S530,98 565,70 S610,85 645,55 S690,73 730,48 S775,62 810,30 S850,50 900,22" fill="none" stroke="#ef2637" stroke-width="2"/></svg></div>
+        <div class="market-grid">
+          <div class="market-card"><div class="market-card-label" data-i18n="pair">PAIR</div><div class="market-card-value" id="pair">—</div></div>
+          <div class="market-card"><div class="market-card-label" data-i18n="dex">DEX</div><div class="market-card-value" id="dex">—</div></div>
+          <div class="market-card"><div class="market-card-label" data-i18n="block">BLOCK</div><div class="market-card-value" id="block">—</div></div>
+          <div class="market-card"><div class="market-card-label" data-i18n="liquidity">LIQUIDITY</div><div class="market-card-value" id="liquidity">—</div></div>
+          <div class="market-card"><div class="market-card-label" data-i18n="volume">24H VOLUME</div><div class="market-card-value" id="volume">—</div></div>
+          <div class="market-card"><div class="market-card-label" data-i18n="market-cap">MARKET CAP</div><div class="market-card-value" id="marketCap">—</div></div>
+          <div class="market-card"><div class="market-card-label" data-i18n="txns">24H TXNS</div><div class="market-card-value" id="txns">—</div></div>
+          <div class="market-card"><div class="market-card-label">BUY / SELL</div><div class="market-card-value"><span id="buys">—</span> / <span id="sells">—</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="market-footer"><span><span data-i18n="pair-address">PAIR ADDRESS</span>: <strong id="pairAddress">—</strong></span><span><span data-i18n="last-update">LAST UPDATE</span>: <strong id="lastUpdate">—</strong></span><a href="https://dexscreener.com/bsc/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c" data-dexscreener target="_blank" rel="noopener" class="red" data-i18n="open-chart">OPEN LIVE CHART ↗</a></div>
+  </div>
+</div></section>
+
+<section class="section" id="about"><div class="container about-grid"><div class="architecture">
+  <svg class="arch-svg" viewBox="0 0 800 570" preserveAspectRatio="none"><line class="arch-line" x1="400" y1="285" x2="145" y2="190"/><line class="arch-line" x1="400" y1="285" x2="655" y2="190"/><line class="arch-line" x1="400" y1="285" x2="145" y2="470"/><line class="arch-line" x1="400" y1="285" x2="655" y2="470"/></svg>
+  <div class="arch-center"><div><strong>CHILI</strong><small>CORE SYSTEM</small></div></div><div class="arch-node an1"><strong>COMMUNITY</strong><small>NODE 001</small></div><div class="arch-node an2"><strong>TRANSPARENCY</strong><small>NODE 002</small></div><div class="arch-node an3"><strong>ON-CHAIN</strong><small>NODE 003</small></div><div class="arch-node an4"><strong>CULTURE</strong><small>NODE 004</small></div>
+</div><div><div class="section-code" data-i18n="about-code">01 // SYSTEM</div><h2 class="section-title" data-i18n="about-title">ABOUT<br>CHILI</h2><p class="section-description" data-i18n="about-description">CHILI is designed around community, transparency and on-chain participation.</p>
+<div class="about-copy"><div class="about-block"><div class="about-core" data-i18n="about-core1">CORE / 001</div><h3 data-i18n="about-title1">SIMPLE.<br>VISIBLE.<br>ON-CHAIN.</h3><p data-i18n="about-text1">CHILI keeps the core idea simple: build a recognizable community token with transparent on-chain information.</p></div><div class="about-block"><div class="about-core" data-i18n="about-core2">CORE / 002</div><h3 data-i18n="about-title2">BUILT FOR<br>COMMUNITY.</h3><p data-i18n="about-text2">The CHILI identity is powered by the people who participate, create, share and build around the ecosystem.</p></div></div></div></div></section>
+
+<section class="section why" id="why"><div class="container why-layout"><div><div class="section-code" data-i18n="why-code">02 // ARCHITECTURE</div><h2 class="section-title" data-i18n="why-title">WHY<br>CHILI?</h2></div><div class="dna-map"><div class="dna-core"><div><strong>CHILI</strong><small>DNA / CORE</small></div></div><div class="star s1"></div><div class="star s2"></div><div class="star s3"></div><div class="star s4"></div><div class="star s5"></div><div class="star s6"></div><div class="star-label sl1">COMMUNITY</div><div class="star-label sl2">ON-CHAIN</div><div class="star-label sl3">EVOLUTION</div><div class="star-label sl4">CULTURE</div></div></div></section>
+
+<section class="section" id="tokenomics"><div class="container"><div class="section-code" data-i18n="token-code">03 // SUPPLY</div><h2 class="section-title" data-i18n="token-title">TOKENOMICS</h2><div class="token-grid"><div class="token-reactor"><div class="reactor-ring"></div><div class="reactor-core"><strong id="reactorSymbol">CHILI</strong><small>SUPPLY CORE</small></div></div><div class="token-stats"><div class="stat"><span data-i18n="symbol">TOKEN SYMBOL</span><strong id="tokenSymbol">CHILI</strong></div><div class="stat"><span data-i18n="supply">TOTAL SUPPLY</span><strong id="tokenSupply">—</strong></div><div class="stat"><span data-i18n="decimals">DECIMALS</span><strong id="tokenDecimals">18</strong></div><div class="stat"><span data-i18n="network">NETWORK</span><strong id="networkValue">BNB Smart Chain</strong></div><div class="stat"><span data-i18n="chain-id">CHAIN ID</span><strong id="chainId">56</strong></div></div></div></div></section>
+
+<section class="section story" id="story"><div class="container"><div class="section-code" data-i18n="story-code">04 // TRANSMISSION</div><h2 class="section-title" data-i18n="story-title">STORY</h2><div class="story-log"><div>001 // THE CORE</div><p>CHILI begins with a simple idea: make on-chain participation visible, recognizable and community-driven.</p><div>002 // THE SIGNAL</div><p>A clean identity, transparent information and a culture that can grow with its community.</p><div>003 // THE NEXT BLOCK</div><p>The next chapter is written on-chain, one block and one participant at a time.</p></div></div></section>
+
+<section class="section security" id="security"><div class="container"><div class="section-code" data-i18n="security-code">05 // VERIFICATION</div><h2 class="section-title" data-i18n="security-title">SECURITY</h2><div class="security-grid"><div class="security-card"><span>01</span><strong>PUBLIC CONTRACT</strong><p>Contract information is publicly accessible on BNB Smart Chain.</p></div><div class="security-card"><span>02</span><strong>LIVE MARKET DATA</strong><p>When live data is unavailable, the terminal does not fabricate numbers.</p></div><div class="security-card"><span>03</span><strong>BNB SMART CHAIN</strong><p>CHILI operates on BNB Smart Chain.</p></div><div class="security-card"><span>04</span><strong>TRANSPARENCY</strong><p>Core token and market references are kept visible.</p></div></div></div></section>
+
+<section class="section contract" id="contract"><div class="container"><div class="section-code" data-i18n="contract-code">06 // TARGET</div><h2 class="section-title" data-i18n="contract-title">CONTRACT</h2><div class="contract-box"><div class="contract-label">CHILI CONTRACT ADDRESS</div><code id="contractAddress"></code><button class="btn btn-primary" id="copyContract" data-i18n="copy">COPY</button><a class="btn" data-bscscan target="_blank" rel="noopener">VIEW ON BSCSCAN ↗</a></div></div></section>
+
+<section class="community"><div class="container"><h2 data-i18n="community-title">JOIN THE CHILI NETWORK</h2><div class="community-line"></div></div></section>
+
+<footer><div class="container footer-inner"><span>CHILI // BNB SMART CHAIN</span><span>ON-CHAIN COMMUNITY TOKEN</span></div></footer>
+<div class="toast" id="toast"></div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
