@@ -1,1327 +1,1706 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CHILI — 小辣椒 | BNB Chain</title>
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
-<meta name="description"
-      content="CHILI — 小辣椒，社区驱动代币，部署于 BNB Smart Chain。">
+<title>CHILI — BNB Chain</title>
 
-<meta name="theme-color" content="#ffffff">
+<meta
+  name="description"
+  content="CHILI — A community-driven token on BNB Chain."
+>
 
 <style>
 
 /* =========================================================
-   CHILI — WHITE / RED PREMIUM TOKEN WEBSITE
-   ========================================================= */
+   CHILI
+   WHITE / RED PREMIUM TOKEN STYLE
+========================================================= */
 
 :root {
-    --white: #ffffff;
-    --black: #111111;
-    --gray-1: #555555;
-    --gray-2: #888888;
-    --gray-3: #dddddd;
-    --light: #f7f7f5;
-    --red: #e71919;
-    --red-dark: #c91414;
 
-    --max-width: 1240px;
-    --radius: 22px;
+  --white: #ffffff;
+
+  --black: #111111;
+
+  --dark: #181818;
+
+  --gray: #666666;
+
+  --light-gray: #999999;
+
+  --border: #e7e7e7;
+
+  --light: #f7f7f5;
+
+  --red: #e51b23;
+
+  --red-dark: #c9141b;
+
 }
 
-/* ---------- RESET ---------- */
+
+/* =========================================================
+   RESET
+========================================================= */
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
+
+  max-width: 100%;
+
+  overflow-x: hidden;
 }
 
 body {
-    background: var(--white);
-    color: var(--black);
-    font-family:
-        Inter,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
 
-    line-height: 1.5;
-    overflow-x: hidden;
+  width: 100%;
+
+  max-width: 100%;
+
+  overflow-x: hidden;
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  background: var(--white);
+
+  color: var(--black);
+
+  line-height: 1.6;
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+
+  text-decoration: none;
 }
 
 button {
-    font: inherit;
+  font: inherit;
 }
 
 img {
-    max-width: 100%;
-    display: block;
-}
+  max-width: 100%;
 
-/* ---------- CONTAINER ---------- */
+  display: block;
+}
 
 .container {
-    width: min(var(--max-width), calc(100% - 48px));
-    margin: 0 auto;
+
+  width: min(
+    1180px,
+    calc(100% - 40px)
+  );
+
+  margin: auto;
+
+  max-width: 100%;
 }
-
-/* =========================================================
-   HEADER
-   ========================================================= */
-
-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-
-    background: rgba(255,255,255,0.94);
-    backdrop-filter: blur(16px);
-
-    border-bottom: 1px solid rgba(0,0,0,0.06);
-}
-
-.navbar {
-    height: 78px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-
-    font-size: 20px;
-    font-weight: 900;
-    letter-spacing: -0.04em;
-}
-
-.brand img {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-}
-
-.brand span {
-    color: var(--black);
-}
-
-.brand strong {
-    color: var(--red);
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-
-    font-size: 14px;
-    font-weight: 700;
-}
-
-.nav-links a {
-    position: relative;
-    color: #333;
-
-    transition:
-        color .2s ease;
-}
-
-.nav-links a:hover {
-    color: var(--red);
-}
-
-.nav-links a::after {
-    content: "";
-
-    position: absolute;
-    left: 0;
-    bottom: -7px;
-
-    width: 0;
-    height: 2px;
-
-    background: var(--red);
-
-    transition: width .2s ease;
-}
-
-.nav-links a:hover::after {
-    width: 100%;
-}
-
-.nav-buy {
-    background: var(--red);
-    color: white !important;
-
-    padding: 11px 18px;
-    border-radius: 999px;
-}
-
-.nav-buy:hover {
-    background: var(--red-dark);
-}
-
-.nav-buy::after {
-    display: none;
-}
-
-/* =========================================================
-   HERO
-   ========================================================= */
-
-.hero {
-    min-height: calc(100vh - 78px);
-
-    display: flex;
-    align-items: center;
-
-    padding: 80px 0 100px;
-
-    position: relative;
-}
-
-.hero-grid {
-    display: grid;
-    grid-template-columns: 1.05fr .95fr;
-
-    align-items: center;
-
-    gap: 70px;
-}
-
-.hero-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-
-    color: var(--red);
-
-    font-size: 13px;
-    font-weight: 800;
-
-    letter-spacing: .13em;
-    text-transform: uppercase;
-
-    margin-bottom: 25px;
-}
-
-.hero-eyebrow::before {
-    content: "";
-
-    width: 30px;
-    height: 2px;
-
-    background: var(--red);
-}
-
-.hero h1 {
-    font-size: clamp(72px, 9vw, 145px);
-
-    line-height: .82;
-
-    font-weight: 950;
-
-    letter-spacing: -.085em;
-
-    margin-left: -7px;
-}
-
-.hero h1 span {
-    display: block;
-}
-
-.hero h1 .red {
-    color: var(--red);
-}
-
-.hero-subtitle {
-    max-width: 530px;
-
-    margin-top: 35px;
-
-    color: var(--gray-1);
-
-    font-size: 19px;
-    line-height: 1.65;
-}
-
-.hero-subtitle strong {
-    color: var(--black);
-}
-
-.hero-buttons {
-    display: flex;
-    gap: 12px;
-
-    margin-top: 35px;
-
-    flex-wrap: wrap;
-}
-
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    min-height: 50px;
-
-    padding: 0 24px;
-
-    border-radius: 999px;
-
-    font-size: 14px;
-    font-weight: 800;
-
-    transition:
-        transform .2s ease,
-        background .2s ease,
-        color .2s ease;
-}
-
-.btn:hover {
-    transform: translateY(-2px);
-}
-
-.btn-primary {
-    background: var(--red);
-    color: white;
-}
-
-.btn-primary:hover {
-    background: var(--red-dark);
-}
-
-.btn-outline {
-    border: 1px solid #222;
-    color: var(--black);
-    background: white;
-}
-
-.btn-outline:hover {
-    border-color: var(--red);
-    color: var(--red);
-}
-
-/* ---------- HERO LOGO ---------- */
-
-.hero-visual {
-    position: relative;
-
-    min-height: 520px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.hero-circle {
-    width: min(470px, 80vw);
-    aspect-ratio: 1;
-
-    border-radius: 50%;
-
-    background: #f8f8f6;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    position: relative;
-}
-
-.hero-circle::before {
-    content: "";
-
-    position: absolute;
-
-    inset: 22px;
-
-    border: 1px solid rgba(231,25,25,.15);
-
-    border-radius: 50%;
-}
-
-.hero-logo {
-    width: 66%;
-    max-width: 330px;
-
-    object-fit: contain;
-
-    position: relative;
-    z-index: 2;
-
-    animation: floating 5s ease-in-out infinite;
-}
-
-@keyframes floating {
-
-    0%, 100% {
-        transform: translateY(0) rotate(-2deg);
-    }
-
-    50% {
-        transform: translateY(-12px) rotate(2deg);
-    }
-}
-
-.hero-red-mark {
-    position: absolute;
-
-    width: 95px;
-    height: 95px;
-
-    border-radius: 50%;
-
-    background: var(--red);
-
-    right: 0;
-    bottom: 30px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    color: white;
-
-    font-size: 40px;
-
-    box-shadow: 0 20px 50px rgba(231,25,25,.18);
-}
-
-/* =========================================================
-   TICKER
-   ========================================================= */
-
-.ticker {
-    border-top: 1px solid var(--black);
-    border-bottom: 1px solid var(--black);
-
-    overflow: hidden;
-
-    white-space: nowrap;
-
-    padding: 18px 0;
-
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: .1em;
-}
-
-.ticker-inner {
-    display: inline-flex;
-    gap: 50px;
-
-    animation: ticker 25s linear infinite;
-}
-
-.ticker-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 50px;
-}
-
-.ticker-item::after {
-    content: "•";
-
-    color: var(--red);
-}
-
-@keyframes ticker {
-
-    from {
-        transform: translateX(0);
-    }
-
-    to {
-        transform: translateX(-50%);
-    }
-}
-
-/* =========================================================
-   SECTION
-   ========================================================= */
 
 section {
-    padding: 125px 0;
+
+  padding: 110px 0;
+
+  max-width: 100%;
 }
 
+
+/* =========================================================
+   SECTION TYPOGRAPHY
+========================================================= */
+
 .section-label {
-    color: var(--red);
 
-    font-size: 12px;
-    font-weight: 900;
+  color: var(--red);
 
-    letter-spacing: .16em;
+  font-size: 11px;
 
-    text-transform: uppercase;
+  font-weight: 900;
 
-    margin-bottom: 18px;
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+  margin-bottom: 12px;
 }
 
 .section-title {
-    font-size: clamp(48px, 6vw, 82px);
 
-    line-height: .95;
+  font-size:
+    clamp(42px, 6vw, 78px);
 
-    letter-spacing: -.065em;
+  line-height: .95;
 
-    font-weight: 900;
+  letter-spacing: -4px;
+
+  font-weight: 950;
+
+  color: var(--black);
+
+  margin-bottom: 22px;
 }
 
 .section-description {
-    max-width: 600px;
 
-    margin-top: 24px;
+  max-width: 650px;
 
-    color: var(--gray-1);
+  color: var(--gray);
 
-    font-size: 17px;
-    line-height: 1.7;
+  font-size: 16px;
+
+  line-height: 1.8;
 }
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header {
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 1000;
+
+  background:
+    rgba(255,255,255,.94);
+
+  backdrop-filter:
+    blur(18px);
+
+  border-bottom:
+    1px solid
+    rgba(0,0,0,.07);
+}
+
+.nav {
+
+  height: 76px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+}
+
+
+/* ---------- LOGO ---------- */
+
+.logo {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+
+  font-size: 25px;
+
+  font-weight: 950;
+
+  letter-spacing: -1.5px;
+
+  flex-shrink: 0;
+}
+
+.logo-mark {
+
+  width: 40px;
+
+  height: 40px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: var(--red);
+
+  color: white;
+
+  box-shadow: none;
+
+  flex-shrink: 0;
+
+  font-size: 20px;
+}
+
+
+/* ---------- NAV ---------- */
+
+.nav-links {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 28px;
+
+  color: #555;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+.nav-links a {
+
+  transition:
+    color .2s ease;
+}
+
+.nav-links a:hover {
+
+  color: var(--red);
+}
+
+
+/* ---------- LANGUAGE ---------- */
+
+.language {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 4px;
+
+  padding: 4px;
+
+  border-radius: 999px;
+
+  border:
+    1px solid
+    var(--border);
+
+  background: white;
+}
+
+.language button {
+
+  border: none;
+
+  background: transparent;
+
+  color: #888;
+
+  cursor: pointer;
+
+  padding: 6px 9px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+
+  font-weight: 800;
+}
+
+.language button.active {
+
+  color: white;
+
+  background: var(--red);
+}
+
+
+/* ---------- BUY BUTTON ---------- */
+
+.nav-buy {
+
+  padding: 11px 20px;
+
+  border-radius: 999px;
+
+  color: white !important;
+
+  background: var(--red);
+
+  font-weight: 900;
+
+  box-shadow: none;
+
+  transition:
+    background .2s ease,
+    transform .2s ease;
+}
+
+.nav-buy:hover {
+
+  background: var(--red-dark);
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+.menu-toggle {
+
+  display: none;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  width: 28px;
+
+  height: 20px;
+
+  background: transparent;
+
+  border: none;
+
+  cursor: pointer;
+
+  z-index: 1001;
+}
+
+.menu-toggle span {
+
+  display: block;
+
+  width: 100%;
+
+  height: 2px;
+
+  background: var(--black);
+
+  border-radius: 2px;
+
+  transition: .3s;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+
+  min-height: 730px;
+
+  display: flex;
+
+  align-items: center;
+
+  padding:
+    100px 0 110px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  background: var(--white);
+}
+
+
+/* ---------- VERY SUBTLE RED ELEMENT ---------- */
+
+.hero::after {
+
+  content: "";
+
+  position: absolute;
+
+  width: 500px;
+
+  height: 500px;
+
+  right: -260px;
+
+  top: 80px;
+
+  border-radius: 50%;
+
+  border:
+    1px solid
+    rgba(229,27,35,.12);
+
+  pointer-events: none;
+}
+
+.hero-content {
+
+  max-width: 950px;
+
+  position: relative;
+
+  z-index: 2;
+}
+
+
+/* =========================================================
+   HERO BADGE
+========================================================= */
+
+.badge {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 7px 13px;
+
+  border:
+    1px solid
+    #dddddd;
+
+  background: white;
+
+  border-radius: 999px;
+
+  color: #666;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  margin-bottom: 27px;
+}
+
+.dot {
+
+  width: 7px;
+
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: var(--red);
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   HERO TITLE
+========================================================= */
+
+.hero h1 {
+
+  font-size:
+    clamp(76px, 14vw, 170px);
+
+  line-height: .78;
+
+  letter-spacing: -8px;
+
+  font-weight: 950;
+
+  margin-bottom: 36px;
+
+  color: var(--black);
+}
+
+
+/*
+   IMPORTANT
+
+   不再使用原来的：
+
+   linear-gradient(...)
+   橙色
+   发光
+
+   改成黑 + CHILI 红
+*/
+
+.hero h1 .red {
+
+  color: var(--red);
+}
+
+
+/* 如果你的标题使用 span */
+
+.hero h1 span {
+
+  display: inline-block;
+}
+
+
+/* =========================================================
+   HERO DESCRIPTION
+========================================================= */
+
+.hero-description {
+
+  max-width: 620px;
+
+  color: var(--gray);
+
+  font-size: 18px;
+
+  line-height: 1.75;
+
+  margin-bottom: 35px;
+}
+
+.hero-description strong {
+
+  color: var(--black);
+
+  font-weight: 850;
+}
+
+
+/* =========================================================
+   HERO BUTTONS
+========================================================= */
+
+.hero-buttons {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  flex-wrap: wrap;
+}
+
+.btn {
+
+  min-height: 50px;
+
+  padding:
+    0 25px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 999px;
+
+  font-size: 13px;
+
+  font-weight: 900;
+
+  transition:
+    .2s ease;
+}
+
+.btn-primary {
+
+  color: white;
+
+  background: var(--red);
+}
+
+.btn-primary:hover {
+
+  background: var(--red-dark);
+
+  transform:
+    translateY(-2px);
+}
+
+.btn-outline {
+
+  color: var(--black);
+
+  background: white;
+
+  border:
+    1px solid
+    #222;
+}
+
+.btn-outline:hover {
+
+  color: var(--red);
+
+  border-color: var(--red);
+
+  transform:
+    translateY(-2px);
+}
+
+
+/* =========================================================
+   HERO LOGO / VISUAL
+========================================================= */
+
+.hero-visual {
+
+  position: absolute;
+
+  right: 0;
+
+  top: 50%;
+
+  transform:
+    translateY(-50%);
+
+  width: 390px;
+
+  height: 390px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  pointer-events: none;
+}
+
+
+/*
+   如果你原来的 HTML 里面有：
+
+   .hero-visual img
+
+   这里会自动套用。
+*/
+
+.hero-visual img {
+
+  width: 330px;
+
+  height: 330px;
+
+  object-fit: contain;
+
+  filter: none;
+
+  animation:
+    chiliFloat 5s ease-in-out infinite;
+}
+
+@keyframes chiliFloat {
+
+  0%,
+  100% {
+
+    transform:
+      translateY(0)
+      rotate(-2deg);
+  }
+
+  50% {
+
+    transform:
+      translateY(-10px)
+      rotate(2deg);
+  }
+}
+
 
 /* =========================================================
    STATS
-   ========================================================= */
+========================================================= */
 
-.stats-section {
-    padding-top: 110px;
-}
+.stats {
 
-.stats-grid {
-    display: grid;
+  border-top:
+    1px solid
+    #222;
 
-    grid-template-columns:
-        repeat(4, 1fr);
+  border-bottom:
+    1px solid
+    #222;
 
-    border-top: 1px solid #222;
-    border-bottom: 1px solid #222;
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
 }
 
 .stat {
-    padding: 42px 30px;
 
-    border-right: 1px solid #ddd;
+  padding: 38px 25px;
+
+  border-right:
+    1px solid
+    #ddd;
 }
 
 .stat:last-child {
-    border-right: none;
+
+  border-right: none;
 }
 
 .stat-number {
-    font-size: clamp(36px, 4vw, 58px);
 
-    line-height: 1;
+  font-size:
+    clamp(35px, 4vw, 55px);
 
-    font-weight: 900;
+  line-height: 1;
 
-    letter-spacing: -.055em;
+  font-weight: 950;
 
-    color: var(--black);
+  letter-spacing: -3px;
 }
 
 .stat-number.red {
-    color: var(--red);
+
+  color: var(--red);
 }
 
-.stat-name {
-    margin-top: 14px;
+.stat-label {
 
-    font-size: 11px;
+  margin-top: 12px;
 
-    letter-spacing: .12em;
+  color: #999;
 
-    font-weight: 800;
+  font-size: 10px;
 
-    color: var(--gray-2);
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
 }
+
+
+/* =========================================================
+   RED INFORMATION BAR
+========================================================= */
+
+.red-bar {
+
+  background: var(--red);
+
+  color: white;
+
+  padding: 22px 0;
+
+  overflow: hidden;
+}
+
+.red-bar-inner {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 30px;
+
+  font-size: 12px;
+
+  font-weight: 900;
+
+  letter-spacing: 1.5px;
+}
+
 
 /* =========================================================
    TOKENOMICS
-   ========================================================= */
+========================================================= */
 
 .tokenomics {
-    background: var(--light);
+
+  background: var(--light);
 }
 
 .tokenomics-grid {
-    display: grid;
 
-    grid-template-columns: .8fr 1.2fr;
+  margin-top: 60px;
 
-    gap: 90px;
+  display: grid;
 
-    margin-top: 70px;
+  grid-template-columns:
+    .85fr
+    1.15fr;
+
+  gap: 70px;
+
+  align-items: stretch;
 }
 
-.token-main {
-    background: var(--red);
-    color: white;
+.token-card {
 
-    min-height: 420px;
+  background: var(--red);
 
-    border-radius: var(--radius);
+  color: white;
 
-    padding: 48px;
+  border-radius: 20px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  padding: 45px;
 
-    position: relative;
-    overflow: hidden;
+  min-height: 390px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  overflow: hidden;
+
+  position: relative;
 }
 
-.token-main::after {
-    content: "🌶";
+.token-card::after {
 
-    position: absolute;
+  content: "CHILI";
 
-    right: -20px;
-    bottom: -45px;
+  position: absolute;
 
-    font-size: 220px;
+  right: -30px;
 
-    opacity: .12;
+  bottom: -30px;
 
-    transform: rotate(-15deg);
+  font-size: 120px;
+
+  line-height: 1;
+
+  font-weight: 950;
+
+  letter-spacing: -8px;
+
+  opacity: .08;
+
+  transform:
+    rotate(-8deg);
 }
 
-.token-main-label {
-    font-size: 12px;
+.token-card-label {
 
-    letter-spacing: .14em;
+  font-size: 11px;
 
-    font-weight: 800;
+  font-weight: 800;
 
-    opacity: .8;
+  letter-spacing: 2px;
+
+  opacity: .75;
 }
 
-.token-main-title {
-    font-size: 80px;
+.token-card-title {
 
-    line-height: .9;
+  font-size: 80px;
 
-    font-weight: 950;
+  line-height: .8;
 
-    letter-spacing: -.07em;
+  font-weight: 950;
+
+  letter-spacing: -6px;
 }
 
-.token-main-value {
-    font-size: 24px;
-    font-weight: 800;
+.token-card-sub {
+
+  font-size: 18px;
+
+  font-weight: 800;
 }
 
-.token-list {
-    display: flex;
-    flex-direction: column;
+.token-info {
+
+  display: flex;
+
+  flex-direction: column;
 }
 
 .token-row {
-    display: grid;
 
-    grid-template-columns: 1fr 1fr;
+  display: grid;
 
-    padding: 25px 0;
+  grid-template-columns:
+    1fr
+    1fr;
 
-    border-bottom: 1px solid #d8d8d8;
+  padding: 22px 0;
+
+  border-bottom:
+    1px solid
+    #ddd;
 }
 
 .token-row:first-child {
-    border-top: 1px solid #d8d8d8;
+
+  border-top:
+    1px solid
+    #ddd;
 }
 
 .token-key {
-    color: var(--gray-2);
 
-    font-size: 13px;
+  color: #888;
 
-    font-weight: 700;
+  font-size: 13px;
+
+  font-weight: 700;
 }
 
 .token-value {
-    font-size: 16px;
 
-    font-weight: 850;
+  text-align: right;
 
-    text-align: right;
+  font-size: 15px;
+
+  font-weight: 900;
 }
 
 .token-value.red {
-    color: var(--red);
+
+  color: var(--red);
 }
+
 
 /* =========================================================
    CONTRACT
-   ========================================================= */
-
-.contract-section {
-    padding-top: 90px;
-}
+========================================================= */
 
 .contract-box {
-    margin-top: 55px;
 
-    border: 1px solid #222;
+  margin-top: 50px;
 
-    padding: 25px 28px;
+  border:
+    1px solid
+    #222;
 
-    border-radius: 16px;
+  border-radius: 16px;
 
-    display: flex;
+  padding: 22px 25px;
 
-    align-items: center;
+  display: flex;
 
-    justify-content: space-between;
+  align-items: center;
 
-    gap: 20px;
+  justify-content: space-between;
+
+  gap: 20px;
 }
 
 .contract-address {
-    font-family: monospace;
 
-    font-size: 14px;
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    monospace;
 
-    word-break: break-all;
+  font-size: 13px;
+
+  word-break: break-all;
+
+  color: #333;
 }
 
 .copy-btn {
-    flex-shrink: 0;
 
-    border: none;
+  flex-shrink: 0;
 
-    background: var(--red);
+  border: none;
 
-    color: white;
+  background: var(--red);
 
-    padding: 12px 18px;
+  color: white;
 
-    border-radius: 999px;
+  padding:
+    11px 17px;
 
-    font-size: 12px;
+  border-radius: 999px;
 
-    font-weight: 800;
+  cursor: pointer;
 
-    cursor: pointer;
+  font-size: 11px;
+
+  font-weight: 900;
 }
 
 .copy-btn:hover {
-    background: var(--red-dark);
+
+  background: var(--red-dark);
 }
 
-.contract-links {
-    display: flex;
-
-    gap: 15px;
-
-    margin-top: 18px;
-
-    flex-wrap: wrap;
-}
-
-.contract-links a {
-    color: var(--red);
-
-    font-size: 13px;
-
-    font-weight: 800;
-}
 
 /* =========================================================
    STORY
-   ========================================================= */
+========================================================= */
 
 .story {
-    background: var(--black);
 
-    color: white;
+  background: var(--black);
+
+  color: white;
 }
 
 .story .section-label {
-    color: #ff3a3a;
+
+  color: #ff3340;
 }
 
 .story-grid {
-    display: grid;
 
-    grid-template-columns: .75fr 1.25fr;
+  display: grid;
 
-    gap: 100px;
+  grid-template-columns:
+    .75fr
+    1.25fr;
 
-    align-items: start;
+  gap: 100px;
 }
 
 .story-title {
-    font-size: clamp(55px, 7vw, 100px);
 
-    line-height: .88;
+  font-size:
+    clamp(55px, 8vw, 105px);
 
-    font-weight: 950;
+  line-height: .85;
 
-    letter-spacing: -.07em;
+  font-weight: 950;
+
+  letter-spacing: -6px;
 }
 
 .story-title span {
-    color: var(--red);
+
+  color: var(--red);
 }
 
 .story-text {
-    font-size: clamp(23px, 3vw, 36px);
 
-    line-height: 1.35;
+  font-size:
+    clamp(22px, 3vw, 35px);
 
-    font-weight: 650;
+  line-height: 1.35;
 
-    letter-spacing: -.025em;
+  font-weight: 650;
+
+  letter-spacing: -.5px;
 }
 
 .story-text strong {
-    color: #ff3434;
+
+  color: #ff3340;
 }
 
 .story-small {
-    margin-top: 35px;
 
-    color: #aaa;
+  margin-top: 30px;
 
-    font-size: 16px;
+  color: #999;
 
-    line-height: 1.8;
+  font-size: 15px;
+
+  line-height: 1.8;
 }
+
 
 /* =========================================================
    SECURITY
-   ========================================================= */
+========================================================= */
 
 .security-grid {
-    margin-top: 65px;
 
-    display: grid;
+  margin-top: 55px;
 
-    grid-template-columns:
-        repeat(3, 1fr);
+  display: grid;
 
-    gap: 1px;
+  grid-template-columns:
+    repeat(3, 1fr);
 
-    background: #ddd;
+  border-top:
+    1px solid
+    #ddd;
 
-    border: 1px solid #ddd;
+  border-left:
+    1px solid
+    #ddd;
 }
 
 .security-item {
-    background: white;
 
-    padding: 32px;
+  padding: 30px;
 
-    min-height: 175px;
+  min-height: 170px;
+
+  border-right:
+    1px solid
+    #ddd;
+
+  border-bottom:
+    1px solid
+    #ddd;
+
+  background: white;
 }
 
 .security-icon {
-    width: 34px;
-    height: 34px;
 
-    border-radius: 50%;
+  width: 34px;
 
-    background: #fff0f0;
+  height: 34px;
 
-    color: var(--red);
+  display: flex;
 
-    display: flex;
+  align-items: center;
 
-    align-items: center;
-    justify-content: center;
+  justify-content: center;
 
-    font-size: 14px;
+  border-radius: 50%;
 
-    font-weight: 900;
+  background: #fff0f1;
 
-    margin-bottom: 24px;
+  color: var(--red);
+
+  font-size: 13px;
+
+  font-weight: 900;
+
+  margin-bottom: 22px;
 }
 
 .security-item h3 {
-    font-size: 17px;
 
-    margin-bottom: 8px;
+  font-size: 17px;
+
+  margin-bottom: 7px;
 }
 
 .security-item p {
-    color: var(--gray-2);
 
-    font-size: 13px;
+  color: #888;
 
-    line-height: 1.6;
+  font-size: 13px;
+
+  line-height: 1.6;
 }
 
-.security-note {
-    margin-top: 28px;
-
-    padding: 22px;
-
-    border-left: 3px solid var(--red);
-
-    background: #fafafa;
-
-    color: var(--gray-1);
-
-    font-size: 13px;
-
-    line-height: 1.7;
-}
 
 /* =========================================================
-   PROJECT
-   ========================================================= */
-
-.project-section {
-    background: #f7f7f5;
-}
-
-.project-box {
-    margin-top: 65px;
-
-    max-width: 850px;
-
-    border-top: 1px solid #222;
-
-    border-bottom: 1px solid #222;
-
-    padding: 38px 0;
-}
-
-.project-box h3 {
-    font-size: 28px;
-
-    margin-bottom: 18px;
-}
-
-.project-box p {
-    color: var(--gray-1);
-
-    font-size: 16px;
-
-    line-height: 1.8;
-}
-
-/* =========================================================
-   COMMUNITY CTA
-   ========================================================= */
+   COMMUNITY
+========================================================= */
 
 .community {
-    padding: 140px 0;
 
-    background: var(--red);
+  background: var(--red);
 
-    color: white;
+  color: white;
 
-    text-align: center;
+  text-align: center;
+
+  padding:
+    130px 0;
 }
 
 .community .section-label {
-    color: white;
 
-    opacity: .75;
+  color: white;
+
+  opacity: .75;
 }
 
 .community-title {
-    font-size: clamp(58px, 9vw, 125px);
 
-    line-height: .85;
+  font-size:
+    clamp(60px, 10vw, 135px);
 
-    font-weight: 950;
+  line-height: .8;
 
-    letter-spacing: -.08em;
+  font-weight: 950;
+
+  letter-spacing: -8px;
 }
 
 .community-description {
-    max-width: 570px;
 
-    margin: 30px auto 0;
+  max-width: 560px;
 
-    font-size: 17px;
+  margin:
+    30px auto;
 
-    line-height: 1.7;
+  font-size: 17px;
 
-    opacity: .9;
+  line-height: 1.7;
+
+  opacity: .9;
 }
 
 .community-buttons {
-    margin-top: 38px;
 
-    display: flex;
+  display: flex;
 
-    justify-content: center;
+  justify-content: center;
 
-    gap: 12px;
+  gap: 12px;
 
-    flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 .community .btn-primary {
-    background: white;
 
-    color: var(--red);
+  background: white;
+
+  color: var(--red);
 }
 
 .community .btn-primary:hover {
-    background: #f5f5f5;
+
+  background: #f5f5f5;
 }
 
 .community .btn-outline {
-    border-color: white;
 
-    color: white;
+  border-color: white;
 
-    background: transparent;
+  color: white;
+
+  background: transparent;
 }
 
 .community .btn-outline:hover {
-    background: white;
 
-    color: var(--red);
+  background: white;
+
+  color: var(--red);
 }
+
 
 /* =========================================================
    FOOTER
-   ========================================================= */
+========================================================= */
 
 footer {
-    background: white;
 
-    padding: 55px 0 35px;
+  background: white;
+
+  padding:
+    50px 0 30px;
 }
 
 .footer-top {
-    display: flex;
 
-    justify-content: space-between;
+  display: flex;
 
-    align-items: flex-start;
+  align-items: flex-start;
 
-    gap: 30px;
+  justify-content: space-between;
 
-    padding-bottom: 45px;
+  gap: 30px;
 
-    border-bottom: 1px solid #ddd;
+  padding-bottom: 40px;
+
+  border-bottom:
+    1px solid
+    #ddd;
 }
 
 .footer-brand {
-    font-size: 25px;
 
-    font-weight: 950;
+  font-size: 25px;
 
-    letter-spacing: -.05em;
+  font-weight: 950;
+
+  letter-spacing: -1px;
 }
 
 .footer-brand span {
-    color: var(--red);
+
+  color: var(--red);
 }
 
 .footer-description {
-    margin-top: 10px;
 
-    color: var(--gray-2);
+  margin-top: 8px;
 
-    max-width: 320px;
+  color: #999;
 
-    font-size: 13px;
-
-    line-height: 1.6;
+  font-size: 13px;
 }
 
 .footer-links {
-    display: flex;
 
-    gap: 25px;
+  display: flex;
 
-    flex-wrap: wrap;
+  flex-wrap: wrap;
 
-    font-size: 13px;
+  gap: 20px;
 
-    font-weight: 700;
+  font-size: 12px;
+
+  font-weight: 800;
 }
 
 .footer-links a:hover {
-    color: var(--red);
+
+  color: var(--red);
 }
 
 .footer-bottom {
-    padding-top: 25px;
 
-    display: flex;
+  padding-top: 22px;
 
-    justify-content: space-between;
+  display: flex;
 
-    gap: 20px;
+  justify-content: space-between;
 
-    color: #999;
+  color: #aaa;
 
-    font-size: 11px;
+  font-size: 10px;
 }
 
-/* =========================================================
-   REVEAL ANIMATION
-   ========================================================= */
-
-.reveal {
-    opacity: 0;
-
-    transform: translateY(25px);
-
-    transition:
-        opacity .8s ease,
-        transform .8s ease;
-}
-
-.reveal.visible {
-    opacity: 1;
-
-    transform: translateY(0);
-}
 
 /* =========================================================
    MOBILE
-   ========================================================= */
+========================================================= */
 
 @media (max-width: 900px) {
 
-    .container {
-        width: min(100% - 32px, var(--max-width));
-    }
+  .container {
 
-    .navbar {
-        height: 68px;
-    }
+    width:
+      calc(100% - 32px);
+  }
 
-    .nav-links {
-        display: none;
-    }
+  .nav {
 
-    .hero {
-        min-height: auto;
+    height: 68px;
+  }
 
-        padding: 70px 0 80px;
-    }
+  .nav-links {
 
-    .hero-grid {
-        grid-template-columns: 1fr;
+    display: none;
+  }
 
-        gap: 45px;
-    }
+  .menu-toggle {
 
-    .hero h1 {
-        font-size: clamp(68px, 19vw, 120px);
-    }
+    display: flex;
+  }
 
-    .hero-subtitle {
-        font-size: 16px;
-    }
+  .hero {
 
-    .hero-visual {
-        min-height: 390px;
-    }
+    min-height: auto;
 
-    .hero-circle {
-        width: min(350px, 82vw);
-    }
+    padding:
+      80px 0 90px;
+  }
 
-    .hero-red-mark {
-        width: 70px;
-        height: 70px;
+  .hero h1 {
 
-        font-size: 30px;
+    font-size:
+      clamp(75px, 20vw, 130px);
 
-        right: 4%;
-    }
+    letter-spacing:
+      -6px;
+  }
 
-    section {
-        padding: 90px 0;
-    }
+  .hero-visual {
 
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    position: relative;
 
-    .stat:nth-child(2) {
-        border-right: none;
-    }
+    top: auto;
 
-    .stat:nth-child(-n+2) {
-        border-bottom: 1px solid #ddd;
-    }
+    right: auto;
 
-    .tokenomics-grid {
-        grid-template-columns: 1fr;
+    transform: none;
 
-        gap: 45px;
+    width: 100%;
 
-        margin-top: 50px;
-    }
+    height: 330px;
 
-    .token-main {
-        min-height: 350px;
-    }
+    margin-top: 35px;
+  }
 
-    .story-grid {
-        grid-template-columns: 1fr;
+  .hero-visual img {
 
-        gap: 50px;
-    }
+    width: 270px;
 
-    .security-grid {
-        grid-template-columns: 1fr;
-    }
+    height: 270px;
+  }
 
-    .contract-box {
-        align-items: flex-start;
+  .stats {
 
-        flex-direction: column;
-    }
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
 
-    .footer-top {
-        flex-direction: column;
-    }
+  .stat {
 
-    .footer-bottom {
-        flex-direction: column;
-    }
+    border-bottom:
+      1px solid
+      #ddd;
+  }
+
+  .stat:nth-child(2) {
+
+    border-right: none;
+  }
+
+  .tokenomics-grid {
+
+    grid-template-columns: 1fr;
+
+    gap: 45px;
+  }
+
+  .story-grid {
+
+    grid-template-columns: 1fr;
+
+    gap: 50px;
+  }
+
+  .security-grid {
+
+    grid-template-columns: 1fr;
+  }
+
+  .footer-top {
+
+    flex-direction: column;
+  }
+
+  .footer-bottom {
+
+    flex-direction: column;
+
+    gap: 8px;
+  }
 }
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
 
 @media (max-width: 560px) {
 
-    .hero h1 {
-        letter-spacing: -.075em;
-    }
+  section {
 
-    .hero-buttons {
-        width: 100%;
-    }
+    padding:
+      80px 0;
+  }
 
-    .btn {
-        flex: 1;
+  .hero h1 {
 
-        min-width: 135px;
-    }
+    font-size:
+      23vw;
 
-    .stats-grid {
-        grid-template-columns: 1fr;
-    }
+    letter-spacing:
+      -5px;
+  }
 
-    .stat {
-        border-right: none;
+  .hero-description {
 
-        border-bottom: 1px solid #ddd;
-    }
+    font-size: 16px;
+  }
 
-    .stat:last-child {
-        border-bottom: none;
-    }
+  .hero-buttons {
 
-    .token-main {
-        padding: 32px;
+    width: 100%;
+  }
 
-        min-height: 300px;
-    }
+  .btn {
 
-    .token-main-title {
-        font-size: 62px;
-    }
+    flex: 1;
 
-    .token-row {
-        grid-template-columns: 1fr;
+    min-width: 135px;
+  }
 
-        gap: 8px;
-    }
+  .stats {
 
-    .token-value {
-        text-align: left;
-    }
+    grid-template-columns: 1fr;
+  }
 
-    .community {
-        padding: 100px 0;
-    }
+  .stat {
 
-    .community-buttons .btn {
-        flex: 1 1 100%;
-    }
+    border-right: none;
+
+    border-bottom:
+      1px solid
+      #ddd;
+  }
+
+  .stat:last-child {
+
+    border-bottom: none;
+  }
+
+  .token-card {
+
+    min-height: 300px;
+
+    padding: 32px;
+  }
+
+  .token-card-title {
+
+    font-size: 62px;
+  }
+
+  .token-row {
+
+    grid-template-columns: 1fr;
+
+    gap: 7px;
+  }
+
+  .token-value {
+
+    text-align: left;
+  }
+
+  .contract-box {
+
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .copy-btn {
+
+    width: 100%;
+  }
+
+  .community {
+
+    padding:
+      100px 0;
+  }
+
+  .community-buttons {
+
+    width: 100%;
+  }
+
+  .community-buttons .btn {
+
+    flex:
+      1 1 100%;
+  }
+
 }
+
 
 /* =========================================================
    REDUCED MOTION
-   ========================================================= */
+========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
-    html {
-        scroll-behavior: auto;
-    }
+  html {
 
-    *,
-    *::before,
-    *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: .01ms !important;
-    }
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+
+    animation: none !important;
+
+    transition: none !important;
+  }
 }
 
 </style>
-</head>
 
+</head>
 
 <body>
 
+
 <!-- =======================================================
      HEADER
-     ======================================================= -->
+======================================================= -->
 
 <header>
 
 <div class="container">
 
-<nav class="navbar">
+<nav class="nav">
 
-<a href="index.html" class="brand">
 
-<img
-    src="https://raw.githubusercontent.com/ayudekaka/ChiLi/main/logo.png"
-    alt="CHILI Logo"
->
+<a href="index.html" class="logo">
 
-<span>小辣椒 <strong>CHILI</strong></span>
+<div class="logo-mark">
+🌶
+</div>
+
+CHILI
 
 </a>
 
+
 <div class="nav-links">
 
-<a href="#tokenomics">代币经济</a>
+<a href="#tokenomics">
+Tokenomics
+</a>
 
-<a href="#story">小辣椒的故事</a>
+<a href="#story">
+Story
+</a>
 
-<a href="#security">透明度</a>
+<a href="#security">
+Security
+</a>
 
-<a href="#contract">合约</a>
+<a href="#contract">
+Contract
+</a>
 
-<a href="whitepaper.html">白皮书</a>
+<div class="language">
 
-<a href="#community" class="nav-buy">JOIN CHILI</a>
+<button
+  class="active"
+  onclick="setLanguage('EN')"
+>
+EN
+</button>
+
+<button
+  onclick="setLanguage('CN')"
+>
+中
+</button>
 
 </div>
+
+<a
+  href="#community"
+  class="nav-buy"
+>
+BUY CHILI
+</a>
+
+</div>
+
+
+<button
+  class="menu-toggle"
+  id="menuToggle"
+  aria-label="Open menu"
+>
+
+<span></span>
+<span></span>
+<span></span>
+
+</button>
+
 
 </nav>
 
@@ -1332,80 +1711,81 @@ footer {
 
 <!-- =======================================================
      HERO
-     ======================================================= -->
-
-<main>
+======================================================= -->
 
 <section class="hero">
 
 <div class="container">
 
-<div class="hero-grid">
+<div class="hero-content">
 
-<div class="hero-copy reveal">
 
-<div class="hero-eyebrow">
+<div class="badge">
+
+<span class="dot"></span>
+
 BNB SMART CHAIN
+
 </div>
+
 
 <h1>
 
-<span>CHI</span>
+<span>CHI</span><br>
 
 <span class="red">LI.</span>
 
 </h1>
 
-<p class="hero-subtitle">
 
-<strong>SPICE UP THE BLOCKCHAIN.</strong><br>
+<p class="hero-description">
 
-小辣椒 CHILI 是一个社区驱动的代币，
-部署于 BNB Smart Chain。
-从一个简单的符号开始，让社区共同创造属于 CHILI 的故事。
+<strong>
+SPICE UP THE BLOCKCHAIN.
+</strong>
+
+<br><br>
+
+CHILI is a community-driven token
+built on BNB Smart Chain.
+
+小辣椒，不只是一个名字，
+也是属于社区的共同符号。
 
 </p>
+
 
 <div class="hero-buttons">
 
 <a
-    class="btn btn-primary"
-    href="#contract"
+  href="#contract"
+  class="btn btn-primary"
 >
 BUY / CONTRACT
 </a>
 
 <a
-    class="btn btn-outline"
-    href="#story"
+  href="#story"
+  class="btn btn-outline"
 >
 EXPLORE CHILI
 </a>
 
 </div>
 
+
 </div>
 
 
-<div class="hero-visual reveal">
-
-<div class="hero-circle">
+<div class="hero-visual">
 
 <img
-    class="hero-logo"
-    src="https://raw.githubusercontent.com/ayudekaka/ChiLi/main/logo.png"
-    alt="小辣椒 CHILI"
+  src="https://raw.githubusercontent.com/ayudekaka/ChiLi/main/logo.png"
+  alt="CHILI"
 >
 
 </div>
 
-<div class="hero-red-mark">
-🌶
-</div>
-
-</div>
-
-</div>
 
 </div>
 
@@ -1413,115 +1793,71 @@ EXPLORE CHILI
 
 
 <!-- =======================================================
-     TICKER
-     ======================================================= -->
-
-<div class="ticker">
-
-<div class="ticker-inner">
-
-<div class="ticker-item">
-CHILI
-</div>
-
-<div class="ticker-item">
-BNB CHAIN
-</div>
-
-<div class="ticker-item">
-COMMUNITY
-</div>
-
-<div class="ticker-item">
-0% TAX
-</div>
-
-<div class="ticker-item">
-SPICE UP THE BLOCKCHAIN
-</div>
-
-<div class="ticker-item">
-CHILI
-</div>
-
-<div class="ticker-item">
-BNB CHAIN
-</div>
-
-<div class="ticker-item">
-COMMUNITY
-</div>
-
-</div>
-
-</div>
-
-
-<!-- =======================================================
      STATS
-     ======================================================= -->
+======================================================= -->
 
-<section class="stats-section">
+<section>
 
 <div class="container">
 
-<div class="section-label reveal">
+<div class="section-label">
 CHILI / AT A GLANCE
 </div>
 
-<div class="section-title reveal">
+<div class="section-title">
 Small token.<br>
-Big community.
+Big story.
 </div>
 
-<div class="stats-grid" style="margin-top:65px;">
 
-<div class="stat reveal">
+<div class="stats">
+
+<div class="stat">
 
 <div class="stat-number">
 20,150,822
 </div>
 
-<div class="stat-name">
+<div class="stat-label">
 TOTAL SUPPLY
 </div>
 
 </div>
 
 
-<div class="stat reveal">
+<div class="stat">
 
 <div class="stat-number red">
 0%
 </div>
 
-<div class="stat-name">
+<div class="stat-label">
 BUY / SELL / TRANSFER TAX
 </div>
 
 </div>
 
 
-<div class="stat reveal">
+<div class="stat">
 
 <div class="stat-number">
 BSC
 </div>
 
-<div class="stat-name">
+<div class="stat-label">
 NETWORK
 </div>
 
 </div>
 
 
-<div class="stat reveal">
+<div class="stat">
 
 <div class="stat-number">
 CHILI
 </div>
 
-<div class="stat-name">
+<div class="stat-label">
 TOKEN SYMBOL
 </div>
 
@@ -1535,54 +1871,91 @@ TOKEN SYMBOL
 
 
 <!-- =======================================================
+     RED BAR
+======================================================= -->
+
+<div class="red-bar">
+
+<div class="container">
+
+<div class="red-bar-inner">
+
+<span>
+CHILI
+</span>
+
+<span>
+BNB CHAIN
+</span>
+
+<span>
+0% TAX
+</span>
+
+<span>
+COMMUNITY
+</span>
+
+<span>
+SPICE UP THE BLOCKCHAIN
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =======================================================
      TOKENOMICS
-     ======================================================= -->
+======================================================= -->
 
 <section
-    id="tokenomics"
-    class="tokenomics"
+  id="tokenomics"
+  class="tokenomics"
 >
 
 <div class="container">
 
-<div class="section-label reveal">
+<div class="section-label">
 TOKENOMICS
 </div>
 
-<div class="section-title reveal">
+<div class="section-title">
 Simple.<br>
 Transparent.
 </div>
 
-<div class="section-description reveal">
+<p class="section-description">
 
-CHILI 保持简单的代币结构，
-让社区能够清楚了解基础信息，
-而不是被复杂机制淹没。
+CHILI 保持简单、清晰的代币结构，
+让每一位参与者都能够快速了解基础信息。
 
-</div>
+</p>
 
 
 <div class="tokenomics-grid">
 
-<div class="token-main reveal">
 
-<div class="token-main-label">
+<div class="token-card">
+
+<div class="token-card-label">
 TOKEN
 </div>
 
-<div class="token-main-title">
+<div class="token-card-title">
 CHILI
 </div>
 
-<div class="token-main-value">
+<div class="token-card-sub">
 小辣椒
 </div>
 
 </div>
 
 
-<div class="token-list reveal">
+<div class="token-info">
 
 <div class="token-row">
 
@@ -1685,33 +2058,30 @@ Transfer Tax
 
 <!-- =======================================================
      CONTRACT
-     ======================================================= -->
+======================================================= -->
 
-<section
-    id="contract"
-    class="contract-section"
->
+<section id="contract">
 
 <div class="container">
 
-<div class="section-label reveal">
+<div class="section-label">
 OFFICIAL CONTRACT
 </div>
 
-<div class="section-title reveal">
+<div class="section-title">
 Verify.<br>
 Then decide.
 </div>
 
-<div class="section-description reveal">
+<p class="section-description">
 
 始终通过官方渠道确认 CHILI 合约地址。
-不要相信未经验证的第三方合约或链接。
+请勿相信未经验证的第三方合约。
 
-</div>
+</p>
 
 
-<div class="contract-box reveal">
+<div class="contract-box">
 
 <div class="contract-address">
 
@@ -1719,33 +2089,13 @@ Then decide.
 
 </div>
 
+
 <button
-    class="copy-btn"
-    onclick="copyContract()"
+  class="copy-btn"
+  onclick="copyContract()"
 >
 COPY CONTRACT
 </button>
-
-</div>
-
-
-<div class="contract-links reveal">
-
-<a
-    href="https://bscscan.com/address/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c"
-    target="_blank"
-    rel="noopener"
->
-BscScan ↗
-</a>
-
-<a
-    href="https://bscscan.com/address/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c#code"
-    target="_blank"
-    rel="noopener"
->
-VERIFIED SOURCE CODE ↗
-</a>
 
 </div>
 
@@ -1756,18 +2106,19 @@ VERIFIED SOURCE CODE ↗
 
 <!-- =======================================================
      STORY
-     ======================================================= -->
+======================================================= -->
 
 <section
-    id="story"
-    class="story"
+  id="story"
+  class="story"
 >
 
 <div class="container">
 
 <div class="story-grid">
 
-<div class="reveal">
+
+<div>
 
 <div class="section-label">
 THE STORY
@@ -1784,7 +2135,7 @@ THE STORY
 </div>
 
 
-<div class="reveal">
+<div>
 
 <div class="story-text">
 
@@ -1792,33 +2143,36 @@ THE STORY
 
 <br><br>
 
-人生会结束，名字会被遗忘，
+人生会结束，
+名字会被遗忘，
 
-但 <strong>社区的信念与记忆可以延续。</strong>
+但
+<strong>
+社区的信念与记忆可以延续。
+</strong>
 
 <br><br>
 
-我们相信，每一位参与者都是小辣椒的守护者。
-
-它不是某个人的专属，
-
-而是一群人的共同符号。
+每一位参与者，
+都是小辣椒的守护者。
 
 </div>
 
 
 <div class="story-small">
 
-人会消失，币会留下，故事会继续燃烧。
+它不是某个人的专属，
+而是一群人的共同符号。
+
+<br><br>
+
+人会消失，币会留下，
+故事会继续燃烧。
 
 <br><br>
 
 小辣椒代表平凡人的希望与坚持，
 让每次参与都有意义。
-
-<br><br>
-
-未来，朋友们，请让它一直存在……
 
 </div>
 
@@ -1833,35 +2187,27 @@ THE STORY
 
 <!-- =======================================================
      SECURITY
-     ======================================================= -->
+======================================================= -->
 
-<section
-    id="security"
->
+<section id="security">
 
 <div class="container">
 
-<div class="section-label reveal">
+<div class="section-label">
 SECURITY / TRANSPARENCY
 </div>
 
-<div class="section-title reveal">
+<div class="section-title">
 Open.<br>
 Clear.<br>
 Verifiable.
 </div>
 
-<div class="section-description reveal">
-
-CHILI 合约源码公开，并提供链上验证入口。
-以下为当前项目公开信息中的主要透明度说明。
-
-</div>
-
 
 <div class="security-grid">
 
-<div class="security-item reveal">
+
+<div class="security-item">
 
 <div class="security-icon">
 ✓
@@ -1872,13 +2218,13 @@ Verified Source
 </h3>
 
 <p>
-合约源码已在 BscScan 公开验证。
+合约源码已公开验证。
 </p>
 
 </div>
 
 
-<div class="security-item reveal">
+<div class="security-item">
 
 <div class="security-icon">
 0
@@ -1889,13 +2235,13 @@ No Mint
 </h3>
 
 <p>
-当前公开信息显示没有额外铸币机制。
+当前公开信息没有额外铸币机制。
 </p>
 
 </div>
 
 
-<div class="security-item reveal">
+<div class="security-item">
 
 <div class="security-icon">
 0
@@ -1912,7 +2258,7 @@ No Mint
 </div>
 
 
-<div class="security-item reveal">
+<div class="security-item">
 
 <div class="security-icon">
 ✓
@@ -1929,7 +2275,7 @@ No Proxy
 </div>
 
 
-<div class="security-item reveal">
+<div class="security-item">
 
 <div class="security-icon">
 ✓
@@ -1940,84 +2286,28 @@ No Blacklist
 </h3>
 
 <p>
-当前公开信息没有发现黑名单机制。
+当前公开信息没有黑名单机制。
 </p>
 
 </div>
 
 
-<div class="security-item reveal">
+<div class="security-item">
 
 <div class="security-icon">
 ✓
 </div>
 
 <h3>
-Trading Open
+Trading
 </h3>
 
 <p>
-当前没有发现通过合约暂停交易的机制。
+当前公开信息没有发现暂停交易机制。
 </p>
 
 </div>
 
-</div>
-
-
-<div class="security-note reveal">
-
-<strong>重要说明：</strong>
-
-安全信息仅代表当前公开源码及第三方检测结果的展示，
-不构成任何投资建议，也不代表未来不存在未知风险。
-
-请始终自行验证合约地址并 DYOR。
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =======================================================
-     PROJECT
-     ======================================================= -->
-
-<section class="project-section">
-
-<div class="container">
-
-<div class="section-label reveal">
-PROJECT
-</div>
-
-<div class="section-title reveal">
-Built by<br>
-the community.
-</div>
-
-
-<div class="project-box reveal">
-
-<h3>
-项目方与创始人说明
-</h3>
-
-<p>
-
-CHILI 由独立开发者发起并维护。
-
-项目没有传统意义上的大型团队，
-目前处于持续建设和发展的早期阶段。
-
-项目公开信息将通过官方渠道持续更新。
-
-我们希望 CHILI 不只是一个代币地址，
-而成为一群参与者共同创造和记录的社区符号。
-
-</p>
 
 </div>
 
@@ -2028,32 +2318,33 @@ CHILI 由独立开发者发起并维护。
 
 <!-- =======================================================
      COMMUNITY
-     ======================================================= -->
+======================================================= -->
 
 <section
-    id="community"
-    class="community"
+  id="community"
+  class="community"
 >
 
 <div class="container">
 
 <div class="section-label">
-JOIN THE COMMUNITY
+JOIN CHILI
 </div>
 
-<div class="community-title reveal">
+<div class="community-title">
 
 KEEP IT<br>
 SPICY.
 
 </div>
 
-<p class="community-description reveal">
+<p class="community-description">
 
 CHILI 的未来不由一个人定义。
 
-它来自每一个参与者、
-每一次讨论和每一个留下来的故事。
+它来自每一个参与者，
+每一次讨论，
+以及每一个留下来的故事。
 
 </p>
 
@@ -2061,15 +2352,15 @@ CHILI 的未来不由一个人定义。
 <div class="community-buttons">
 
 <a
-    href="#"
-    class="btn btn-primary"
+  href="#"
+  class="btn btn-primary"
 >
 JOIN TELEGRAM
 </a>
 
 <a
-    href="#contract"
-    class="btn btn-outline"
+  href="#contract"
+  class="btn btn-outline"
 >
 VIEW CONTRACT
 </a>
@@ -2080,12 +2371,10 @@ VIEW CONTRACT
 
 </section>
 
-</main>
-
 
 <!-- =======================================================
      FOOTER
-     ======================================================= -->
+======================================================= -->
 
 <footer>
 
@@ -2096,7 +2385,12 @@ VIEW CONTRACT
 <div>
 
 <div class="footer-brand">
-小辣椒 <span>CHILI</span>
+
+小辣椒
+<span>
+CHILI
+</span>
+
 </div>
 
 <div class="footer-description">
@@ -2132,9 +2426,9 @@ CONTACT
 </a>
 
 <a
-    href="https://bscscan.com/address/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c"
-    target="_blank"
-    rel="noopener"
+  href="https://bscscan.com/address/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c"
+  target="_blank"
+  rel="noopener"
 >
 BscScan ↗
 </a>
@@ -2163,109 +2457,141 @@ BNB SMART CHAIN · CHILI
 
 <!-- =======================================================
      JAVASCRIPT
-     ======================================================= -->
+======================================================= -->
 
 <script>
 
-/* ---------- COPY CONTRACT ---------- */
+
+/* =========================================================
+   COPY CONTRACT
+========================================================= */
 
 function copyContract() {
 
-    const address =
-        "0xed3caca4903256fb3e4997bc0c7830d19fb35f7c";
+  const address =
+    "0xed3caca4903256fb3e4997bc0c7830d19fb35f7c";
 
-    navigator.clipboard.writeText(address)
-        .then(() => {
+  navigator.clipboard
+    .writeText(address)
+    .then(() => {
 
-            const button =
-                document.querySelector(".copy-btn");
+      const button =
+        document.querySelector(".copy-btn");
 
-            const original =
-                button.textContent;
+      const oldText =
+        button.textContent;
 
-            button.textContent =
-                "COPIED ✓";
+      button.textContent =
+        "COPIED ✓";
 
-            setTimeout(() => {
+      setTimeout(() => {
 
-                button.textContent =
-                    original;
+        button.textContent =
+          oldText;
 
-            }, 1800);
+      }, 1800);
 
-        })
-        .catch(() => {
+    })
+    .catch(() => {
 
-            alert(
-                "复制失败，请手动复制合约地址。"
-            );
+      alert(
+        "复制失败，请手动复制合约地址。"
+      );
 
-        });
+    });
 
 }
 
 
-/* ---------- SCROLL REVEAL ---------- */
+/* =========================================================
+   LANGUAGE
+========================================================= */
 
-const observer =
-    new IntersectionObserver(
-        entries => {
+function setLanguage(language) {
 
-            entries.forEach(entry => {
-
-                if (entry.isIntersecting) {
-
-                    entry.target.classList.add(
-                        "visible"
-                    );
-
-                    observer.unobserve(
-                        entry.target
-                    );
-
-                }
-
-            });
-
-        },
-        {
-            threshold: 0.12
-        }
+  const buttons =
+    document.querySelectorAll(
+      ".language button"
     );
 
+  buttons.forEach(button => {
 
-document
-    .querySelectorAll(".reveal")
-    .forEach(element => {
+    button.classList.remove("active");
 
-        observer.observe(element);
+  });
 
-    });
+  if (language === "EN") {
+
+    buttons[0].classList.add("active");
+
+  } else {
+
+    buttons[1].classList.add("active");
+
+  }
+
+}
 
 
-/* ---------- HEADER SHADOW ---------- */
+/* =========================================================
+   MOBILE MENU
+========================================================= */
 
-window.addEventListener(
-    "scroll",
+const menuToggle =
+  document.getElementById(
+    "menuToggle"
+  );
+
+const navLinks =
+  document.querySelector(
+    ".nav-links"
+  );
+
+
+if (menuToggle) {
+
+  menuToggle.addEventListener(
+    "click",
     () => {
 
-        const header =
-            document.querySelector("header");
-
-        if (window.scrollY > 20) {
-
-            header.style.boxShadow =
-                "0 8px 30px rgba(0,0,0,.04)";
-
-        } else {
-
-            header.style.boxShadow =
-                "none";
-
-        }
+      navLinks.classList.toggle(
+        "mobile-open"
+      );
 
     }
+  );
+
+}
+
+
+/* =========================================================
+   HEADER SHADOW
+========================================================= */
+
+window.addEventListener(
+  "scroll",
+  () => {
+
+    const header =
+      document.querySelector(
+        "header"
+      );
+
+    if (window.scrollY > 20) {
+
+      header.style.boxShadow =
+        "0 8px 30px rgba(0,0,0,.05)";
+
+    } else {
+
+      header.style.boxShadow =
+        "none";
+
+    }
+
+  }
 );
+
 
 </script>
 
