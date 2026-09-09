@@ -1,81 +1,77 @@
-// ======================================================
-// CHILI WEB
-// Application
-// Wallet integration intentionally disabled.
-// ======================================================
+/* =========================================================
+   CHILI WEB
+   Application
+   ---------------------------------------------------------
+   Wallet integration:
+   DISABLED intentionally.
+   ========================================================= */
 
 (function () {
-
     "use strict";
 
+    /* =====================================================
+       CONFIG
+    ===================================================== */
 
-    // ==================================================
-    // CONFIG
-    // ==================================================
+    const CONFIG = window.CHILI_CONFIG || {};
 
-    const CONFIG =
-        window.CHILI_CONFIG;
-
-
-    if (!CONFIG) {
-
-        console.error(
-            "CHILI_CONFIG not found."
-        );
-
-        return;
-    }
-
-
-    // ==================================================
-    // CONSTANTS
-    // ==================================================
-
-    const TOKEN_ADDRESS =
-        String(
-            CONFIG.token.address || ""
-        ).toLowerCase();
-
+    const TOKEN_ADDRESS = String(
+        CONFIG.token?.address || ""
+    ).trim();
 
     const TOKEN_SYMBOL =
-        CONFIG.token.symbol || "CHILI";
+        CONFIG.token?.symbol || "CHILI";
 
+    const TOKEN_DECIMALS =
+        Number(CONFIG.token?.decimals ?? 18);
 
-    const DEX_API =
-        `https://api.dexscreener.com/latest/dex/tokens/${TOKEN_ADDRESS}`;
-
-
-    const ABI_TOTAL_SUPPLY =
-        "0x18160ddd";
-
-
-    const PRICE_HISTORY_KEY =
-        "chili-price-history-v3";
-
-
-    const MAX_CHART_POINTS =
-        Number(
-            CONFIG.ui.chartMaxPoints || 48
-        );
-
+    const RPC_URLS = Array.isArray(
+        CONFIG.network?.rpcUrls
+    )
+        ? CONFIG.network.rpcUrls.filter(Boolean)
+        : [];
 
     const REQUEST_TIMEOUT =
-        Number(
-            CONFIG.ui.requestTimeout || 10000
+        Number(CONFIG.ui?.requestTimeout || 10000);
+
+    const MARKET_REFRESH_INTERVAL =
+        Math.max(
+            30000,
+            Number(
+                CONFIG.ui?.marketRefreshInterval || 60000
+            )
         );
 
+    const MAX_CHART_POINTS =
+        Math.max(
+            2,
+            Number(
+                CONFIG.ui?.chartMaxPoints || 48
+            )
+        );
 
-    let marketTimer = null;
+    const PRICE_HISTORY_KEY =
+        "chili-price-history-v4";
+
+
+    /* =====================================================
+       STATE
+    ===================================================== */
+
+    let currentLanguage = "en";
+
+    let marketRefreshTimer = null;
 
     let marketRequestRunning = false;
 
-    let language =
-        getStoredLanguage();
+    let lastPair = null;
+
+    let lastMarketData = null;
 
 
-    // ==================================================
-    // I18N
-    // ==================================================
+    /* =====================================================
+       TRANSLATIONS
+    ===================================================== */
 
     const I18N = {
 
@@ -102,6 +98,7 @@
             "nav-contract":
                 "CONTRACT",
 
+
             "hero-kicker":
                 "BNB SMART CHAIN // SYSTEM ONLINE",
 
@@ -120,6 +117,7 @@
             "hero-copy":
                 "COPY",
 
+
             "core-label":
                 "CHILI CORE",
 
@@ -134,6 +132,7 @@
 
             "core-token":
                 "TOKEN",
+
 
             "terminal-title":
                 "LIVE MARKET TERMINAL",
@@ -183,6 +182,7 @@
             "market-open-chart":
                 "OPEN LIVE CHART ↗",
 
+
             "token-supply":
                 "TOKEN SUPPLY",
 
@@ -195,17 +195,18 @@
             "token-chain":
                 "CHAIN ID",
 
+
             "copy":
                 "COPY",
 
             "copied":
                 "COPIED",
 
-            "online":
-                "ONLINE",
-
             "live":
                 "LIVE",
+
+            "online":
+                "ONLINE",
 
             "realtime":
                 "REALTIME",
@@ -234,17 +235,18 @@
             "view-contract":
                 "VIEW CONTRACT",
 
-            "chart-session":
-                "LIVE PRICE PULSE · SESSION SAMPLES",
 
             "market-unavailable":
                 "MARKET DATA UNAVAILABLE",
 
+            "rpc-error":
+                "NETWORK DATA UNAVAILABLE",
+
             "copy-failed":
                 "COPY FAILED",
 
-            "rpc-error":
-                "NETWORK DATA UNAVAILABLE"
+            "session-chart":
+                "LIVE PRICE PULSE · SESSION SAMPLES"
         },
 
 
@@ -271,6 +273,7 @@
             "nav-contract":
                 "合约",
 
+
             "hero-kicker":
                 "BNB 智能链 // 系统在线",
 
@@ -289,6 +292,7 @@
             "hero-copy":
                 "复制",
 
+
             "core-label":
                 "CHILI 核心",
 
@@ -303,6 +307,7 @@
 
             "core-token":
                 "代币",
+
 
             "terminal-title":
                 "实时市场终端",
@@ -320,7 +325,7 @@
                 "交易对",
 
             "market-dex":
-                "去中心化交易所",
+                "DEX",
 
             "market-block":
                 "区块",
@@ -352,6 +357,7 @@
             "market-open-chart":
                 "打开实时图表 ↗",
 
+
             "token-supply":
                 "代币总量",
 
@@ -364,17 +370,18 @@
             "token-chain":
                 "链 ID",
 
+
             "copy":
                 "复制",
 
             "copied":
                 "已复制",
 
-            "online":
-                "在线",
-
             "live":
                 "实时",
+
+            "online":
+                "在线",
 
             "realtime":
                 "实时",
@@ -403,24 +410,25 @@
             "view-contract":
                 "查看合约",
 
-            "chart-session":
-                "实时价格脉冲 · 本次访问采样",
 
             "market-unavailable":
                 "市场数据暂不可用",
 
+            "rpc-error":
+                "网络数据暂不可用",
+
             "copy-failed":
                 "复制失败",
 
-            "rpc-error":
-                "网络数据暂不可用"
+            "session-chart":
+                "实时价格脉冲 · 本次访问采样"
         }
     };
 
 
-    // ==================================================
-    // START
-    // ==================================================
+    /* =====================================================
+       DOM READY
+    ===================================================== */
 
     document.addEventListener(
         "DOMContentLoaded",
@@ -430,33 +438,32 @@
 
     async function init() {
 
-        initProject();
+        currentLanguage =
+            loadLanguage();
 
-        initLogo();
+        initializeStaticData();
 
-        initContract();
+        initializeLanguage();
 
-        initTokenInfo();
+        initializeNavigation();
 
-        initNavigation();
+        initializeMobileMenu();
 
-        initMobileMenu();
+        initializeCopy();
 
-        initCopyButtons();
+        initializeExternalLinks();
 
-        initExternalLinks();
+        initializeScrollEffects();
 
-        initScrollEffects();
+        initializeSectionObserver();
 
-        initSectionObserver();
+        initializeYear();
 
-        initYear();
+        initializeBackToTop();
 
-        initLanguage();
+        initializeResize();
 
-        initBackToTop();
-
-        await loadTokenomics();
+        await loadTokenSupply();
 
         await refreshMarket();
 
@@ -464,1366 +471,657 @@
     }
 
 
-    // ==================================================
-    // PROJECT
-    // ==================================================
+    /* =====================================================
+       STATIC DATA
+    ===================================================== */
 
-    function initProject() {
+    function initializeStaticData() {
 
-        if (
-            CONFIG.site &&
-            CONFIG.site.title
-        ) {
+        setText(
+            "heroContract",
+            isValidAddress(TOKEN_ADDRESS)
+                ? shortenAddress(TOKEN_ADDRESS)
+                : "—"
+        );
 
-            document.title =
-                CONFIG.site.title;
-        }
+        setText(
+            "coreToken",
+            TOKEN_SYMBOL
+        );
+
+        setText(
+            "networkValue",
+            CONFIG.network?.chainName ||
+            "BNB Smart Chain"
+        );
+
+        setText(
+            "chainId",
+            CONFIG.network?.chainId ??
+            56
+        );
+
+        setText(
+            "pair",
+            CONFIG.dex?.pair ||
+            "CHILI / USDT"
+        );
+
+        setText(
+            "dex",
+            CONFIG.dex?.name ||
+            "PancakeSwap"
+        );
+
+        setText(
+            "coreStatus",
+            translate("online")
+        );
+
+        setText(
+            "marketStatusText",
+            translate("live")
+        );
 
 
-        const description =
+        const heroLink =
             document.querySelector(
-                'meta[name="description"]'
+                "[data-bscscan]"
             );
 
+        if (heroLink) {
 
-        if (
-            description &&
-            CONFIG.site.description
-        ) {
-
-            description.content =
-                CONFIG.site.description;
-        }
-
-
-        const theme =
-            document.querySelector(
-                'meta[name="theme-color"]'
-            );
-
-
-        if (
-            theme &&
-            CONFIG.site.themeColor
-        ) {
-
-            theme.content =
-                CONFIG.site.themeColor;
+            heroLink.href =
+                getContractUrl();
         }
     }
 
 
-    // ==================================================
-    // LOGO
-    // ==================================================
+    /* =====================================================
+       LANGUAGE
+       ===================================================== */
 
-    function initLogo() {
+    function initializeLanguage() {
+
+        /*
+         * IMPORTANT:
+         * The real HTML uses:
+         *
+         * <button id="langBtn">
+         *
+         * It does NOT use data-lang.
+         */
+
+        const button =
+            document.getElementById(
+                "langBtn"
+            );
+
+
+        if (button) {
+
+            button.addEventListener(
+                "click",
+                function (event) {
+
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+                    currentLanguage =
+                        currentLanguage === "en"
+                            ? "zh"
+                            : "en";
+
+                    saveLanguage(
+                        currentLanguage
+                    );
+
+                    applyLanguage(
+                        currentLanguage
+                    );
+                }
+            );
+        }
+
+
+        applyLanguage(
+            currentLanguage
+        );
+    }
+
+
+    function applyLanguage(
+        language
+    ) {
+
+        const dictionary =
+            I18N[language] ||
+            I18N.en;
+
+
+        /*
+         * 1.
+         * Translate every element that
+         * already has data-i18n.
+         */
 
         document
             .querySelectorAll(
-                "[data-chili-logo]"
+                "[data-i18n]"
             )
             .forEach(
                 function (element) {
 
+                    const key =
+                        element.getAttribute(
+                            "data-i18n"
+                        );
+
+
                     if (
-                        element.tagName
-                        === "IMG"
+                        Object.prototype.hasOwnProperty.call(
+                            dictionary,
+                            key
+                        )
                     ) {
 
-                        element.src =
-                            CONFIG.assets.logo;
-
-                        element.alt =
-                            `${CONFIG.project.name} Logo`;
+                        element.textContent =
+                            dictionary[key];
                     }
                 }
             );
-    }
 
 
-    // ==================================================
-    // CONTRACT
-    // ==================================================
+        /*
+         * 2.
+         * The market area in the current
+         * HTML does not have data-i18n
+         * attributes, so bind the real
+         * classes / IDs here.
+         */
 
-    function initContract() {
+        translateElement(
+            ".price-label",
+            "market-current",
+            dictionary
+        );
 
-        const address =
-            getTokenAddress();
+        translateElement(
+            ".price-unit",
+            "market-unit",
+            dictionary
+        );
+
+        translateElement(
+            ".micro",
+            "market-pulse",
+            dictionary
+        );
 
 
-        const hero =
-            document.getElementById(
-                "heroContract"
+        /*
+         * Market cards
+         */
+
+        translateMarketCards(
+            dictionary
+        );
+
+
+        /*
+         * Market footer
+         */
+
+        translateMarketFooter(
+            dictionary
+        );
+
+
+        /*
+         * Terminal labels
+         */
+
+        const terminalTitle =
+            document.querySelector(
+                ".terminal-title"
             );
 
+        if (terminalTitle) {
 
-        const full =
-            document.getElementById(
-                "contractAddress"
-            );
-
-
-        if (!isTokenConfigured()) {
-
-            setText(
-                hero,
-                "—"
-            );
-
-            setText(
-                full,
-                "—"
-            );
-
-            return;
+            terminalTitle.textContent =
+                language === "zh"
+                    ? "CHILI // 市场数据"
+                    : "CHILI // MARKET DATA FEED";
         }
 
 
-        setText(
-            hero,
-            shortenAddress(address)
-        );
+        const terminalChain =
+            document.querySelector(
+                ".terminal-chain"
+            );
+
+        if (terminalChain) {
+
+            terminalChain.textContent =
+                language === "zh"
+                    ? "BNB 智能链 // ● 实时"
+                    : "BNB SMART CHAIN // ● REALTIME";
+        }
 
 
-        setText(
-            full,
-            address
+        /*
+         * 3.
+         * Language button.
+         *
+         * English page -> button says 中文
+         * Chinese page -> button says EN
+         */
+
+        const langButton =
+            document.getElementById(
+                "langBtn"
+            );
+
+
+        if (langButton) {
+
+            langButton.textContent =
+                language === "en"
+                    ? "中文"
+                    : "EN";
+
+
+            langButton.setAttribute(
+                "aria-label",
+                language === "en"
+                    ? "切换到中文"
+                    : "Switch to English"
+            );
+        }
+
+
+        /*
+         * 4.
+         * HTML language.
+         */
+
+        document.documentElement.lang =
+            language === "zh"
+                ? "zh-CN"
+                : "en";
+
+
+        /*
+         * 5.
+         * Keep dynamic values untouched.
+         */
+
+        restoreDynamicMarketText();
+
+    }
+
+
+    function translateElement(
+        selector,
+        key,
+        dictionary
+    ) {
+
+        const elements =
+            document.querySelectorAll(
+                selector
+            );
+
+
+        elements.forEach(
+            function (element) {
+
+                if (
+                    dictionary[key]
+                ) {
+
+                    element.textContent =
+                        dictionary[key];
+                }
+            }
         );
     }
 
 
-    // ==================================================
-    // TOKEN INFO
-    // ==================================================
+    function translateMarketCards(
+        dictionary
+    ) {
 
-    function initTokenInfo() {
+        const labels =
+            document.querySelectorAll(
+                ".market-card-label"
+            );
 
-        const tokenElements = [
 
-            "tokenSymbol",
+        const keys = [
 
-            "reactorSymbol",
+            "market-pair",
 
-            "coreToken"
+            "market-dex",
+
+            "market-block",
+
+            "market-liquidity",
+
+            "market-volume",
+
+            "market-cap",
+
+            "market-txns",
+
+            "market-buy-sell"
         ];
 
 
-        tokenElements.forEach(
-            function (id) {
-
-                setText(
-                    document.getElementById(id),
-                    TOKEN_SYMBOL
-                );
-            }
-        );
-
-
-        setText(
-            document.getElementById(
-                "tokenDecimals"
-            ),
-            CONFIG.token.decimals
-        );
-
-
-        setText(
-            document.getElementById(
-                "networkValue"
-            ),
-            CONFIG.network.chainName
-        );
-
-
-        setText(
-            document.getElementById(
-                "chainId"
-            ),
-            CONFIG.network.chainId
-        );
-
-
-        setText(
-            document.getElementById(
-                "pair"
-            ),
-            CONFIG.dex.pair
-        );
-
-
-        setText(
-            document.getElementById(
-                "dex"
-            ),
-            CONFIG.dex.name
-        );
-
-
-        setText(
-            document.getElementById(
-                "marketStatusText"
-            ),
-            t("live")
-        );
-    }
-
-
-    // ==================================================
-    // TOKEN SUPPLY
-    // ==================================================
-
-    async function loadTokenomics() {
-
-        if (
-            !isTokenConfigured()
-        ) {
-            return;
-        }
-
-
-        const element =
-            document.getElementById(
-                "tokenSupply"
-            );
-
-
-        if (!element) {
-            return;
-        }
-
-
-        try {
-
-            const result =
-                await rpcCall(
-                    "eth_call",
-                    [
-                        {
-                            to:
-                                CONFIG.token.address,
-
-                            data:
-                                ABI_TOTAL_SUPPLY
-                        },
-
-                        "latest"
-                    ]
-                );
-
-
-            if (
-                !result ||
-                result === "0x"
+        labels.forEach(
+            function (
+                element,
+                index
             ) {
 
-                return;
+                const key =
+                    keys[index];
+
+
+                if (
+                    key &&
+                    dictionary[key]
+                ) {
+
+                    element.textContent =
+                        dictionary[key];
+                }
             }
-
-
-            const raw =
-                BigInt(result);
-
-
-            element.textContent =
-                formatTokenAmount(
-                    raw,
-                    CONFIG.token.decimals
-                );
-
-        } catch (error) {
-
-            console.warn(
-                "Unable to load token supply:",
-                error
-            );
-        }
+        );
     }
 
 
-    // ==================================================
-    // MARKET
-    // ==================================================
+    function translateMarketFooter(
+        dictionary
+    ) {
 
-    async function refreshMarket() {
+        const footer =
+            document.querySelector(
+                ".market-footer"
+            );
 
-        if (
-            marketRequestRunning
-        ) {
+
+        if (!footer) {
             return;
         }
 
 
-        marketRequestRunning = true;
+        const spans =
+            footer.querySelectorAll(
+                ":scope > span"
+            );
 
+
+        /*
+         * Pair address
+         */
+
+        if (spans[0]) {
+
+            const strong =
+                spans[0].querySelector(
+                    "strong"
+                );
+
+
+            if (strong) {
+
+                const value =
+                    strong.textContent;
+
+
+                spans[0].textContent =
+                    dictionary[
+                        "market-pair-address"
+                    ] + " ";
+
+
+                spans[0].appendChild(
+                    strong
+                );
+
+
+                strong.textContent =
+                    value;
+            }
+        }
+
+
+        /*
+         * Last update
+         */
+
+        if (spans[1]) {
+
+            const strong =
+                spans[1].querySelector(
+                    "strong"
+                );
+
+
+            if (strong) {
+
+                const value =
+                    strong.textContent;
+
+
+                spans[1].textContent =
+                    dictionary[
+                        "market-last-update"
+                    ] + " ";
+
+
+                spans[1].appendChild(
+                    strong
+                );
+
+
+                strong.textContent =
+                    value;
+            }
+        }
+
+
+        /*
+         * Chart link
+         */
+
+        const chartLink =
+            footer.querySelector(
+                "a.red"
+            );
+
+
+        if (chartLink) {
+
+            chartLink.textContent =
+                dictionary[
+                    "market-open-chart"
+                ];
+        }
+    }
+
+
+    function restoreDynamicMarketText() {
+
+        if (!lastMarketData) {
+            return;
+        }
+
+
+        updateDynamicMarketFields(
+            lastMarketData
+        );
+    }
+
+
+    function translate(
+        key
+    ) {
+
+        return (
+            I18N[currentLanguage]?.[key]
+            ||
+            I18N.en[key]
+            ||
+            key
+        );
+    }
+
+
+    function loadLanguage() {
 
         try {
 
-            const result =
-                await fetchDexScreener();
-
-
-            const pair =
-                selectPair(
-                    result
-                );
-
-
-            if (!pair) {
-
-                setMarketUnavailable();
-
-                return;
-            }
-
-
-            const block =
-                await getBlockNumberSafe();
-
-
-            updateMarket(
-                pair,
-                block
-            );
-
-
-        } catch (error) {
-
-            console.warn(
-                "Market refresh failed:",
-                error
-            );
-
-            setMarketUnavailable();
-
-        } finally {
-
-            marketRequestRunning =
-                false;
-        }
-    }
-
-
-    function startMarketRefresh() {
-
-        if (
-            marketTimer
-        ) {
-
-            clearInterval(
-                marketTimer
-            );
-        }
-
-
-        const interval =
-            Math.max(
-                30000,
-                Number(
-                    CONFIG.ui.marketRefreshInterval
-                    || 60000
-                )
-            );
-
-
-        marketTimer =
-            window.setInterval(
-                refreshMarket,
-                interval
-            );
-    }
-
-
-    // ==================================================
-    // DEXSCREENER
-    // ==================================================
-
-    async function fetchDexScreener() {
-
-        const response =
-            await fetchWithTimeout(
-                DEX_API,
-                {
-                    method: "GET",
-
-                    cache: "no-store",
-
-                    headers: {
-                        Accept:
-                            "application/json"
-                    }
-                },
-                REQUEST_TIMEOUT
-            );
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                `DexScreener HTTP ${response.status}`
-            );
-        }
-
-
-        const data =
-            await response.json();
-
-
-        if (
-            !data ||
-            !Array.isArray(
-                data.pairs
-            )
-        ) {
-
-            return [];
-        }
-
-
-        return data.pairs;
-    }
-
-
-    // ==================================================
-    // PAIR SELECTION
-    // ==================================================
-
-    function selectPair(pairs) {
-
-        if (
-            !Array.isArray(pairs)
-        ) {
-
-            return null;
-        }
-
-
-        const bscPairs =
-            pairs.filter(
-                function (pair) {
-
-                    return (
-                        String(
-                            pair.chainId || ""
-                        ).toLowerCase()
-                        === "bsc"
-                    );
-                }
-            );
-
-
-        if (
-            !bscPairs.length
-        ) {
-
-            return null;
-        }
-
-
-        /*
-         * If an official pair address has
-         * been configured, use it first.
-         */
-
-        const configuredPair =
-            normalizeAddress(
-                CONFIG.dex.pairAddress
-            );
-
-
-        if (
-            configuredPair
-        ) {
-
-            const exact =
-                bscPairs.find(
-                    function (pair) {
-
-                        return (
-                            normalizeAddress(
-                                pair.pairAddress
-                            )
-                            === configuredPair
-                        );
-                    }
-                );
-
-
-            if (exact) {
-
-                return exact;
-            }
-        }
-
-
-        /*
-         * Only accept pairs where CHILI
-         * is actually one side of the pair.
-         */
-
-        const tokenPairs =
-            bscPairs.filter(
-                function (pair) {
-
-                    const base =
-                        normalizeAddress(
-                            pair.baseToken &&
-                            pair.baseToken.address
-                        );
-
-
-                    const quote =
-                        normalizeAddress(
-                            pair.quoteToken &&
-                            pair.quoteToken.address
-                        );
-
-
-                    return (
-                        base === TOKEN_ADDRESS ||
-                        quote === TOKEN_ADDRESS
-                    );
-                }
-            );
-
-
-        if (
-            !tokenPairs.length
-        ) {
-
-            return null;
-        }
-
-
-        const usdt =
-            normalizeAddress(
-                CONFIG.dex.quoteTokens.USDT
-            );
-
-
-        const wbnb =
-            normalizeAddress(
-                CONFIG.dex.quoteTokens.WBNB
-            );
-
-
-        /*
-         * USDT pairs have priority.
-         */
-
-        const usdtPairs =
-            tokenPairs.filter(
-                function (pair) {
-
-                    const base =
-                        normalizeAddress(
-                            pair.baseToken &&
-                            pair.baseToken.address
-                        );
-
-                    const quote =
-                        normalizeAddress(
-                            pair.quoteToken &&
-                            pair.quoteToken.address
-                        );
-
-
-                    return (
-                        base === usdt ||
-                        quote === usdt
-                    );
-                }
-            );
-
-
-        if (
-            usdtPairs.length
-        ) {
-
-            return getHighestLiquidityPair(
-                usdtPairs
-            );
-        }
-
-
-        /*
-         * WBNB fallback.
-         */
-
-        const wbnbPairs =
-            tokenPairs.filter(
-                function (pair) {
-
-                    const base =
-                        normalizeAddress(
-                            pair.baseToken &&
-                            pair.baseToken.address
-                        );
-
-                    const quote =
-                        normalizeAddress(
-                            pair.quoteToken &&
-                            pair.quoteToken.address
-                        );
-
-
-                    return (
-                        base === wbnb ||
-                        quote === wbnb
-                    );
-                }
-            );
-
-
-        if (
-            wbnbPairs.length
-        ) {
-
-            return getHighestLiquidityPair(
-                wbnbPairs
-            );
-        }
-
-
-        /*
-         * Last fallback:
-         * only a verified CHILI pair.
-         */
-
-        return getHighestLiquidityPair(
-            tokenPairs
-        );
-    }
-
-
-    function getHighestLiquidityPair(
-        pairs
-    ) {
-
-        return pairs
-            .slice()
-            .sort(
-                function (a, b) {
-
-                    const aLiquidity =
-                        Number(
-                            a.liquidity &&
-                            a.liquidity.usd
-                            || 0
-                        );
-
-
-                    const bLiquidity =
-                        Number(
-                            b.liquidity &&
-                            b.liquidity.usd
-                            || 0
-                        );
-
-
-                    return (
-                        bLiquidity -
-                        aLiquidity
-                    );
-                }
-            )[0] || null;
-    }
-
-
-    // ==================================================
-    // MARKET UI
-    // ==================================================
-
-    function updateMarket(
-        pair,
-        block
-    ) {
-
-        const price =
-            Number(
-                pair.priceUsd
-            );
-
-
-        if (
-            !Number.isFinite(price) ||
-            price <= 0
-        ) {
-
-            setMarketUnavailable();
-
-            return;
-        }
-
-
-        setPrice(
-            price
-        );
-
-
-        setText(
-            document.getElementById(
-                "liquidity"
-            ),
-            formatUSD(
-                pair.liquidity &&
-                pair.liquidity.usd
-            )
-        );
-
-
-        setText(
-            document.getElementById(
-                "volume24h"
-            ),
-            formatUSD(
-                pair.volume &&
-                pair.volume.h24
-            )
-        );
-
-
-        const marketCap =
-            getValidNumber(
-                pair.marketCap
-            );
-
-
-        const fdv =
-            getValidNumber(
-                pair.fdv
-            );
-
-
-        setText(
-            document.getElementById(
-                "marketCap"
-            ),
-            marketCap !== null
-                ? formatUSD(
-                    marketCap
-                )
-                : "—"
-        );
-
-
-        setText(
-            document.getElementById(
-                "fdv"
-            ),
-            fdv !== null
-                ? formatUSD(
-                    fdv
-                )
-                : "—"
-        );
-
-
-        const buys =
-            getValidNumber(
-                pair.txns &&
-                pair.txns.h24 &&
-                pair.txns.h24.buys
-            ) || 0;
-
-
-        const sells =
-            getValidNumber(
-                pair.txns &&
-                pair.txns.h24 &&
-                pair.txns.h24.sells
-            ) || 0;
-
-
-        setText(
-            document.getElementById(
-                "txns24h"
-            ),
-            formatNumber(
-                buys + sells
-            )
-        );
-
-
-        setText(
-            document.getElementById(
-                "buySell"
-            ),
-            `${formatNumber(
-                buys
-            )} / ${formatNumber(
-                sells
-            )}`
-        );
-
-
-        setText(
-            document.getElementById(
-                "pairAddress"
-            ),
-            shortenAddress(
-                pair.pairAddress
-            )
-        );
-
-
-        setText(
-            document.getElementById(
-                "lastUpdate"
-            ),
-            formatTime(
-                new Date()
-            )
-        );
-
-
-        setText(
-            document.getElementById(
-                "blockValue"
-            ),
-            block || "—"
-        );
-
-
-        updateChart(
-            price
-        );
-
-
-        updateExternalMarketLinks(
-            pair
-        );
-    }
-
-
-    function setMarketUnavailable() {
-
-        setText(
-            document.getElementById(
-                "marketStatusText"
-            ),
-            t("market-unavailable")
-        );
-
-
-        setText(
-            document.getElementById(
-                "currentPrice"
-            ),
-            "—"
-        );
-    }
-
-
-    function setPrice(
-        price
-    ) {
-
-        const priceElement =
-            document.getElementById(
-                "currentPrice"
-            );
-
-
-        if (!priceElement) {
-            return;
-        }
-
-
-        priceElement.textContent =
-            formatPrice(
-                price
-            );
-    }
-
-
-    // ==================================================
-    // CHART
-    // ==================================================
-
-    function updateChart(
-        price
-    ) {
-
-        if (
-            !Number.isFinite(price)
-        ) {
-
-            return;
-        }
-
-
-        let history =
-            readPriceHistory();
-
-
-        history.push({
-
-            time:
-                Date.now(),
-
-            price:
-                price
-        });
-
-
-        if (
-            history.length >
-            MAX_CHART_POINTS
-        ) {
-
-            history =
-                history.slice(
-                    -MAX_CHART_POINTS
-                );
-        }
-
-
-        savePriceHistory(
-            history
-        );
-
-
-        renderChart(
-            history
-        );
-    }
-
-
-    function readPriceHistory() {
-
-        try {
-
-            const stored =
+            const saved =
                 localStorage.getItem(
-                    PRICE_HISTORY_KEY
-                );
-
-
-            if (!stored) {
-                return [];
-            }
-
-
-            const parsed =
-                JSON.parse(
-                    stored
+                    "chili-language"
                 );
 
 
             if (
-                !Array.isArray(parsed)
+                saved === "zh" ||
+                saved === "en"
             ) {
 
-                return [];
+                return saved;
             }
-
-
-            return parsed.filter(
-                function (item) {
-
-                    return (
-                        item &&
-                        Number.isFinite(
-                            Number(
-                                item.price
-                            )
-                        ) &&
-                        Number.isFinite(
-                            Number(
-                                item.time
-                            )
-                        )
-                    );
-                }
-            );
 
         } catch (error) {
 
             console.warn(
-                "Price history read failed:",
+                "Unable to read language:",
                 error
             );
-
-            return [];
         }
+
+
+        return "en";
     }
 
 
-    function savePriceHistory(
-        history
+    function saveLanguage(
+        language
     ) {
 
         try {
 
             localStorage.setItem(
-                PRICE_HISTORY_KEY,
-                JSON.stringify(
-                    history
-                )
+                "chili-language",
+                language
             );
 
         } catch (error) {
 
             console.warn(
-                "Price history save failed:",
+                "Unable to save language:",
                 error
             );
         }
     }
 
 
-    function renderChart(
-        history
-    ) {
+    /* =====================================================
+       MOBILE MENU
+       Real HTML uses #mobileToggle
+       ===================================================== */
 
-        const canvas =
+    function initializeMobileMenu() {
+
+        const button =
             document.getElementById(
-                "priceChart"
+                "mobileToggle"
+            );
+
+        const nav =
+            document.getElementById(
+                "navLinks"
             );
 
 
-        if (!canvas) {
+        if (!button) {
             return;
         }
 
 
-        const context =
-            canvas.getContext(
-                "2d"
-            );
+        button.addEventListener(
+            "click",
+            function () {
 
-
-        if (!context) {
-            return;
-        }
-
-
-        const rect =
-            canvas.getBoundingClientRect();
-
-
-        const dpr =
-            window.devicePixelRatio
-            || 1;
-
-
-        const width =
-            Math.max(
-                1,
-                Math.floor(
-                    rect.width * dpr
-                )
-            );
-
-
-        const height =
-            Math.max(
-                1,
-                Math.floor(
-                    rect.height * dpr
-                )
-            );
-
-
-        if (
-            canvas.width !== width ||
-            canvas.height !== height
-        ) {
-
-            canvas.width =
-                width;
-
-            canvas.height =
-                height;
-        }
-
-
-        context.clearRect(
-            0,
-            0,
-            width,
-            height
-        );
-
-
-        if (
-            history.length < 2
-        ) {
-
-            return;
-        }
-
-
-        const values =
-            history.map(
-                function (item) {
-
-                    return Number(
-                        item.price
-                    );
-                }
-            );
-
-
-        const min =
-            Math.min.apply(
-                null,
-                values
-            );
-
-
-        const max =
-            Math.max.apply(
-                null,
-                values
-            );
-
-
-        const range =
-            max - min || 1;
-
-
-        const padding =
-            16 * dpr;
-
-
-        const chartWidth =
-            width -
-            padding * 2;
-
-
-        const chartHeight =
-            height -
-            padding * 2;
-
-
-        context.beginPath();
-
-
-        values.forEach(
-            function (
-                value,
-                index
-            ) {
-
-                const x =
-                    padding +
-                    (
-                        index /
-                        (
-                            values.length - 1
-                        )
-                    ) *
-                    chartWidth;
-
-
-                const y =
-                    padding +
-                    (
-                        1 -
-                        (
-                            (
-                                value -
-                                min
-                            ) /
-                            range
-                        )
-                    ) *
-                    chartHeight;
-
-
-                if (
-                    index === 0
-                ) {
-
-                    context.moveTo(
-                        x,
-                        y
+                const isOpen =
+                    document.body.classList.toggle(
+                        "menu-open"
                     );
 
-                } else {
 
-                    context.lineTo(
-                        x,
-                        y
-                    );
-                }
-            }
-        );
-
-
-        context.strokeStyle =
-            getCssVariable(
-                "--accent",
-                "#ef2637"
-            );
-
-
-        context.lineWidth =
-            2 * dpr;
-
-
-        context.stroke();
-    }
-
-
-    // ==================================================
-    // BLOCK NUMBER
-    // ==================================================
-
-    async function getBlockNumberSafe() {
-
-        try {
-
-            const result =
-                await rpcCall(
-                    "eth_blockNumber",
-                    []
+                button.setAttribute(
+                    "aria-expanded",
+                    String(isOpen)
                 );
 
 
-            if (!result) {
-                return "—";
-            }
+                if (nav) {
 
-
-            return String(
-                BigInt(result)
-            );
-
-        } catch (error) {
-
-            console.warn(
-                "Block number unavailable:",
-                error
-            );
-
-            return "—";
-        }
-    }
-
-
-    // ==================================================
-    // RPC
-    // ==================================================
-
-    async function rpcCall(
-        method,
-        params
-    ) {
-
-        const urls =
-            Array.isArray(
-                CONFIG.network.rpcUrls
-            )
-                ? CONFIG.network.rpcUrls
-                : [];
-
-
-        let lastError =
-            null;
-
-
-        for (
-            const url of urls
-        ) {
-
-            try {
-
-                const response =
-                    await fetchWithTimeout(
-                        url,
-                        {
-
-                            method:
-                                "POST",
-
-                            headers: {
-
-                                "Content-Type":
-                                    "application/json",
-
-                                Accept:
-                                    "application/json"
-                            },
-
-                            body:
-                                JSON.stringify({
-
-                                    jsonrpc:
-                                        "2.0",
-
-                                    id:
-                                        Date.now(),
-
-                                    method:
-                                        method,
-
-                                    params:
-                                        params
-                                })
-                        },
-                        REQUEST_TIMEOUT
-                    );
-
-
-                if (
-                    !response.ok
-                ) {
-
-                    throw new Error(
-                        `RPC HTTP ${response.status}`
+                    nav.classList.toggle(
+                        "open",
+                        isOpen
                     );
                 }
-
-
-                const data =
-                    await response.json();
-
-
-                if (
-                    data.error
-                ) {
-
-                    throw new Error(
-                        data.error.message
-                        ||
-                        "RPC request failed"
-                    );
-                }
-
-
-                return data.result;
-
-            } catch (error) {
-
-                lastError =
-                    error;
-
-                console.warn(
-                    `RPC failed: ${url}`,
-                    error
-                );
             }
-        }
-
-
-        throw (
-            lastError
-            ||
-            new Error(
-                "All RPC endpoints failed"
-            )
         );
+
+
+        document
+            .querySelectorAll(
+                "#navLinks a"
+            )
+            .forEach(
+                function (link) {
+
+                    link.addEventListener(
+                        "click",
+                        function () {
+
+                            document.body.classList.remove(
+                                "menu-open"
+                            );
+
+
+                            if (nav) {
+
+                                nav.classList.remove(
+                                    "open"
+                                );
+                            }
+
+
+                            button.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
+                        }
+                    );
+                }
+            );
     }
 
 
-    // ==================================================
-    // NAVIGATION
-    // ==================================================
+    /* =====================================================
+       NAVIGATION
+       ===================================================== */
 
-    function initNavigation() {
+    function initializeNavigation() {
 
         document
             .querySelectorAll(
@@ -1836,16 +1134,15 @@
                         "click",
                         function (event) {
 
-                            const targetId =
-                                link
-                                    .getAttribute(
-                                        "href"
-                                    );
+                            const href =
+                                link.getAttribute(
+                                    "href"
+                                );
 
 
                             if (
-                                !targetId ||
-                                targetId === "#"
+                                !href ||
+                                href === "#"
                             ) {
 
                                 return;
@@ -1854,7 +1151,7 @@
 
                             const target =
                                 document.querySelector(
-                                    targetId
+                                    href
                                 );
 
 
@@ -1881,60 +1178,58 @@
     }
 
 
-    // ==================================================
-    // MOBILE MENU
-    // ==================================================
+    /* =====================================================
+       COPY
+       ===================================================== */
 
-    function initMobileMenu() {
+    function initializeCopy() {
 
-        const buttons =
-            document.querySelectorAll(
-                "[data-menu-toggle]"
+        /*
+         * Existing HTML has #copyHero.
+         */
+
+        const heroButton =
+            document.getElementById(
+                "copyHero"
             );
 
 
-        buttons.forEach(
-            function (button) {
+        if (heroButton) {
 
-                button.addEventListener(
-                    "click",
-                    function () {
+            heroButton.addEventListener(
+                "click",
+                async function () {
 
-                        document.body.classList.toggle(
-                            "menu-open"
+                    const success =
+                        await copyText(
+                            TOKEN_ADDRESS
+                        );
+
+
+                    if (success) {
+
+                        flashButton(
+                            heroButton,
+                            "copied"
+                        );
+
+                    } else {
+
+                        showToast(
+                            translate(
+                                "copy-failed"
+                            )
                         );
                     }
-                );
-            }
-        );
-
-
-        document
-            .querySelectorAll(
-                ".nav a"
-            )
-            .forEach(
-                function (link) {
-
-                    link.addEventListener(
-                        "click",
-                        function () {
-
-                            document.body.classList.remove(
-                                "menu-open"
-                            );
-                        }
-                    );
                 }
             );
-    }
+        }
 
 
-    // ==================================================
-    // COPY
-    // ==================================================
-
-    function initCopyButtons() {
+        /*
+         * Also support any future
+         * data-copy buttons.
+         */
 
         document
             .querySelectorAll(
@@ -1942,6 +1237,19 @@
             )
             .forEach(
                 function (button) {
+
+                    /*
+                     * Avoid binding #copyHero twice.
+                     */
+
+                    if (
+                        button.id ===
+                        "copyHero"
+                    ) {
+
+                        return;
+                    }
+
 
                     button.addEventListener(
                         "click",
@@ -1952,7 +1260,7 @@
                                     "data-copy"
                                 )
                                 ||
-                                CONFIG.token.address;
+                                TOKEN_ADDRESS;
 
 
                             const success =
@@ -1961,35 +1269,19 @@
                                 );
 
 
-                            if (
-                                success
-                            ) {
+                            if (success) {
 
-                                const original =
-                                    button.textContent;
-
-
-                                button.textContent =
-                                    t("copied");
-
-
-                                window.setTimeout(
-                                    function () {
-
-                                        button.textContent =
-                                            original
-                                            ||
-                                            t("copy");
-
-                                    },
-                                    CONFIG.ui.copySuccessDuration
-                                    || 1800
+                                flashButton(
+                                    button,
+                                    "copied"
                                 );
 
                             } else {
 
                                 showToast(
-                                    t("copy-failed")
+                                    translate(
+                                        "copy-failed"
+                                    )
                                 );
                             }
                         }
@@ -2033,11 +1325,19 @@
                 value;
 
 
+            textarea.setAttribute(
+                "readonly",
+                ""
+            );
+
+
             textarea.style.position =
                 "fixed";
 
+            textarea.style.left =
+                "-9999px";
 
-            textarea.style.opacity =
+            textarea.style.top =
                 "0";
 
 
@@ -2051,7 +1351,7 @@
             textarea.select();
 
 
-            const success =
+            const result =
                 document.execCommand(
                     "copy"
                 );
@@ -2060,12 +1360,12 @@
             textarea.remove();
 
 
-            return success;
+            return result;
 
         } catch (error) {
 
             console.warn(
-                "Clipboard failed:",
+                "Copy failed:",
                 error
             );
 
@@ -2074,78 +1374,160 @@
     }
 
 
-    // ==================================================
-    // EXTERNAL LINKS
-    // ==================================================
+    function flashButton(
+        button,
+        key
+    ) {
 
-    function initExternalLinks() {
-
-        setHref(
-            "heroContractLink",
-            getExplorerUrl()
-        );
+        const original =
+            button.textContent;
 
 
-        setHref(
-            "contractLink",
-            getExplorerUrl()
-        );
+        button.textContent =
+            translate(key);
 
 
-        setHref(
-            "swapLink",
-            getSwapUrl()
-        );
+        window.setTimeout(
+            function () {
 
+                button.textContent =
+                    original ||
+                    translate("copy");
 
-        setHref(
-            "buyChiliLink",
-            getSwapUrl()
-        );
-
-
-        setHref(
-            "chartLink",
-            getDexScreenerUrl()
-        );
-
-
-        setSocialLink(
-            "telegramLink",
-            CONFIG.social.telegram
-        );
-
-
-        setSocialLink(
-            "twitterLink",
-            CONFIG.social.twitter
-        );
-
-
-        setSocialLink(
-            "githubLink",
-            CONFIG.social.github
+            },
+            Number(
+                CONFIG.ui?.copySuccessDuration
+                || 1800
+            )
         );
     }
 
 
-    function updateExternalMarketLinks(
-        pair
+    /* =====================================================
+       EXTERNAL LINKS
+       ===================================================== */
+
+    function initializeExternalLinks() {
+
+        const contractUrl =
+            getContractUrl();
+
+
+        const swapUrl =
+            CONFIG.dex?.swapUrl ||
+            "";
+
+
+        const dexUrl =
+            CONFIG.dex?.dexScreenerUrl ||
+            "";
+
+
+        document
+            .querySelectorAll(
+                "[data-bscscan]"
+            )
+            .forEach(
+                function (link) {
+
+                    link.href =
+                        contractUrl;
+                }
+            );
+
+
+        document
+            .querySelectorAll(
+                "[data-dexscreener]"
+            )
+            .forEach(
+                function (link) {
+
+                    if (dexUrl) {
+
+                        link.href =
+                            dexUrl;
+                    }
+                }
+            );
+
+
+        /*
+         * Generic future links.
+         */
+
+        setLinkById(
+            "swapLink",
+            swapUrl
+        );
+
+        setLinkById(
+            "buyChiliLink",
+            swapUrl
+        );
+
+        setLinkById(
+            "contractLink",
+            contractUrl
+        );
+
+        setLinkById(
+            "chartLink",
+            dexUrl
+        );
+
+
+        /*
+         * Social links.
+         */
+
+        setSocialLink(
+            "telegramLink",
+            CONFIG.social?.telegram
+        );
+
+        setSocialLink(
+            "twitterLink",
+            CONFIG.social?.twitter
+        );
+
+        setSocialLink(
+            "githubLink",
+            CONFIG.social?.github
+        );
+    }
+
+
+    function setLinkById(
+        id,
+        url
     ) {
 
+        const element =
+            document.getElementById(
+                id
+            );
+
+
         if (
-            !pair ||
-            !pair.url
+            !element ||
+            !url
         ) {
 
             return;
         }
 
 
-        setHref(
-            "chartLink",
-            pair.url
-        );
+        element.href =
+            url;
+
+
+        element.target =
+            "_blank";
+
+
+        element.rel =
+            "noopener noreferrer";
     }
 
 
@@ -2191,21 +1573,43 @@
         }
 
 
-        setHref(
-            id,
-            url
+        element.href =
+            url;
+
+
+        element.target =
+            "_blank";
+
+
+        element.rel =
+            "noopener noreferrer";
+    }
+
+
+    function getContractUrl() {
+
+        return (
+            CONFIG.token?.contractExplorer
+            ||
+            CONFIG.token?.explorer
+            ||
+            (
+                "https://bscscan.com/address/" +
+                TOKEN_ADDRESS
+            )
         );
     }
 
 
-    function setHref(
-        id,
-        url
-    ) {
+    /* =====================================================
+       TOKEN SUPPLY
+       ===================================================== */
+
+    async function loadTokenSupply() {
 
         const element =
             document.getElementById(
-                id
+                "tokenSupply"
             );
 
 
@@ -2215,181 +1619,1085 @@
 
 
         if (
-            !url
+            !isValidAddress(
+                TOKEN_ADDRESS
+            )
         ) {
 
-            element.removeAttribute(
-                "href"
-            );
+            element.textContent =
+                "—";
 
             return;
         }
 
 
-        element.href =
-            url;
+        try {
+
+            /*
+             * ERC20 totalSupply()
+             */
+
+            const result =
+                await rpcCall(
+                    "eth_call",
+                    [
+                        {
+                            to:
+                                TOKEN_ADDRESS,
+
+                            data:
+                                "0x18160ddd"
+                        },
+
+                        "latest"
+                    ]
+                );
 
 
-        if (
-            /^https?:\/\//i.test(
-                url
-            )
-        ) {
+            if (
+                !result ||
+                result === "0x"
+            ) {
 
-            element.target =
-                "_blank";
+                return;
+            }
 
 
-            element.rel =
-                "noopener noreferrer";
+            const raw =
+                BigInt(result);
+
+
+            element.textContent =
+                formatTokenAmount(
+                    raw,
+                    TOKEN_DECIMALS
+                );
+
+        } catch (error) {
+
+            console.warn(
+                "Token supply unavailable:",
+                error
+            );
         }
     }
 
 
-    // ==================================================
-    // LANGUAGE
-    // ==================================================
+    /* =====================================================
+       MARKET REFRESH
+       ===================================================== */
 
-    function initLanguage() {
+    async function refreshMarket() {
 
-        applyLanguage(
-            language
-        );
+        if (
+            marketRequestRunning
+        ) {
 
-
-        document
-            .querySelectorAll(
-                "[data-lang]"
-            )
-            .forEach(
-                function (button) {
-
-                    button.addEventListener(
-                        "click",
-                        function () {
-
-                            const next =
-                                button.getAttribute(
-                                    "data-lang"
-                                );
+            return;
+        }
 
 
-                            if (
-                                next !== "en" &&
-                                next !== "zh"
-                            ) {
-
-                                return;
-                            }
+        marketRequestRunning =
+            true;
 
 
-                            language =
-                                next;
+        try {
+
+            const pairs =
+                await fetchDexPairs();
 
 
-                            localStorage.setItem(
-                                "chili-language",
-                                language
-                            );
+            const pair =
+                selectBestPair(
+                    pairs
+                );
 
 
-                            applyLanguage(
-                                language
-                            );
-                        }
-                    );
-                }
+            if (!pair) {
+
+                setMarketUnavailable();
+
+                return;
+            }
+
+
+            lastPair =
+                pair;
+
+
+            const block =
+                await getBlockNumberSafe();
+
+
+            const marketData = {
+
+                pair,
+
+                block,
+
+                updatedAt:
+                    Date.now()
+            };
+
+
+            lastMarketData =
+                marketData;
+
+
+            updateDynamicMarketFields(
+                marketData
+            );
+
+
+        } catch (error) {
+
+            console.warn(
+                "Market refresh failed:",
+                error
+            );
+
+
+            setMarketUnavailable();
+
+        } finally {
+
+            marketRequestRunning =
+                false;
+        }
+    }
+
+
+    function startMarketRefresh() {
+
+        if (
+            marketRefreshTimer
+        ) {
+
+            clearInterval(
+                marketRefreshTimer
+            );
+        }
+
+
+        marketRefreshTimer =
+            window.setInterval(
+                refreshMarket,
+                MARKET_REFRESH_INTERVAL
             );
     }
 
 
-    function applyLanguage(
-        lang
+    /* =====================================================
+       DEXSCREENER
+       ===================================================== */
+
+    async function fetchDexPairs() {
+
+        if (
+            !isValidAddress(
+                TOKEN_ADDRESS
+            )
+        ) {
+
+            return [];
+        }
+
+
+        const url =
+            "https://api.dexscreener.com/latest/dex/tokens/" +
+            TOKEN_ADDRESS;
+
+
+        const response =
+            await fetchWithTimeout(
+                url,
+                {
+
+                    method:
+                        "GET",
+
+                    cache:
+                        "no-store",
+
+                    headers: {
+
+                        Accept:
+                            "application/json"
+                    }
+                },
+                REQUEST_TIMEOUT
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "DexScreener HTTP " +
+                response.status
+            );
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if (
+            !data ||
+            !Array.isArray(
+                data.pairs
+            )
+        ) {
+
+            return [];
+        }
+
+
+        return data.pairs;
+    }
+
+
+    /* =====================================================
+       PAIR SELECTION
+       ===================================================== */
+
+    function selectBestPair(
+        pairs
     ) {
 
-        const dictionary =
-            I18N[lang] ||
-            I18N.en;
+        if (
+            !Array.isArray(pairs)
+        ) {
+
+            return null;
+        }
 
 
-        document
-            .querySelectorAll(
-                "[data-i18n]"
-            )
-            .forEach(
-                function (element) {
+        const bscPairs =
+            pairs.filter(
+                function (pair) {
 
-                    const key =
-                        element.getAttribute(
-                            "data-i18n"
+                    return (
+                        String(
+                            pair.chainId || ""
+                        ).toLowerCase()
+                        === "bsc"
+                    );
+                }
+            );
+
+
+        if (
+            !bscPairs.length
+        ) {
+
+            return null;
+        }
+
+
+        /*
+         * If an official pair address
+         * has been configured, use it.
+         */
+
+        const configuredPair =
+            normalizeAddress(
+                CONFIG.dex?.pairAddress
+            );
+
+
+        if (
+            configuredPair
+        ) {
+
+            const exact =
+                bscPairs.find(
+                    function (pair) {
+
+                        return (
+                            normalizeAddress(
+                                pair.pairAddress
+                            ) ===
+                            configuredPair
+                        );
+                    }
+                );
+
+
+            if (exact) {
+
+                return exact;
+            }
+        }
+
+
+        /*
+         * Only keep pairs that actually
+         * contain the CHILI token.
+         */
+
+        const chiliPairs =
+            bscPairs.filter(
+                function (pair) {
+
+                    const base =
+                        normalizeAddress(
+                            pair.baseToken?.address
+                        );
+
+                    const quote =
+                        normalizeAddress(
+                            pair.quoteToken?.address
                         );
 
 
-                    if (
-                        Object.prototype.hasOwnProperty.call(
-                            dictionary,
-                            key
-                        )
-                    ) {
-
-                        element.textContent =
-                            dictionary[key];
-                    }
+                    return (
+                        base ===
+                        TOKEN_ADDRESS.toLowerCase()
+                        ||
+                        quote ===
+                        TOKEN_ADDRESS.toLowerCase()
+                    );
                 }
             );
 
 
-        document.documentElement.lang =
-            lang === "zh"
-                ? "zh-CN"
-                : "en";
+        if (
+            !chiliPairs.length
+        ) {
+
+            return null;
+        }
+
+
+        const usdtAddress =
+            normalizeAddress(
+                CONFIG.dex?.quoteTokens?.USDT
+            );
+
+
+        const wbnbAddress =
+            normalizeAddress(
+                CONFIG.dex?.quoteTokens?.WBNB
+            );
+
+
+        /*
+         * Priority 1:
+         * CHILI / USDT
+         */
+
+        const usdtPairs =
+            chiliPairs.filter(
+                function (pair) {
+
+                    const base =
+                        normalizeAddress(
+                            pair.baseToken?.address
+                        );
+
+                    const quote =
+                        normalizeAddress(
+                            pair.quoteToken?.address
+                        );
+
+
+                    return (
+                        base === usdtAddress
+                        ||
+                        quote === usdtAddress
+                    );
+                }
+            );
+
+
+        if (
+            usdtPairs.length
+        ) {
+
+            return highestLiquidity(
+                usdtPairs
+            );
+        }
+
+
+        /*
+         * Priority 2:
+         * CHILI / WBNB
+         */
+
+        const wbnbPairs =
+            chiliPairs.filter(
+                function (pair) {
+
+                    const base =
+                        normalizeAddress(
+                            pair.baseToken?.address
+                        );
+
+                    const quote =
+                        normalizeAddress(
+                            pair.quoteToken?.address
+                        );
+
+
+                    return (
+                        base === wbnbAddress
+                        ||
+                        quote === wbnbAddress
+                    );
+                }
+            );
+
+
+        if (
+            wbnbPairs.length
+        ) {
+
+            return highestLiquidity(
+                wbnbPairs
+            );
+        }
+
+
+        /*
+         * Priority 3:
+         * Any legitimate CHILI pair.
+         */
+
+        return highestLiquidity(
+            chiliPairs
+        );
+    }
+
+
+    function highestLiquidity(
+        pairs
+    ) {
+
+        return pairs
+            .slice()
+            .sort(
+                function (a, b) {
+
+                    const aLiquidity =
+                        Number(
+                            a.liquidity?.usd || 0
+                        );
+
+
+                    const bLiquidity =
+                        Number(
+                            b.liquidity?.usd || 0
+                        );
+
+
+                    return (
+                        bLiquidity -
+                        aLiquidity
+                    );
+                }
+            )[0] || null;
+    }
+
+
+    /* =====================================================
+       MARKET UI
+       ===================================================== */
+
+    function updateDynamicMarketFields(
+        marketData
+    ) {
+
+        if (
+            !marketData ||
+            !marketData.pair
+        ) {
+
+            return;
+        }
+
+
+        const pair =
+            marketData.pair;
+
+
+        const price =
+            Number(
+                pair.priceUsd
+            );
+
+
+        if (
+            !Number.isFinite(price) ||
+            price <= 0
+        ) {
+
+            setMarketUnavailable();
+
+            return;
+        }
+
+
+        lastMarketData =
+            marketData;
+
+
+        setText(
+            "price",
+            formatPrice(price)
+        );
+
+
+        setText(
+            "pair",
+            formatPair(pair)
+        );
+
+
+        setText(
+            "dex",
+            pair.dexId
+                ? capitalize(
+                    pair.dexId
+                )
+                : (
+                    CONFIG.dex?.name ||
+                    "PancakeSwap"
+                )
+        );
+
+
+        setText(
+            "block",
+            marketData.block ||
+            "—"
+        );
+
+
+        setText(
+            "liquidity",
+            formatUSD(
+                pair.liquidity?.usd
+            )
+        );
+
+
+        setText(
+            "volume",
+            formatUSD(
+                pair.volume?.h24
+            )
+        );
+
+
+        setText(
+            "marketCap",
+            formatUSDOrDash(
+                pair.marketCap
+            )
+        );
+
+
+        const buys =
+            Number(
+                pair.txns?.h24?.buys || 0
+            );
+
+
+        const sells =
+            Number(
+                pair.txns?.h24?.sells || 0
+            );
+
+
+        setText(
+            "txns",
+            formatNumber(
+                buys + sells
+            )
+        );
+
+
+        setText(
+            "buys",
+            formatNumber(
+                buys
+            )
+        );
+
+
+        setText(
+            "sells",
+            formatNumber(
+                sells
+            )
+        );
+
+
+        setText(
+            "pairAddress",
+            shortenAddress(
+                pair.pairAddress
+            )
+        );
+
+
+        setText(
+            "lastUpdate",
+            formatTime(
+                new Date(
+                    marketData.updatedAt
+                )
+            )
+        );
+
+
+        /*
+         * Update live chart link
+         * to the actual selected pair.
+         */
+
+        updateChartLink(
+            pair
+        );
+
+
+        /*
+         * Save current price sample.
+         */
+
+        savePriceSample(
+            price
+        );
+
+
+        setText(
+            "marketStatusText",
+            translate("live")
+        );
+    }
+
+
+    function setMarketUnavailable() {
+
+        setText(
+            "price",
+            "—"
+        );
+
+
+        setText(
+            "marketStatusText",
+            translate(
+                "market-unavailable"
+            )
+        );
+
+
+        /*
+         * Do not erase the last
+         * successfully received values.
+         */
+    }
+
+
+    function updateChartLink(
+        pair
+    ) {
+
+        const url =
+            pair?.url ||
+            CONFIG.dex?.dexScreenerUrl ||
+            "";
 
 
         document
             .querySelectorAll(
-                "[data-lang]"
+                "[data-dexscreener]"
             )
             .forEach(
-                function (button) {
+                function (link) {
 
-                    button.classList.toggle(
-                        "active",
-                        button.getAttribute(
-                            "data-lang"
-                        ) === lang
-                    );
+                    if (url) {
+
+                        link.href =
+                            url;
+                    }
                 }
             );
     }
 
 
-    // ==================================================
-    // SCROLL
-    // ==================================================
+    /* =====================================================
+       PRICE HISTORY
+       ===================================================== */
 
-    function initScrollEffects() {
+    function savePriceSample(
+        price
+    ) {
 
-        window.addEventListener(
-            "scroll",
+        if (
+            !Number.isFinite(price) ||
+            price <= 0
+        ) {
+
+            return;
+        }
+
+
+        let history =
+            loadPriceHistory();
+
+
+        history.push({
+
+            time:
+                Date.now(),
+
+            price:
+                price
+        });
+
+
+        if (
+            history.length >
+            MAX_CHART_POINTS
+        ) {
+
+            history =
+                history.slice(
+                    -MAX_CHART_POINTS
+                );
+        }
+
+
+        try {
+
+            localStorage.setItem(
+                PRICE_HISTORY_KEY,
+                JSON.stringify(
+                    history
+                )
+            );
+
+        } catch (error) {
+
+            console.warn(
+                "Unable to save price history:",
+                error
+            );
+        }
+    }
+
+
+    function loadPriceHistory() {
+
+        try {
+
+            const raw =
+                localStorage.getItem(
+                    PRICE_HISTORY_KEY
+                );
+
+
+            if (!raw) {
+                return [];
+            }
+
+
+            const parsed =
+                JSON.parse(
+                    raw
+                );
+
+
+            if (
+                !Array.isArray(parsed)
+            ) {
+
+                return [];
+            }
+
+
+            return parsed.filter(
+                function (item) {
+
+                    return (
+                        item &&
+                        Number.isFinite(
+                            Number(
+                                item.time
+                            )
+                        ) &&
+                        Number.isFinite(
+                            Number(
+                                item.price
+                            )
+                        )
+                    );
+                }
+            );
+
+        } catch (error) {
+
+            return [];
+        }
+    }
+
+
+    /* =====================================================
+       RPC
+       ===================================================== */
+
+    async function getBlockNumberSafe() {
+
+        try {
+
+            const result =
+                await rpcCall(
+                    "eth_blockNumber",
+                    []
+                );
+
+
+            if (!result) {
+
+                return "—";
+            }
+
+
+            return String(
+                BigInt(result)
+            );
+
+        } catch (error) {
+
+            console.warn(
+                "Unable to get block:",
+                error
+            );
+
+
+            return "—";
+        }
+    }
+
+
+    async function rpcCall(
+        method,
+        params
+    ) {
+
+        if (
+            !RPC_URLS.length
+        ) {
+
+            throw new Error(
+                "No RPC endpoint configured"
+            );
+        }
+
+
+        let lastError =
+            null;
+
+
+        for (
+            const rpcUrl of RPC_URLS
+        ) {
+
+            try {
+
+                const response =
+                    await fetchWithTimeout(
+                        rpcUrl,
+                        {
+
+                            method:
+                                "POST",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json",
+
+                                Accept:
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify({
+
+                                    jsonrpc:
+                                        "2.0",
+
+                                    id:
+                                        Date.now(),
+
+                                    method:
+                                        method,
+
+                                    params:
+                                        params
+                                })
+                        },
+                        REQUEST_TIMEOUT
+                    );
+
+
+                if (
+                    !response.ok
+                ) {
+
+                    throw new Error(
+                        "RPC HTTP " +
+                        response.status
+                    );
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                if (
+                    data.error
+                ) {
+
+                    throw new Error(
+                        data.error.message
+                        ||
+                        "RPC request failed"
+                    );
+                }
+
+
+                return data.result;
+
+            } catch (error) {
+
+                lastError =
+                    error;
+
+
+                console.warn(
+                    "RPC endpoint failed:",
+                    rpcUrl,
+                    error
+                );
+            }
+        }
+
+
+        throw (
+            lastError
+            ||
+            new Error(
+                "All RPC endpoints failed"
+            )
+        );
+    }
+
+
+    /* =====================================================
+       FETCH WITH TIMEOUT
+       ===================================================== */
+
+    async function fetchWithTimeout(
+        url,
+        options,
+        timeout
+    ) {
+
+        const controller =
+            new AbortController();
+
+
+        const timer =
+            window.setTimeout(
+                function () {
+
+                    controller.abort();
+
+                },
+                timeout
+            );
+
+
+        try {
+
+            return await fetch(
+                url,
+                {
+                    ...(options || {}),
+                    signal:
+                        controller.signal
+                }
+            );
+
+        } finally {
+
+            window.clearTimeout(
+                timer
+            );
+        }
+    }
+
+
+    /* =====================================================
+       SCROLL EFFECTS
+       ===================================================== */
+
+    function initializeScrollEffects() {
+
+        const header =
+            document.getElementById(
+                "siteHeader"
+            );
+
+
+        const update =
             function () {
+
+                const scrolled =
+                    window.scrollY > 20;
+
 
                 document.body.classList.toggle(
                     "is-scrolled",
-                    window.scrollY > 20
+                    scrolled
                 );
-            },
+
+
+                if (header) {
+
+                    header.classList.toggle(
+                        "scrolled",
+                        scrolled
+                    );
+                }
+            };
+
+
+        window.addEventListener(
+            "scroll",
+            update,
             {
                 passive: true
             }
         );
+
+
+        update();
     }
 
 
-    // ==================================================
-    // SECTION OBSERVER
-    // ==================================================
+    /* =====================================================
+       SECTION OBSERVER
+       ===================================================== */
 
-    function initSectionObserver() {
+    function initializeSectionObserver() {
 
         if (
             !("IntersectionObserver" in window)
@@ -2405,8 +2713,15 @@
             );
 
 
+        const navLinks =
+            document.querySelectorAll(
+                ".nav-link[data-section]"
+            );
+
+
         if (
-            !sections.length
+            !sections.length ||
+            !navLinks.length
         ) {
 
             return;
@@ -2421,19 +2736,37 @@
                         function (entry) {
 
                             if (
-                                entry.isIntersecting
+                                !entry.isIntersecting
                             ) {
 
-                                entry.target.classList.add(
-                                    "is-visible"
-                                );
+                                return;
                             }
+
+
+                            const id =
+                                entry.target.id;
+
+
+                            navLinks.forEach(
+                                function (link) {
+
+                                    link.classList.toggle(
+                                        "active",
+                                        link.getAttribute(
+                                            "data-section"
+                                        ) === id
+                                    );
+                                }
+                            );
                         }
                     );
                 },
                 {
+                    rootMargin:
+                        "-20% 0px -65% 0px",
+
                     threshold:
-                        0.12
+                        0
                 }
             );
 
@@ -2449,15 +2782,53 @@
     }
 
 
-    // ==================================================
-    // YEAR
-    // ==================================================
+    /* =====================================================
+       RESIZE
+       ===================================================== */
 
-    function initYear() {
+    function initializeResize() {
+
+        let resizeTimer =
+            null;
+
+
+        window.addEventListener(
+            "resize",
+            function () {
+
+                window.clearTimeout(
+                    resizeTimer
+                );
+
+
+                resizeTimer =
+                    window.setTimeout(
+                        function () {
+
+                            /*
+                             * Reserved for
+                             * future chart rendering.
+                             */
+
+                        },
+                        150
+                    );
+            }
+        );
+    }
+
+
+    /* =====================================================
+       YEAR
+       ===================================================== */
+
+    function initializeYear() {
 
         const year =
-            new Date()
-                .getFullYear();
+            String(
+                new Date()
+                    .getFullYear()
+            );
 
 
         document
@@ -2474,11 +2845,11 @@
     }
 
 
-    // ==================================================
-    // BACK TO TOP
-    // ==================================================
+    /* =====================================================
+       BACK TO TOP
+       ===================================================== */
 
-    function initBackToTop() {
+    function initializeBackToTop() {
 
         document
             .querySelectorAll(
@@ -2493,7 +2864,8 @@
 
                             window.scrollTo({
 
-                                top: 0,
+                                top:
+                                    0,
 
                                 behavior:
                                     "smooth"
@@ -2505,9 +2877,9 @@
     }
 
 
-    // ==================================================
-    // TOAST
-    // ==================================================
+    /* =====================================================
+       TOAST
+       ===================================================== */
 
     function showToast(
         message
@@ -2537,6 +2909,54 @@
             );
 
 
+            toast.style.position =
+                "fixed";
+
+
+            toast.style.left =
+                "50%";
+
+
+            toast.style.bottom =
+                "30px";
+
+
+            toast.style.transform =
+                "translateX(-50%)";
+
+
+            toast.style.zIndex =
+                "99999";
+
+
+            toast.style.padding =
+                "10px 16px";
+
+
+            toast.style.border =
+                "1px solid rgba(239,38,55,.35)";
+
+
+            toast.style.background =
+                "#111";
+
+
+            toast.style.color =
+                "#fff";
+
+
+            toast.style.fontSize =
+                "12px";
+
+
+            toast.style.transition =
+                "opacity .2s ease";
+
+
+            toast.style.opacity =
+                "0";
+
+
             document.body.appendChild(
                 toast
             );
@@ -2547,9 +2967,8 @@
             message;
 
 
-        toast.classList.add(
-            "show"
-        );
+        toast.style.opacity =
+            "1";
 
 
         window.clearTimeout(
@@ -2561,62 +2980,434 @@
             window.setTimeout(
                 function () {
 
-                    toast.classList.remove(
-                        "show"
-                    );
+                    toast.style.opacity =
+                        "0";
 
                 },
-                CONFIG.ui.toastDuration
-                || 2500
+                Number(
+                    CONFIG.ui?.toastDuration
+                    || 2500
+                )
             );
     }
 
 
-    // ==================================================
-    // HELPERS
-    // ==================================================
+    /* =====================================================
+       FORMATTERS
+       ===================================================== */
 
-    function getStoredLanguage() {
-
-        const value =
-            localStorage.getItem(
-                "chili-language"
-            );
-
-
-        return (
-            value === "zh" ||
-            value === "en"
-        )
-            ? value
-            : "en";
-    }
-
-
-    function t(
-        key
-    ) {
-
-        return (
-            I18N[language] &&
-            I18N[language][key]
-        )
-        ||
-        I18N.en[key]
-        ||
-        key;
-    }
-
-
-    function setText(
-        element,
+    function formatPrice(
         value
     ) {
+
+        const number =
+            Number(value);
+
+
+        if (
+            !Number.isFinite(number) ||
+            number <= 0
+        ) {
+
+            return "—";
+        }
+
+
+        if (
+            number >= 1
+        ) {
+
+            return (
+                "$" +
+                number.toLocaleString(
+                    "en-US",
+                    {
+                        minimumFractionDigits:
+                            2,
+
+                        maximumFractionDigits:
+                            4
+                    }
+                )
+            );
+        }
+
+
+        if (
+            number >= 0.01
+        ) {
+
+            return (
+                "$" +
+                number.toFixed(6)
+            );
+        }
+
+
+        return (
+            "$" +
+            number.toFixed(10)
+        );
+    }
+
+
+    function formatUSD(
+        value
+    ) {
+
+        const number =
+            Number(value);
+
+
+        if (
+            !Number.isFinite(number)
+        ) {
+
+            return "—";
+        }
+
+
+        if (
+            number === 0
+        ) {
+
+            return "$0";
+        }
+
+
+        if (
+            Math.abs(number) < 0.01
+        ) {
+
+            return (
+                "$" +
+                number.toFixed(8)
+            );
+        }
+
+
+        return (
+            "$" +
+            number.toLocaleString(
+                "en-US",
+                {
+                    maximumFractionDigits:
+                        2
+                }
+            )
+        );
+    }
+
+
+    function formatUSDOrDash(
+        value
+    ) {
+
+        const number =
+            Number(value);
+
+
+        if (
+            !Number.isFinite(number) ||
+            number <= 0
+        ) {
+
+            return "—";
+        }
+
+
+        return formatUSD(
+            number
+        );
+    }
+
+
+    function formatNumber(
+        value
+    ) {
+
+        const number =
+            Number(value);
+
+
+        if (
+            !Number.isFinite(number)
+        ) {
+
+            return "—";
+        }
+
+
+        return number.toLocaleString(
+            "en-US"
+        );
+    }
+
+
+    function formatTokenAmount(
+        raw,
+        decimals
+    ) {
+
+        try {
+
+            const value =
+                BigInt(raw);
+
+
+            const decimalCount =
+                Number(decimals);
+
+
+            if (
+                decimalCount <= 0
+            ) {
+
+                return value.toLocaleString(
+                    "en-US"
+                );
+            }
+
+
+            const base =
+                10n **
+                BigInt(
+                    decimalCount
+                );
+
+
+            const whole =
+                value / base;
+
+
+            const fraction =
+                value % base;
+
+
+            if (
+                fraction === 0n
+            ) {
+
+                return whole.toLocaleString(
+                    "en-US"
+                );
+            }
+
+
+            const fractionText =
+                fraction
+                    .toString()
+                    .padStart(
+                        decimalCount,
+                        "0"
+                    )
+                    .replace(
+                        /0+$/,
+                        ""
+                    );
+
+
+            return (
+                whole.toLocaleString(
+                    "en-US"
+                ) +
+                "." +
+                fractionText
+            );
+
+        } catch (error) {
+
+            return "—";
+        }
+    }
+
+
+    function formatPair(
+        pair
+    ) {
+
+        if (
+            pair?.baseToken?.symbol &&
+            pair?.quoteToken?.symbol
+        ) {
+
+            return (
+                pair.baseToken.symbol +
+                " / " +
+                pair.quoteToken.symbol
+            );
+        }
+
+
+        return (
+            CONFIG.dex?.pair ||
+            "CHILI / USDT"
+        );
+    }
+
+
+    function formatTime(
+        date
+    ) {
+
+        if (
+            !(date instanceof Date) ||
+            Number.isNaN(
+                date.getTime()
+            )
+        ) {
+
+            return "—";
+        }
+
+
+        return date.toLocaleTimeString(
+            [],
+            {
+                hour:
+                    "2-digit",
+
+                minute:
+                    "2-digit",
+
+                second:
+                    "2-digit"
+            }
+        );
+    }
+
+
+    function capitalize(
+        value
+    ) {
+
+        const text =
+            String(
+                value || ""
+            );
+
+
+        if (!text) {
+            return "";
+        }
+
+
+        return (
+            text.charAt(0).toUpperCase() +
+            text.slice(1)
+        );
+    }
+
+
+    /* =====================================================
+       ADDRESS
+       ===================================================== */
+
+    function isValidAddress(
+        address
+    ) {
+
+        return /^0x[a-fA-F0-9]{40}$/.test(
+            String(
+                address || ""
+            )
+        );
+    }
+
+
+    function normalizeAddress(
+        address
+    ) {
+
+        return String(
+            address || ""
+        )
+            .trim()
+            .toLowerCase();
+    }
+
+
+    function shortenAddress(
+        address
+    ) {
+
+        if (!address) {
+            return "—";
+        }
+
+
+        const start =
+            Number(
+                CONFIG.ui?.addressStartLength
+                || 6
+            );
+
+
+        const end =
+            Number(
+                CONFIG.ui?.addressEndLength
+                || 4
+            );
+
+
+        if (
+            address.length <=
+            start + end
+        ) {
+
+            return address;
+        }
+
+
+        return (
+            address.substring(
+                0,
+                start
+            ) +
+            "..." +
+            address.substring(
+                address.length - end
+            )
+        );
+    }
+
+
+    /* =====================================================
+       DOM HELPERS
+       ===================================================== */
+
+    function setText(
+        id,
+        value
+    ) {
+
+        const element =
+            typeof id === "string"
+                ? document.getElementById(id)
+                : id;
+
 
         if (!element) {
             return;
         }
 
 
+        if (
+            value === undefined ||
+            value === null ||
+            value === ""
+        ) {
+
+            element.textContent =
+                "—";
+
+            return;
+        }
+
+
         element.textContent =
-            value === undefined
+            String(value);
+    }
+
+
+})();
