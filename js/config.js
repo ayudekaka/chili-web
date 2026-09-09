@@ -1,27 +1,38 @@
 // ======================================================
-// CHILI WEB3 WEBSITE
-// Global Configuration V2
+// CHILI WEB
+// Global Configuration
+// Wallet integration intentionally disabled.
 // ======================================================
 
 const CHILI_CONFIG = {
+
     // --------------------------------------------------
     // PROJECT
     // --------------------------------------------------
+
     project: {
         name: "CHILI",
         symbol: "CHILI",
-        description: "CHILI — A community-driven token on BNB Smart Chain.",
+
+        description:
+            "CHILI — A community-driven token on BNB Smart Chain.",
+
         chainName: "BNB Smart Chain",
         chainId: 56,
         chainIdHex: "0x38"
     },
 
+
     // --------------------------------------------------
     // TOKEN
     // --------------------------------------------------
+
     token: {
-        address: "0xed3caca4903256fb3e4997bc0c7830d19fb35f7c",
+        address:
+            "0xed3caca4903256fb3e4997bc0c7830d19fb35f7c",
+
         symbol: "CHILI",
+
         decimals: 18,
 
         explorer:
@@ -31,11 +42,15 @@ const CHILI_CONFIG = {
             "https://bscscan.com/address/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c#code"
     },
 
+
     // --------------------------------------------------
     // NETWORK
     // --------------------------------------------------
+
     network: {
+
         chainId: 56,
+
         chainIdHex: "0x38",
 
         chainName: "BNB Smart Chain",
@@ -57,17 +72,32 @@ const CHILI_CONFIG = {
         ]
     },
 
+
     // --------------------------------------------------
     // DEX
     // --------------------------------------------------
+
     dex: {
+
         name: "PancakeSwap",
 
         pair: "CHILI / USDT",
 
+        /*
+         * Leave empty until the official CHILI/USDT
+         * PancakeSwap pair address is confirmed.
+         *
+         * When confirmed, put the pair address here.
+         */
+        pairAddress: "",
+
         quoteTokens: {
-            USDT: "0x55d398326f99059ff775485246999027b3197955",
-            WBNB: "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c"
+
+            USDT:
+                "0x55d398326f99059ff775485246999027b3197955",
+
+            WBNB:
+                "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c"
         },
 
         swapUrl:
@@ -77,48 +107,79 @@ const CHILI_CONFIG = {
             "https://dexscreener.com/bsc/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c"
     },
 
+
     // --------------------------------------------------
     // SOCIAL
     // --------------------------------------------------
+
+    /*
+     * Empty values are intentional.
+     * Do NOT use "#" because it creates a fake link.
+     *
+     * Fill these when your official accounts are ready.
+     */
+
     social: {
-        telegram: "#",
-        twitter: "#",
-        github: "https://github.com/ayudekaka/chili-web"
+
+        telegram: "",
+
+        twitter: "",
+
+        github:
+            "https://github.com/ayudekaka/chili-web"
     },
+
 
     // --------------------------------------------------
     // ASSETS
     // --------------------------------------------------
+
     assets: {
-        logo: "assets/logo-TOU.png",
-        favicon: "assets/logo-TOU.png"
+
+        logo:
+            "assets/logo-TOU.png",
+
+        favicon:
+            "assets/logo-TOU.png"
     },
+
 
     // --------------------------------------------------
     // WEBSITE
     // --------------------------------------------------
+
     site: {
-        title: "CHILI | Community Driven Token",
+
+        title:
+            "CHILI | Community Driven Token",
 
         description:
             "CHILI is a community-driven token built on BNB Smart Chain.",
 
-        themeColor: "#ef2637"
+        themeColor:
+            "#ef2637"
     },
+
 
     // --------------------------------------------------
     // UI
     // --------------------------------------------------
+
     ui: {
+
         addressStartLength: 6,
+
         addressEndLength: 4,
 
         copySuccessDuration: 1800,
+
         toastDuration: 2500,
 
         marketRefreshInterval: 60000,
 
-        chartMaxPoints: 48
+        chartMaxPoints: 48,
+
+        requestTimeout: 10000
     }
 };
 
@@ -128,27 +189,34 @@ const CHILI_CONFIG = {
 // ======================================================
 
 function getTokenAddress() {
+
     return CHILI_CONFIG.token.address;
 }
 
 
 function getExplorerUrl() {
+
     return CHILI_CONFIG.token.contractExplorer;
 }
 
 
 function getSwapUrl() {
+
     return CHILI_CONFIG.dex.swapUrl;
 }
 
 
 function getDexScreenerUrl() {
+
     return CHILI_CONFIG.dex.dexScreenerUrl;
 }
 
 
 function shortenAddress(address) {
-    if (!address) return "";
+
+    if (!address) {
+        return "";
+    }
 
     const start =
         CHILI_CONFIG.ui.addressStartLength;
@@ -156,19 +224,25 @@ function shortenAddress(address) {
     const end =
         CHILI_CONFIG.ui.addressEndLength;
 
-    if (address.length <= start + end) {
+    if (
+        address.length <=
+        start + end
+    ) {
         return address;
     }
 
     return (
         address.substring(0, start) +
         "..." +
-        address.substring(address.length - end)
+        address.substring(
+            address.length - end
+        )
     );
 }
 
 
 function isTokenConfigured() {
+
     const address =
         CHILI_CONFIG.token.address;
 
@@ -177,11 +251,19 @@ function isTokenConfigured() {
     }
 
     if (
-        address === "YOUR_CHILI_CONTRACT_ADDRESS" ||
+        address ===
+        "YOUR_CHILI_CONTRACT_ADDRESS"
+    ) {
+        return false;
+    }
+
+    if (
         address.includes("YOUR_")
     ) {
         return false;
     }
 
-    return /^0x[a-fA-F0-9]{40}$/.test(address);
+    return /^0x[a-fA-F0-9]{40}$/.test(
+        address
+    );
 }
