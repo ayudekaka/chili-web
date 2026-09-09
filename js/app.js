@@ -1,14 +1,28 @@
+// ======================================================
+// CHILI WEB
+// Application
+// Wallet integration intentionally disabled.
+// ======================================================
+
 (function () {
+
     "use strict";
 
+
     // ==================================================
-    // CHILI WEBSITE V2
+    // CONFIG
     // ==================================================
 
-    const CONFIG = window.CHILI_CONFIG;
+    const CONFIG =
+        window.CHILI_CONFIG;
+
 
     if (!CONFIG) {
-        console.error("CHILI_CONFIG not found.");
+
+        console.error(
+            "CHILI_CONFIG not found."
+        );
+
         return;
     }
 
@@ -17,19 +31,46 @@
     // CONSTANTS
     // ==================================================
 
-    const ABI_TOTAL_SUPPLY = "0x18160ddd";
-
     const TOKEN_ADDRESS =
-        String(CONFIG.token.address || "").toLowerCase();
+        String(
+            CONFIG.token.address || ""
+        ).toLowerCase();
+
+
+    const TOKEN_SYMBOL =
+        CONFIG.token.symbol || "CHILI";
+
 
     const DEX_API =
         `https://api.dexscreener.com/latest/dex/tokens/${TOKEN_ADDRESS}`;
 
+
+    const ABI_TOTAL_SUPPLY =
+        "0x18160ddd";
+
+
     const PRICE_HISTORY_KEY =
-        "chili-price-history-v2";
+        "chili-price-history-v3";
+
 
     const MAX_CHART_POINTS =
-        CONFIG.ui.chartMaxPoints || 48;
+        Number(
+            CONFIG.ui.chartMaxPoints || 48
+        );
+
+
+    const REQUEST_TIMEOUT =
+        Number(
+            CONFIG.ui.requestTimeout || 10000
+        );
+
+
+    let marketTimer = null;
+
+    let marketRequestRunning = false;
+
+    let language =
+        getStoredLanguage();
 
 
     // ==================================================
@@ -194,7 +235,16 @@
                 "VIEW CONTRACT",
 
             "chart-session":
-                "LIVE PRICE PULSE · SESSION SAMPLES"
+                "LIVE PRICE PULSE · SESSION SAMPLES",
+
+            "market-unavailable":
+                "MARKET DATA UNAVAILABLE",
+
+            "copy-failed":
+                "COPY FAILED",
+
+            "rpc-error":
+                "NETWORK DATA UNAVAILABLE"
         },
 
 
@@ -354,29 +404,22 @@
                 "查看合约",
 
             "chart-session":
-                "实时价格脉冲 · 本次访问采样"
+                "实时价格脉冲 · 本次访问采样",
+
+            "market-unavailable":
+                "市场数据暂不可用",
+
+            "copy-failed":
+                "复制失败",
+
+            "rpc-error":
+                "网络数据暂不可用"
         }
     };
 
 
     // ==================================================
-    // LANGUAGE
-    // ==================================================
-
-    let language =
-        localStorage.getItem("chili-language") || "en";
-
-
-    if (
-        language !== "en" &&
-        language !== "zh"
-    ) {
-        language = "en";
-    }
-
-
-    // ==================================================
-    // INIT
+    // START
     // ==================================================
 
     document.addEventListener(
@@ -385,9 +428,9 @@
     );
 
 
-    function init() {
+    async function init() {
 
-        initProjectInfo();
+        initProject();
 
         initLogo();
 
@@ -413,12 +456,11 @@
 
         initBackToTop();
 
-        initEthereumListeners();
+        await loadTokenomics();
 
-        loadTokenomics();
+        await refreshMarket();
 
-        loadMarketData();
-
+        startMarketRefresh();
     }
 
 
@@ -426,35 +468,45 @@
     // PROJECT
     // ==================================================
 
-    function initProjectInfo() {
+    function initProject() {
 
-        if (CONFIG.site.title) {
+        if (
+            CONFIG.site &&
+            CONFIG.site.title
+        ) {
+
             document.title =
                 CONFIG.site.title;
         }
 
-        const meta =
+
+        const description =
             document.querySelector(
                 'meta[name="description"]'
             );
 
+
         if (
-            meta &&
+            description &&
             CONFIG.site.description
         ) {
-            meta.content =
+
+            description.content =
                 CONFIG.site.description;
         }
+
 
         const theme =
             document.querySelector(
                 'meta[name="theme-color"]'
             );
 
+
         if (
             theme &&
             CONFIG.site.themeColor
         ) {
+
             theme.content =
                 CONFIG.site.themeColor;
         }
@@ -471,19 +523,22 @@
             .querySelectorAll(
                 "[data-chili-logo]"
             )
-            .forEach((el) => {
+            .forEach(
+                function (element) {
 
-                if (
-                    el.tagName === "IMG"
-                ) {
+                    if (
+                        element.tagName
+                        === "IMG"
+                    ) {
 
-                    el.src =
-                        CONFIG.assets.logo;
+                        element.src =
+                            CONFIG.assets.logo;
 
-                    el.alt =
-                        `${CONFIG.project.name} Logo`;
+                        element.alt =
+                            `${CONFIG.project.name} Logo`;
+                    }
                 }
-            });
+            );
     }
 
 
@@ -496,40 +551,45 @@
         const address =
             getTokenAddress();
 
+
         const hero =
             document.getElementById(
                 "heroContract"
             );
+
 
         const full =
             document.getElementById(
                 "contractAddress"
             );
 
+
         if (!isTokenConfigured()) {
 
-            if (hero) {
-                hero.textContent = "—";
-            }
+            setText(
+                hero,
+                "—"
+            );
 
-            if (full) {
-                full.textContent = "—";
-            }
+            setText(
+                full,
+                "—"
+            );
 
             return;
         }
 
 
-        if (hero) {
-            hero.textContent =
-                shortenAddress(address);
-        }
+        setText(
+            hero,
+            shortenAddress(address)
+        );
 
 
-        if (full) {
-            full.textContent =
-                address;
-        }
+        setText(
+            full,
+            address
+        );
     }
 
 
@@ -539,264 +599,238 @@
 
     function initTokenInfo() {
 
-        const symbols = [
+        const tokenElements = [
+
             "tokenSymbol",
+
             "reactorSymbol",
+
             "coreToken"
         ];
 
 
-        symbols.forEach((id) => {
+        tokenElements.forEach(
+            function (id) {
 
-            const el =
-                document.getElementById(id);
-
-            if (el) {
-                el.textContent =
-                    CONFIG.token.symbol;
+                setText(
+                    document.getElementById(id),
+                    TOKEN_SYMBOL
+                );
             }
-        });
-
-
-        const decimals =
-            document.getElementById(
-                "tokenDecimals"
-            );
-
-        if (decimals) {
-
-            decimals.textContent =
-                CONFIG.token.decimals;
-        }
-
-
-        const network =
-            document.getElementById(
-                "networkValue"
-            );
-
-        if (network) {
-
-            network.textContent =
-                CONFIG.network.chainName;
-        }
-
-
-        const chain =
-            document.getElementById(
-                "chainId"
-            );
-
-        if (chain) {
-
-            chain.textContent =
-                CONFIG.network.chainId;
-        }
-
-
-        const pair =
-            document.getElementById(
-                "pair"
-            );
-
-        if (pair) {
-
-            pair.textContent =
-                CONFIG.dex.pair;
-        }
-
-
-        const dex =
-            document.getElementById(
-                "dex"
-            );
-
-        if (dex) {
-
-            dex.textContent =
-                CONFIG.dex.name;
-        }
-
-
-        set(
-            "marketStatusText",
-            t("live")
         );
 
 
-        set(
-            "lastUpdate",
-            formatTime(new Date())
+        setText(
+            document.getElementById(
+                "tokenDecimals"
+            ),
+            CONFIG.token.decimals
+        );
+
+
+        setText(
+            document.getElementById(
+                "networkValue"
+            ),
+            CONFIG.network.chainName
+        );
+
+
+        setText(
+            document.getElementById(
+                "chainId"
+            ),
+            CONFIG.network.chainId
+        );
+
+
+        setText(
+            document.getElementById(
+                "pair"
+            ),
+            CONFIG.dex.pair
+        );
+
+
+        setText(
+            document.getElementById(
+                "dex"
+            ),
+            CONFIG.dex.name
+        );
+
+
+        setText(
+            document.getElementById(
+                "marketStatusText"
+            ),
+            t("live")
         );
     }
 
 
     // ==================================================
-    // TOKENOMICS
+    // TOKEN SUPPLY
     // ==================================================
 
     async function loadTokenomics() {
 
-        if (!isTokenConfigured()) {
-            return;
-        }
-
-        const supplyEl =
-            document.getElementById(
-                "tokenSupply"
-            );
-
-        if (!supplyEl) {
-            return;
-        }
-
-
-        const result =
-            await rpcCallMulti(
-                "eth_call",
-                [
-                    {
-                        to:
-                            CONFIG.token.address,
-
-                        data:
-                            ABI_TOTAL_SUPPLY
-                    },
-
-                    "latest"
-                ]
-            );
-
-
         if (
-            !result ||
-            result === "0x"
+            !isTokenConfigured()
         ) {
             return;
         }
 
 
-        try {
-
-            const raw =
-                BigInt(result);
-
-            const decimals =
-                BigInt(
-                    CONFIG.token.decimals
-                );
-
-            const base =
-                10n ** decimals;
-
-            const whole =
-                raw / base;
-
-            const fraction =
-                raw % base;
-
-
-            if (fraction === 0n) {
-
-                supplyEl.textContent =
-                    whole.toLocaleString(
-                        "en-US"
-                    );
-
-                return;
-            }
-
-
-            const fractionText =
-                fraction
-                    .toString()
-                    .padStart(
-                        Number(decimals),
-                        "0"
-                    )
-                    .replace(
-                        /0+$/,
-                        ""
-                    );
-
-
-            supplyEl.textContent =
-                `${whole.toLocaleString(
-                    "en-US"
-                )}.${fractionText}`;
-
-        } catch (error) {
-
-            console.warn(
-                "CHILI supply parse error:",
-                error
+        const element =
+            document.getElementById(
+                "tokenSupply"
             );
-        }
-    }
 
 
-    // ==================================================
-    // MARKET DATA
-    // ==================================================
-
-    async function loadMarketData() {
-
-        if (!isTokenConfigured()) {
+        if (!element) {
             return;
         }
 
 
-        await refreshMarket();
-
-
-        const interval =
-            CONFIG.ui.marketRefreshInterval ||
-            60000;
-
-
-        window.setInterval(
-            refreshMarket,
-            interval
-        );
-    }
-
-
-    async function refreshMarket() {
-
         try {
 
-            const [
-                pairs,
-                block
-            ] = await Promise.all([
-                fetchDexScreener(),
-                fetchBlockNumber()
-            ]);
+            const result =
+                await rpcCall(
+                    "eth_call",
+                    [
+                        {
+                            to:
+                                CONFIG.token.address,
 
+                            data:
+                                ABI_TOTAL_SUPPLY
+                        },
 
-            const pair =
-                selectPair(pairs);
-
-
-            if (!pair) {
-
-                console.warn(
-                    "CHILI pair not found."
+                        "latest"
+                    ]
                 );
+
+
+            if (
+                !result ||
+                result === "0x"
+            ) {
 
                 return;
             }
 
 
-            updateMarket(pair, block);
+            const raw =
+                BigInt(result);
+
+
+            element.textContent =
+                formatTokenAmount(
+                    raw,
+                    CONFIG.token.decimals
+                );
 
         } catch (error) {
 
             console.warn(
-                "CHILI market data unavailable:",
+                "Unable to load token supply:",
                 error
             );
         }
+    }
+
+
+    // ==================================================
+    // MARKET
+    // ==================================================
+
+    async function refreshMarket() {
+
+        if (
+            marketRequestRunning
+        ) {
+            return;
+        }
+
+
+        marketRequestRunning = true;
+
+
+        try {
+
+            const result =
+                await fetchDexScreener();
+
+
+            const pair =
+                selectPair(
+                    result
+                );
+
+
+            if (!pair) {
+
+                setMarketUnavailable();
+
+                return;
+            }
+
+
+            const block =
+                await getBlockNumberSafe();
+
+
+            updateMarket(
+                pair,
+                block
+            );
+
+
+        } catch (error) {
+
+            console.warn(
+                "Market refresh failed:",
+                error
+            );
+
+            setMarketUnavailable();
+
+        } finally {
+
+            marketRequestRunning =
+                false;
+        }
+    }
+
+
+    function startMarketRefresh() {
+
+        if (
+            marketTimer
+        ) {
+
+            clearInterval(
+                marketTimer
+            );
+        }
+
+
+        const interval =
+            Math.max(
+                30000,
+                Number(
+                    CONFIG.ui.marketRefreshInterval
+                    || 60000
+                )
+            );
+
+
+        marketTimer =
+            window.setInterval(
+                refreshMarket,
+                interval
+            );
     }
 
 
@@ -807,16 +841,19 @@
     async function fetchDexScreener() {
 
         const response =
-            await fetch(
+            await fetchWithTimeout(
                 DEX_API,
                 {
+                    method: "GET",
+
                     cache: "no-store",
 
                     headers: {
                         Accept:
                             "application/json"
                     }
-                }
+                },
+                REQUEST_TIMEOUT
             );
 
 
@@ -832,166 +869,275 @@
             await response.json();
 
 
-        return Array.isArray(
-            data.pairs
-        )
-            ? data.pairs
-            : [];
+        if (
+            !data ||
+            !Array.isArray(
+                data.pairs
+            )
+        ) {
+
+            return [];
+        }
+
+
+        return data.pairs;
     }
 
 
     // ==================================================
-    // PAIR SELECTOR
+    // PAIR SELECTION
     // ==================================================
 
     function selectPair(pairs) {
 
-        const bscPairs =
-            pairs.filter((pair) => {
-
-                return (
-                    String(
-                        pair.chainId || ""
-                    ).toLowerCase()
-                    === "bsc"
-                );
-            });
-
-
-        const usdtAddress =
-            String(
-                CONFIG.dex.quoteTokens?.USDT ||
-                ""
-            ).toLowerCase();
-
-
-        const wbnbAddress =
-            String(
-                CONFIG.dex.quoteTokens?.WBNB ||
-                ""
-            ).toLowerCase();
-
-
-        function isQuote(
-            pair,
-            symbol,
-            address
+        if (
+            !Array.isArray(pairs)
         ) {
 
-            const pairSymbol =
-                String(
-                    pair.quoteToken?.symbol ||
-                    ""
-                ).toUpperCase();
+            return null;
+        }
 
 
-            const pairAddress =
-                String(
-                    pair.quoteToken?.address ||
-                    ""
-                ).toLowerCase();
+        const bscPairs =
+            pairs.filter(
+                function (pair) {
+
+                    return (
+                        String(
+                            pair.chainId || ""
+                        ).toLowerCase()
+                        === "bsc"
+                    );
+                }
+            );
 
 
-            return (
-                pairSymbol === symbol ||
-                (
-                    address &&
-                    pairAddress === address
-                )
+        if (
+            !bscPairs.length
+        ) {
+
+            return null;
+        }
+
+
+        /*
+         * If an official pair address has
+         * been configured, use it first.
+         */
+
+        const configuredPair =
+            normalizeAddress(
+                CONFIG.dex.pairAddress
+            );
+
+
+        if (
+            configuredPair
+        ) {
+
+            const exact =
+                bscPairs.find(
+                    function (pair) {
+
+                        return (
+                            normalizeAddress(
+                                pair.pairAddress
+                            )
+                            === configuredPair
+                        );
+                    }
+                );
+
+
+            if (exact) {
+
+                return exact;
+            }
+        }
+
+
+        /*
+         * Only accept pairs where CHILI
+         * is actually one side of the pair.
+         */
+
+        const tokenPairs =
+            bscPairs.filter(
+                function (pair) {
+
+                    const base =
+                        normalizeAddress(
+                            pair.baseToken &&
+                            pair.baseToken.address
+                        );
+
+
+                    const quote =
+                        normalizeAddress(
+                            pair.quoteToken &&
+                            pair.quoteToken.address
+                        );
+
+
+                    return (
+                        base === TOKEN_ADDRESS ||
+                        quote === TOKEN_ADDRESS
+                    );
+                }
+            );
+
+
+        if (
+            !tokenPairs.length
+        ) {
+
+            return null;
+        }
+
+
+        const usdt =
+            normalizeAddress(
+                CONFIG.dex.quoteTokens.USDT
+            );
+
+
+        const wbnb =
+            normalizeAddress(
+                CONFIG.dex.quoteTokens.WBNB
+            );
+
+
+        /*
+         * USDT pairs have priority.
+         */
+
+        const usdtPairs =
+            tokenPairs.filter(
+                function (pair) {
+
+                    const base =
+                        normalizeAddress(
+                            pair.baseToken &&
+                            pair.baseToken.address
+                        );
+
+                    const quote =
+                        normalizeAddress(
+                            pair.quoteToken &&
+                            pair.quoteToken.address
+                        );
+
+
+                    return (
+                        base === usdt ||
+                        quote === usdt
+                    );
+                }
+            );
+
+
+        if (
+            usdtPairs.length
+        ) {
+
+            return getHighestLiquidityPair(
+                usdtPairs
             );
         }
 
 
-        // ----------------------------------------------
-        // 1. USDT FIRST
-        // ----------------------------------------------
-
-        const usdtPairs =
-            bscPairs
-                .filter((pair) =>
-                    isQuote(
-                        pair,
-                        "USDT",
-                        usdtAddress
-                    )
-                )
-                .sort(
-                    (a, b) =>
-                        Number(
-                            b.liquidity?.usd || 0
-                        ) -
-                        Number(
-                            a.liquidity?.usd || 0
-                        )
-                );
-
-
-        if (usdtPairs.length) {
-
-            return usdtPairs[0];
-        }
-
-
-        // ----------------------------------------------
-        // 2. WBNB SECOND
-        // ----------------------------------------------
+        /*
+         * WBNB fallback.
+         */
 
         const wbnbPairs =
-            bscPairs
-                .filter((pair) =>
-                    isQuote(
-                        pair,
-                        "WBNB",
-                        wbnbAddress
-                    )
-                )
-                .sort(
-                    (a, b) =>
-                        Number(
-                            b.liquidity?.usd || 0
-                        ) -
-                        Number(
-                            a.liquidity?.usd || 0
-                        )
-                );
+            tokenPairs.filter(
+                function (pair) {
+
+                    const base =
+                        normalizeAddress(
+                            pair.baseToken &&
+                            pair.baseToken.address
+                        );
+
+                    const quote =
+                        normalizeAddress(
+                            pair.quoteToken &&
+                            pair.quoteToken.address
+                        );
 
 
-        if (wbnbPairs.length) {
+                    return (
+                        base === wbnb ||
+                        quote === wbnb
+                    );
+                }
+            );
 
-            return wbnbPairs[0];
+
+        if (
+            wbnbPairs.length
+        ) {
+
+            return getHighestLiquidityPair(
+                wbnbPairs
+            );
         }
 
 
-        // ----------------------------------------------
-        // 3. FALLBACK
-        // ----------------------------------------------
+        /*
+         * Last fallback:
+         * only a verified CHILI pair.
+         */
 
-        return (
-            bscPairs.sort(
-                (a, b) =>
-                    Number(
-                        b.liquidity?.usd || 0
-                    ) -
-                    Number(
-                        a.liquidity?.usd || 0
-                    )
-            )[0] || null
+        return getHighestLiquidityPair(
+            tokenPairs
         );
     }
 
 
+    function getHighestLiquidityPair(
+        pairs
+    ) {
+
+        return pairs
+            .slice()
+            .sort(
+                function (a, b) {
+
+                    const aLiquidity =
+                        Number(
+                            a.liquidity &&
+                            a.liquidity.usd
+                            || 0
+                        );
+
+
+                    const bLiquidity =
+                        Number(
+                            b.liquidity &&
+                            b.liquidity.usd
+                            || 0
+                        );
+
+
+                    return (
+                        bLiquidity -
+                        aLiquidity
+                    );
+                }
+            )[0] || null;
+    }
+
+
     // ==================================================
-    // MARKET UPDATE
+    // MARKET UI
     // ==================================================
 
     function updateMarket(
         pair,
         block
     ) {
-
-        // ----------------------------------------------
-        // PRICE
-        // ----------------------------------------------
 
         const price =
             Number(
@@ -1000,348 +1146,313 @@
 
 
         if (
-            Number.isFinite(price) &&
-            price > 0
+            !Number.isFinite(price) ||
+            price <= 0
         ) {
 
-            set(
-                "price",
-                formatPrice(price)
-            );
+            setMarketUnavailable();
 
-
-            const history =
-                savePrice(price);
-
-
-            drawChart(history);
+            return;
         }
 
 
-        // ----------------------------------------------
-        // PAIR
-        // ----------------------------------------------
-
-        const baseSymbol =
-            pair.baseToken?.symbol ||
-            CONFIG.token.symbol;
-
-
-        const quoteSymbol =
-            pair.quoteToken?.symbol ||
-            "USDT";
-
-
-        set(
-            "pair",
-            `${baseSymbol} / ${quoteSymbol}`
+        setPrice(
+            price
         );
 
 
-        // ----------------------------------------------
-        // DEX
-        // ----------------------------------------------
-
-        set(
-            "dex",
-            pair.dexId
-                ? String(pair.dexId)
-                : CONFIG.dex.name
+        setText(
+            document.getElementById(
+                "liquidity"
+            ),
+            formatUSD(
+                pair.liquidity &&
+                pair.liquidity.usd
+            )
         );
 
 
-        // ----------------------------------------------
-        // BLOCK
-        // ----------------------------------------------
-
-        if (block) {
-
-            const number =
-                parseInt(
-                    block,
-                    16
-                );
-
-
-            if (
-                Number.isFinite(number)
-            ) {
-
-                set(
-                    "block",
-                    number.toLocaleString(
-                        "en-US"
-                    )
-                );
-            }
-        }
-
-
-        // ----------------------------------------------
-        // LIQUIDITY
-        // ----------------------------------------------
-
-        set(
-            "liquidity",
-            pair.liquidity?.usd != null
-                ? formatUsd(
-                    pair.liquidity.usd
-                )
-                : "—"
+        setText(
+            document.getElementById(
+                "volume24h"
+            ),
+            formatUSD(
+                pair.volume &&
+                pair.volume.h24
+            )
         );
 
-
-        // ----------------------------------------------
-        // VOLUME
-        // ----------------------------------------------
-
-        set(
-            "volume",
-            pair.volume?.h24 != null
-                ? formatUsd(
-                    pair.volume.h24
-                )
-                : "—"
-        );
-
-
-        // ----------------------------------------------
-        // MARKET CAP / FDV
-        // ----------------------------------------------
 
         const marketCap =
-            Number(
+            getValidNumber(
                 pair.marketCap
             );
 
 
         const fdv =
-            Number(
+            getValidNumber(
                 pair.fdv
             );
 
 
-        const marketCard =
+        setText(
             document.getElementById(
                 "marketCap"
-            );
-
-
-        const marketLabel =
-            marketCard
-                ?.closest(
-                    ".market-card"
-                )
-                ?.querySelector(
-                    ".market-card-label"
-                );
-
-
-        if (
-            Number.isFinite(
-                marketCap
-            ) &&
-            marketCap > 0
-        ) {
-
-            set(
-                "marketCap",
-                formatUsd(
+            ),
+            marketCap !== null
+                ? formatUSD(
                     marketCap
                 )
-            );
+                : "—"
+        );
 
 
-            if (marketLabel) {
+        setText(
+            document.getElementById(
+                "fdv"
+            ),
+            fdv !== null
+                ? formatUSD(
+                    fdv
+                )
+                : "—"
+        );
 
-                marketLabel.textContent =
-                    t("market-cap");
-            }
-
-        } else if (
-            Number.isFinite(fdv) &&
-            fdv > 0
-        ) {
-
-            set(
-                "marketCap",
-                formatUsd(fdv)
-            );
-
-
-            if (marketLabel) {
-
-                marketLabel.textContent =
-                    t("market-fdv");
-            }
-
-        } else {
-
-            set(
-                "marketCap",
-                "—"
-            );
-        }
-
-
-        // ----------------------------------------------
-        // TXNS
-        // ----------------------------------------------
 
         const buys =
-            Number(
-                pair.txns?.h24?.buys ||
-                0
-            );
+            getValidNumber(
+                pair.txns &&
+                pair.txns.h24 &&
+                pair.txns.h24.buys
+            ) || 0;
 
 
         const sells =
-            Number(
-                pair.txns?.h24?.sells ||
-                0
-            );
+            getValidNumber(
+                pair.txns &&
+                pair.txns.h24 &&
+                pair.txns.h24.sells
+            ) || 0;
 
 
-        set(
-            "txns",
-            Number.isFinite(
+        setText(
+            document.getElementById(
+                "txns24h"
+            ),
+            formatNumber(
                 buys + sells
             )
-                ? (
-                    buys + sells
-                ).toLocaleString(
-                    "en-US"
-                )
-                : "—"
         );
 
 
-        set(
-            "buys",
-            Number.isFinite(buys)
-                ? buys.toLocaleString(
-                    "en-US"
-                )
-                : "—"
+        setText(
+            document.getElementById(
+                "buySell"
+            ),
+            `${formatNumber(
+                buys
+            )} / ${formatNumber(
+                sells
+            )}`
         );
 
 
-        set(
-            "sells",
-            Number.isFinite(sells)
-                ? sells.toLocaleString(
-                    "en-US"
-                )
-                : "—"
-        );
-
-
-        // ----------------------------------------------
-        // PAIR ADDRESS
-        // ----------------------------------------------
-
-        set(
-            "pairAddress",
-            pair.pairAddress || "—"
-        );
-
-
-        // ----------------------------------------------
-        // UPDATE TIME
-        // ----------------------------------------------
-
-        set(
-            "lastUpdate",
-            formatTime(new Date())
-        );
-
-
-        // ----------------------------------------------
-        // DEXSCREENER LINK
-        // ----------------------------------------------
-
-        document
-            .querySelectorAll(
-                "[data-dexscreener]"
+        setText(
+            document.getElementById(
+                "pairAddress"
+            ),
+            shortenAddress(
+                pair.pairAddress
             )
-            .forEach((el) => {
-
-                if (
-                    pair.pairAddress
-                ) {
-
-                    el.href =
-                        `https://dexscreener.com/bsc/${pair.pairAddress}`;
-                }
-            });
+        );
 
 
-        // ----------------------------------------------
-        // STATUS
-        // ----------------------------------------------
+        setText(
+            document.getElementById(
+                "lastUpdate"
+            ),
+            formatTime(
+                new Date()
+            )
+        );
 
-        set(
-            "marketStatusText",
-            t("live")
+
+        setText(
+            document.getElementById(
+                "blockValue"
+            ),
+            block || "—"
+        );
+
+
+        updateChart(
+            price
+        );
+
+
+        updateExternalMarketLinks(
+            pair
         );
     }
 
 
+    function setMarketUnavailable() {
+
+        setText(
+            document.getElementById(
+                "marketStatusText"
+            ),
+            t("market-unavailable")
+        );
+
+
+        setText(
+            document.getElementById(
+                "currentPrice"
+            ),
+            "—"
+        );
+    }
+
+
+    function setPrice(
+        price
+    ) {
+
+        const priceElement =
+            document.getElementById(
+                "currentPrice"
+            );
+
+
+        if (!priceElement) {
+            return;
+        }
+
+
+        priceElement.textContent =
+            formatPrice(
+                price
+            );
+    }
+
+
     // ==================================================
-    // PRICE HISTORY
+    // CHART
     // ==================================================
 
-    function loadPriceHistory() {
+    function updateChart(
+        price
+    ) {
+
+        if (
+            !Number.isFinite(price)
+        ) {
+
+            return;
+        }
+
+
+        let history =
+            readPriceHistory();
+
+
+        history.push({
+
+            time:
+                Date.now(),
+
+            price:
+                price
+        });
+
+
+        if (
+            history.length >
+            MAX_CHART_POINTS
+        ) {
+
+            history =
+                history.slice(
+                    -MAX_CHART_POINTS
+                );
+        }
+
+
+        savePriceHistory(
+            history
+        );
+
+
+        renderChart(
+            history
+        );
+    }
+
+
+    function readPriceHistory() {
 
         try {
 
-            const history =
+            const stored =
+                localStorage.getItem(
+                    PRICE_HISTORY_KEY
+                );
+
+
+            if (!stored) {
+                return [];
+            }
+
+
+            const parsed =
                 JSON.parse(
-                    localStorage.getItem(
-                        PRICE_HISTORY_KEY
-                    ) || "[]"
+                    stored
                 );
 
 
             if (
-                Array.isArray(history)
+                !Array.isArray(parsed)
             ) {
 
-                return history
-                    .filter(
-                        item =>
-                            Number.isFinite(
-                                Number(item.p)
-                            )
-                    )
-                    .slice(
-                        -MAX_CHART_POINTS
-                    );
+                return [];
             }
 
-        } catch (_) {}
 
-        return [];
+            return parsed.filter(
+                function (item) {
+
+                    return (
+                        item &&
+                        Number.isFinite(
+                            Number(
+                                item.price
+                            )
+                        ) &&
+                        Number.isFinite(
+                            Number(
+                                item.time
+                            )
+                        )
+                    );
+                }
+            );
+
+        } catch (error) {
+
+            console.warn(
+                "Price history read failed:",
+                error
+            );
+
+            return [];
+        }
     }
 
 
-    function savePrice(price) {
-
-        let history =
-            loadPriceHistory();
-
-
-        history.push({
-            t: Date.now(),
-            p: Number(price)
-        });
-
-
-        history =
-            history.slice(
-                -MAX_CHART_POINTS
-            );
-
+    function savePriceHistory(
+        history
+    ) {
 
         try {
 
@@ -1352,202 +1463,244 @@
                 )
             );
 
-        } catch (_) {}
+        } catch (error) {
 
-
-        return history;
+            console.warn(
+                "Price history save failed:",
+                error
+            );
+        }
     }
 
 
-    // ==================================================
-    // REAL SESSION CHART
-    // ==================================================
+    function renderChart(
+        history
+    ) {
 
-    function drawChart(history) {
+        const canvas =
+            document.getElementById(
+                "priceChart"
+            );
 
-        const svg =
-            document.querySelector(
-                ".chart-wrap svg"
+
+        if (!canvas) {
+            return;
+        }
+
+
+        const context =
+            canvas.getContext(
+                "2d"
+            );
+
+
+        if (!context) {
+            return;
+        }
+
+
+        const rect =
+            canvas.getBoundingClientRect();
+
+
+        const dpr =
+            window.devicePixelRatio
+            || 1;
+
+
+        const width =
+            Math.max(
+                1,
+                Math.floor(
+                    rect.width * dpr
+                )
+            );
+
+
+        const height =
+            Math.max(
+                1,
+                Math.floor(
+                    rect.height * dpr
+                )
             );
 
 
         if (
-            !svg ||
+            canvas.width !== width ||
+            canvas.height !== height
+        ) {
+
+            canvas.width =
+                width;
+
+            canvas.height =
+                height;
+        }
+
+
+        context.clearRect(
+            0,
+            0,
+            width,
+            height
+        );
+
+
+        if (
             history.length < 2
         ) {
+
             return;
         }
 
 
-        const width = 900;
-
-        const height = 220;
-
-        const padding = 12;
-
-
-        const prices =
+        const values =
             history.map(
-                item =>
-                    Number(item.p)
-            );
+                function (item) {
 
-
-        const min =
-            Math.min(...prices);
-
-
-        const max =
-            Math.max(...prices);
-
-
-        const range =
-            max - min ||
-            Math.max(
-                max * 0.01,
-                0.000000001
-            );
-
-
-        const points =
-            history.map(
-                (item, index) => {
-
-                    const x =
-                        padding +
-                        (
-                            index /
-                            (
-                                history.length -
-                                1
-                            )
-                        ) *
-                        (
-                            width -
-                            padding * 2
-                        );
-
-
-                    const y =
-                        height -
-                        padding -
-                        (
-                            (
-                                item.p -
-                                min
-                            ) /
-                            range
-                        ) *
-                        (
-                            height -
-                            padding * 2
-                        );
-
-
-                    return [
-                        x,
-                        y
-                    ];
+                    return Number(
+                        item.price
+                    );
                 }
             );
 
 
-        const line =
-            points
-                .map(
-                    ([x, y], index) =>
-                        `${
-                            index
-                                ? "L"
-                                : "M"
-                        }${x.toFixed(1)},${y.toFixed(1)}`
-                )
-                .join(" ");
-
-
-        const area =
-            `${line} ` +
-            `L${points.at(-1)[0].toFixed(1)},${height} ` +
-            `L${points[0][0].toFixed(1)},${height} Z`;
-
-
-        svg.innerHTML = `
-
-            <defs>
-
-                <linearGradient
-                    id="chiliChartFill"
-                    x1="0"
-                    y1="0"
-                    x2="0"
-                    y2="1"
-                >
-
-                    <stop
-                        offset="0%"
-                        stop-color="#ef2637"
-                        stop-opacity=".18"
-                    />
-
-                    <stop
-                        offset="100%"
-                        stop-color="#ef2637"
-                        stop-opacity="0"
-                    />
-
-                </linearGradient>
-
-            </defs>
-
-
-            <path
-                d="${area}"
-                fill="url(#chiliChartFill)"
-            ></path>
-
-
-            <path
-                d="${line}"
-                fill="none"
-                stroke="#ef2637"
-                stroke-width="2"
-            ></path>
-        `;
-
-
-        const wrap =
-            document.querySelector(
-                ".chart-wrap"
+        const min =
+            Math.min.apply(
+                null,
+                values
             );
 
 
-        if (!wrap) {
-            return;
-        }
-
-
-        let note =
-            wrap.querySelector(
-                ".chili-chart-note"
+        const max =
+            Math.max.apply(
+                null,
+                values
             );
 
 
-        if (!note) {
+        const range =
+            max - min || 1;
 
-            note =
-                document.createElement(
-                    "div"
+
+        const padding =
+            16 * dpr;
+
+
+        const chartWidth =
+            width -
+            padding * 2;
+
+
+        const chartHeight =
+            height -
+            padding * 2;
+
+
+        context.beginPath();
+
+
+        values.forEach(
+            function (
+                value,
+                index
+            ) {
+
+                const x =
+                    padding +
+                    (
+                        index /
+                        (
+                            values.length - 1
+                        )
+                    ) *
+                    chartWidth;
+
+
+                const y =
+                    padding +
+                    (
+                        1 -
+                        (
+                            (
+                                value -
+                                min
+                            ) /
+                            range
+                        )
+                    ) *
+                    chartHeight;
+
+
+                if (
+                    index === 0
+                ) {
+
+                    context.moveTo(
+                        x,
+                        y
+                    );
+
+                } else {
+
+                    context.lineTo(
+                        x,
+                        y
+                    );
+                }
+            }
+        );
+
+
+        context.strokeStyle =
+            getCssVariable(
+                "--accent",
+                "#ef2637"
+            );
+
+
+        context.lineWidth =
+            2 * dpr;
+
+
+        context.stroke();
+    }
+
+
+    // ==================================================
+    // BLOCK NUMBER
+    // ==================================================
+
+    async function getBlockNumberSafe() {
+
+        try {
+
+            const result =
+                await rpcCall(
+                    "eth_blockNumber",
+                    []
                 );
 
-            note.className =
-                "chili-chart-note";
 
-            wrap.appendChild(note);
+            if (!result) {
+                return "—";
+            }
+
+
+            return String(
+                BigInt(result)
+            );
+
+        } catch (error) {
+
+            console.warn(
+                "Block number unavailable:",
+                error
+            );
+
+            return "—";
         }
-
-
-        note.textContent =
-            t("chart-session");
     }
 
 
@@ -1556,98 +1709,112 @@
     // ==================================================
 
     async function rpcCall(
-        rpc,
         method,
         params
     ) {
 
-        const response =
-            await fetch(
-                rpc,
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type":
-                            "application/json"
-                    },
-
-                    body: JSON.stringify({
-                        jsonrpc: "2.0",
-                        id: 1,
-                        method,
-                        params
-                    })
-                }
-            );
+        const urls =
+            Array.isArray(
+                CONFIG.network.rpcUrls
+            )
+                ? CONFIG.network.rpcUrls
+                : [];
 
 
-        if (!response.ok) {
-
-            throw new Error(
-                `RPC HTTP ${response.status}`
-            );
-        }
-
-
-        const data =
-            await response.json();
-
-
-        if (data.error) {
-
-            throw new Error(
-                data.error.message ||
-                "RPC error"
-            );
-        }
-
-
-        return data.result;
-    }
-
-
-    async function rpcCallMulti(
-        method,
-        params
-    ) {
-
-        const rpcs =
-            CONFIG.network.rpcUrls || [];
+        let lastError =
+            null;
 
 
         for (
-            const rpc of rpcs
+            const url of urls
         ) {
 
             try {
 
-                return await rpcCall(
-                    rpc,
-                    method,
-                    params
-                );
+                const response =
+                    await fetchWithTimeout(
+                        url,
+                        {
+
+                            method:
+                                "POST",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json",
+
+                                Accept:
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify({
+
+                                    jsonrpc:
+                                        "2.0",
+
+                                    id:
+                                        Date.now(),
+
+                                    method:
+                                        method,
+
+                                    params:
+                                        params
+                                })
+                        },
+                        REQUEST_TIMEOUT
+                    );
+
+
+                if (
+                    !response.ok
+                ) {
+
+                    throw new Error(
+                        `RPC HTTP ${response.status}`
+                    );
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                if (
+                    data.error
+                ) {
+
+                    throw new Error(
+                        data.error.message
+                        ||
+                        "RPC request failed"
+                    );
+                }
+
+
+                return data.result;
 
             } catch (error) {
 
+                lastError =
+                    error;
+
                 console.warn(
-                    "RPC failed:",
-                    rpc,
+                    `RPC failed: ${url}`,
                     error
                 );
             }
         }
 
 
-        return null;
-    }
-
-
-    async function fetchBlockNumber() {
-
-        return rpcCallMulti(
-            "eth_blockNumber",
-            []
+        throw (
+            lastError
+            ||
+            new Error(
+                "All RPC endpoints failed"
+            )
         );
     }
 
@@ -1660,18 +1827,57 @@
 
         document
             .querySelectorAll(
-                ".nav-link"
+                'a[href^="#"]'
             )
-            .forEach((link) => {
+            .forEach(
+                function (link) {
 
-                link.addEventListener(
-                    "click",
-                    () => {
+                    link.addEventListener(
+                        "click",
+                        function (event) {
 
-                        closeMobileMenu();
-                    }
-                );
-            });
+                            const targetId =
+                                link
+                                    .getAttribute(
+                                        "href"
+                                    );
+
+
+                            if (
+                                !targetId ||
+                                targetId === "#"
+                            ) {
+
+                                return;
+                            }
+
+
+                            const target =
+                                document.querySelector(
+                                    targetId
+                                );
+
+
+                            if (!target) {
+                                return;
+                            }
+
+
+                            event.preventDefault();
+
+
+                            target.scrollIntoView({
+
+                                behavior:
+                                    "smooth",
+
+                                block:
+                                    "start"
+                            });
+                        }
+                    );
+                }
+            );
     }
 
 
@@ -1681,73 +1887,46 @@
 
     function initMobileMenu() {
 
-        const toggle =
-            document.getElementById(
-                "mobileToggle"
+        const buttons =
+            document.querySelectorAll(
+                "[data-menu-toggle]"
             );
 
 
-        const nav =
-            document.getElementById(
-                "navLinks"
-            );
+        buttons.forEach(
+            function (button) {
 
+                button.addEventListener(
+                    "click",
+                    function () {
 
-        if (!toggle || !nav) {
-            return;
-        }
-
-
-        toggle.addEventListener(
-            "click",
-            () => {
-
-                const open =
-                    nav.classList.toggle(
-                        "open"
-                    );
-
-
-                toggle.setAttribute(
-                    "aria-expanded",
-                    open
-                        ? "true"
-                        : "false"
+                        document.body.classList.toggle(
+                            "menu-open"
+                        );
+                    }
                 );
             }
         );
-    }
 
 
-    function closeMobileMenu() {
+        document
+            .querySelectorAll(
+                ".nav a"
+            )
+            .forEach(
+                function (link) {
 
-        const nav =
-            document.getElementById(
-                "navLinks"
+                    link.addEventListener(
+                        "click",
+                        function () {
+
+                            document.body.classList.remove(
+                                "menu-open"
+                            );
+                        }
+                    );
+                }
             );
-
-
-        const toggle =
-            document.getElementById(
-                "mobileToggle"
-            );
-
-
-        if (nav) {
-
-            nav.classList.remove(
-                "open"
-            );
-        }
-
-
-        if (toggle) {
-
-            toggle.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-        }
     }
 
 
@@ -1757,76 +1936,141 @@
 
     function initCopyButtons() {
 
-        const buttons =
-            document.querySelectorAll(
-                "[id^='copy'], [data-copy]"
-            );
+        document
+            .querySelectorAll(
+                "[data-copy]"
+            )
+            .forEach(
+                function (button) {
+
+                    button.addEventListener(
+                        "click",
+                        async function () {
+
+                            const value =
+                                button.getAttribute(
+                                    "data-copy"
+                                )
+                                ||
+                                CONFIG.token.address;
 
 
-        buttons.forEach((button) => {
-
-            button.addEventListener(
-                "click",
-                async () => {
-
-                    let value =
-                        button.dataset.copy;
+                            const success =
+                                await copyText(
+                                    value
+                                );
 
 
-                    if (!value) {
+                            if (
+                                success
+                            ) {
 
-                        value =
-                            getTokenAddress();
-                    }
+                                const original =
+                                    button.textContent;
 
-
-                    if (!value) {
-                        return;
-                    }
-
-
-                    try {
-
-                        await navigator.clipboard.writeText(
-                            value
-                        );
-
-                        const original =
-                            button.textContent;
-
-
-                        button.textContent =
-                            t("copied");
-
-
-                        showToast(
-                            t("copied")
-                        );
-
-
-                        window.setTimeout(
-                            () => {
 
                                 button.textContent =
-                                    original ||
-                                    t("copy");
+                                    t("copied");
 
-                            },
 
-                            CONFIG.ui.copySuccessDuration ||
-                            1800
-                        );
+                                window.setTimeout(
+                                    function () {
 
-                    } catch (error) {
+                                        button.textContent =
+                                            original
+                                            ||
+                                            t("copy");
 
-                        console.warn(
-                            "Clipboard unavailable:",
-                            error
-                        );
-                    }
+                                    },
+                                    CONFIG.ui.copySuccessDuration
+                                    || 1800
+                                );
+
+                            } else {
+
+                                showToast(
+                                    t("copy-failed")
+                                );
+                            }
+                        }
+                    );
                 }
             );
-        });
+    }
+
+
+    async function copyText(
+        value
+    ) {
+
+        if (!value) {
+            return false;
+        }
+
+
+        try {
+
+            if (
+                navigator.clipboard &&
+                window.isSecureContext
+            ) {
+
+                await navigator.clipboard.writeText(
+                    value
+                );
+
+                return true;
+            }
+
+
+            const textarea =
+                document.createElement(
+                    "textarea"
+                );
+
+
+            textarea.value =
+                value;
+
+
+            textarea.style.position =
+                "fixed";
+
+
+            textarea.style.opacity =
+                "0";
+
+
+            document.body.appendChild(
+                textarea
+            );
+
+
+            textarea.focus();
+
+            textarea.select();
+
+
+            const success =
+                document.execCommand(
+                    "copy"
+                );
+
+
+            textarea.remove();
+
+
+            return success;
+
+        } catch (error) {
+
+            console.warn(
+                "Clipboard failed:",
+                error
+            );
+
+            return false;
+        }
     }
 
 
@@ -1836,127 +2080,304 @@
 
     function initExternalLinks() {
 
-        document
-            .querySelectorAll(
-                "[data-bscscan]"
-            )
-            .forEach((el) => {
-
-                el.href =
-                    getExplorerUrl();
-            });
+        setHref(
+            "heroContractLink",
+            getExplorerUrl()
+        );
 
 
-        document
-            .querySelectorAll(
-                "[data-contract]"
-            )
-            .forEach((el) => {
-
-                el.href =
-                    getExplorerUrl();
-            });
+        setHref(
+            "contractLink",
+            getExplorerUrl()
+        );
 
 
-        document
-            .querySelectorAll(
-                "[data-swap]"
-            )
-            .forEach((el) => {
-
-                el.href =
-                    getSwapUrl();
-            });
+        setHref(
+            "swapLink",
+            getSwapUrl()
+        );
 
 
-        document
-            .querySelectorAll(
-                "[data-dexscreener]"
-            )
-            .forEach((el) => {
-
-                el.href =
-                    getDexScreenerUrl();
-            });
+        setHref(
+            "buyChiliLink",
+            getSwapUrl()
+        );
 
 
-        document
-            .querySelectorAll(
-                "[data-telegram]"
-            )
-            .forEach((el) => {
-
-                el.href =
-                    CONFIG.social.telegram;
-            });
+        setHref(
+            "chartLink",
+            getDexScreenerUrl()
+        );
 
 
-        document
-            .querySelectorAll(
-                "[data-twitter]"
-            )
-            .forEach((el) => {
-
-                el.href =
-                    CONFIG.social.twitter;
-            });
+        setSocialLink(
+            "telegramLink",
+            CONFIG.social.telegram
+        );
 
 
-        document
-            .querySelectorAll(
-                "[data-github]"
-            )
-            .forEach((el) => {
+        setSocialLink(
+            "twitterLink",
+            CONFIG.social.twitter
+        );
 
-                el.href =
-                    CONFIG.social.github;
-            });
+
+        setSocialLink(
+            "githubLink",
+            CONFIG.social.github
+        );
     }
 
 
-    // ==================================================
-    // SCROLL EFFECTS
-    // ==================================================
+    function updateExternalMarketLinks(
+        pair
+    ) {
 
-    function initScrollEffects() {
+        if (
+            !pair ||
+            !pair.url
+        ) {
 
-        const header =
-            document.getElementById(
-                "siteHeader"
-            );
-
-
-        if (!header) {
             return;
         }
 
 
-        const update =
-            () => {
+        setHref(
+            "chartLink",
+            pair.url
+        );
+    }
 
-                if (
-                    window.scrollY > 20
-                ) {
 
-                    header.classList.add(
-                        "scrolled"
-                    );
+    function setSocialLink(
+        id,
+        url
+    ) {
 
-                } else {
+        const element =
+            document.getElementById(
+                id
+            );
 
-                    header.classList.remove(
-                        "scrolled"
+
+        if (!element) {
+            return;
+        }
+
+
+        if (
+            typeof url !== "string" ||
+            !url.trim() ||
+            url.trim() === "#"
+        ) {
+
+            element.removeAttribute(
+                "href"
+            );
+
+
+            element.setAttribute(
+                "aria-disabled",
+                "true"
+            );
+
+
+            element.classList.add(
+                "is-disabled"
+            );
+
+
+            return;
+        }
+
+
+        setHref(
+            id,
+            url
+        );
+    }
+
+
+    function setHref(
+        id,
+        url
+    ) {
+
+        const element =
+            document.getElementById(
+                id
+            );
+
+
+        if (!element) {
+            return;
+        }
+
+
+        if (
+            !url
+        ) {
+
+            element.removeAttribute(
+                "href"
+            );
+
+            return;
+        }
+
+
+        element.href =
+            url;
+
+
+        if (
+            /^https?:\/\//i.test(
+                url
+            )
+        ) {
+
+            element.target =
+                "_blank";
+
+
+            element.rel =
+                "noopener noreferrer";
+        }
+    }
+
+
+    // ==================================================
+    // LANGUAGE
+    // ==================================================
+
+    function initLanguage() {
+
+        applyLanguage(
+            language
+        );
+
+
+        document
+            .querySelectorAll(
+                "[data-lang]"
+            )
+            .forEach(
+                function (button) {
+
+                    button.addEventListener(
+                        "click",
+                        function () {
+
+                            const next =
+                                button.getAttribute(
+                                    "data-lang"
+                                );
+
+
+                            if (
+                                next !== "en" &&
+                                next !== "zh"
+                            ) {
+
+                                return;
+                            }
+
+
+                            language =
+                                next;
+
+
+                            localStorage.setItem(
+                                "chili-language",
+                                language
+                            );
+
+
+                            applyLanguage(
+                                language
+                            );
+                        }
                     );
                 }
-            };
+            );
+    }
 
 
-        update();
+    function applyLanguage(
+        lang
+    ) {
 
+        const dictionary =
+            I18N[lang] ||
+            I18N.en;
+
+
+        document
+            .querySelectorAll(
+                "[data-i18n]"
+            )
+            .forEach(
+                function (element) {
+
+                    const key =
+                        element.getAttribute(
+                            "data-i18n"
+                        );
+
+
+                    if (
+                        Object.prototype.hasOwnProperty.call(
+                            dictionary,
+                            key
+                        )
+                    ) {
+
+                        element.textContent =
+                            dictionary[key];
+                    }
+                }
+            );
+
+
+        document.documentElement.lang =
+            lang === "zh"
+                ? "zh-CN"
+                : "en";
+
+
+        document
+            .querySelectorAll(
+                "[data-lang]"
+            )
+            .forEach(
+                function (button) {
+
+                    button.classList.toggle(
+                        "active",
+                        button.getAttribute(
+                            "data-lang"
+                        ) === lang
+                    );
+                }
+            );
+    }
+
+
+    // ==================================================
+    // SCROLL
+    // ==================================================
+
+    function initScrollEffects() {
 
         window.addEventListener(
             "scroll",
-            update,
+            function () {
+
+                document.body.classList.toggle(
+                    "is-scrolled",
+                    window.scrollY > 20
+                );
+            },
             {
                 passive: true
             }
@@ -1970,100 +2391,59 @@
 
     function initSectionObserver() {
 
+        if (
+            !("IntersectionObserver" in window)
+        ) {
+
+            return;
+        }
+
+
         const sections =
             document.querySelectorAll(
                 "section[id]"
             );
 
 
-        const links =
-            document.querySelectorAll(
-                ".nav-link[data-section]"
-            );
-
-
         if (
-            !sections.length ||
-            !links.length ||
-            !("IntersectionObserver" in window)
+            !sections.length
         ) {
+
             return;
         }
 
 
         const observer =
             new IntersectionObserver(
-                entries => {
+                function (entries) {
 
                     entries.forEach(
-                        entry => {
+                        function (entry) {
 
                             if (
-                                !entry.isIntersecting
+                                entry.isIntersecting
                             ) {
-                                return;
+
+                                entry.target.classList.add(
+                                    "is-visible"
+                                );
                             }
-
-
-                            const id =
-                                entry.target.id;
-
-
-                            links.forEach(
-                                link => {
-
-                                    link.classList.toggle(
-                                        "active",
-                                        link.dataset.section ===
-                                        id
-                                    );
-                                }
-                            );
                         }
                     );
                 },
-
                 {
-                    rootMargin:
-                        "-35% 0px -55% 0px"
+                    threshold:
+                        0.12
                 }
             );
 
 
         sections.forEach(
-            section =>
+            function (section) {
+
                 observer.observe(
                     section
-                )
-        );
-    }
-
-
-    // ==================================================
-    // BACK TO TOP
-    // ==================================================
-
-    function initBackToTop() {
-
-        const button =
-            document.querySelector(
-                "[data-back-to-top]"
-            );
-
-
-        if (!button) {
-            return;
-        }
-
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
+                );
             }
         );
     }
@@ -2075,311 +2455,53 @@
 
     function initYear() {
 
+        const year =
+            new Date()
+                .getFullYear();
+
+
         document
             .querySelectorAll(
                 "[data-year]"
             )
             .forEach(
-                el =>
-                    el.textContent =
-                        new Date().getFullYear()
+                function (element) {
+
+                    element.textContent =
+                        year;
+                }
             );
     }
 
 
     // ==================================================
-    // LANGUAGE
+    // BACK TO TOP
     // ==================================================
 
-    function initLanguage() {
-
-        const button =
-            document.getElementById(
-                "langBtn"
-            );
-
-
-        applyLanguage();
-
-
-        if (!button) {
-            return;
-        }
-
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                language =
-                    language === "en"
-                        ? "zh"
-                        : "en";
-
-
-                localStorage.setItem(
-                    "chili-language",
-                    language
-                );
-
-
-                applyLanguage();
-            }
-        );
-    }
-
-
-    function applyLanguage() {
-
-        document.documentElement.lang =
-            language;
-
+    function initBackToTop() {
 
         document
             .querySelectorAll(
-                "[data-i18n]"
+                "[data-back-to-top]"
             )
-            .forEach((el) => {
+            .forEach(
+                function (button) {
 
-                const key =
-                    el.dataset.i18n;
+                    button.addEventListener(
+                        "click",
+                        function () {
 
+                            window.scrollTo({
 
-                if (
-                    I18N[language]?.[key]
-                ) {
+                                top: 0,
 
-                    el.textContent =
-                        I18N[language][key];
-                }
-            });
-
-
-        const langButton =
-            document.getElementById(
-                "langBtn"
-            );
-
-
-        if (langButton) {
-
-            langButton.textContent =
-                language === "en"
-                    ? "中文"
-                    : "EN";
-        }
-
-
-        updateDynamicTranslations();
-    }
-
-
-    function updateDynamicTranslations() {
-
-        const marketLabel =
-            document
-                .getElementById(
-                    "marketCap"
-                )
-                ?.closest(
-                    ".market-card"
-                )
-                ?.querySelector(
-                    ".market-card-label"
-                );
-
-
-        if (marketLabel) {
-
-            const value =
-                document.getElementById(
-                    "marketCap"
-                )?.dataset?.metric;
-
-
-            if (value === "fdv") {
-
-                marketLabel.textContent =
-                    t("market-fdv");
-
-            } else {
-
-                marketLabel.textContent =
-                    t("market-cap");
-            }
-        }
-
-
-        const chartNote =
-            document.querySelector(
-                ".chili-chart-note"
-            );
-
-
-        if (chartNote) {
-
-            chartNote.textContent =
-                t("chart-session");
-        }
-
-
-        const status =
-            document.getElementById(
-                "marketStatusText"
-            );
-
-
-        if (status) {
-
-            status.textContent =
-                t("live");
-        }
-    }
-
-
-    // ==================================================
-    // ETHEREUM / WALLET
-    // ==================================================
-
-    function initEthereumListeners() {
-
-        if (!window.ethereum) {
-            return;
-        }
-
-
-        window.ethereum.on?.(
-            "chainChanged",
-            () => {
-
-                window.setTimeout(
-                    () => {
-                        refreshMarket();
-                    },
-                    500
-                );
-            }
-        );
-
-
-        window.ethereum.on?.(
-            "accountsChanged",
-            () => {}
-        );
-    }
-
-
-    // ==================================================
-    // WALLET PLACEHOLDER
-    // ==================================================
-
-    function initWalletButtons() {
-
-        const buttons =
-            document.querySelectorAll(
-                "[data-connect-wallet]"
-            );
-
-
-        if (!buttons.length) {
-            return;
-        }
-
-
-        buttons.forEach(
-            button => {
-
-                button.addEventListener(
-                    "click",
-                    connectWallet
-                );
-            }
-        );
-    }
-
-
-    async function connectWallet() {
-
-        if (!window.ethereum) {
-
-            showToast(
-                "MetaMask / Wallet not found"
-            );
-
-            return;
-        }
-
-
-        try {
-
-            await window.ethereum.request({
-                method:
-                    "eth_requestAccounts"
-            });
-
-
-            await switchToBsc();
-
-
-        } catch (error) {
-
-            console.warn(
-                "Wallet connection failed:",
-                error
-            );
-        }
-    }
-
-
-    async function switchToBsc() {
-
-        const chainId =
-            CONFIG.network.chainIdHex;
-
-
-        try {
-
-            await window.ethereum.request({
-                method:
-                    "wallet_switchEthereumChain",
-
-                params: [
-                    {
-                        chainId
-                    }
-                ]
-            });
-
-        } catch (error) {
-
-            if (
-                error.code === 4902
-            ) {
-
-                await window.ethereum.request({
-                    method:
-                        "wallet_addEthereumChain",
-
-                    params: [
-                        {
-                            chainId,
-
-                            chainName:
-                                CONFIG.network.chainName,
-
-                            nativeCurrency:
-                                CONFIG.network.nativeCurrency,
-
-                            rpcUrls:
-                                CONFIG.network.rpcUrls,
-
-                            blockExplorerUrls:
-                                CONFIG.network.blockExplorerUrls
+                                behavior:
+                                    "smooth"
+                            });
                         }
-                    ]
-                });
-            }
-        }
+                    );
+                }
+            );
     }
 
 
@@ -2387,11 +2509,13 @@
     // TOAST
     // ==================================================
 
-    function showToast(message) {
+    function showToast(
+        message
+    ) {
 
         let toast =
-            document.querySelector(
-                ".chili-toast"
+            document.getElementById(
+                "chiliToast"
             );
 
 
@@ -2402,8 +2526,16 @@
                     "div"
                 );
 
-            toast.className =
-                "chili-toast";
+
+            toast.id =
+                "chiliToast";
+
+
+            toast.setAttribute(
+                "role",
+                "status"
+            );
+
 
             document.body.appendChild(
                 toast
@@ -2427,16 +2559,15 @@
 
         toast._timer =
             window.setTimeout(
-                () => {
+                function () {
 
                     toast.classList.remove(
                         "show"
                     );
 
                 },
-
-                CONFIG.ui.toastDuration ||
-                2500
+                CONFIG.ui.toastDuration
+                || 2500
             );
     }
 
@@ -2445,147 +2576,47 @@
     // HELPERS
     // ==================================================
 
-    function t(key) {
+    function getStoredLanguage() {
 
-        return (
-            I18N[language]?.[key] ||
-            I18N.en[key] ||
-            key
-        );
-    }
-
-
-    function set(
-        id,
-        value
-    ) {
-
-        const el =
-            document.getElementById(
-                id
+        const value =
+            localStorage.getItem(
+                "chili-language"
             );
 
 
-        if (el) {
-
-            el.textContent =
-                value;
-        }
+        return (
+            value === "zh" ||
+            value === "en"
+        )
+            ? value
+            : "en";
     }
 
 
-    function formatTime(date) {
+    function t(
+        key
+    ) {
 
-        return date.toLocaleTimeString(
-            language === "zh"
-                ? "zh-CN"
-                : "en-US",
-            {
-                hour: "2-digit",
-                minute: "2-digit",
-                second: "2-digit"
-            }
-        );
+        return (
+            I18N[language] &&
+            I18N[language][key]
+        )
+        ||
+        I18N.en[key]
+        ||
+        key;
     }
 
 
-    function formatPrice(value) {
+    function setText(
+        element,
+        value
+    ) {
 
-        const number =
-            Number(value);
-
-
-        if (
-            !Number.isFinite(
-                number
-            )
-        ) {
-            return "—";
+        if (!element) {
+            return;
         }
 
 
-        if (
-            number >= 1
-        ) {
-
-            return `$${number.toFixed(4)}`;
-        }
-
-
-        if (
-            number >= 0.01
-        ) {
-
-            return `$${number.toFixed(6)}`;
-        }
-
-
-        return `$${number.toPrecision(5)}`;
-    }
-
-
-    function formatUsd(value) {
-
-        const number =
-            Number(value);
-
-
-        if (
-            !Number.isFinite(
-                number
-            )
-        ) {
-            return "—";
-        }
-
-
-        if (
-            number >= 1_000_000_000
-        ) {
-
-            return `$${(
-                number / 1_000_000_000
-            ).toFixed(2)}B`;
-        }
-
-
-        if (
-            number >= 1_000_000
-        ) {
-
-            return `$${(
-                number / 1_000_000
-            ).toFixed(2)}M`;
-        }
-
-
-        if (
-            number >= 1_000
-        ) {
-
-            return `$${(
-                number / 1_000
-            ).toFixed(2)}K`;
-        }
-
-
-        if (
-            number >= 1
-        ) {
-
-            return `$${number.toFixed(2)}`;
-        }
-
-
-        if (
-            number >= 0.01
-        ) {
-
-            return `$${number.toFixed(4)}`;
-        }
-
-
-        return `$${number.toPrecision(4)}`;
-    }
-
-})();
+        element.textContent =
+            value === undefined
