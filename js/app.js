@@ -1,9 +1,6 @@
 /* =========================================================
    CHILI WEB
-   Application
-   ---------------------------------------------------------
-   Wallet integration:
-   DISABLED intentionally.
+   Application (FIXED)
    ========================================================= */
 
 (function () {
@@ -137,6 +134,12 @@
             "terminal-title":
                 "LIVE MARKET TERMINAL",
 
+            "terminal-feed":
+                "CHILI // MARKET DATA FEED",
+
+            "terminal-chain":
+                "BNB SMART CHAIN // ● REALTIME",
+
             "market-current":
                 "CURRENT MARKET PRICE",
 
@@ -183,24 +186,115 @@
                 "OPEN LIVE CHART ↗",
 
 
-            "token-supply":
-                "TOKEN SUPPLY",
+            "token-symbol-label":
+                "TOKEN SYMBOL",
 
-            "token-decimals":
+            "token-supply-label":
+                "TOTAL SUPPLY",
+
+            "token-decimals-label":
                 "DECIMALS",
 
-            "token-network":
+            "token-network-label":
                 "NETWORK",
 
-            "token-chain":
+            "token-chain-label":
                 "CHAIN ID",
 
+
+            "about-title":
+                "ABOUT<br>CHILI",
+
+            "about-desc":
+                "CHILI is designed around community, transparency and on-chain participation.",
+
+            "about-block1-title":
+                "SIMPLE.<br>VISIBLE.<br>ON-CHAIN.",
+
+            "about-block1-text":
+                "CHILI keeps the core idea simple: build a recognizable community token with transparent on-chain information.",
+
+            "about-block2-title":
+                "BUILT FOR<br>COMMUNITY.",
+
+            "about-block2-text":
+                "The CHILI identity is powered by the people who participate, create, share and build around the ecosystem.",
+
+
+            "why-title":
+                "WHY<br>CHILI?",
+
+            "why-community":
+                "COMMUNITY",
+
+            "why-onchain":
+                "ON-CHAIN",
+
+            "why-evolution":
+                "EVOLUTION",
+
+            "why-culture":
+                "CULTURE",
+
+
+            "tokenomics-title":
+                "TOKENOMICS",
+
+            "story-title":
+                "STORY",
+
+            "story-text1":
+                "CHILI begins with a simple idea: make on-chain participation visible, recognizable and community-driven.",
+
+            "story-text2":
+                "A clean identity, transparent information and a culture that can grow with its community.",
+
+            "story-text3":
+                "The next chapter is written on-chain, one block and one participant at a time.",
+
+
+            "security-title":
+                "SECURITY",
+
+            "security-card1-title":
+                "PUBLIC CONTRACT",
+
+            "security-card1-text":
+                "The CHILI contract address is publicly visible on BNB Smart Chain.",
+
+            "security-card2-title":
+                "ON-CHAIN DATA",
+
+            "security-card2-text":
+                "Token activity can be independently verified directly on-chain.",
+
+            "security-card3-title":
+                "BNB SMART CHAIN",
+
+            "security-card3-text":
+                "CHILI operates on BNB Smart Chain, providing transparent public blockchain data.",
+
+            "security-card4-title":
+                "TRANSPARENCY",
+
+            "security-card4-text":
+                "Contract information, market information and ecosystem links are designed to remain visible.",
+
+
+            "contract-title":
+                "CONTRACT",
+
+            "contract-label":
+                "CHILI CONTRACT",
 
             "copy":
                 "COPY",
 
             "copied":
                 "COPIED",
+
+            "view-contract":
+                "VIEW CONTRACT",
 
             "live":
                 "LIVE",
@@ -211,30 +305,11 @@
             "realtime":
                 "REALTIME",
 
-            "security":
-                "SECURITY",
+            "community-title":
+                "THE NEXT<br>BLOCK STARTS<br>WITH YOU.",
 
-            "transparency":
-                "TRANSPARENCY",
-
-            "about":
-                "ABOUT CHILI",
-
-            "tokenomics":
-                "TOKENOMICS",
-
-            "story":
-                "STORY",
-
-            "swap":
-                "SWAP",
-
-            "buy-chili":
-                "BUY CHILI",
-
-            "view-contract":
-                "VIEW CONTRACT",
-
+            "footer-github":
+                "GITHUB ↗",
 
             "market-unavailable":
                 "MARKET DATA UNAVAILABLE",
@@ -312,6 +387,12 @@
             "terminal-title":
                 "实时市场终端",
 
+            "terminal-feed":
+                "CHILI // 市场数据",
+
+            "terminal-chain":
+                "BNB 智能链 // ● 实时",
+
             "market-current":
                 "当前市场价格",
 
@@ -358,24 +439,115 @@
                 "打开实时图表 ↗",
 
 
-            "token-supply":
-                "代币总量",
+            "token-symbol-label":
+                "代币符号",
 
-            "token-decimals":
+            "token-supply-label":
+                "总供应量",
+
+            "token-decimals-label":
                 "精度",
 
-            "token-network":
+            "token-network-label":
                 "网络",
 
-            "token-chain":
+            "token-chain-label":
                 "链 ID",
 
+
+            "about-title":
+                "关于<br>CHILI",
+
+            "about-desc":
+                "CHILI 围绕社区、透明度和链上参与而设计。",
+
+            "about-block1-title":
+                "简单。<br>可见。<br>链上。",
+
+            "about-block1-text":
+                "CHILI 保持核心思想简单：构建一个具有透明链上信息的、可识别的社区代币。",
+
+            "about-block2-title":
+                "为社区<br>而生。",
+
+            "about-block2-text":
+                "CHILI 的身份由参与、创造、分享和围绕生态系统建设的人们赋予力量。",
+
+
+            "why-title":
+                "为什么<br>CHILI？",
+
+            "why-community":
+                "社区",
+
+            "why-onchain":
+                "链上",
+
+            "why-evolution":
+                "演进",
+
+            "why-culture":
+                "文化",
+
+
+            "tokenomics-title":
+                "代币经济",
+
+            "story-title":
+                "故事",
+
+            "story-text1":
+                "CHILI 从一个简单的想法开始：让链上参与变得可见、可识别且由社区驱动。",
+
+            "story-text2":
+                "一个清晰的标识、透明的信息，以及一个能与社区共同成长的文化。",
+
+            "story-text3":
+                "下一章写在链上，一个区块一个参与者地书写。",
+
+
+            "security-title":
+                "安全",
+
+            "security-card1-title":
+                "公开合约",
+
+            "security-card1-text":
+                "CHILI 合约地址在 BNB 智能链上公开可见。",
+
+            "security-card2-title":
+                "链上数据",
+
+            "security-card2-text":
+                "代币活动可直接在链上独立验证。",
+
+            "security-card3-title":
+                "BNB 智能链",
+
+            "security-card3-text":
+                "CHILI 运行在 BNB 智能链上，提供透明的公共区块链数据。",
+
+            "security-card4-title":
+                "透明度",
+
+            "security-card4-text":
+                "合约信息、市场信息和生态系统链接设计为始终可见。",
+
+
+            "contract-title":
+                "合约",
+
+            "contract-label":
+                "CHILI 合约",
 
             "copy":
                 "复制",
 
             "copied":
                 "已复制",
+
+            "view-contract":
+                "查看合约",
 
             "live":
                 "实时",
@@ -386,30 +558,11 @@
             "realtime":
                 "实时",
 
-            "security":
-                "安全",
+            "community-title":
+                "下一区块<br>由你<br>开启。",
 
-            "transparency":
-                "透明度",
-
-            "about":
-                "关于 CHILI",
-
-            "tokenomics":
-                "代币经济",
-
-            "story":
-                "故事",
-
-            "swap":
-                "兑换",
-
-            "buy-chili":
-                "购买 CHILI",
-
-            "view-contract":
-                "查看合约",
-
+            "footer-github":
+                "GITHUB ↗",
 
             "market-unavailable":
                 "市场数据暂不可用",
@@ -539,18 +692,9 @@
 
     /* =====================================================
        LANGUAGE
-       ===================================================== */
+    ===================================================== */
 
     function initializeLanguage() {
-
-        /*
-         * IMPORTANT:
-         * The real HTML uses:
-         *
-         * <button id="langBtn">
-         *
-         * It does NOT use data-lang.
-         */
 
         const button =
             document.getElementById(
@@ -600,12 +744,7 @@
             I18N.en;
 
 
-        /*
-         * 1.
-         * Translate every element that
-         * already has data-i18n.
-         */
-
+        // Translate all elements with data-i18n
         document
             .querySelectorAll(
                 "[data-i18n]"
@@ -626,98 +765,18 @@
                         )
                     ) {
 
-                        element.textContent =
-                            dictionary[key];
+                        // If innerHTML contains <br>, preserve it
+                        if (key === "about-title" || key === "why-title" || key === "community-title") {
+                            element.innerHTML = dictionary[key];
+                        } else {
+                            element.textContent = dictionary[key];
+                        }
                     }
                 }
             );
 
 
-        /*
-         * 2.
-         * The market area in the current
-         * HTML does not have data-i18n
-         * attributes, so bind the real
-         * classes / IDs here.
-         */
-
-        translateElement(
-            ".price-label",
-            "market-current",
-            dictionary
-        );
-
-        translateElement(
-            ".price-unit",
-            "market-unit",
-            dictionary
-        );
-
-        translateElement(
-            ".micro",
-            "market-pulse",
-            dictionary
-        );
-
-
-        /*
-         * Market cards
-         */
-
-        translateMarketCards(
-            dictionary
-        );
-
-
-        /*
-         * Market footer
-         */
-
-        translateMarketFooter(
-            dictionary
-        );
-
-
-        /*
-         * Terminal labels
-         */
-
-        const terminalTitle =
-            document.querySelector(
-                ".terminal-title"
-            );
-
-        if (terminalTitle) {
-
-            terminalTitle.textContent =
-                language === "zh"
-                    ? "CHILI // 市场数据"
-                    : "CHILI // MARKET DATA FEED";
-        }
-
-
-        const terminalChain =
-            document.querySelector(
-                ".terminal-chain"
-            );
-
-        if (terminalChain) {
-
-            terminalChain.textContent =
-                language === "zh"
-                    ? "BNB 智能链 // ● 实时"
-                    : "BNB SMART CHAIN // ● REALTIME";
-        }
-
-
-        /*
-         * 3.
-         * Language button.
-         *
-         * English page -> button says 中文
-         * Chinese page -> button says EN
-         */
-
+        // Language button
         const langButton =
             document.getElementById(
                 "langBtn"
@@ -741,228 +800,19 @@
         }
 
 
-        /*
-         * 4.
-         * HTML language.
-         */
-
+        // HTML language
         document.documentElement.lang =
             language === "zh"
                 ? "zh-CN"
                 : "en";
 
 
-        /*
-         * 5.
-         * Keep dynamic values untouched.
-         */
-
-        restoreDynamicMarketText();
-
-    }
-
-
-    function translateElement(
-        selector,
-        key,
-        dictionary
-    ) {
-
-        const elements =
-            document.querySelectorAll(
-                selector
+        // Restore dynamic market values after translation
+        if (lastMarketData) {
+            updateDynamicMarketFields(
+                lastMarketData
             );
-
-
-        elements.forEach(
-            function (element) {
-
-                if (
-                    dictionary[key]
-                ) {
-
-                    element.textContent =
-                        dictionary[key];
-                }
-            }
-        );
-    }
-
-
-    function translateMarketCards(
-        dictionary
-    ) {
-
-        const labels =
-            document.querySelectorAll(
-                ".market-card-label"
-            );
-
-
-        const keys = [
-
-            "market-pair",
-
-            "market-dex",
-
-            "market-block",
-
-            "market-liquidity",
-
-            "market-volume",
-
-            "market-cap",
-
-            "market-txns",
-
-            "market-buy-sell"
-        ];
-
-
-        labels.forEach(
-            function (
-                element,
-                index
-            ) {
-
-                const key =
-                    keys[index];
-
-
-                if (
-                    key &&
-                    dictionary[key]
-                ) {
-
-                    element.textContent =
-                        dictionary[key];
-                }
-            }
-        );
-    }
-
-
-    function translateMarketFooter(
-        dictionary
-    ) {
-
-        const footer =
-            document.querySelector(
-                ".market-footer"
-            );
-
-
-        if (!footer) {
-            return;
         }
-
-
-        const spans =
-            footer.querySelectorAll(
-                ":scope > span"
-            );
-
-
-        /*
-         * Pair address
-         */
-
-        if (spans[0]) {
-
-            const strong =
-                spans[0].querySelector(
-                    "strong"
-                );
-
-
-            if (strong) {
-
-                const value =
-                    strong.textContent;
-
-
-                spans[0].textContent =
-                    dictionary[
-                        "market-pair-address"
-                    ] + " ";
-
-
-                spans[0].appendChild(
-                    strong
-                );
-
-
-                strong.textContent =
-                    value;
-            }
-        }
-
-
-        /*
-         * Last update
-         */
-
-        if (spans[1]) {
-
-            const strong =
-                spans[1].querySelector(
-                    "strong"
-                );
-
-
-            if (strong) {
-
-                const value =
-                    strong.textContent;
-
-
-                spans[1].textContent =
-                    dictionary[
-                        "market-last-update"
-                    ] + " ";
-
-
-                spans[1].appendChild(
-                    strong
-                );
-
-
-                strong.textContent =
-                    value;
-            }
-        }
-
-
-        /*
-         * Chart link
-         */
-
-        const chartLink =
-            footer.querySelector(
-                "a.red"
-            );
-
-
-        if (chartLink) {
-
-            chartLink.textContent =
-                dictionary[
-                    "market-open-chart"
-                ];
-        }
-    }
-
-
-    function restoreDynamicMarketText() {
-
-        if (!lastMarketData) {
-            return;
-        }
-
-
-        updateDynamicMarketFields(
-            lastMarketData
-        );
     }
 
 
@@ -1034,8 +884,7 @@
 
     /* =====================================================
        MOBILE MENU
-       Real HTML uses #mobileToggle
-       ===================================================== */
+    ===================================================== */
 
     function initializeMobileMenu() {
 
@@ -1119,7 +968,7 @@
 
     /* =====================================================
        NAVIGATION
-       ===================================================== */
+    ===================================================== */
 
     function initializeNavigation() {
 
@@ -1180,13 +1029,9 @@
 
     /* =====================================================
        COPY
-       ===================================================== */
+    ===================================================== */
 
     function initializeCopy() {
-
-        /*
-         * Existing HTML has #copyHero.
-         */
 
         const heroButton =
             document.getElementById(
@@ -1226,21 +1071,12 @@
         }
 
 
-        /*
-         * Also support any future
-         * data-copy buttons.
-         */
-
         document
             .querySelectorAll(
                 "[data-copy]"
             )
             .forEach(
                 function (button) {
-
-                    /*
-                     * Avoid binding #copyHero twice.
-                     */
 
                     if (
                         button.id ===
@@ -1405,7 +1241,7 @@
 
     /* =====================================================
        EXTERNAL LINKS
-       ===================================================== */
+    ===================================================== */
 
     function initializeExternalLinks() {
 
@@ -1452,10 +1288,6 @@
             );
 
 
-        /*
-         * Generic future links.
-         */
-
         setLinkById(
             "swapLink",
             swapUrl
@@ -1476,10 +1308,6 @@
             dexUrl
         );
 
-
-        /*
-         * Social links.
-         */
 
         setSocialLink(
             "telegramLink",
@@ -1603,7 +1431,7 @@
 
     /* =====================================================
        TOKEN SUPPLY
-       ===================================================== */
+    ===================================================== */
 
     async function loadTokenSupply() {
 
@@ -1632,10 +1460,6 @@
 
 
         try {
-
-            /*
-             * ERC20 totalSupply()
-             */
 
             const result =
                 await rpcCall(
@@ -1685,7 +1509,7 @@
 
     /* =====================================================
        MARKET REFRESH
-       ===================================================== */
+    ===================================================== */
 
     async function refreshMarket() {
 
@@ -1789,7 +1613,7 @@
 
     /* =====================================================
        DEXSCREENER
-       ===================================================== */
+    ===================================================== */
 
     async function fetchDexPairs() {
 
@@ -1859,7 +1683,7 @@
 
     /* =====================================================
        PAIR SELECTION
-       ===================================================== */
+    ===================================================== */
 
     function selectBestPair(
         pairs
@@ -1895,11 +1719,6 @@
         }
 
 
-        /*
-         * If an official pair address
-         * has been configured, use it.
-         */
-
         const configuredPair =
             normalizeAddress(
                 CONFIG.dex?.pairAddress
@@ -1930,11 +1749,6 @@
             }
         }
 
-
-        /*
-         * Only keep pairs that actually
-         * contain the CHILI token.
-         */
 
         const chiliPairs =
             bscPairs.filter(
@@ -1982,11 +1796,6 @@
             );
 
 
-        /*
-         * Priority 1:
-         * CHILI / USDT
-         */
-
         const usdtPairs =
             chiliPairs.filter(
                 function (pair) {
@@ -2021,11 +1830,6 @@
         }
 
 
-        /*
-         * Priority 2:
-         * CHILI / WBNB
-         */
-
         const wbnbPairs =
             chiliPairs.filter(
                 function (pair) {
@@ -2059,11 +1863,6 @@
             );
         }
 
-
-        /*
-         * Priority 3:
-         * Any legitimate CHILI pair.
-         */
 
         return highestLiquidity(
             chiliPairs
@@ -2103,7 +1902,7 @@
 
     /* =====================================================
        MARKET UI
-       ===================================================== */
+    ===================================================== */
 
     function updateDynamicMarketFields(
         marketData
@@ -2253,19 +2052,10 @@
         );
 
 
-        /*
-         * Update live chart link
-         * to the actual selected pair.
-         */
-
         updateChartLink(
             pair
         );
 
-
-        /*
-         * Save current price sample.
-         */
 
         savePriceSample(
             price
@@ -2293,12 +2083,6 @@
                 "market-unavailable"
             )
         );
-
-
-        /*
-         * Do not erase the last
-         * successfully received values.
-         */
     }
 
 
@@ -2331,7 +2115,7 @@
 
     /* =====================================================
        PRICE HISTORY
-       ===================================================== */
+    ===================================================== */
 
     function savePriceSample(
         price
@@ -2448,7 +2232,7 @@
 
     /* =====================================================
        RPC
-       ===================================================== */
+    ===================================================== */
 
     async function getBlockNumberSafe() {
 
@@ -2602,7 +2386,7 @@
 
     /* =====================================================
        FETCH WITH TIMEOUT
-       ===================================================== */
+    ===================================================== */
 
     async function fetchWithTimeout(
         url,
@@ -2647,7 +2431,7 @@
 
     /* =====================================================
        SCROLL EFFECTS
-       ===================================================== */
+    ===================================================== */
 
     function initializeScrollEffects() {
 
@@ -2695,7 +2479,7 @@
 
     /* =====================================================
        SECTION OBSERVER
-       ===================================================== */
+    ===================================================== */
 
     function initializeSectionObserver() {
 
@@ -2784,7 +2568,7 @@
 
     /* =====================================================
        RESIZE
-       ===================================================== */
+    ===================================================== */
 
     function initializeResize() {
 
@@ -2805,10 +2589,7 @@
                     window.setTimeout(
                         function () {
 
-                            /*
-                             * Reserved for
-                             * future chart rendering.
-                             */
+                            // reserved
 
                         },
                         150
@@ -2820,7 +2601,7 @@
 
     /* =====================================================
        YEAR
-       ===================================================== */
+    ===================================================== */
 
     function initializeYear() {
 
@@ -2847,7 +2628,7 @@
 
     /* =====================================================
        BACK TO TOP
-       ===================================================== */
+    ===================================================== */
 
     function initializeBackToTop() {
 
@@ -2879,7 +2660,7 @@
 
     /* =====================================================
        TOAST
-       ===================================================== */
+    ===================================================== */
 
     function showToast(
         message
@@ -2994,7 +2775,7 @@
 
     /* =====================================================
        FORMATTERS
-       ===================================================== */
+    ===================================================== */
 
     function formatPrice(
         value
@@ -3301,7 +3082,7 @@
 
     /* =====================================================
        ADDRESS
-       ===================================================== */
+    ===================================================== */
 
     function isValidAddress(
         address
@@ -3374,7 +3155,7 @@
 
     /* =====================================================
        DOM HELPERS
-       ===================================================== */
+    ===================================================== */
 
     function setText(
         id,
