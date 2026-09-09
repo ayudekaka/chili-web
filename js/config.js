@@ -83,12 +83,6 @@ const CHILI_CONFIG = {
 
         pair: "CHILI / USDT",
 
-        /*
-         * Leave empty until the official CHILI/USDT
-         * PancakeSwap pair address is confirmed.
-         *
-         * When confirmed, put the pair address here.
-         */
         pairAddress: "",
 
         quoteTokens: {
@@ -111,13 +105,6 @@ const CHILI_CONFIG = {
     // --------------------------------------------------
     // SOCIAL
     // --------------------------------------------------
-
-    /*
-     * Empty values are intentional.
-     * Do NOT use "#" because it creates a fake link.
-     *
-     * Fill these when your official accounts are ready.
-     */
 
     social: {
 
