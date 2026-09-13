@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -11,8 +12,14 @@
    TOKENS
 ========================= */
 
-*, *::before, *::after { box-sizing: border-box; }
-* { margin: 0; padding: 0; }
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
 
 html {
   scroll-behavior: smooth;
@@ -37,6 +44,7 @@ html {
 
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo,
           Consolas, "Liberation Mono", monospace;
+
   --sans: "Inter", "Helvetica Neue", Arial,
           "PingFang SC", "Microsoft YaHei", sans-serif;
 
@@ -68,7 +76,10 @@ body::before{
   mix-blend-mode: multiply;
 }
 
-a { color: inherit; text-decoration: none; }
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
 .wrap{
   max-width: 1400px;
@@ -76,7 +87,9 @@ a { color: inherit; text-decoration: none; }
   padding-inline: var(--pad);
 }
 
-section[id]{ scroll-margin-top: 100px; }
+section[id]{
+  scroll-margin-top: 100px;
+}
 
 
 /* =========================
@@ -92,8 +105,10 @@ section[id]{ scroll-margin-top: 100px; }
 .topbar::after{
   content: "";
   position: absolute;
-  left: 0; bottom: -1px;
-  width: 80px; height: 1px;
+  left: 0;
+  bottom: -1px;
+  width: 80px;
+  height: 1px;
   background: var(--red);
 }
 
@@ -111,11 +126,15 @@ section[id]{ scroll-margin-top: 100px; }
   overflow: hidden;
 }
 
-.topbar-inner b{ color: var(--ink); font-weight: 700; }
+.topbar-inner b{
+  color: var(--ink);
+  font-weight: 700;
+}
 
 .dot{
   display: inline-block;
-  width: 6px; height: 6px;
+  width: 6px;
+  height: 6px;
   margin-right: 7px;
   border-radius: 50%;
   background: var(--red);
@@ -123,8 +142,11 @@ section[id]{ scroll-margin-top: 100px; }
   animation: blink 1.6s ease-in-out infinite;
   vertical-align: middle;
 }
+
 @keyframes blink{
-  50% { opacity: .25; }
+  50% {
+    opacity: .25;
+  }
 }
 
 
@@ -150,18 +172,19 @@ section[id]{ scroll-margin-top: 100px; }
   height: 70px;
 }
 
+/* CHILI Logo */
+
 .logo{
   justify-self: start;
   display: inline-flex;
   align-items: center;
-  gap: 2px;
 }
 
 .logo img{
   display: block;
-  width: 150px;
-  height: auto;
-  max-height: 46px;
+  width: auto;
+  height: 42px;
+  max-width: 190px;
   object-fit: contain;
 }
 
@@ -182,6 +205,7 @@ section[id]{ scroll-margin-top: 100px; }
   transition: color .2s, background .2s;
   position: relative;
 }
+
 .nav-links a:hover{
   color: var(--red);
   background: var(--bg-3);
@@ -237,6 +261,7 @@ section[id]{ scroll-margin-top: 100px; }
   font-weight: 800;
   letter-spacing: .16em;
   transition: background .25s, transform .25s;
+
   clip-path: polygon(
     8px 0,
     100% 0,
@@ -246,6 +271,7 @@ section[id]{ scroll-margin-top: 100px; }
     0 8px
   );
 }
+
 .nav-cta:hover{
   background: var(--red-deep);
   transform: translateY(-1px);
@@ -266,37 +292,62 @@ section[id]{ scroll-margin-top: 100px; }
 .hero-grid{
   position: absolute;
   inset: 0;
+
   background-image:
     linear-gradient(rgba(230,0,0,.055) 1px, transparent 1px),
     linear-gradient(90deg, rgba(230,0,0,.055) 1px, transparent 1px);
+
   background-size: 56px 56px;
   background-position: -1px -1px;
-  -webkit-mask-image: radial-gradient(140% 90% at 50% 0%, #000 30%, transparent 100%);
-          mask-image: radial-gradient(140% 90% at 50% 0%, #000 30%, transparent 100%);
+
+  -webkit-mask-image:
+    radial-gradient(
+      140% 90% at 50% 0%,
+      #000 30%,
+      transparent 100%
+    );
+
+  mask-image:
+    radial-gradient(
+      140% 90% at 50% 0%,
+      #000 30%,
+      transparent 100%
+    );
+
   pointer-events: none;
 }
 
 .hero-ruler{
   position: absolute;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 22px;
   border-bottom: 1px solid var(--line);
-  background-image: repeating-linear-gradient(
-    90deg,
-    var(--line-2) 0 1px,
-    transparent 1px 56px
-  );
+
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      var(--line-2) 0 1px,
+      transparent 1px 56px
+    );
+
   pointer-events: none;
   opacity: .85;
 }
 
 .hero-inner{
   position: relative;
+
   display: grid;
   grid-template-columns: 1.06fr .94fr;
+
   align-items: center;
+
   gap: clamp(24px, 4vw, 64px);
+
   padding-block: clamp(52px, 6vw, 92px);
+
   min-height: min(700px, 88vh);
 }
 
@@ -304,77 +355,134 @@ section[id]{ scroll-margin-top: 100px; }
   display: inline-flex;
   align-items: center;
   gap: 10px;
+
   padding: 6px 14px;
+
   border: 1px solid var(--line-2);
+
   background: #fff;
+
   font-family: var(--mono);
   font-size: 10px;
   font-weight: 600;
   letter-spacing: .2em;
+
   color: var(--muted);
 }
+
 .hero-eyebrow i{
-  width: 6px; height: 6px;
+  width: 6px;
+  height: 6px;
+
   border-radius: 50%;
+
   background: var(--red);
-  box-shadow: 0 0 0 3px rgba(230,0,0,.15);
-  animation: pulse 2.2s ease-in-out infinite;
+
+  box-shadow:
+    0 0 0 3px rgba(230,0,0,.15);
+
+  animation:
+    pulse 2.2s ease-in-out infinite;
 }
+
 @keyframes pulse{
-  50% { box-shadow: 0 0 0 9px rgba(230,0,0,0); }
+  50% {
+    box-shadow:
+      0 0 0 9px rgba(230,0,0,0);
+  }
 }
 
 .hero-title{
   font-family: var(--sans);
+
   font-size: clamp(76px, 11.5vw, 176px);
+
   line-height: .82;
+
   letter-spacing: -.055em;
+
   font-weight: 900;
+
   color: var(--ink);
-  margin: clamp(20px, 2.4vw, 30px) 0 clamp(18px, 1.8vw, 26px);
+
+  margin:
+    clamp(20px, 2.4vw, 30px)
+    0
+    clamp(18px, 1.8vw, 26px);
+
   position: relative;
 }
-.hero-title span{ color: var(--red); }
+
+.hero-title span{
+  color: var(--red);
+}
 
 .hero-sub{
   display: flex;
   flex-wrap: wrap;
+
   gap: 8px 14px;
+
   margin-bottom: 18px;
+
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: .14em;
+
   color: var(--muted);
 }
-.hero-sub b{ color: var(--ink); font-weight: 700; }
+
+.hero-sub b{
+  color: var(--ink);
+  font-weight: 700;
+}
 
 .hero-desc{
   max-width: 44ch;
+
   font-size: clamp(14.5px, 1.05vw, 16.5px);
+
   line-height: 1.65;
+
   color: var(--muted);
 }
 
 .hero-actions{
   display: flex;
   flex-wrap: wrap;
+
   gap: 10px;
-  margin-top: clamp(26px, 3vw, 38px);
+
+  margin-top:
+    clamp(26px, 3vw, 38px);
 }
 
 .btn{
   display: inline-flex;
+
   align-items: center;
   justify-content: center;
+
   gap: 9px;
+
   padding: 15px 26px;
+
   border: 1px solid transparent;
+
   font-family: var(--mono);
+
   font-size: 11px;
+
   font-weight: 800;
+
   letter-spacing: .16em;
-  transition: transform .22s, background .22s,
-              border-color .22s, color .22s;
+
+  transition:
+    transform .22s,
+    background .22s,
+    border-color .22s,
+    color .22s;
+
   clip-path: polygon(
     10px 0,
     100% 0,
@@ -383,6 +491,7 @@ section[id]{ scroll-margin-top: 100px; }
     0 100%,
     0 10px
   );
+
   position: relative;
 }
 
@@ -390,6 +499,7 @@ section[id]{ scroll-margin-top: 100px; }
   background: var(--red);
   color: #fff;
 }
+
 .btn-primary:hover{
   background: var(--red-deep);
   transform: translateY(-2px);
@@ -397,9 +507,12 @@ section[id]{ scroll-margin-top: 100px; }
 
 .btn-outline{
   background: #fff;
+
   border-color: var(--line-2);
+
   color: var(--ink);
 }
+
 .btn-outline:hover{
   border-color: var(--ink);
   background: var(--bg-3);
@@ -407,235 +520,415 @@ section[id]{ scroll-margin-top: 100px; }
 }
 
 
-/* =========================================
-   HERO VISUAL — 能量核心
-========================================= */
+/* =========================
+   HERO VISUAL
+========================= */
 
 .hero-visual{
   position: relative;
+
   width: 100%;
+
   max-width: 620px;
+
   aspect-ratio: 1 / 1;
+
   justify-self: center;
+
   display: grid;
   place-items: center;
+
   isolation: isolate;
 }
 
 .hero-visual::before{
   content: "";
+
   position: absolute;
+
   width: 100%;
+
   aspect-ratio: 1;
+
   border-radius: 50%;
-  background: radial-gradient(circle,
-    rgba(230,0,0,.1) 0%,
-    rgba(230,0,0,.045) 28%,
-    rgba(230,0,0,.015) 48%,
-    transparent 68%);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(230,0,0,.1) 0%,
+      rgba(230,0,0,.045) 28%,
+      rgba(230,0,0,.015) 48%,
+      transparent 68%
+    );
+
   filter: blur(14px);
+
   z-index: 0;
 }
 
 .hv-ticks{
   position: absolute;
+
   inset: 0;
+
   border-radius: 50%;
-  background: repeating-conic-gradient(
-    from 0deg,
-    rgba(0,0,0,.3) 0deg 0.6deg,
-    transparent 0.6deg 6deg
-  );
-  -webkit-mask: radial-gradient(circle,
-    transparent 46.5%, #000 47%, #000 49.6%, transparent 50%);
-          mask: radial-gradient(circle,
-    transparent 46.5%, #000 47%, #000 49.6%, transparent 50%);
+
+  background:
+    repeating-conic-gradient(
+      from 0deg,
+      rgba(0,0,0,.3) 0deg 0.6deg,
+      transparent 0.6deg 6deg
+    );
+
+  -webkit-mask:
+    radial-gradient(
+      circle,
+      transparent 46.5%,
+      #000 47%,
+      #000 49.6%,
+      transparent 50%
+    );
+
+  mask:
+    radial-gradient(
+      circle,
+      transparent 46.5%,
+      #000 47%,
+      #000 49.6%,
+      transparent 50%
+    );
+
   pointer-events: none;
 }
 
 .hv-ticks-major{
   position: absolute;
+
   inset: 0;
+
   border-radius: 50%;
-  background: repeating-conic-gradient(
-    from 0deg,
-    rgba(230,0,0,.7) 0deg 0.9deg,
-    transparent 0.9deg 30deg
-  );
-  -webkit-mask: radial-gradient(circle,
-    transparent 42.5%, #000 43%, #000 49.6%, transparent 50%);
-          mask-image: radial-gradient(circle,
-    transparent 42.5%, #000 43%, #000 49.6%, transparent 50%);
+
+  background:
+    repeating-conic-gradient(
+      from 0deg,
+      rgba(230,0,0,.7) 0deg 0.9deg,
+      transparent 0.9deg 30deg
+    );
+
+  -webkit-mask:
+    radial-gradient(
+      circle,
+      transparent 42.5%,
+      #000 43%,
+      #000 49.6%,
+      transparent 50%
+    );
+
+  mask:
+    radial-gradient(
+      circle,
+      transparent 42.5%,
+      #000 43%,
+      #000 49.6%,
+      transparent 50%
+    );
+
   pointer-events: none;
 }
 
 .hv-ticks-inner{
   position: absolute;
+
   inset: 18%;
+
   border-radius: 50%;
-  background: repeating-conic-gradient(
-    from 0deg,
-    rgba(230,0,0,.55) 0deg 0.8deg,
-    transparent 0.8deg 15deg
-  );
-  -webkit-mask: radial-gradient(circle,
-    transparent 47.5%, #000 48%, #000 50%, transparent 50.4%);
-          mask: radial-gradient(circle,
-    transparent 47.5%, #000 48%, #000 50%, transparent 50.4%);
+
+  background:
+    repeating-conic-gradient(
+      from 0deg,
+      rgba(230,0,0,.55) 0deg 0.8deg,
+      transparent 0.8deg 15deg
+    );
+
+  -webkit-mask:
+    radial-gradient(
+      circle,
+      transparent 47.5%,
+      #000 48%,
+      #000 50%,
+      transparent 50.4%
+    );
+
+  mask:
+    radial-gradient(
+      circle,
+      transparent 47.5%,
+      #000 48%,
+      #000 50%,
+      transparent 50.4%
+    );
+
   pointer-events: none;
 }
 
 .hv-ticks-center{
   position: absolute;
+
   inset: 36%;
+
   border-radius: 50%;
-  background: repeating-conic-gradient(
-    from 0deg,
-    rgba(230,0,0,.45) 0deg 1deg,
-    transparent 1deg 20deg
-  );
-  -webkit-mask: radial-gradient(circle,
-    transparent 46%, #000 47%, #000 50%, transparent 51%);
-          mask: radial-gradient(circle,
-    transparent 46%, #000 47%, #000 50%, transparent 51%);
+
+  background:
+    repeating-conic-gradient(
+      from 0deg,
+      rgba(230,0,0,.45) 0deg 1deg,
+      transparent 1deg 20deg
+    );
+
+  -webkit-mask:
+    radial-gradient(
+      circle,
+      transparent 46%,
+      #000 47%,
+      #000 50%,
+      transparent 51%
+    );
+
+  mask:
+    radial-gradient(
+      circle,
+      transparent 46%,
+      #000 47%,
+      #000 50%,
+      transparent 51%
+    );
+
   pointer-events: none;
 }
 
 .hv-ring-outer{
   position: absolute;
+
   inset: 3%;
+
   border-radius: 50%;
+
   border: 1px solid rgba(0,0,0,.1);
+
   pointer-events: none;
 }
 
 .hv-ring-mid{
   position: absolute;
+
   inset: 14%;
+
   border-radius: 50%;
+
   border: 1px dashed rgba(230,0,0,.35);
+
   pointer-events: none;
 }
 
 .hv-ring-inner{
   position: absolute;
+
   inset: 30%;
+
   border-radius: 50%;
+
   border: 1px solid rgba(230,0,0,.18);
+
   pointer-events: none;
 }
 
 .hv-orbit-a{
   position: absolute;
+
   inset: 8%;
+
   border-radius: 50%;
+
   border: 1.5px solid rgba(230,0,0,.55);
+
   border-top-color: transparent;
-  animation: hvSpin 22s linear infinite;
+
+  animation:
+    hvSpin 22s linear infinite;
+
   pointer-events: none;
 }
 
 .hv-orbit-b{
   position: absolute;
+
   inset: 20%;
+
   border-radius: 50%;
+
   border: 1px dashed rgba(0,0,0,.24);
+
   border-bottom-color: transparent;
   border-right-color: transparent;
-  animation: hvSpin 32s linear infinite reverse;
+
+  animation:
+    hvSpin 32s linear infinite reverse;
+
   pointer-events: none;
 }
 
 .hv-orbit-c{
   position: absolute;
+
   inset: 36%;
+
   border-radius: 50%;
+
   border: 1px solid rgba(230,0,0,.5);
+
   border-left-color: transparent;
   border-bottom-color: transparent;
-  animation: hvSpin 14s linear infinite;
+
+  animation:
+    hvSpin 14s linear infinite;
+
   pointer-events: none;
 }
 
-@keyframes hvSpin{ to { transform: rotate(360deg); } }
+@keyframes hvSpin{
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 .hv-scan{
   position: absolute;
+
   inset: 3%;
+
   border-radius: 50%;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0deg,
-    transparent 310deg,
-    rgba(230,0,0,.04) 328deg,
-    rgba(230,0,0,.2) 350deg,
-    rgba(230,0,0,.4) 359deg,
-    transparent 360deg
-  );
-  animation: hvSpin 9s linear infinite;
+
+  background:
+    conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      transparent 310deg,
+      rgba(230,0,0,.04) 328deg,
+      rgba(230,0,0,.2) 350deg,
+      rgba(230,0,0,.4) 359deg,
+      transparent 360deg
+    );
+
+  animation:
+    hvSpin 9s linear infinite;
+
   pointer-events: none;
+
   z-index: 3;
 }
 
 .hv-scan::after{
   content: "";
+
   position: absolute;
+
   inset: 0;
+
   border-radius: 50%;
-  background: conic-gradient(
-    from 358.2deg,
-    rgba(230,0,0,.9) 0deg,
-    transparent 1.8deg,
-    transparent 360deg
-  );
-  -webkit-mask: radial-gradient(circle,
-    transparent 24%, #000 28%, #000 49%, transparent 50%);
-          mask: radial-gradient(circle,
-    transparent 24%, #000 28%, #000 49%, transparent 50%);
+
+  background:
+    conic-gradient(
+      from 358.2deg,
+      rgba(230,0,0,.9) 0deg,
+      transparent 1.8deg,
+      transparent 360deg
+    );
+
+  -webkit-mask:
+    radial-gradient(
+      circle,
+      transparent 24%,
+      #000 28%,
+      #000 49%,
+      transparent 50%
+    );
+
+  mask:
+    radial-gradient(
+      circle,
+      transparent 24%,
+      #000 28%,
+      #000 49%,
+      transparent 50%
+    );
 }
 
 .hv-core{
   position: relative;
+
   z-index: 6;
+
   width: 3.5%;
+
   aspect-ratio: 1;
+
   border-radius: 50%;
+
   background: var(--red);
+
   box-shadow:
     0 0 12px rgba(230,0,0,.85),
     0 0 30px rgba(230,0,0,.45),
     0 0 60px rgba(230,0,0,.2);
-  animation: hvCorePulse 2.6s ease-in-out infinite;
+
+  animation:
+    hvCorePulse 2.6s ease-in-out infinite;
 }
 
 .hv-core::before{
   content: "";
+
   position: absolute;
+
   inset: -140%;
+
   border-radius: 50%;
+
   border: 1px solid rgba(230,0,0,.55);
-  animation: hvRing 2.6s ease-out infinite;
+
+  animation:
+    hvRing 2.6s ease-out infinite;
 }
 
 .hv-core::after{
   content: "";
+
   position: absolute;
+
   inset: -260%;
+
   border-radius: 50%;
+
   border: 1px solid rgba(230,0,0,.25);
-  animation: hvRing 2.6s ease-out 1.3s infinite;
+
+  animation:
+    hvRing 2.6s ease-out 1.3s infinite;
 }
 
 @keyframes hvCorePulse{
-  0%, 100% {
+
+  0%,100%{
     transform: scale(1);
+
     box-shadow:
       0 0 12px rgba(230,0,0,.85),
       0 0 30px rgba(230,0,0,.45),
       0 0 60px rgba(230,0,0,.2);
   }
-  50% {
+
+  50%{
     transform: scale(1.35);
+
     box-shadow:
       0 0 18px rgba(230,0,0,1),
       0 0 45px rgba(230,0,0,.6),
@@ -644,90 +937,177 @@ section[id]{ scroll-margin-top: 100px; }
 }
 
 @keyframes hvRing{
-  0%   { transform: scale(.7); opacity: .9; }
-  100% { transform: scale(1.6); opacity: 0; }
+
+  0%{
+    transform: scale(.7);
+    opacity: .9;
+  }
+
+  100%{
+    transform: scale(1.6);
+    opacity: 0;
+  }
 }
 
 .hv-halo{
   position: absolute;
+
   width: 4%;
+
   aspect-ratio: 1;
+
   border-radius: 50%;
+
   border: 1px solid rgba(230,0,0,.5);
+
   z-index: 5;
+
   pointer-events: none;
-  animation: hvHalo 4.4s ease-out infinite;
+
+  animation:
+    hvHalo 4.4s ease-out infinite;
 }
-.hv-halo-2{ animation-delay: 2.2s; }
+
+.hv-halo-2{
+  animation-delay: 2.2s;
+}
 
 @keyframes hvHalo{
-  0%   { transform: scale(.8); opacity: .85; }
-  100% { transform: scale(7); opacity: 0; }
+
+  0%{
+    transform: scale(.8);
+    opacity: .85;
+  }
+
+  100%{
+    transform: scale(7);
+    opacity: 0;
+  }
 }
 
 .hv-node{
   position: absolute;
-  width: 12px; height: 12px;
+
+  width: 12px;
+  height: 12px;
+
   z-index: 7;
+
   pointer-events: none;
 }
 
 .hv-node::before{
   content: "";
+
   position: absolute;
+
   inset: 50%;
-  width: 10px; height: 10px;
+
+  width: 10px;
+  height: 10px;
+
   margin: -5px 0 0 -5px;
+
   border-radius: 50%;
+
   background: var(--red);
+
   box-shadow:
     0 0 0 2px rgba(255,255,255,.95),
     0 0 0 3px rgba(230,0,0,.3),
     0 0 16px rgba(230,0,0,.9);
-  animation: hvNodePulse 3s ease-in-out infinite;
+
+  animation:
+    hvNodePulse 3s ease-in-out infinite;
 }
 
 .hv-node::after{
   content: "";
+
   position: absolute;
+
   inset: 50%;
-  width: 22px; height: 22px;
+
+  width: 22px;
+  height: 22px;
+
   margin: -11px 0 0 -11px;
+
   border: 1px solid rgba(230,0,0,.4);
+
   border-radius: 50%;
-  animation: hvNodeHalo 3s ease-out infinite;
+
+  animation:
+    hvNodeHalo 3s ease-out infinite;
 }
 
 @keyframes hvNodePulse{
-  50% { transform: scale(.6); opacity: .65; }
-}
-@keyframes hvNodeHalo{
-  0%   { transform: scale(.55); opacity: .9; }
-  100% { transform: scale(1.7); opacity: 0; }
+  50%{
+    transform: scale(.6);
+    opacity: .65;
+  }
 }
 
-.hv-node-1{ top: 8%;  left: 50%; margin-left: -6px; }
-.hv-node-1::before{ animation-delay: 0s; }
-.hv-node-2{ top: 52%;  right: 6%; margin-top: -6px; }
-.hv-node-2::before{ animation-delay: 1.1s; }
-.hv-node-3{ bottom: 12%; left: 18%; }
-.hv-node-3::before{ animation-delay: 2.2s; }
+@keyframes hvNodeHalo{
+
+  0%{
+    transform: scale(.55);
+    opacity: .9;
+  }
+
+  100%{
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+.hv-node-1{
+  top: 8%;
+  left: 50%;
+  margin-left: -6px;
+}
+
+.hv-node-2{
+  top: 52%;
+  right: 6%;
+  margin-top: -6px;
+}
+
+.hv-node-3{
+  bottom: 12%;
+  left: 18%;
+}
 
 .readout{
   position: absolute;
+
   z-index: 8;
+
   padding: 8px 12px 8px 14px;
+
   border: 1px solid var(--line-2);
+
   background: rgba(255,255,255,.94);
+
   backdrop-filter: blur(10px);
+
   -webkit-backdrop-filter: blur(10px);
+
   font-family: var(--mono);
+
   font-size: 9.5px;
+
   line-height: 1.9;
+
   letter-spacing: .1em;
+
   color: var(--muted);
+
   white-space: nowrap;
-  box-shadow: 0 8px 22px -16px rgba(0,0,0,.35);
+
+  box-shadow:
+    0 8px 22px -16px rgba(0,0,0,.35);
+
   clip-path: polygon(
     6px 0,
     100% 0,
@@ -740,19 +1120,46 @@ section[id]{ scroll-margin-top: 100px; }
 
 .readout::before{
   content: "";
+
   position: absolute;
-  left: 0; top: 0; bottom: 0;
+
+  left: 0;
+  top: 0;
+  bottom: 0;
+
   width: 2px;
+
   background: var(--red);
 }
 
-.readout b{ color: var(--ink); font-weight: 700; }
-.readout b.red{ color: var(--red); }
+.readout b{
+  color: var(--ink);
+  font-weight: 700;
+}
 
-.readout-1{ top: 5%;  left: 0; }
-.readout-2{ top: 5%;  right: 0; }
-.readout-3{ bottom: 7%; left: 0; }
-.readout-4{ bottom: 7%; right: 0; }
+.readout b.red{
+  color: var(--red);
+}
+
+.readout-1{
+  top: 5%;
+  left: 0;
+}
+
+.readout-2{
+  top: 5%;
+  right: 0;
+}
+
+.readout-3{
+  bottom: 7%;
+  left: 0;
+}
+
+.readout-4{
+  bottom: 7%;
+  right: 0;
+}
 
 
 /* =========================
@@ -761,56 +1168,100 @@ section[id]{ scroll-margin-top: 100px; }
 
 .marquee{
   border-bottom: 1px solid var(--line);
+
   background: var(--red);
+
   color: #fff;
+
   overflow: hidden;
+
   height: 44px;
+
   display: flex;
+
   align-items: center;
+
   position: relative;
 }
 
 .marquee::before,
 .marquee::after{
   content: "";
+
   position: absolute;
-  top: 0; bottom: 0;
+
+  top: 0;
+  bottom: 0;
+
   width: 60px;
+
   z-index: 2;
+
   pointer-events: none;
 }
+
 .marquee::before{
   left: 0;
-  background: linear-gradient(90deg, var(--red), transparent);
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--red),
+      transparent
+    );
 }
+
 .marquee::after{
   right: 0;
-  background: linear-gradient(-90deg, var(--red), transparent);
+
+  background:
+    linear-gradient(
+      -90deg,
+      var(--red),
+      transparent
+    );
 }
 
 .marquee-track{
   display: flex;
+
   align-items: center;
+
   gap: 34px;
+
   padding-left: 34px;
+
   white-space: nowrap;
-  animation: marquee 42s linear infinite;
+
+  animation:
+    marquee 42s linear infinite;
+
   font-family: var(--mono);
+
   font-size: 11px;
+
   font-weight: 700;
+
   letter-spacing: .22em;
 }
 
 .marquee-track i{
   display: inline-block;
-  width: 5px; height: 5px;
+
+  width: 5px;
+  height: 5px;
+
   border-radius: 50%;
+
   background: #fff;
+
   opacity: .7;
 }
 
 @keyframes marquee{
-  to { transform: translateX(-50%); }
+  to{
+    transform: translateX(-50%);
+  }
 }
 
 
@@ -825,42 +1276,74 @@ section[id]{ scroll-margin-top: 100px; }
 
 .stats-grid{
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4,1fr);
 }
 
 .stat{
-  padding: clamp(24px, 2.8vw, 40px) clamp(12px, 1.8vw, 26px);
+  padding:
+    clamp(24px,2.8vw,40px)
+    clamp(12px,1.8vw,26px);
+
   border-right: 1px solid var(--line);
+
   position: relative;
 }
-.stat:first-child{ padding-left: 0; }
-.stat:last-child { border-right: none; padding-right: 0; }
+
+.stat:first-child{
+  padding-left: 0;
+}
+
+.stat:last-child{
+  border-right: none;
+  padding-right: 0;
+}
 
 .stat::before{
   content: attr(data-idx);
+
   position: absolute;
-  top: 10px; right: 12px;
+
+  top: 10px;
+  right: 12px;
+
   font-family: var(--mono);
+
   font-size: 9px;
+
   letter-spacing: .12em;
+
   color: var(--line-2);
 }
-.stat:last-child::before{ right: 0; }
+
+.stat:last-child::before{
+  right: 0;
+}
 
 .stat-value{
-  font-size: clamp(18px, 1.75vw, 26px);
+  font-size: clamp(18px,1.75vw,26px);
+
   font-weight: 900;
+
   letter-spacing: -.02em;
+
   color: var(--ink);
+
   font-family: var(--mono);
 }
-.stat-value.accent{ color: var(--red); }
+
+.stat-value.accent{
+  color: var(--red);
+}
 
 .stat-label{
   margin-top: 6px;
+
   font-family: var(--mono);
+
   font-size: 9px;
+
   letter-spacing: .2em;
+
   color: var(--muted);
 }
 
@@ -871,87 +1354,152 @@ section[id]{ scroll-margin-top: 100px; }
 
 .section{
   padding-block: var(--sec-y);
+
   border-bottom: 1px solid var(--line);
+
   position: relative;
+
   background: #ffffff;
 }
 
 .section::before{
   content: "";
+
   position: absolute;
-  top: -1px; left: 0;
-  width: 42px; height: 2px;
+
+  top: -1px;
+  left: 0;
+
+  width: 42px;
+  height: 2px;
+
   background: var(--red);
 }
 
-.section--soft{ background: var(--bg-2); }
+.section--soft{
+  background: var(--bg-2);
+}
 
 .section--dark{
   background: #ffffff;
+
   color: var(--ink);
+
   position: relative;
+
   overflow: hidden;
 }
-.section--dark::before{ background: var(--red); }
+
+.section--dark::before{
+  background: var(--red);
+}
+
 .section--dark::after{
   content: "";
+
   position: absolute;
+
   inset: 0;
+
   background-image:
-    linear-gradient(rgba(230,0,0,.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(230,0,0,.04) 1px, transparent 1px);
+    linear-gradient(
+      rgba(230,0,0,.04) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(230,0,0,.04) 1px,
+      transparent 1px
+    );
+
   background-size: 56px 56px;
+
   pointer-events: none;
+
   opacity: .9;
 }
 
 .section-head{
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+
+  grid-template-columns:
+    minmax(0,1fr)
+    minmax(0,420px);
+
   align-items: end;
-  gap: clamp(20px, 4vw, 60px);
-  margin-bottom: clamp(36px, 4.5vw, 64px);
+
+  gap: clamp(20px,4vw,60px);
+
+  margin-bottom:
+    clamp(36px,4.5vw,64px);
+
   position: relative;
+
   z-index: 1;
 }
 
 .section-tag{
   display: inline-flex;
+
   align-items: center;
+
   gap: 10px;
+
   margin-bottom: 14px;
+
   font-family: var(--mono);
+
   font-size: 10px;
+
   font-weight: 700;
+
   letter-spacing: .22em;
+
   color: var(--ink);
 }
+
 .section-tag::before{
   content: ">";
+
   color: var(--red);
+
   font-weight: 900;
 }
+
 .section-tag::after{
   content: "";
-  width: 22px; height: 1px;
+
+  width: 22px;
+  height: 1px;
+
   background: var(--red);
+
   margin-left: -4px;
 }
 
 .section-title{
-  font-size: clamp(38px, 5vw, 64px);
+  font-size: clamp(38px,5vw,64px);
+
   line-height: .96;
+
   letter-spacing: -.045em;
+
   font-weight: 900;
+
   color: var(--ink);
+
   position: relative;
 }
 
 .section-lead{
-  font-size: clamp(14px, 1.02vw, 15.5px);
+  font-size: clamp(14px,1.02vw,15.5px);
+
   line-height: 1.7;
+
   color: var(--muted);
+
   padding-left: 14px;
+
   border-left: 2px solid var(--red);
 }
 
@@ -962,30 +1510,47 @@ section[id]{ scroll-margin-top: 100px; }
 
 .card-grid{
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(14px, 1.5vw, 20px);
+
+  grid-template-columns: repeat(3,1fr);
+
+  gap: clamp(14px,1.5vw,20px);
+
   position: relative;
+
   z-index: 1;
 }
 
 .card{
   position: relative;
+
   display: flex;
+
   flex-direction: column;
+
   min-height: 264px;
-  padding: clamp(22px, 2.2vw, 32px);
+
+  padding:
+    clamp(22px,2.2vw,32px);
+
   border: 1px solid var(--line);
+
   background: #fff;
+
   color: inherit;
+
   overflow: hidden;
-  transition: transform .3s cubic-bezier(.2,.8,.3,1),
-              border-color .3s,
-              box-shadow .3s;
+
+  transition:
+    transform .3s cubic-bezier(.2,.8,.3,1),
+    border-color .3s,
+    box-shadow .3s;
 }
 
 .card:hover{
   transform: translateY(-4px);
+
   border-color: var(--red);
+
   box-shadow:
     0 0 0 1px var(--red),
     0 18px 40px -28px rgba(230,0,0,.5);
@@ -994,114 +1559,200 @@ section[id]{ scroll-margin-top: 100px; }
 .card::before,
 .card::after{
   content: "";
+
   position: absolute;
-  width: 12px; height: 12px;
+
+  width: 12px;
+  height: 12px;
+
   pointer-events: none;
-  transition: width .3s, height .3s;
+
+  transition:
+    width .3s,
+    height .3s;
+
   z-index: 2;
 }
+
 .card::before{
-  top: -1px; left: -1px;
+  top: -1px;
+  left: -1px;
+
   border-top: 2px solid var(--red);
   border-left: 2px solid var(--red);
 }
+
 .card::after{
-  bottom: -1px; right: -1px;
+  bottom: -1px;
+  right: -1px;
+
   border-bottom: 2px solid var(--red);
   border-right: 2px solid var(--red);
 }
+
 .card:hover::before,
 .card:hover::after{
-  width: 24px; height: 24px;
+  width: 24px;
+  height: 24px;
 }
 
 .card-dots{
   position: absolute;
-  top: 12px; right: 12px;
-  width: 42px; height: 8px;
-  background-image: radial-gradient(circle, var(--line-2) 1px, transparent 1px);
+
+  top: 12px;
+  right: 12px;
+
+  width: 42px;
+  height: 8px;
+
+  background-image:
+    radial-gradient(
+      circle,
+      var(--line-2) 1px,
+      transparent 1px
+    );
+
   background-size: 6px 6px;
+
   pointer-events: none;
+
   z-index: 2;
+
   transition: opacity .3s;
 }
+
 .card:hover .card-dots{
-  background-image: radial-gradient(circle, rgba(230,0,0,.35) 1px, transparent 1px);
+  background-image:
+    radial-gradient(
+      circle,
+      rgba(230,0,0,.35) 1px,
+      transparent 1px
+    );
 }
 
 .card-head{
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
+
   gap: 10px;
+
   padding-bottom: 14px;
+
   border-bottom: 1px dashed var(--line);
 }
 
 .card-tag{
   font-family: var(--mono);
+
   font-size: 9.5px;
+
   font-weight: 700;
+
   letter-spacing: .2em;
+
   color: var(--muted);
 }
 
 .card-num{
   font-family: var(--mono);
+
   font-size: 9.5px;
+
   letter-spacing: .12em;
+
   color: var(--muted-2);
 }
 
-.card-body{ margin-top: auto; padding-top: 40px; }
+.card-body{
+  margin-top: auto;
+
+  padding-top: 40px;
+}
 
 .card-value{
-  font-size: clamp(22px, 2vw, 30px);
+  font-size: clamp(22px,2vw,30px);
+
   font-weight: 900;
+
   letter-spacing: -.03em;
+
   line-height: 1.1;
+
   color: var(--ink);
 }
+
 .card-value.small{
   font-size: 14.5px;
+
   letter-spacing: 0;
+
   word-break: break-all;
+
   font-family: var(--mono);
 }
 
 .card-text{
   margin-top: 12px;
+
   font-size: 13px;
+
   line-height: 1.6;
+
   color: var(--muted);
 }
 
 .card-data{
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
+
   gap: 10px;
+
   margin-top: 16px;
+
   padding-top: 12px;
+
   border-top: 1px dashed var(--line);
+
   font-family: var(--mono);
+
   font-size: 9px;
+
   letter-spacing: .14em;
+
   color: var(--muted-2);
 }
+
 .card-data .status{
   display: inline-flex;
+
   align-items: center;
+
   gap: 6px;
+
   color: var(--red);
+
   font-weight: 700;
 }
+
 .card-data .status i{
-  width: 5px; height: 5px;
+  width: 5px;
+  height: 5px;
+
   border-radius: 50%;
+
   background: var(--red);
-  box-shadow: 0 0 6px var(--red);
-  animation: blink 1.6s ease-in-out infinite;
+
+  box-shadow:
+    0 0 6px var(--red);
+
+  animation:
+    blink 1.6s ease-in-out infinite;
 }
 
 
@@ -1109,174 +1760,125 @@ section[id]{ scroll-margin-top: 100px; }
    FOUNDER
 ========================= */
 
-.founder-grid{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: clamp(14px, 1.5vw, 20px);
-  position: relative;
-  z-index: 1;
-}
-
-.founder-card{
-  position: relative;
-  padding: clamp(22px, 2.2vw, 32px);
-  border: 1px solid var(--line);
-  background: #fff;
-  min-height: 230px;
-  display: flex;
-  flex-direction: column;
-  transition: transform .3s cubic-bezier(.2,.8,.3,1),
-              border-color .3s,
-              box-shadow .3s;
-}
-
-.founder-card:hover{
-  transform: translateY(-4px);
-  border-color: var(--red);
-  box-shadow:
-    0 0 0 1px var(--red),
-    0 18px 40px -28px rgba(230,0,0,.5);
-}
-
-.founder-card::before{
-  content: "";
-  position: absolute;
-  top: -1px; left: -1px;
-  width: 12px; height: 12px;
-  border-top: 2px solid var(--red);
-  border-left: 2px solid var(--red);
-  transition: width .3s, height .3s;
-}
-.founder-card::after{
-  content: "";
-  position: absolute;
-  bottom: -1px; right: -1px;
-  width: 12px; height: 12px;
-  border-bottom: 2px solid var(--red);
-  border-right: 2px solid var(--red);
-  transition: width .3s, height .3s;
-}
-.founder-card:hover::before,
-.founder-card:hover::after{
-  width: 24px; height: 24px;
-}
-
-.founder-index{
-  font-family: var(--mono);
-  font-size: 9.5px;
-  letter-spacing: .18em;
-  color: var(--muted-2);
-  margin-bottom: 18px;
-}
-
-.founder-icon{
-  width: 38px; height: 38px;
-  border: 1px solid var(--red);
-  display: grid;
-  place-items: center;
-  font-family: var(--mono);
-  font-size: 13px;
-  font-weight: 800;
-  color: var(--red);
-  margin-bottom: 20px;
-  position: relative;
-}
-.founder-icon::before{
-  content: "";
-  position: absolute;
-  inset: 3px;
-  border: 1px dashed rgba(230,0,0,.35);
-}
-
-.founder-title{
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .12em;
-  color: var(--ink);
-  margin-bottom: 8px;
-  text-transform: uppercase;
-}
-
-.founder-desc{
-  font-size: 12.5px;
-  line-height: 1.6;
-  color: var(--muted);
-  margin-top: auto;
-}
-
 .founder-note{
-  margin-top: clamp(28px, 3.5vw, 48px);
-  padding: clamp(24px, 2.8vw, 40px);
+  margin-top:
+    clamp(28px,3.5vw,48px);
+
+  padding:
+    clamp(24px,2.8vw,40px);
+
   border: 1px solid var(--line-2);
+
   background: var(--bg-2);
+
   position: relative;
+
   display: grid;
+
   grid-template-columns: auto 1fr;
-  gap: clamp(20px, 3vw, 40px);
+
+  gap: clamp(20px,3vw,40px);
+
   align-items: flex-start;
+
   z-index: 1;
 }
 
 .founder-note::before{
   content: "";
+
   position: absolute;
-  top: -1px; left: -1px;
-  width: 14px; height: 14px;
+
+  top: -1px;
+  left: -1px;
+
+  width: 14px;
+  height: 14px;
+
   border-top: 2px solid var(--red);
   border-left: 2px solid var(--red);
 }
+
 .founder-note::after{
   content: "";
+
   position: absolute;
-  bottom: -1px; right: -1px;
-  width: 14px; height: 14px;
+
+  bottom: -1px;
+  right: -1px;
+
+  width: 14px;
+  height: 14px;
+
   border-bottom: 2px solid var(--red);
   border-right: 2px solid var(--red);
 }
 
 .founder-note-mark{
   font-family: var(--mono);
+
   font-size: 42px;
+
   font-weight: 900;
+
   line-height: 1;
+
   color: var(--red);
+
   user-select: none;
 }
 
 .founder-note-body{
   display: flex;
+
   flex-direction: column;
+
   gap: 14px;
 }
 
 .founder-note-tag{
   display: inline-flex;
+
   align-items: center;
+
   gap: 8px;
+
   font-family: var(--mono);
+
   font-size: 10px;
+
   font-weight: 700;
+
   letter-spacing: .2em;
+
   color: var(--red);
+
   margin-bottom: 4px;
 }
+
 .founder-note-tag::before{
   content: "";
-  width: 18px; height: 1px;
+
+  width: 18px;
+  height: 1px;
+
   background: var(--red);
 }
 
 .founder-note p{
-  font-size: clamp(14px, 1.05vw, 15.5px);
+  font-size: clamp(14px,1.05vw,15.5px);
+
   line-height: 1.75;
+
   color: var(--ink);
+
   max-width: 88ch;
 }
 
 .founder-note p + p{
   color: var(--muted);
-  font-size: clamp(13px, 1vw, 14.5px);
+
+  font-size: clamp(13px,1vw,14.5px);
 }
 
 
@@ -1286,115 +1888,286 @@ section[id]{ scroll-margin-top: 100px; }
 
 .tok-grid{
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: clamp(36px, 5vw, 84px);
+
+  grid-template-columns:
+    minmax(0,1fr)
+    minmax(0,1fr);
+
+  gap: clamp(36px,5vw,84px);
+
   align-items: start;
+
   position: relative;
+
   z-index: 1;
 }
 
 .tok-title{
-  font-size: clamp(36px, 4.4vw, 60px);
+  font-size: clamp(36px,4.4vw,60px);
+
   line-height: .96;
+
   letter-spacing: -.045em;
+
   font-weight: 900;
+
   margin: 12px 0 24px;
+
   color: var(--ink);
 }
 
 .tok-desc{
   max-width: 44ch;
+
   color: var(--muted);
+
   line-height: 1.75;
+
   font-size: 14.5px;
+
   padding-left: 14px;
+
   border-left: 2px solid var(--red);
 }
 
-.tok-item + .tok-item{ margin-top: 26px; }
+.tok-item + .tok-item{
+  margin-top: 26px;
+}
 
 .tok-row{
   display: flex;
+
   align-items: baseline;
+
   justify-content: space-between;
+
   gap: 16px;
+
   font-family: var(--mono);
+
   font-size: 10.5px;
+
   letter-spacing: .16em;
+
   color: var(--muted);
 }
+
 .tok-row b{
   color: var(--ink);
+
   font-weight: 700;
+
   letter-spacing: .02em;
 }
 
 .bar{
   height: 6px;
+
   margin-top: 12px;
+
   background: var(--bg-3);
+
   overflow: hidden;
+
   position: relative;
+
   border: 1px solid var(--line);
 }
+
 .bar > span{
   display: block;
+
   height: 100%;
-  width: var(--w, 50%);
-  background: linear-gradient(90deg, var(--red-deep), var(--red), var(--red-hi));
+
+  width: var(--w,50%);
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--red-deep),
+      var(--red),
+      var(--red-hi)
+    );
+
   transform-origin: left;
-  animation: barGrow 1.1s cubic-bezier(.2,.8,.3,1) both;
+
+  animation:
+    barGrow 1.1s cubic-bezier(.2,.8,.3,1) both;
+
   position: relative;
-  box-shadow: 0 0 12px rgba(230,0,0,.5);
-}
-.bar > span::after{
-  content: "";
-  position: absolute;
-  right: 0; top: 0; bottom: 0;
-  width: 2px;
-  background: #fff;
-  box-shadow: 0 0 8px rgba(255,255,255,.9);
+
+  box-shadow:
+    0 0 12px rgba(230,0,0,.5);
 }
 
-@keyframes barGrow{ from { transform: scaleX(0); } }
+.bar > span::after{
+  content: "";
+
+  position: absolute;
+
+  right: 0;
+
+  top: 0;
+  bottom: 0;
+
+  width: 2px;
+
+  background: #fff;
+
+  box-shadow:
+    0 0 8px rgba(255,255,255,.9);
+}
+
+@keyframes barGrow{
+  from{
+    transform: scaleX(0);
+  }
+}
 
 .contract{
   margin-top: 40px;
+
   padding: 18px 20px;
+
   border: 1px solid var(--line-2);
+
   background: var(--bg-2);
+
   font-family: var(--mono);
+
   font-size: 10.5px;
+
   line-height: 1.9;
+
   letter-spacing: .04em;
+
   color: var(--muted);
+
   word-break: break-all;
+
   position: relative;
 }
+
 .contract::before{
   content: "";
+
   position: absolute;
-  top: -1px; left: -1px;
-  width: 12px; height: 12px;
+
+  top: -1px;
+  left: -1px;
+
+  width: 12px;
+  height: 12px;
+
   border-top: 2px solid var(--red);
   border-left: 2px solid var(--red);
 }
+
 .contract::after{
   content: "";
+
   position: absolute;
-  bottom: -1px; right: -1px;
-  width: 12px; height: 12px;
+
+  bottom: -1px;
+  right: -1px;
+
+  width: 12px;
+  height: 12px;
+
   border-bottom: 2px solid var(--red);
   border-right: 2px solid var(--red);
 }
+
 .contract strong{
   display: block;
+
   margin-bottom: 6px;
+
   color: var(--ink);
+
   font-size: 9px;
+
   letter-spacing: .24em;
 }
-.contract span{ color: var(--red); font-weight: 700; }
+
+.contract span{
+  color: var(--red);
+
+  font-weight: 700;
+}
+
+
+/* =========================
+   CONTACT / COMMUNITY
+========================= */
+
+.contact-links{
+  display: grid;
+
+  grid-template-columns: repeat(3,1fr);
+
+  gap: clamp(14px,1.5vw,20px);
+
+  margin-top: 20px;
+
+  position: relative;
+
+  z-index: 1;
+}
+
+.contact-link{
+  min-height: 120px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  padding: 24px;
+
+  border: 1px solid var(--line);
+
+  background: #fff;
+
+  transition:
+    transform .25s,
+    border-color .25s,
+    box-shadow .25s;
+}
+
+.contact-link:hover{
+  transform: translateY(-3px);
+
+  border-color: var(--red);
+
+  box-shadow:
+    0 15px 35px -25px rgba(230,0,0,.5);
+}
+
+.contact-link-label{
+  font-family: var(--mono);
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: .2em;
+
+  color: var(--red);
+
+  margin-bottom: 10px;
+}
+
+.contact-link-value{
+  font-family: var(--mono);
+
+  font-size: 13px;
+
+  color: var(--ink);
+
+  word-break: break-word;
+}
 
 
 /* =========================
@@ -1403,111 +2176,264 @@ section[id]{ scroll-margin-top: 100px; }
 
 footer{
   padding-block: 30px;
+
   background: #fff;
+
   border-top: 1px solid var(--line);
+
   position: relative;
 }
 
 footer::before{
   content: "";
+
   position: absolute;
-  top: -1px; left: 0;
-  width: 42px; height: 2px;
+
+  top: -1px;
+  left: 0;
+
+  width: 42px;
+  height: 2px;
+
   background: var(--red);
 }
 
 .footer-inner{
   display: flex;
+
   flex-wrap: wrap;
+
   align-items: center;
+
   justify-content: space-between;
+
   gap: 12px;
+
   font-family: var(--mono);
+
   font-size: 10px;
+
   letter-spacing: .16em;
+
   color: var(--muted);
 }
 
-.footer-inner .brand{ color: var(--ink); font-weight: 700; }
-.footer-inner .brand em{ color: var(--red); font-style: normal; }
+.footer-inner .brand{
+  color: var(--ink);
+
+  font-weight: 700;
+}
+
+.footer-inner .brand em{
+  color: var(--red);
+
+  font-style: normal;
+}
+
+.footer-contact{
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 14px 22px;
+}
+
+.footer-contact a{
+  transition: color .2s;
+}
+
+.footer-contact a:hover{
+  color: var(--red);
+}
 
 
 /* =========================
    RESPONSIVE
 ========================= */
 
-@media (max-width: 1080px){
+@media (max-width:1080px){
 
-  .topbar-inner span:nth-child(n+3){ display: none; }
-  .nav-links{ display: none; }
-  .nav-inner{ grid-template-columns: 1fr auto; }
+  .topbar-inner span:nth-child(n+3){
+    display: none;
+  }
+
+  .nav-links{
+    display: none;
+  }
+
+  .nav-inner{
+    grid-template-columns: 1fr auto;
+  }
 
   .hero-inner{
     grid-template-columns: 1fr;
+
     min-height: auto;
-    padding-block: 52px 60px;
+
+    padding-block:
+      52px
+      60px;
+
     gap: 36px;
   }
-  .hero-visual{ max-width: 460px; }
+
+  .hero-visual{
+    max-width: 460px;
+  }
 
   .section-head{
     grid-template-columns: 1fr;
+
     align-items: start;
+
     gap: 18px;
   }
 
-  .tok-grid{ grid-template-columns: 1fr; }
+  .tok-grid{
+    grid-template-columns: 1fr;
+  }
 
-  .card-grid{ grid-template-columns: repeat(2, 1fr); }
+  .card-grid{
+    grid-template-columns: repeat(2,1fr);
+  }
 
-  .founder-grid{ grid-template-columns: repeat(2, 1fr); }
+  .founder-note{
+    grid-template-columns: 1fr;
 
-  .founder-note{ grid-template-columns: 1fr; gap: 12px; }
-  .founder-note-mark{ font-size: 32px; }
+    gap: 12px;
+  }
+
+  .founder-note-mark{
+    font-size: 32px;
+  }
+
+  .contact-links{
+    grid-template-columns: 1fr;
+  }
 }
 
-@media (max-width: 680px){
 
-  .topbar-inner span:nth-child(n+2){ display: none; }
+@media (max-width:680px){
 
-  .hero-ruler{ display: none; }
+  .topbar-inner span:nth-child(n+2){
+    display: none;
+  }
 
-  .hero-title{ letter-spacing: -.045em; }
+  .hero-ruler{
+    display: none;
+  }
 
-  .hero-visual{ max-width: 320px; }
+  .hero-title{
+    letter-spacing: -.045em;
+  }
 
-  .readout{ font-size: 8.5px; padding: 7px 10px 7px 12px; }
-  .readout-1{ top: 3%; left: -4px; }
-  .readout-2{ top: 3%; right: -4px; }
-  .readout-3{ bottom: 4%; left: -4px; }
-  .readout-4{ bottom: 4%; right: -4px; }
+  .hero-visual{
+    max-width: 320px;
+  }
 
-  .stats-grid{ grid-template-columns: repeat(2, 1fr); }
+  .readout{
+    font-size: 8.5px;
+
+    padding:
+      7px
+      10px
+      7px
+      12px;
+  }
+
+  .readout-1{
+    top: 3%;
+    left: -4px;
+  }
+
+  .readout-2{
+    top: 3%;
+    right: -4px;
+  }
+
+  .readout-3{
+    bottom: 4%;
+    left: -4px;
+  }
+
+  .readout-4{
+    bottom: 4%;
+    right: -4px;
+  }
+
+  .stats-grid{
+    grid-template-columns: repeat(2,1fr);
+  }
+
   .stat{
     padding: 22px 16px;
-    border-bottom: 1px solid var(--line);
+
+    border-bottom:
+      1px solid var(--line);
   }
-  .stat:first-child{ padding-left: 0; }
-  .stat:nth-child(2n){ border-right: none; padding-right: 0; }
-  .stat:nth-last-child(-n+2){ border-bottom: none; }
 
-  .card-grid{ grid-template-columns: 1fr; }
-  .card{ min-height: 220px; }
+  .stat:first-child{
+    padding-left: 0;
+  }
 
-  .founder-grid{ grid-template-columns: 1fr; }
-  .founder-card{ min-height: auto; }
+  .stat:nth-child(2n){
+    border-right: none;
+    padding-right: 0;
+  }
 
-  .hero-actions{ flex-direction: column; align-items: stretch; }
-  .btn{ width: 100%; }
+  .stat:nth-last-child(-n+2){
+    border-bottom: none;
+  }
 
-  .footer-inner{ flex-direction: column; align-items: flex-start; }
+  .card-grid{
+    grid-template-columns: 1fr;
+  }
 
-  .nav-cta{ padding: 9px 12px; font-size: 9.5px; }
-  .lang-switch button{ padding: 7px 9px; font-size: 9.5px; }
+  .card{
+    min-height: 220px;
+  }
+
+  .hero-actions{
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .btn{
+    width: 100%;
+  }
+
+  .footer-inner{
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .footer-contact{
+    flex-direction: column;
+
+    gap: 8px;
+  }
+
+  .nav-cta{
+    padding:
+      9px
+      12px;
+
+    font-size: 9.5px;
+  }
+
+  .lang-switch button{
+    padding:
+      7px
+      9px;
+
+    font-size: 9.5px;
+  }
 
   .logo img{
-    width: 130px;
-    max-height: 42px;
+    height: 34px;
+    max-width: 150px;
   }
 }
 
@@ -1523,21 +2449,49 @@ footer::before{
 ========================= -->
 
 <div class="topbar">
+
   <div class="wrap topbar-inner">
-    <span><i class="dot"></i><span data-en="SYSTEM ONLINE" data-zh="系统在线">SYSTEM ONLINE</span></span>
-    <span data-en-html="BNB CHAIN · BLOCK <b>#41,283,901</b>"
-          data-zh-html="BNB 链 · 区块 <b>#41,283,901</b>">
-      BNB CHAIN · BLOCK <b>#41,283,901</b>
+
+    <span>
+      <i class="dot"></i>
+
+      <span
+        data-en="SYSTEM ONLINE"
+        data-zh="系统在线">
+        SYSTEM ONLINE
+      </span>
     </span>
-    <span data-en-html="GAS <b>3 GWEI</b>"
-          data-zh-html="GAS <b>3 GWEI</b>">
+
+
+    <span
+      data-en-html="BNB CHAIN · BLOCK <b>#41,283,901</b>"
+      data-zh-html="BNB 链 · 区块 <b>#41,283,901</b>">
+
+      BNB CHAIN · BLOCK
+      <b>#41,283,901</b>
+
+    </span>
+
+
+    <span
+      data-en-html="GAS <b>3 GWEI</b>"
+      data-zh-html="GAS <b>3 GWEI</b>">
+
       GAS <b>3 GWEI</b>
+
     </span>
-    <span data-en-html="CHILI/USDT · <b>LIVE</b>"
-          data-zh-html="CHILI/USDT · <b>实时</b>">
+
+
+    <span
+      data-en-html="CHILI/USDT · <b>LIVE</b>"
+      data-zh-html="CHILI/USDT · <b>实时</b>">
+
       CHILI/USDT · <b>LIVE</b>
+
     </span>
+
   </div>
+
 </div>
 
 
@@ -1547,37 +2501,100 @@ footer::before{
 ========================= -->
 
 <nav class="navbar">
+
   <div class="wrap nav-inner">
 
+
+    <!-- CHILI LOGO -->
+
     <a class="logo" href="#">
-      <img src="./logo-TOU.png" alt="小辣椒 CHILI">
+
+      <img
+        src="logo-TOU.png"
+        alt="小辣椒 CHILI">
+
     </a>
 
+
     <div class="nav-links">
-      <a href="#about"     data-en="01 · ABOUT"     data-zh="01 · 关于">01 · ABOUT</a>
-      <a href="#founder"   data-en="02 · FOUNDER"   data-zh="02 · 创始">02 · FOUNDER</a>
-      <a href="#security"  data-en="03 · SECURITY"  data-zh="03 · 安全">03 · SECURITY</a>
-      <a href="#tokenomics" data-en="04 · TOKENOMICS" data-zh="04 · 代币经济">04 · TOKENOMICS</a>
-      <a href="#community" data-en="05 · COMMUNITY" data-zh="05 · 社区">05 · COMMUNITY</a>
+
+      <a
+        href="#about"
+        data-en="01 · ABOUT"
+        data-zh="01 · 关于">
+        01 · ABOUT
+      </a>
+
+      <a
+        href="#founder"
+        data-en="02 · FOUNDER"
+        data-zh="02 · 创始">
+        02 · FOUNDER
+      </a>
+
+      <a
+        href="#security"
+        data-en="03 · SECURITY"
+        data-zh="03 · 安全">
+        03 · SECURITY
+      </a>
+
+      <a
+        href="#tokenomics"
+        data-en="04 · TOKENOMICS"
+        data-zh="04 · 代币经济">
+        04 · TOKENOMICS
+      </a>
+
+      <a
+        href="#community"
+        data-en="05 · COMMUNITY"
+        data-zh="05 · 社区">
+        05 · COMMUNITY
+      </a>
+
     </div>
+
 
     <div class="nav-right">
 
-      <div class="lang-switch" role="group" aria-label="Language">
-        <button type="button" data-lang="en" class="active">EN</button>
-        <button type="button" data-lang="zh">中文</button>
+      <div
+        class="lang-switch"
+        role="group"
+        aria-label="Language">
+
+        <button
+          type="button"
+          data-lang="en"
+          class="active">
+          EN
+        </button>
+
+        <button
+          type="button"
+          data-lang="zh">
+          中文
+        </button>
+
       </div>
 
-      <a class="nav-cta"
-         href="https://pancakeswap.finance/"
-         target="_blank" rel="noopener"
-         data-en="BUY CHILI ↗" data-zh="购买 CHILI ↗">
+
+      <a
+        class="nav-cta"
+        href="https://pancakeswap.finance/"
+        target="_blank"
+        rel="noopener"
+        data-en="BUY CHILI ↗"
+        data-zh="购买 CHILI ↗">
+
         BUY CHILI ↗
+
       </a>
 
     </div>
 
   </div>
+
 </nav>
 
 
@@ -1589,56 +2606,97 @@ footer::before{
 <header class="hero">
 
   <div class="hero-grid"></div>
+
   <div class="hero-ruler"></div>
+
 
   <div class="wrap hero-inner">
 
+
     <div class="hero-content">
 
-      <div class="hero-eyebrow"
-           data-en-html="<i></i> BNB CHAIN · ON-CHAIN TOKEN"
-           data-zh-html="<i></i> BNB 链 · 链上代币">
-        <i></i> BNB CHAIN · ON-CHAIN TOKEN
+
+      <div
+        class="hero-eyebrow"
+        data-en-html="<i></i> BNB CHAIN · ON-CHAIN TOKEN"
+        data-zh-html="<i></i> BNB 链 · 链上代币">
+
+        <i></i>
+        BNB CHAIN · ON-CHAIN TOKEN
+
       </div>
+
 
       <h1 class="hero-title">
         CHI<span>LI</span>
       </h1>
 
+
       <div class="hero-sub">
-        <span data-en-html="NETWORK <b>BNB</b>"
-              data-zh-html="网络 <b>BNB</b>">
+
+        <span
+          data-en-html="NETWORK <b>BNB</b>"
+          data-zh-html="网络 <b>BNB</b>">
+
           NETWORK <b>BNB</b>
+
         </span>
-        <span data-en-html="PAIR <b>CHILI / USDT</b>"
-              data-zh-html="交易对 <b>CHILI / USDT</b>">
+
+
+        <span
+          data-en-html="PAIR <b>CHILI / USDT</b>"
+          data-zh-html="交易对 <b>CHILI / USDT</b>">
+
           PAIR <b>CHILI / USDT</b>
+
         </span>
-        <span data-en-html="STATUS <b>ACTIVE</b>"
-              data-zh-html="状态 <b>运行中</b>">
+
+
+        <span
+          data-en-html="STATUS <b>ACTIVE</b>"
+          data-zh-html="状态 <b>运行中</b>">
+
           STATUS <b>ACTIVE</b>
+
         </span>
+
       </div>
 
-      <p class="hero-desc"
-         data-en="A next-generation community token built on BNB Chain. Simple. Transparent. On-chain."
-         data-zh="基于 BNB 链构建的新一代社区代币。简单。透明。链上。">
+
+      <p
+        class="hero-desc"
+        data-en="A next-generation community token built on BNB Chain. Simple. Transparent. On-chain."
+        data-zh="基于 BNB 链构建的新一代社区代币。简单。透明。链上。">
+
         A next-generation community token built on BNB Chain.
         Simple. Transparent. On-chain.
+
       </p>
+
 
       <div class="hero-actions">
 
-        <a class="btn btn-primary"
-           href="https://pancakeswap.finance/"
-           target="_blank" rel="noopener"
-           data-en="▶ BUY CHILI" data-zh="▶ 购买 CHILI">
+        <a
+          class="btn btn-primary"
+          href="https://pancakeswap.finance/"
+          target="_blank"
+          rel="noopener"
+          data-en="▶ BUY CHILI"
+          data-zh="▶ 购买 CHILI">
+
           ▶ BUY CHILI
+
         </a>
 
-        <a class="btn btn-outline" href="#about"
-           data-en="▼ VIEW ON-CHAIN DATA" data-zh="▼ 查看链上数据">
+
+        <a
+          class="btn btn-outline"
+          href="#about"
+          data-en="▼ VIEW ON-CHAIN DATA"
+          data-zh="▼ 查看链上数据">
+
           ▼ VIEW ON-CHAIN DATA
+
         </a>
 
       </div>
@@ -1646,13 +2704,13 @@ footer::before{
     </div>
 
 
-    <!-- =========================================
-         能量核心
-    ========================================== -->
+
+    <!-- ENERGY CORE -->
 
     <div class="hero-visual">
 
       <div class="hv-ticks"></div>
+
       <div class="hv-ticks-major"></div>
 
       <div class="hv-ticks-inner"></div>
@@ -1660,52 +2718,87 @@ footer::before{
       <div class="hv-ticks-center"></div>
 
       <div class="hv-ring-outer"></div>
+
       <div class="hv-ring-mid"></div>
+
       <div class="hv-ring-inner"></div>
 
       <div class="hv-orbit-a"></div>
+
       <div class="hv-orbit-b"></div>
+
       <div class="hv-orbit-c"></div>
 
       <div class="hv-scan"></div>
 
       <div class="hv-halo hv-halo-1"></div>
+
       <div class="hv-halo hv-halo-2"></div>
 
       <div class="hv-core"></div>
 
       <div class="hv-node hv-node-1"></div>
+
       <div class="hv-node hv-node-2"></div>
+
       <div class="hv-node hv-node-3"></div>
 
-      <!-- 读数框：网络 / 代币名称 / 代币符号 / 总发行量 -->
-      <div class="readout readout-1"
-           data-en-html="NETWORK // <b class='red'>BNB Smart Chain (BSC)</b>"
-           data-zh-html="网络 // <b class='red'>BNB Smart Chain (BSC)</b>">
-        网络 // <b class="red">BNB Smart Chain (BSC)</b>
+
+      <div
+        class="readout readout-1"
+        data-en-html="NETWORK // <b class='red'>BNB Smart Chain (BSC)</b>"
+        data-zh-html="网络 // <b class='red'>BNB Smart Chain (BSC)</b>">
+
+        网络 //
+        <b class="red">
+          BNB Smart Chain (BSC)
+        </b>
+
       </div>
 
-      <div class="readout readout-2"
-           data-en-html="TOKEN NAME // <b class='red'>小辣椒 CHILI</b>"
-           data-zh-html="代币名称 // <b class='red'>小辣椒 CHILI</b>">
-        代币名称 // <b class="red">小辣椒 CHILI</b>
+
+      <div
+        class="readout readout-2"
+        data-en-html="TOKEN NAME // <b class='red'>小辣椒 CHILI</b>"
+        data-zh-html="代币名称 // <b class='red'>小辣椒 CHILI</b>">
+
+        代币名称 //
+        <b class="red">
+          小辣椒 CHILI
+        </b>
+
       </div>
 
-      <div class="readout readout-3"
-           data-en-html="TOKEN SYMBOL // <b class='red'>CHILI</b>"
-           data-zh-html="代币符号 // <b class='red'>CHILI</b>">
-        代币符号 // <b class="red">CHILI</b>
+
+      <div
+        class="readout readout-3"
+        data-en-html="TOKEN SYMBOL // <b class='red'>CHILI</b>"
+        data-zh-html="代币符号 // <b class='red'>CHILI</b>">
+
+        代币符号 //
+        <b class="red">
+          CHILI
+        </b>
+
       </div>
 
-      <div class="readout readout-4"
-           data-en-html="TOTAL SUPPLY // <b class='red'>20,150,822 CHILI</b>"
-           data-zh-html="总发行量 // <b class='red'>20,150,822 CHILI</b>">
-        总发行量 // <b class="red">20,150,822 CHILI</b>
+
+      <div
+        class="readout readout-4"
+        data-en-html="TOTAL SUPPLY // <b class='red'>20,150,822 CHILI</b>"
+        data-zh-html="总发行量 // <b class='red'>20,150,822 CHILI</b>">
+
+        总发行量 //
+        <b class="red">
+          20,150,822 CHILI
+        </b>
+
       </div>
 
     </div>
 
   </div>
+
 </header>
 
 
@@ -1714,19 +2807,95 @@ footer::before{
      MARQUEE
 ========================= -->
 
-<div class="marquee" aria-hidden="true">
+<div
+  class="marquee"
+  aria-hidden="true">
+
   <div class="marquee-track">
-    <span data-en="CHILI" data-zh="CHILI">CHILI</span><i></i>
-    <span data-en="BNB CHAIN" data-zh="BNB 链">BNB CHAIN</span><i></i>
-    <span data-en="LIQUIDITY LIVE" data-zh="流动性已上线">LIQUIDITY LIVE</span><i></i>
-    <span data-en="COMMUNITY DRIVEN" data-zh="社区驱动">COMMUNITY DRIVEN</span><i></i>
-    <span data-en="ON-CHAIN" data-zh="链上">ON-CHAIN</span><i></i>
-    <span data-en="CHILI" data-zh="CHILI">CHILI</span><i></i>
-    <span data-en="BNB CHAIN" data-zh="BNB 链">BNB CHAIN</span><i></i>
-    <span data-en="LIQUIDITY LIVE" data-zh="流动性已上线">LIQUIDITY LIVE</span><i></i>
-    <span data-en="COMMUNITY DRIVEN" data-zh="社区驱动">COMMUNITY DRIVEN</span><i></i>
-    <span data-en="ON-CHAIN" data-zh="链上">ON-CHAIN</span><i></i>
+
+    <span
+      data-en="CHILI"
+      data-zh="CHILI">
+      CHILI
+    </span>
+
+    <i></i>
+
+    <span
+      data-en="BNB CHAIN"
+      data-zh="BNB 链">
+      BNB CHAIN
+    </span>
+
+    <i></i>
+
+    <span
+      data-en="LIQUIDITY LIVE"
+      data-zh="流动性已上线">
+      LIQUIDITY LIVE
+    </span>
+
+    <i></i>
+
+    <span
+      data-en="COMMUNITY DRIVEN"
+      data-zh="社区驱动">
+      COMMUNITY DRIVEN
+    </span>
+
+    <i></i>
+
+    <span
+      data-en="ON-CHAIN"
+      data-zh="链上">
+      ON-CHAIN
+    </span>
+
+    <i></i>
+
+
+    <span
+      data-en="CHILI"
+      data-zh="CHILI">
+      CHILI
+    </span>
+
+    <i></i>
+
+    <span
+      data-en="BNB CHAIN"
+      data-zh="BNB 链">
+      BNB CHAIN
+    </span>
+
+    <i></i>
+
+    <span
+      data-en="LIQUIDITY LIVE"
+      data-zh="流动性已上线">
+      LIQUIDITY LIVE
+    </span>
+
+    <i></i>
+
+    <span
+      data-en="COMMUNITY DRIVEN"
+      data-zh="社区驱动">
+      COMMUNITY DRIVEN
+    </span>
+
+    <i></i>
+
+    <span
+      data-en="ON-CHAIN"
+      data-zh="链上">
+      ON-CHAIN
+    </span>
+
+    <i></i>
+
   </div>
+
 </div>
 
 
@@ -1735,94 +2904,226 @@ footer::before{
      ABOUT
 ========================= -->
 
-<section id="about" class="section">
+<section
+  id="about"
+  class="section">
+
   <div class="wrap">
+
 
     <div class="section-head">
 
       <div>
-        <div class="section-tag" data-en="01 · THE TOKEN" data-zh="01 · 代币">01 · THE TOKEN</div>
-        <h2 class="section-title"
-            data-en-html="CHILI,<br>ON-CHAIN."
-            data-zh-html="CHILI，<br>链上。">
-          CHILI，<br>链上。
+
+        <div
+          class="section-tag"
+          data-en="01 · THE TOKEN"
+          data-zh="01 · 代币">
+
+          01 · THE TOKEN
+
+        </div>
+
+
+        <h2
+          class="section-title"
+          data-en-html="CHILI,<br>ON-CHAIN."
+          data-zh-html="CHILI，<br>链上。">
+
+          CHILI，<br>
+          链上。
+
         </h2>
+
       </div>
 
-      <p class="section-lead"
-         data-en="CHILI puts the token itself at the center. A recognizable brand, transparent on-chain data, and a community that grows in public."
-         data-zh="CHILI 把代币本身放在中心。可识别的品牌、透明的链上数据，以及公开成长的社区。">
-        CHILI 把代币本身放在中心。可识别的品牌、透明的链上数据，以及公开成长的社区。
+
+      <p
+        class="section-lead"
+        data-en="CHILI puts the token itself at the center. A recognizable brand, transparent on-chain data, and a community that grows in public."
+        data-zh="CHILI 把代币本身放在中心。可识别的品牌、透明的链上数据，以及公开成长的社区。">
+
+        CHILI 把代币本身放在中心。
+        可识别的品牌、透明的链上数据，
+        以及公开成长的社区。
+
       </p>
 
     </div>
 
 
+
     <div class="card-grid">
 
+
       <div class="card">
+
         <span class="card-dots"></span>
+
         <div class="card-head">
-          <span class="card-tag" data-en="NETWORK" data-zh="网络">NETWORK</span>
-          <span class="card-num">/ 01</span>
+
+          <span
+            class="card-tag"
+            data-en="NETWORK"
+            data-zh="网络">
+            NETWORK
+          </span>
+
+          <span class="card-num">
+            / 01
+          </span>
+
         </div>
+
+
         <div class="card-body">
-          <div class="card-value">BNB</div>
-          <p class="card-text"
-             data-en="Fast and low-cost blockchain infrastructure."
-             data-zh="快速且低成本的区块链基础设施。">
+
+          <div class="card-value">
+            BNB
+          </div>
+
+          <p
+            class="card-text"
+            data-en="Fast and low-cost blockchain infrastructure."
+            data-zh="快速且低成本的区块链基础设施。">
+
             Fast and low-cost blockchain infrastructure.
+
           </p>
+
+
           <div class="card-data">
-            <span class="status"><i></i>ACTIVE</span>
-            <span>TPS // 300+</span>
+
+            <span class="status">
+              <i></i>
+              ACTIVE
+            </span>
+
+            <span>
+              TPS // 300+
+            </span>
+
           </div>
+
         </div>
+
       </div>
 
+
+
       <div class="card">
+
         <span class="card-dots"></span>
+
         <div class="card-head">
-          <span class="card-tag" data-en="TRADING PAIR" data-zh="交易对">TRADING PAIR</span>
-          <span class="card-num">/ 02</span>
+
+          <span
+            class="card-tag"
+            data-en="TRADING PAIR"
+            data-zh="交易对">
+            TRADING PAIR
+          </span>
+
+          <span class="card-num">
+            / 02
+          </span>
+
         </div>
+
+
         <div class="card-body">
-          <div class="card-value">CHILI / USDT</div>
-          <p class="card-text"
-             data-en="The core trading identity of CHILI."
-             data-zh="CHILI 的核心交易标识。">
+
+          <div class="card-value">
+            CHILI / USDT
+          </div>
+
+          <p
+            class="card-text"
+            data-en="The core trading identity of CHILI."
+            data-zh="CHILI 的核心交易标识。">
+
             CHILI 的核心交易标识。
+
           </p>
+
+
           <div class="card-data">
-            <span class="status"><i></i>LIVE</span>
-            <span>24H // +0.00%</span>
+
+            <span class="status">
+              <i></i>
+              LIVE
+            </span>
+
+            <span>
+              24H // +0.00%
+            </span>
+
           </div>
+
         </div>
+
       </div>
 
+
+
       <div class="card">
+
         <span class="card-dots"></span>
+
         <div class="card-head">
-          <span class="card-tag" data-en="TRANSPARENCY" data-zh="透明度">TRANSPARENCY</span>
-          <span class="card-num">/ 03</span>
+
+          <span
+            class="card-tag"
+            data-en="TRANSPARENCY"
+            data-zh="透明度">
+            TRANSPARENCY
+          </span>
+
+          <span class="card-num">
+            / 03
+          </span>
+
         </div>
+
+
         <div class="card-body">
-          <div class="card-value">100%</div>
-          <p class="card-text"
-             data-en="Contract source code publicly verifiable."
-             data-zh="合约源代码可公开验证。">
-            Contract source code publicly verifiable.
-          </p>
-          <div class="card-data">
-            <span class="status"><i></i>VERIFIED</span>
-            <span>BSCSCAN // ✓</span>
+
+          <div class="card-value">
+            100%
           </div>
+
+          <p
+            class="card-text"
+            data-en="Contract source code publicly verifiable."
+            data-zh="合约源代码可公开验证。">
+
+            Contract source code publicly verifiable.
+
+          </p>
+
+
+          <div class="card-data">
+
+            <span class="status">
+              <i></i>
+              VERIFIED
+            </span>
+
+            <span>
+              BSCSCAN // ✓
+            </span>
+
+          </div>
+
         </div>
+
       </div>
+
 
     </div>
 
   </div>
+
 </section>
 
 
@@ -1831,51 +3132,102 @@ footer::before{
      FOUNDER
 ========================= -->
 
-<section id="founder" class="section">
+<section
+  id="founder"
+  class="section">
+
   <div class="wrap">
+
 
     <div class="section-head">
 
       <div>
-        <div class="section-tag" data-en="02 · FOUNDER" data-zh="02 · 创始说明">02 · FOUNDER</div>
-        <h2 class="section-title"
-            data-en-html="BUILT BY<br>AN INDEPENDENT DEVELOPER."
-            data-zh-html="由独立开发者<br>发起创建。">
-          由独立开发者<br>发起创建。
+
+        <div
+          class="section-tag"
+          data-en="02 · FOUNDER"
+          data-zh="02 · 创始说明">
+
+          02 · FOUNDER
+
+        </div>
+
+
+        <h2
+          class="section-title"
+          data-en-html="BUILT BY<br>AN INDEPENDENT DEVELOPER."
+          data-zh-html="由独立开发者<br>发起创建。">
+
+          由独立开发者<br>
+          发起创建。
+
         </h2>
+
       </div>
 
-      <p class="section-lead"
-         data-en="CHILI was initiated and created by an independent developer, currently responsible for project development, maintenance, and building."
-         data-zh="小辣椒 CHILI 由独立开发者发起创建，目前由个人负责项目开发、维护与建设。">
-        小辣椒 CHILI 由独立开发者发起创建，目前由个人负责项目开发、维护与建设。
+
+      <p
+        class="section-lead"
+        data-en="CHILI was initiated and created by an independent developer, currently responsible for project development, maintenance, and building."
+        data-zh="小辣椒 CHILI 由独立开发者发起创建，目前由个人负责项目开发、维护与建设。">
+
+        小辣椒 CHILI 由独立开发者发起创建，
+        目前由个人负责项目开发、维护与建设。
+
       </p>
 
     </div>
 
 
+
     <div class="founder-note">
-      <div class="founder-note-mark">//</div>
+
+      <div class="founder-note-mark">
+        //
+      </div>
+
+
       <div class="founder-note-body">
-        <div class="founder-note-tag"
-             data-en="EARLY STAGE · NO TRADITIONAL TEAM"
-             data-zh="早期阶段 · 不设传统团队">
+
+        <div
+          class="founder-note-tag"
+          data-en="EARLY STAGE · NO TRADITIONAL TEAM"
+          data-zh="早期阶段 · 不设传统团队">
+
           早期阶段 · 不设传统团队
+
         </div>
 
-        <p data-en="CHILI does not have a traditional team structure. The project is in its early stages. Project information — including contract address, tokenomics, roadmap and code — is continuously updated through the official website and public channels."
-           data-zh="CHILI 不设立传统团队架构，项目目前处于早期发展阶段。项目相关信息，包括合约地址、代币经济模型、发展规划和代码信息，均通过官方网站及公开渠道持续更新。">
-          CHILI 不设立传统团队架构，项目目前处于早期发展阶段。项目相关信息，包括合约地址、代币经济模型、发展规划和代码信息，均通过官方网站及公开渠道持续更新。
+
+        <p
+          data-en="CHILI does not have a traditional team structure. The project is in its early stages. Project information — including contract address, tokenomics, roadmap and code — is continuously updated through the official website and public channels."
+          data-zh="CHILI 不设立传统团队架构，项目目前处于早期发展阶段。项目相关信息，包括合约地址、代币经济模型、发展规划和代码信息，均通过官方网站及公开渠道持续更新。">
+
+          CHILI 不设立传统团队架构，
+          项目目前处于早期发展阶段。
+          项目相关信息，包括合约地址、
+          代币经济模型、发展规划和代码信息，
+          均通过官方网站及公开渠道持续更新。
+
         </p>
 
-        <p data-en="CHILI is a community-driven token. The intention is to witness the project's development together with participants, through an open and transparent approach."
-           data-zh="小辣椒 CHILI 是一个社区驱动型代币，希望通过公开透明的方式，与参与者共同见证项目的发展过程。">
-          小辣椒 CHILI 是一个社区驱动型代币，希望通过公开透明的方式，与参与者共同见证项目的发展过程。
+
+        <p
+          data-en="CHILI is a community-driven token. The intention is to witness the project's development together with participants, through an open and transparent approach."
+          data-zh="小辣椒 CHILI 是一个社区驱动型代币，希望通过公开透明的方式，与参与者共同见证项目的发展过程。">
+
+          小辣椒 CHILI 是一个社区驱动型代币，
+          希望通过公开透明的方式，
+          与参与者共同见证项目的发展过程。
+
         </p>
+
       </div>
+
     </div>
 
   </div>
+
 </section>
 
 
@@ -1884,97 +3236,233 @@ footer::before{
      SECURITY
 ========================= -->
 
-<section id="security" class="section section--soft">
+<section
+  id="security"
+  class="section section--soft">
+
   <div class="wrap">
+
 
     <div class="section-head">
 
       <div>
-        <div class="section-tag" data-en="03 · SECURITY" data-zh="03 · 安全">03 · SECURITY</div>
-        <h2 class="section-title"
-            data-en-html="VERIFY.<br>DON'T TRUST."
-            data-zh-html="验证。<br>别信任。">
-          VERIFY.<br>DON'T TRUST.
+
+        <div
+          class="section-tag"
+          data-en="03 · SECURITY"
+          data-zh="03 · 安全">
+
+          03 · SECURITY
+
+        </div>
+
+
+        <h2
+          class="section-title"
+          data-en-html="VERIFY.<br>DON'T TRUST."
+          data-zh-html="验证。<br>别信任。">
+
+          VERIFY.<br>
+          DON'T TRUST.
+
         </h2>
+
       </div>
 
-      <p class="section-lead"
-         data-en="Everything important should be inspectable. Contract. Transactions. Holders. Liquidity."
-         data-zh="所有重要的东西都应该可查。合约。交易。持有人。流动性。">
+
+      <p
+        class="section-lead"
+        data-en="Everything important should be inspectable. Contract. Transactions. Holders. Liquidity."
+        data-zh="所有重要的东西都应该可查。合约。交易。持有人。流动性。">
+
         Everything important should be inspectable.
         Contract. Transactions. Holders. Liquidity.
+
       </p>
 
     </div>
 
 
+
     <div class="card-grid">
 
+
       <div class="card">
+
         <span class="card-dots"></span>
+
         <div class="card-head">
-          <span class="card-tag" data-en="CONTRACT" data-zh="合约">CONTRACT</span>
-          <span class="card-num">/ 01</span>
+
+          <span
+            class="card-tag"
+            data-en="CONTRACT"
+            data-zh="合约">
+            CONTRACT
+          </span>
+
+          <span class="card-num">
+            / 01
+          </span>
+
         </div>
+
+
         <div class="card-body">
-          <div class="card-value" data-en="PUBLIC" data-zh="公开">PUBLIC</div>
-          <p class="card-text"
-             data-en="Verify the deployed contract directly on BscScan."
-             data-zh="直接在 BscScan 上验证已部署的合约。">
+
+          <div
+            class="card-value"
+            data-en="PUBLIC"
+            data-zh="公开">
+
+            PUBLIC
+
+          </div>
+
+
+          <p
+            class="card-text"
+            data-en="Verify the deployed contract directly on BscScan."
+            data-zh="直接在 BscScan 上验证已部署的合约。">
+
             Verify the deployed contract directly on BscScan.
+
           </p>
+
+
           <div class="card-data">
-            <span class="status"><i></i>PUBLIC</span>
-            <span>SOURCE // OPEN</span>
+
+            <span class="status">
+              <i></i>
+              PUBLIC
+            </span>
+
+            <span>
+              SOURCE // OPEN
+            </span>
+
           </div>
+
         </div>
+
       </div>
 
-      <div class="card">
-        <span class="card-dots"></span>
-        <div class="card-head">
-          <span class="card-tag" data-en="CHAIN" data-zh="链">CHAIN</span>
-          <span class="card-num">/ 02</span>
-        </div>
-        <div class="card-body">
-          <div class="card-value">BNB</div>
-          <p class="card-text"
-             data-en="Track CHILI activity directly on-chain."
-             data-zh="直接在链上追踪 CHILI 活动。">
-            直接在链上追踪 CHILI 活动。
-          </p>
-          <div class="card-data">
-            <span class="status"><i></i>SYNCED</span>
-            <span>BLOCK // LIVE</span>
-          </div>
-        </div>
-      </div>
+
 
       <div class="card">
+
         <span class="card-dots"></span>
+
         <div class="card-head">
-          <span class="card-tag" data-en="ADDRESS" data-zh="地址">ADDRESS</span>
-          <span class="card-num">/ 03</span>
+
+          <span
+            class="card-tag"
+            data-en="CHAIN"
+            data-zh="链">
+            CHAIN
+          </span>
+
+          <span class="card-num">
+            / 02
+          </span>
+
         </div>
+
+
         <div class="card-body">
+
+          <div class="card-value">
+            BNB
+          </div>
+
+
+          <p
+            class="card-text"
+            data-en="Track CHILI activity directly on-chain."
+            data-zh="直接在链上追踪 CHILI 活动。">
+
+            Track CHILI activity directly on-chain.
+
+          </p>
+
+
+          <div class="card-data">
+
+            <span class="status">
+              <i></i>
+              SYNCED
+            </span>
+
+            <span>
+              BLOCK // LIVE
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="card">
+
+        <span class="card-dots"></span>
+
+        <div class="card-head">
+
+          <span
+            class="card-tag"
+            data-en="ADDRESS"
+            data-zh="地址">
+            ADDRESS
+          </span>
+
+          <span class="card-num">
+            / 03
+          </span>
+
+        </div>
+
+
+        <div class="card-body">
+
           <div class="card-value small">
             0xEd3C...35f7c
           </div>
-          <p class="card-text"
-             data-en="Official CHILI token contract."
-             data-zh="官方 CHILI 代币合约。">
+
+
+          <p
+            class="card-text"
+            data-en="Official CHILI token contract."
+            data-zh="官方 CHILI 代币合约。">
+
             官方 CHILI 代币合约。
+
           </p>
+
+
           <div class="card-data">
-            <span class="status"><i></i>OFFICIAL</span>
-            <span>COPY // CLICK</span>
+
+            <span class="status">
+              <i></i>
+              OFFICIAL
+            </span>
+
+            <span>
+              COPY // CLICK
+            </span>
+
           </div>
+
         </div>
+
       </div>
+
 
     </div>
 
   </div>
+
 </section>
 
 
@@ -1983,69 +3471,171 @@ footer::before{
      TOKENOMICS
 ========================= -->
 
-<section id="tokenomics" class="section section--dark">
+<section
+  id="tokenomics"
+  class="section section--dark">
+
   <div class="wrap">
+
 
     <div class="tok-grid">
 
+
       <div>
 
-        <div class="section-tag"
-             data-en="04 · TOKENOMICS"
-             data-zh="04 · 代币经济">
+        <div
+          class="section-tag"
+          data-en="04 · TOKENOMICS"
+          data-zh="04 · 代币经济">
+
           04 · TOKENOMICS
+
         </div>
 
-        <h2 class="tok-title"
-            data-en-html="THE NUMBERS<br>STAY PUBLIC."
-            data-zh-html="数据始终<br>公开透明。">
-          THE NUMBERS<br>STAY PUBLIC.
+
+        <h2
+          class="tok-title"
+          data-en-html="THE NUMBERS<br>STAY PUBLIC."
+          data-zh-html="数据始终<br>公开透明。">
+
+          THE NUMBERS<br>
+          STAY PUBLIC.
+
         </h2>
 
-        <p class="tok-desc"
-           data-en="Supply, allocation, liquidity and community information should stay easy to find. Replace the demo values with your final token data."
-           data-zh="供应量、分配、流动性和社区信息应始终易于查找。请将演示值替换为最终代币数据。">
+
+        <p
+          class="tok-desc"
+          data-en="Supply, allocation, liquidity and community information should stay easy to find. Replace the demo values with your final token data."
+          data-zh="供应量、分配、流动性和社区信息应始终易于查找。请将演示值替换为最终代币数据。">
+
           Supply, allocation, liquidity and community information
           should stay easy to find.
           Replace the demo values with your final token data.
+
         </p>
 
       </div>
 
 
+
       <div>
 
-        <div class="tok-item">
-          <div class="tok-row">
-            <span data-en="TOTAL SUPPLY" data-zh="总供应量">TOTAL SUPPLY</span>
-            <b data-en="YOUR DATA" data-zh="你的数据">YOUR DATA</b>
-          </div>
-          <div class="bar"><span style="--w:72%"></span></div>
-        </div>
 
         <div class="tok-item">
+
           <div class="tok-row">
-            <span data-en="LIQUIDITY" data-zh="流动性">LIQUIDITY</span>
-            <b data-en="YOUR DATA" data-zh="你的数据">YOUR DATA</b>
+
+            <span
+              data-en="TOTAL SUPPLY"
+              data-zh="总供应量">
+
+              TOTAL SUPPLY
+
+            </span>
+
+            <b
+              data-en="YOUR DATA"
+              data-zh="你的数据">
+
+              YOUR DATA
+
+            </b>
+
           </div>
-          <div class="bar"><span style="--w:48%"></span></div>
+
+
+          <div class="bar">
+
+            <span style="--w:72%"></span>
+
+          </div>
+
         </div>
 
+
+
         <div class="tok-item">
+
           <div class="tok-row">
-            <span data-en="COMMUNITY" data-zh="社区">COMMUNITY</span>
-            <b data-en="YOUR DATA" data-zh="你的数据">YOUR DATA</b>
+
+            <span
+              data-en="LIQUIDITY"
+              data-zh="流动性">
+
+              LIQUIDITY
+
+            </span>
+
+            <b
+              data-en="YOUR DATA"
+              data-zh="你的数据">
+
+              YOUR DATA
+
+            </b>
+
           </div>
-          <div class="bar"><span style="--w:86%"></span></div>
+
+
+          <div class="bar">
+
+            <span style="--w:48%"></span>
+
+          </div>
+
         </div>
+
+
+
+        <div class="tok-item">
+
+          <div class="tok-row">
+
+            <span
+              data-en="COMMUNITY"
+              data-zh="社区">
+
+              COMMUNITY
+
+            </span>
+
+            <b
+              data-en="YOUR DATA"
+              data-zh="你的数据">
+
+              YOUR DATA
+
+            </b>
+
+          </div>
+
+
+          <div class="bar">
+
+            <span style="--w:86%"></span>
+
+          </div>
+
+        </div>
+
 
 
         <div class="contract">
-          <strong data-en="OFFICIAL CONTRACT"
-                  data-zh="官方合约">
+
+          <strong
+            data-en="OFFICIAL CONTRACT"
+            data-zh="官方合约">
+
             OFFICIAL CONTRACT
+
           </strong>
-          <span>0xEd3Caca4903256fB3E4997BC0C7830D19Fb35F7c</span>
+
+
+          <span>
+            0xEd3Caca4903256fB3E4997BC0C7830D19Fb35F7c
+          </span>
+
         </div>
 
       </div>
@@ -2053,6 +3643,7 @@ footer::before{
     </div>
 
   </div>
+
 </section>
 
 
@@ -2061,142 +3652,331 @@ footer::before{
      COMMUNITY
 ========================= -->
 
-<section id="community" class="section">
+<section
+  id="community"
+  class="section">
+
   <div class="wrap">
+
 
     <div class="section-head">
 
       <div>
-        <div class="section-tag"
-             data-en="05 · COMMUNITY"
-             data-zh="05 · 社区">
+
+        <div
+          class="section-tag"
+          data-en="05 · COMMUNITY"
+          data-zh="05 · 社区">
+
           05 · COMMUNITY
+
         </div>
 
-        <h2 class="section-title"
-            data-en-html="JOIN<br>THE HEAT."
-            data-zh-html="加入<br>热潮。">
-          JOIN<br>THE HEAT.
+
+        <h2
+          class="section-title"
+          data-en-html="JOIN<br>THE HEAT."
+          data-zh-html="加入<br>热潮。">
+
+          JOIN<br>
+          THE HEAT.
+
         </h2>
+
       </div>
 
-      <p class="section-lead"
-         data-en="Telegram, social channels and on-chain activity. One CHILI community, built in public."
-         data-zh="Telegram、社交渠道和链上活动。一个 CHILI 社区，公开构建。">
-        Telegram, social channels and on-chain activity.
-        One CHILI community, built in public.
+
+      <p
+        class="section-lead"
+        data-en="Telegram, official website, email and on-chain activity. One CHILI community, built in public."
+        data-zh="Telegram、官方网站、邮箱和链上活动。一个 CHILI 社区，公开构建。">
+
+        Telegram、官方网站、邮箱和链上活动。
+        一个 CHILI 社区，公开构建。
+
       </p>
 
     </div>
 
 
+
     <div class="card-grid">
 
-      <a href="#" class="card">
+
+      <!-- TELEGRAM -->
+
+      <a
+        href="https://t.me/xiaolajiaoCHILI"
+        target="_blank"
+        rel="noopener"
+        class="card">
+
         <span class="card-dots"></span>
 
+
         <div class="card-head">
-          <span class="card-tag"
-                data-en="TELEGRAM"
-                data-zh="TELEGRAM">
+
+          <span
+            class="card-tag"
+            data-en="TELEGRAM"
+            data-zh="TELEGRAM">
+
             TELEGRAM
+
           </span>
-          <span class="card-num">/ 01</span>
+
+          <span class="card-num">
+            / 01
+          </span>
+
         </div>
 
-        <div class="card-body">
-          <div class="card-value">CHILI TG</div>
 
-          <p class="card-text"
-             data-en="Community updates, announcements and trading activity."
-             data-zh="社区更新、公告和交易活动。">
+        <div class="card-body">
+
+          <div class="card-value">
+            CHILI TG
+          </div>
+
+
+          <p
+            class="card-text"
+            data-en="Community updates, announcements and trading activity."
+            data-zh="社区更新、公告和交易活动。">
+
             Community updates, announcements and trading activity.
+
           </p>
 
+
           <div class="card-data">
-            <span class="status"><i></i>JOIN</span>
-            <span>24/7 // ONLINE</span>
+
+            <span class="status">
+              <i></i>
+              JOIN
+            </span>
+
+            <span>
+              24/7 // ONLINE
+            </span>
+
           </div>
+
         </div>
+
       </a>
 
 
-      <a href="https://pancakeswap.finance/"
-         target="_blank"
-         rel="noopener"
-         class="card">
+
+      <!-- TRADING -->
+
+      <a
+        href="https://pancakeswap.finance/"
+        target="_blank"
+        rel="noopener"
+        class="card">
 
         <span class="card-dots"></span>
 
+
         <div class="card-head">
-          <span class="card-tag"
-                data-en="TRADING"
-                data-zh="交易">
+
+          <span
+            class="card-tag"
+            data-en="TRADING"
+            data-zh="交易">
+
             TRADING
+
           </span>
-          <span class="card-num">/ 02</span>
+
+          <span class="card-num">
+            / 02
+          </span>
+
         </div>
+
 
         <div class="card-body">
-          <div class="card-value"
-               data-en="BUY CHILI ↗"
-               data-zh="购买 CHILI ↗">
-            购买 CHILI ↗
+
+          <div
+            class="card-value"
+            data-en="BUY CHILI ↗"
+            data-zh="购买 CHILI ↗">
+
+            BUY CHILI ↗
+
           </div>
 
-          <p class="card-text"
-             data-en="Trade CHILI through the official pair."
-             data-zh="通过官方交易对交易 CHILI。">
+
+          <p
+            class="card-text"
+            data-en="Trade CHILI through the official pair."
+            data-zh="通过官方交易对交易 CHILI。">
+
             通过官方交易对交易 CHILI。
+
           </p>
 
+
           <div class="card-data">
-            <span class="status"><i></i>OPEN</span>
-            <span>DEX // PANCAKE</span>
+
+            <span class="status">
+              <i></i>
+              OPEN
+            </span>
+
+            <span>
+              DEX // PANCAKE
+            </span>
+
           </div>
+
         </div>
+
       </a>
 
 
-      <a href="https://bscscan.com/token/0xEd3Caca4903256fB3E4997BC0C7830D19Fb35f7c"
-         target="_blank"
-         rel="noopener"
-         class="card">
+
+      <!-- ON CHAIN -->
+
+      <a
+        href="https://bscscan.com/token/0xEd3Caca4903256fB3E4997BC0C7830D19Fb35F7c"
+        target="_blank"
+        rel="noopener"
+        class="card">
 
         <span class="card-dots"></span>
 
+
         <div class="card-head">
-          <span class="card-tag"
-                data-en="ON-CHAIN"
-                data-zh="链上">
+
+          <span
+            class="card-tag"
+            data-en="ON-CHAIN"
+            data-zh="链上">
+
             ON-CHAIN
+
           </span>
-          <span class="card-num">/ 03</span>
+
+          <span class="card-num">
+            / 03
+          </span>
+
         </div>
+
 
         <div class="card-body">
-          <div class="card-value"
-               data-en="EXPLORE ↗"
-               data-zh="探索 ↗">
-            探索 ↗
+
+          <div
+            class="card-value"
+            data-en="EXPLORE ↗"
+            data-zh="探索 ↗">
+
+            EXPLORE ↗
+
           </div>
 
-          <p class="card-text"
-             data-en="Follow CHILI directly on BNB Chain."
-             data-zh="直接在 BNB 链上关注 CHILI。">
+
+          <p
+            class="card-text"
+            data-en="Follow CHILI directly on BNB Chain."
+            data-zh="直接在 BNB 链上关注 CHILI。">
+
             直接在 BNB 链上关注 CHILI。
+
           </p>
 
+
           <div class="card-data">
-            <span class="status"><i></i>TRACK</span>
-            <span>BSC // SCAN</span>
+
+            <span class="status">
+              <i></i>
+              TRACK
+            </span>
+
+            <span>
+              BSC // SCAN
+            </span>
+
           </div>
+
         </div>
+
       </a>
+
+
+    </div>
+
+
+
+    <!-- CONTACT -->
+
+    <div class="contact-links">
+
+
+      <!-- WEBSITE -->
+
+      <a
+        class="contact-link"
+        href="https://ayudekaka.github.io/ChiLi/"
+        target="_blank"
+        rel="noopener">
+
+        <span class="contact-link-label">
+          OFFICIAL WEBSITE
+        </span>
+
+        <span class="contact-link-value">
+          ayudekaka.github.io/ChiLi/
+        </span>
+
+      </a>
+
+
+
+      <!-- TELEGRAM -->
+
+      <a
+        class="contact-link"
+        href="https://t.me/xiaolajiaoCHILI"
+        target="_blank"
+        rel="noopener">
+
+        <span class="contact-link-label">
+          TELEGRAM COMMUNITY
+        </span>
+
+        <span class="contact-link-value">
+          t.me/xiaolajiaoCHILI
+        </span>
+
+      </a>
+
+
+
+      <!-- EMAIL -->
+
+      <a
+        class="contact-link"
+        href="mailto:ayudekaka@gmail.com">
+
+        <span class="contact-link-label">
+          OFFICIAL EMAIL
+        </span>
+
+        <span class="contact-link-value">
+          ayudekaka@gmail.com
+        </span>
+
+      </a>
+
 
     </div>
 
   </div>
+
 </section>
 
 
@@ -2206,18 +3986,51 @@ footer::before{
 ========================= -->
 
 <footer>
+
   <div class="wrap footer-inner">
 
+
     <span class="brand">
-      [ 小辣椒 CHILI <em>//</em> © 2026 ]
+      [ 小辣椒 CHILI
+      <em>//</em>
+      © 2026 ]
     </span>
 
-    <span data-en="BUILT ON BNB CHAIN · COMMUNITY DRIVEN"
-          data-zh="基于 BNB 链构建 · 社区驱动">
+
+    <span
+      data-en="BUILT ON BNB CHAIN · COMMUNITY DRIVEN"
+      data-zh="基于 BNB 链构建 · 社区驱动">
+
       BUILT ON BNB CHAIN · COMMUNITY DRIVEN
+
     </span>
+
+
+    <div class="footer-contact">
+
+      <a
+        href="mailto:ayudekaka@gmail.com">
+        EMAIL
+      </a>
+
+      <a
+        href="https://t.me/xiaolajiaoCHILI"
+        target="_blank"
+        rel="noopener">
+        TELEGRAM
+      </a>
+
+      <a
+        href="https://ayudekaka.github.io/ChiLi/"
+        target="_blank"
+        rel="noopener">
+        WEBSITE
+      </a>
+
+    </div>
 
   </div>
+
 </footer>
 
 
@@ -2227,89 +4040,154 @@ footer::before{
 ========================= -->
 
 <script>
+
 (function(){
 
   const STORAGE_KEY = 'chili-lang';
+
   const DEFAULT = 'en';
 
+
   const meta = {
+
     en: {
       title: '小辣椒 CHILI — Official Website',
       htmlLang: 'en'
     },
+
     zh: {
       title: '小辣椒 CHILI 官方网站',
       htmlLang: 'zh-CN'
     }
+
   };
+
 
   function applyLang(lang){
 
-    if (lang !== 'en' && lang !== 'zh') {
+    if(
+      lang !== 'en' &&
+      lang !== 'zh'
+    ){
       lang = DEFAULT;
     }
 
-    document.documentElement.lang = meta[lang].htmlLang;
-    document.title = meta[lang].title;
 
-    document.querySelectorAll('[data-en][data-zh]').forEach(function(el){
+    document.documentElement.lang =
+      meta[lang].htmlLang;
 
-      const v = el.getAttribute('data-' + lang);
 
-      if (v !== null) {
-        el.textContent = v;
-      }
+    document.title =
+      meta[lang].title;
 
-    });
 
-    document.querySelectorAll('[data-en-html][data-zh-html]').forEach(function(el){
+    document
+      .querySelectorAll(
+        '[data-en][data-zh]'
+      )
+      .forEach(function(el){
 
-      const v = el.getAttribute('data-' + lang + '-html');
+        const v =
+          el.getAttribute(
+            'data-' + lang
+          );
 
-      if (v !== null) {
-        el.innerHTML = v;
-      }
+        if(v !== null){
 
-    });
+          el.textContent = v;
 
-    document.querySelectorAll('.lang-switch button').forEach(function(btn){
+        }
 
-      btn.classList.toggle(
-        'active',
-        btn.dataset.lang === lang
+      });
+
+
+    document
+      .querySelectorAll(
+        '[data-en-html][data-zh-html]'
+      )
+      .forEach(function(el){
+
+        const v =
+          el.getAttribute(
+            'data-' + lang + '-html'
+          );
+
+        if(v !== null){
+
+          el.innerHTML = v;
+
+        }
+
+      });
+
+
+    document
+      .querySelectorAll(
+        '.lang-switch button'
+      )
+      .forEach(function(btn){
+
+        btn.classList.toggle(
+          'active',
+          btn.dataset.lang === lang
+        );
+
+      });
+
+
+    try{
+
+      localStorage.setItem(
+        STORAGE_KEY,
+        lang
+      );
+
+    }catch(e){}
+
+  }
+
+
+
+  document
+    .querySelectorAll(
+      '.lang-switch button'
+    )
+    .forEach(function(btn){
+
+      btn.addEventListener(
+        'click',
+        function(){
+
+          applyLang(
+            btn.dataset.lang
+          );
+
+        }
       );
 
     });
 
-    try {
-      localStorage.setItem(STORAGE_KEY, lang);
-    } catch(e){}
-
-  }
-
-
-  document.querySelectorAll('.lang-switch button').forEach(function(btn){
-
-    btn.addEventListener('click', function(){
-
-      applyLang(btn.dataset.lang);
-
-    });
-
-  });
 
 
   let initial = DEFAULT;
 
-  try {
 
-    const saved = localStorage.getItem(STORAGE_KEY);
+  try{
 
-    if (saved === 'en' || saved === 'zh') {
+    const saved =
+      localStorage.getItem(
+        STORAGE_KEY
+      );
+
+
+    if(
+      saved === 'en' ||
+      saved === 'zh'
+    ){
 
       initial = saved;
 
-    } else if (
+    }else if(
       navigator.language &&
       navigator.language.indexOf('zh') === 0
     ){
@@ -2318,9 +4196,9 @@ footer::before{
 
     }
 
-  } catch(e){
+  }catch(e){
 
-    if (
+    if(
       navigator.language &&
       navigator.language.indexOf('zh') === 0
     ){
@@ -2331,11 +4209,14 @@ footer::before{
 
   }
 
+
   applyLang(initial);
 
 })();
+
 </script>
 
 
 </body>
 </html>
+```
