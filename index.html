@@ -31,6 +31,10 @@ html {
   --line:     #e6e6e6;
   --line-2:   #d4d4d4;
 
+  --green:    #16a34a;
+  --green-bg: #f0fdf4;
+  --green-bd: #bbf7d0;
+
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo,
           Consolas, "Liberation Mono", monospace;
   --sans: "Inter", "Helvetica Neue", Arial,
@@ -847,45 +851,51 @@ section[id]{ scroll-margin-top: 100px; }
   border-left: 2px solid var(--red);
 }
 
-/* 关于 CHILI 板块 */
-.about-hero{
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
-  gap: clamp(36px, 5vw, 80px);
-  align-items: start;
+/* ===========================
+   01 · 关于 CHILI
+   =========================== */
+
+.about-statement{
+  font-size: clamp(26px, 2.6vw, 40px);
+  line-height: 1.3;
+  letter-spacing: -.02em;
+  font-weight: 800;
+  color: var(--ink);
+  max-width: 32ch;
+  margin-bottom: clamp(28px, 3vw, 42px);
   position: relative;
   z-index: 1;
-}
-.about-statement{
-  font-size: clamp(18px, 1.5vw, 24px);
-  line-height: 1.5;
-  letter-spacing: -.01em;
-  font-weight: 700;
-  color: var(--ink);
-  max-width: 30ch;
 }
 .about-statement em{
   font-style: normal;
   color: var(--red);
 }
+
 .about-tags{
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 28px;
+  gap: 10px;
+  margin-bottom: clamp(36px, 4.5vw, 60px);
+  position: relative;
+  z-index: 1;
 }
 .about-tag{
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  padding: 7px 13px;
+  padding: 8px 14px;
   border: 1px solid var(--line-2);
   background: #fff;
   font-family: var(--mono);
-  font-size: 9.5px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: .16em;
   color: var(--muted);
+  transition: color .2s, border-color .2s;
+}
+.about-tag:hover{
+  color: var(--red);
+  border-color: var(--red);
 }
 .about-tag::before{
   content: "";
@@ -893,11 +903,17 @@ section[id]{ scroll-margin-top: 100px; }
   border-radius: 50%;
   background: var(--red);
 }
+
 .about-note{
-  padding: clamp(24px, 2.8vw, 36px);
+  padding: clamp(24px, 2.8vw, 36px) clamp(24px, 3vw, 44px);
   border: 1px solid var(--line-2);
   background: var(--bg-2);
   position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(20px, 3vw, 40px);
+  align-items: start;
 }
 .about-note::before{
   content: "";
@@ -915,6 +931,19 @@ section[id]{ scroll-margin-top: 100px; }
   border-bottom: 2px solid var(--red);
   border-right: 2px solid var(--red);
 }
+.about-note-mark{
+  font-family: var(--mono);
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--red);
+  user-select: none;
+}
+.about-note-body{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
 .about-note-tag{
   display: inline-flex;
   align-items: center;
@@ -924,7 +953,7 @@ section[id]{ scroll-margin-top: 100px; }
   font-weight: 700;
   letter-spacing: .2em;
   color: var(--red);
-  margin-bottom: 14px;
+  margin-bottom: 4px;
 }
 .about-note-tag::before{
   content: "";
@@ -932,74 +961,260 @@ section[id]{ scroll-margin-top: 100px; }
   background: var(--red);
 }
 .about-note p{
-  font-size: clamp(13.5px, 1vw, 15px);
+  font-size: clamp(14px, 1.05vw, 15.5px);
   line-height: 1.75;
-  color: var(--muted);
-}
-.about-note p + p{ margin-top: 12px; }
-.about-note strong{
   color: var(--ink);
+  max-width: 88ch;
+}
+.about-note p + p{
+  color: var(--muted);
+  font-size: clamp(13px, 1vw, 14.5px);
+}
+.about-note strong{
+  color: var(--red);
   font-weight: 700;
 }
 
-/* 数据与安全板块 */
-.data-grid{
+/* ===========================
+   02 · 链上数据（重构）
+   =========================== */
+
+/* —— 顶部实时数据卡片 —— */
+.market-cards{
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: clamp(36px, 5vw, 80px);
-  align-items: start;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(12px, 1.4vw, 18px);
+  margin-bottom: clamp(28px, 3.5vw, 44px);
   position: relative;
   z-index: 1;
 }
-.data-table{
+.market-card{
+  padding: clamp(20px, 2.2vw, 28px);
+  border: 1px solid var(--line);
+  background: #fff;
+  position: relative;
+  transition: transform .25s, border-color .25s, box-shadow .25s;
+}
+.market-card:hover{
+  transform: translateY(-3px);
+  border-color: var(--red);
+  box-shadow: 0 14px 32px -24px rgba(230,0,0,.55);
+}
+.market-card::before{
+  content: "";
+  position: absolute;
+  top: -1px; left: -1px;
+  width: 12px; height: 12px;
+  border-top: 2px solid var(--red);
+  border-left: 2px solid var(--red);
+  transition: width .3s, height .3s;
+}
+.market-card::after{
+  content: "";
+  position: absolute;
+  bottom: -1px; right: -1px;
+  width: 12px; height: 12px;
+  border-bottom: 2px solid var(--red);
+  border-right: 2px solid var(--red);
+  transition: width .3s, height .3s;
+}
+.market-card:hover::before,
+.market-card:hover::after{
+  width: 22px; height: 22px;
+}
+.market-card-label{
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  color: var(--muted);
+  margin-bottom: 14px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.market-card-label::before{
+  content: "";
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--red);
+}
+.market-card-value{
+  font-family: var(--mono);
+  font-size: clamp(20px, 1.75vw, 28px);
+  font-weight: 900;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  line-height: 1.15;
+  word-break: break-all;
+}
+.market-card-value.accent{ color: var(--red); }
+
+/* —— 安全检测区块 —— */
+.security-section{
+  margin-bottom: clamp(28px, 3.5vw, 44px);
+  position: relative;
+  z-index: 1;
+}
+.security-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.security-title{
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.security-title::before{
+  content: ">";
+  color: var(--red);
+  font-weight: 900;
+}
+.security-badge{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border: 1px solid var(--green-bd);
+  background: var(--green-bg);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  color: var(--green);
+}
+.security-badge i{
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px rgba(22,163,74,.5);
+  animation: blink 1.6s ease-in-out infinite;
+}
+.security-badge.risk{
+  border-color: #fecaca;
+  background: #fef2f2;
+  color: #dc2626;
+}
+.security-badge.risk i{
+  background: #dc2626;
+  box-shadow: 0 0 8px rgba(220,38,38,.5);
+}
+
+.security-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(12px, 1.4vw, 18px);
+}
+.security-check{
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  background: #fff;
+  transition: border-color .25s, box-shadow .25s;
+}
+.security-check:hover{
+  border-color: var(--line-2);
+  box-shadow: 0 10px 24px -20px rgba(0,0,0,.3);
+}
+.security-check-icon{
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 900;
+}
+.security-check-icon.pass{
+  background: var(--green-bg);
+  border: 1px solid var(--green-bd);
+  color: var(--green);
+}
+.security-check-icon.fail{
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+}
+.security-check-icon.warn{
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  color: #d97706;
+}
+.security-check-body{ min-width: 0; }
+.security-check-name{
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  color: var(--ink);
+  margin-bottom: 5px;
+}
+.security-check-value{
+  font-family: var(--mono);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--muted);
+  word-break: break-word;
+}
+.security-check-value.pass{ color: var(--green); }
+.security-check-value.fail{ color: #dc2626; }
+.security-check-value.warn{ color: #d97706; }
+
+/* —— 代币详情表 —— */
+.detail-section{
+  position: relative;
+  z-index: 1;
+}
+.detail-table{
   border: 1px solid var(--line);
   background: #fff;
 }
-.data-row{
+.detail-row{
   display: grid;
-  grid-template-columns: minmax(0, 140px) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 160px) minmax(0, 1fr);
   gap: 16px;
-  padding: 16px 20px;
+  padding: 15px 20px;
   border-bottom: 1px solid var(--line);
   align-items: center;
 }
-.data-row:last-child{ border-bottom: none; }
-.data-row-label{
+.detail-row:last-child{ border-bottom: none; }
+.detail-row-label{
   font-family: var(--mono);
   font-size: 9.5px;
   font-weight: 700;
   letter-spacing: .16em;
   color: var(--muted);
 }
-.data-row-value{
+.detail-row-value{
   font-family: var(--mono);
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 700;
   color: var(--ink);
   word-break: break-all;
 }
-.data-row-value.accent{ color: var(--red); }
-.data-row-value.loading{
-  color: var(--muted-2);
-  font-weight: 500;
-}
-.data-row-value.loading::after{
-  content: " ···";
-  animation: dots 1.4s steps(4) infinite;
-}
-@keyframes dots{
-  0% { content: " ·"; }
-  33% { content: " ··"; }
-  66% { content: " ···"; }
-}
+.detail-row-value.accent{ color: var(--red); }
 
+/* —— 操作按钮 —— */
 .data-actions{
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 24px;
+  margin-top: clamp(24px, 3vw, 36px);
+  position: relative;
+  z-index: 1;
 }
 .data-action{
   display: inline-flex;
@@ -1025,62 +1240,6 @@ section[id]{ scroll-margin-top: 100px; }
   width: 14px;
   height: 14px;
   display: block;
-}
-
-.security-list{
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  border: 1px solid var(--line);
-  background: #fff;
-}
-.security-item{
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  padding: 20px 20px;
-  border-bottom: 1px solid var(--line);
-}
-.security-item:last-child{ border-bottom: none; }
-.security-icon{
-  width: 32px;
-  height: 32px;
-  flex: 0 0 32px;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--red);
-  color: var(--red);
-  font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 800;
-}
-.security-icon svg{
-  width: 16px;
-  height: 16px;
-  display: block;
-}
-.security-body{ min-width: 0; }
-.security-title{
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .16em;
-  color: var(--ink);
-  margin-bottom: 6px;
-}
-.security-desc{
-  font-size: 13px;
-  line-height: 1.6;
-  color: var(--muted);
-}
-.security-desc a{
-  color: var(--red);
-  font-weight: 700;
-  border-bottom: 1px solid transparent;
-  transition: border-color .2s;
-}
-.security-desc a:hover{
-  border-bottom-color: var(--red);
 }
 
 /* 社区板块 */
@@ -1223,9 +1382,10 @@ footer::before{
     gap: 18px;
   }
 
-  .about-hero{ grid-template-columns: 1fr; }
-  .data-grid{ grid-template-columns: 1fr; }
-
+  .market-cards{ grid-template-columns: repeat(2, 1fr); }
+  .security-grid{ grid-template-columns: repeat(2, 1fr); }
+  .about-note{ grid-template-columns: 1fr; gap: 12px; }
+  .about-note-mark{ font-size: 32px; }
   .contact-links{ grid-template-columns: 1fr; }
 }
 
@@ -1262,7 +1422,10 @@ footer::before{
   }
   .contract-strip-copy svg{ width: 10px; height: 10px; }
 
-  .data-row{
+  .market-cards{ grid-template-columns: 1fr; }
+  .security-grid{ grid-template-columns: 1fr; }
+
+  .detail-row{
     grid-template-columns: 1fr;
     gap: 4px;
   }
@@ -1288,13 +1451,13 @@ footer::before{
 <div class="topbar">
   <div class="wrap topbar-inner">
     <span><i class="dot"></i><span data-en="SYSTEM ONLINE" data-zh="系统在线">SYSTEM ONLINE</span></span>
-    <span data-en-html="BNB CHAIN · BLOCK <b id='blockNumEn'>—</b>"
-          data-zh-html="BNB 链 · 区块 <b id='blockNumZh'>—</b>">
-      BNB CHAIN · BLOCK <b id="blockNumEn2">—</b>
+    <span data-en-html="BNB CHAIN · BLOCK <b id='blockNum'>—</b>"
+          data-zh-html="BNB 链 · 区块 <b>—</b>">
+      BNB CHAIN · BLOCK <b>—</b>
     </span>
-    <span data-en-html="GAS <b id='gasPriceEn'>—</b>"
-          data-zh-html="GAS <b id='gasPriceZh'>—</b>">
-      GAS <b id="gasPriceEn2">—</b>
+    <span data-en-html="GAS <b id='gasPrice'>—</b>"
+          data-zh-html="GAS <b>—</b>">
+      GAS <b>—</b>
     </span>
     <span data-en-html="CHILI/USDT · <b>LIVE</b>"
           data-zh-html="CHILI/USDT · <b>实时</b>">
@@ -1396,35 +1559,30 @@ footer::before{
       <div class="hv-node hv-node-2"></div>
       <div class="hv-node hv-node-3"></div>
 
-      <!-- 左上：网络 -->
       <div class="readout readout-1"
            data-en-html="NETWORK // <b class='red'>BNB Smart Chain (BSC)</b>"
            data-zh-html="网络 // <b class='red'>BNB Smart Chain (BSC)</b>">
         网络 // <b class="red">BNB Smart Chain (BSC)</b>
       </div>
 
-      <!-- 右上：代币名称 -->
       <div class="readout readout-2"
            data-en-html="TOKEN NAME // <b class='red'>小辣椒 CHILI</b>"
            data-zh-html="代币名称 // <b class='red'>小辣椒 CHILI</b>">
         代币名称 // <b class="red">小辣椒 CHILI</b>
       </div>
 
-      <!-- 左下：总供应量 -->
       <div class="readout readout-3"
-           data-en-html="TOTAL SUPPLY // <b class='red' id='supplyHeroEn'>加载中</b>"
-           data-zh-html="总供应量 // <b class='red' id='supplyHeroZh'>加载中</b>">
-        总供应量 // <b class="red" id="supplyHeroEn2">加载中</b>
+           data-en-html="TOTAL SUPPLY // <b class='red' id='supplyHero'>加载中</b>"
+           data-zh-html="总供应量 // <b class='red'>加载中</b>">
+        总供应量 // <b class="red">加载中</b>
       </div>
 
-      <!-- 右下：持币人数 -->
       <div class="readout readout-4"
-           data-en-html="HOLDERS // <b class='red' id='holdersHeroEn'>加载中</b>"
-           data-zh-html="持币人数 // <b class='red' id='holdersHeroZh'>加载中</b>">
-        持币人数 // <b class="red" id="holdersHeroEn2">加载中</b>
+           data-en-html="HOLDERS // <b class='red' id='holdersHero'>加载中</b>"
+           data-zh-html="持币人数 // <b class='red'>加载中</b>">
+        持币人数 // <b class="red">加载中</b>
       </div>
 
-      <!-- 底部：合约地址横条 -->
       <div class="contract-strip">
         <span class="contract-strip-label" data-en="CONTRACT" data-zh="合约地址">合约地址</span>
         <span class="contract-strip-value" id="contractAddr">0xEd3Caca4903256fB3E4997BC0C7830D19Fb35f7c</span>
@@ -1469,186 +1627,202 @@ footer::before{
         </h2>
       </div>
       <p class="section-lead"
-         data-en="A community-driven token on BNB Chain. Initiated by an independent developer. Contract public, data verifiable on-chain."
-         data-zh="部署在 BNB Smart Chain 上的社区驱动型代币，由独立开发者发起。合约公开，数据链上可查。">
-        部署在 BNB Smart Chain 上的社区驱动型代币，由独立开发者发起。合约公开，数据链上可查。
+         data-en="CHILI was initiated and created by an independent developer. The project is at an early stage, and everything important is disclosed in public."
+         data-zh="CHILI 由独立开发者发起创建，项目处于早期阶段，重要信息全部公开披露。">
+        CHILI 由独立开发者发起创建，项目处于早期阶段，重要信息全部公开披露。
       </p>
     </div>
 
-    <div class="about-hero">
-      <div>
-        <p class="about-statement"
-           data-en-html="CHILI is a <em>community-driven token</em> on BNB Smart Chain, initiated by an independent developer. Simple. Transparent. On-chain."
-           data-zh-html="CHILI 是部署在 BNB Smart Chain 上的<em>社区驱动型代币</em>，由独立开发者发起。简单。透明。链上。">
-          CHILI 是部署在 BNB Smart Chain 上的<em>社区驱动型代币</em>，由独立开发者发起。简单。透明。链上。
-        </p>
-        <div class="about-tags">
-          <span class="about-tag" data-en="BNB CHAIN" data-zh="BNB 链">BNB CHAIN</span>
-          <span class="about-tag" data-en="COMMUNITY DRIVEN" data-zh="社区驱动">COMMUNITY DRIVEN</span>
-          <span class="about-tag" data-en="ON-CHAIN" data-zh="链上">ON-CHAIN</span>
-          <span class="about-tag" data-en="INDEPENDENT DEVELOPER" data-zh="独立开发者">INDEPENDENT DEVELOPER</span>
-          <span class="about-tag" data-en="EARLY STAGE" data-zh="早期阶段">EARLY STAGE</span>
-        </div>
-      </div>
+    <p class="about-statement"
+       data-en-html="Simple. <em>Transparent.</em> On-chain."
+       data-zh-html="简单。<em>透明。</em>链上。">
+      简单。<em>透明。</em>链上。
+    </p>
 
-      <div class="about-note">
+    <div class="about-tags">
+      <span class="about-tag" data-en="COMMUNITY DRIVEN" data-zh="社区驱动">COMMUNITY DRIVEN</span>
+      <span class="about-tag" data-en="INDEPENDENT DEVELOPER" data-zh="独立开发者">INDEPENDENT DEVELOPER</span>
+      <span class="about-tag" data-en="EARLY STAGE" data-zh="早期阶段">EARLY STAGE</span>
+      <span class="about-tag" data-en="NO PRESALE" data-zh="无预售">NO PRESALE</span>
+    </div>
+
+    <div class="about-note">
+      <div class="about-note-mark">//</div>
+      <div class="about-note-body">
         <div class="about-note-tag" data-en="FOUNDER DISCLOSURE" data-zh="创始说明">创始说明</div>
-        <p data-en-html="CHILI does not have a traditional team structure. The project is in its early stages. <strong>Contract address, tokenomics, roadmap and code</strong> are continuously updated through the official website and public channels."
-           data-zh-html="CHILI 不设立传统团队架构，项目目前处于早期发展阶段。<strong>合约地址、代币经济模型、发展规划和代码信息</strong>均通过官方网站及公开渠道持续更新。">
-          CHILI 不设立传统团队架构，项目目前处于早期发展阶段。<strong>合约地址、代币经济模型、发展规划和代码信息</strong>均通过官方网站及公开渠道持续更新。
+        <p data-en-html="CHILI does not have a traditional team structure. <strong>Contract address, tokenomics, roadmap and code</strong> are continuously updated through the official website and public channels."
+           data-zh-html="CHILI 不设立传统团队架构。<strong>合约地址、代币经济模型、发展规划和代码信息</strong>均通过官方网站及公开渠道持续更新。">
+          CHILI 不设立传统团队架构。<strong>合约地址、代币经济模型、发展规划和代码信息</strong>均通过官方网站及公开渠道持续更新。
         </p>
-        <p data-en="CHILI is a community-driven token. The intention is to witness the project's development together with participants, through an open and transparent approach."
-           data-zh="小辣椒 CHILI 是一个社区驱动型代币，希望通过公开透明的方式，与参与者共同见证项目的发展过程。">
-          小辣椒 CHILI 是一个社区驱动型代币，希望通过公开透明的方式，与参与者共同见证项目的发展过程。
+        <p data-en="The intention is to witness the project's development together with participants, through an open and transparent approach."
+           data-zh="希望通过公开透明的方式，与参与者共同见证项目的发展过程。">
+          希望通过公开透明的方式，与参与者共同见证项目的发展过程。
         </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 02 · 数据与安全 -->
+<!-- 02 · 链上数据 -->
 <section id="data" class="section section--soft">
   <div class="wrap">
     <div class="section-head">
       <div>
-        <div class="section-tag" data-en="02 · DATA & SECURITY" data-zh="02 · 数据与安全">02 · DATA & SECURITY</div>
+        <div class="section-tag" data-en="02 · DATA" data-zh="02 · 数据">02 · DATA</div>
         <h2 class="section-title"
-            data-en-html="ON-CHAIN<br>NUMBERS."
-            data-zh-html="链上数据<br>实时可查。">
-          链上数据<br>实时可查。
+            data-en-html="MARKET &<br>SECURITY."
+            data-zh-html="市场数据<br>与安全检测。">
+          市场数据<br>与安全检测。
         </h2>
       </div>
       <p class="section-lead"
-         data-en="All data below is read directly from BNB Smart Chain. No centralized database. No intermediaries."
-         data-zh="以下数据全部从 BNB Smart Chain 实时读取。无中心化数据库。无中间方。">
-        以下数据全部从 BNB Smart Chain 实时读取。无中心化数据库。无中间方。
+         data-en="Real-time market data from DexScreener. Contract security from GoPlus. On-chain state from BNB Smart Chain."
+         data-zh="市场数据来自 DexScreener 实时读取。合约安全来自 GoPlus 检测。链上状态来自 BNB Smart Chain。">
+        市场数据来自 DexScreener 实时读取。合约安全来自 GoPlus 检测。链上状态来自 BNB Smart Chain。
       </p>
     </div>
 
-    <div class="data-grid">
-      <!-- 左侧：数据表 -->
-      <div>
-        <div class="data-table">
-          <div class="data-row">
-            <span class="data-row-label" data-en="NETWORK" data-zh="网络">网络</span>
-            <span class="data-row-value">BNB Smart Chain (BSC)</span>
-          </div>
-          <div class="data-row">
-            <span class="data-row-label" data-en="TOKEN NAME" data-zh="代币名称">代币名称</span>
-            <span class="data-row-value">小辣椒 CHILI</span>
-          </div>
-          <div class="data-row">
-            <span class="data-row-label" data-en="TOKEN SYMBOL" data-zh="代币符号">代币符号</span>
-            <span class="data-row-value">CHILI</span>
-          </div>
-          <div class="data-row">
-            <span class="data-row-label" data-en="PRICE" data-zh="价格">价格</span>
-            <span class="data-row-value accent" id="priceTable">加载中</span>
-          </div>
-          <div class="data-row">
-            <span class="data-row-label" data-en="TOTAL SUPPLY" data-zh="总供应量">总供应量</span>
-            <span class="data-row-value accent" id="supplyTable">加载中</span>
-          </div>
-          <div class="data-row">
-            <span class="data-row-label" data-en="HOLDERS" data-zh="持币人数">持币人数</span>
-            <span class="data-row-value" id="holdersTable">加载中</span>
-          </div>
-          <div class="data-row">
-            <span class="data-row-label" data-en="LIQUIDITY" data-zh="流动性">流动性</span>
-            <span class="data-row-value accent" id="liquidityTable">加载中</span>
-          </div>
-          <div class="data-row">
-            <span class="data-row-label" data-en="24H VOLUME" data-zh="24小时交易量">24小时交易量</span>
-            <span class="data-row-value" id="volumeTable">加载中</span>
-          </div>
-          <div class="data-row">
-            <span class="data-row-label" data-en="CONTRACT" data-zh="合约地址">合约地址</span>
-            <span class="data-row-value" style="font-size:11px;">0xEd3Caca4903256fB3E4997BC0C7830D19Fb35f7c</span>
-          </div>
-        </div>
-        <div class="data-actions">
-          <a class="data-action"
-             href="https://bscscan.com/token/0xEd3Caca4903256fB3E4997BC0C7830D19Fb35f7c"
-             target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-              <path d="M15 3h6v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M10 14L21 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-            <span data-en="VIEW ON BSCSCAN ↗" data-zh="在 BscScan 查看 ↗">在 BscScan 查看 ↗</span>
-          </a>
-          <a class="data-action"
-             href="https://dexscreener.com/bsc/0xEd3Caca4903256fB3E4997BC0C7830D19Fb35f7c"
-             target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
-              <path d="M3.5 12H20.5M12 3C14.2 5.4 15.3 8.4 15.3 12C15.3 15.6 14.2 18.6 12 21C9.8 18.6 8.7 15.6 8.7 12C8.7 8.4 9.8 5.4 12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-            <span data-en="VIEW ON DEXSCREENER ↗" data-zh="在 DexScreener 查看 ↗">在 DexScreener 查看 ↗</span>
-          </a>
-          <button class="data-action" id="copyBtnTable" type="button">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="8" y="8" width="12" height="12" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
-              <path d="M16 8V5.5C16 4.7 15.3 4 14.5 4H5.5C4.7 4 4 4.7 4 5.5V14.5C4 15.3 4.7 16 5.5 16H8" stroke="currentColor" stroke-width="1.8"/>
-            </svg>
-            <span class="copy-text" data-en="COPY CONTRACT" data-zh="复制合约地址">复制合约地址</span>
-          </button>
+    <!-- ① 实时市场数据 -->
+    <div class="market-cards">
+      <div class="market-card">
+        <div class="market-card-label" data-en="PRICE" data-zh="价格">价格</div>
+        <div class="market-card-value accent" id="statPrice">加载中</div>
+      </div>
+      <div class="market-card">
+        <div class="market-card-label" data-en="LIQUIDITY" data-zh="流动性">流动性</div>
+        <div class="market-card-value accent" id="statLiquidity">加载中</div>
+      </div>
+      <div class="market-card">
+        <div class="market-card-label" data-en="24H VOLUME" data-zh="24小时交易量">24小时交易量</div>
+        <div class="market-card-value" id="statVolume">加载中</div>
+      </div>
+      <div class="market-card">
+        <div class="market-card-label" data-en="FDV" data-zh="完全稀释估值">完全稀释估值</div>
+        <div class="market-card-value" id="statFdv">加载中</div>
+      </div>
+    </div>
+
+    <!-- ② 合约安全检测（GoPlus） -->
+    <div class="security-section">
+      <div class="security-header">
+        <div class="security-title" data-en="CONTRACT SECURITY · GOPLUS" data-zh="合约安全检测 · GOPLUS">合约安全检测 · GOPLUS</div>
+        <div class="security-badge" id="securityBadge">
+          <i></i><span data-en="CHECKING" data-zh="检测中">检测中</span>
         </div>
       </div>
-
-      <!-- 右侧：安全列表 -->
-      <div class="security-list">
-        <div class="security-item">
-          <div class="security-icon">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-              <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="security-body">
-            <div class="security-title" data-en="CONTRACT PUBLIC" data-zh="合约公开">合约公开</div>
-            <div class="security-desc"
-                 data-en="Source code is deployed on BNB Smart Chain and publicly visible."
-                 data-zh="源代码部署在 BNB Smart Chain 上，公开可见。">
-              源代码部署在 BNB Smart Chain 上，公开可见。
-            </div>
+      <div class="security-grid">
+        <div class="security-check">
+          <div class="security-check-icon" id="iconHoneypot">·</div>
+          <div class="security-check-body">
+            <div class="security-check-name" data-en="HONEYPOT" data-zh="蜜罐检测">蜜罐检测</div>
+            <div class="security-check-value" id="valHoneypot">加载中</div>
           </div>
         </div>
-
-        <div class="security-item">
-          <div class="security-icon">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
-              <path d="M12 8v4l2.5 2.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="security-body">
-            <div class="security-title" data-en="ON-CHAIN VERIFIABLE" data-zh="链上可查">链上可查</div>
-            <div class="security-desc"
-                 data-en="Transactions, holders and supply are all verifiable directly on BscScan."
-                 data-zh="交易、持币人数和供应量均可在 BscScan 上直接验证。">
-              交易、持币人数和供应量均可在 BscScan 上直接验证。
-            </div>
+        <div class="security-check">
+          <div class="security-check-icon" id="iconBuyTax">·</div>
+          <div class="security-check-body">
+            <div class="security-check-name" data-en="BUY TAX" data-zh="买入税">买入税</div>
+            <div class="security-check-value" id="valBuyTax">加载中</div>
           </div>
         </div>
-
-        <div class="security-item">
-          <div class="security-icon">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="3" y="5" width="18" height="14" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
-              <path d="M4 7L12 13L20 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+        <div class="security-check">
+          <div class="security-check-icon" id="iconSellTax">·</div>
+          <div class="security-check-body">
+            <div class="security-check-name" data-en="SELL TAX" data-zh="卖出税">卖出税</div>
+            <div class="security-check-value" id="valSellTax">加载中</div>
           </div>
-          <div class="security-body">
-            <div class="security-title" data-en="NO CENTRALIZED DATABASE" data-zh="无中心化数据库">无中心化数据库</div>
-            <div class="security-desc"
-                 data-en="All numbers on this page are read directly from the blockchain in real time."
-                 data-zh="本页所有数字均直接从区块链实时读取。">
-              本页所有数字均直接从区块链实时读取。
-            </div>
+        </div>
+        <div class="security-check">
+          <div class="security-check-icon" id="iconMintable">·</div>
+          <div class="security-check-body">
+            <div class="security-check-name" data-en="MINTABLE" data-zh="可增发">可增发</div>
+            <div class="security-check-value" id="valMintable">加载中</div>
+          </div>
+        </div>
+        <div class="security-check">
+          <div class="security-check-icon" id="iconProxy">·</div>
+          <div class="security-check-body">
+            <div class="security-check-name" data-en="PROXY CONTRACT" data-zh="代理合约">代理合约</div>
+            <div class="security-check-value" id="valProxy">加载中</div>
+          </div>
+        </div>
+        <div class="security-check">
+          <div class="security-check-icon" id="iconOwner">·</div>
+          <div class="security-check-body">
+            <div class="security-check-name" data-en="OWNER PRIVILEGES" data-zh="所有者权限">所有者权限</div>
+            <div class="security-check-value" id="valOwner">加载中</div>
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- ③ 代币详情 -->
+    <div class="detail-section">
+      <div class="detail-table">
+        <div class="detail-row">
+          <span class="detail-row-label" data-en="NETWORK" data-zh="网络">网络</span>
+          <span class="detail-row-value">BNB Smart Chain (BSC)</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-row-label" data-en="TOKEN NAME" data-zh="代币名称">代币名称</span>
+          <span class="detail-row-value">小辣椒 CHILI</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-row-label" data-en="TOKEN SYMBOL" data-zh="代币符号">代币符号</span>
+          <span class="detail-row-value">CHILI</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-row-label" data-en="TOTAL SUPPLY" data-zh="总供应量">总供应量</span>
+          <span class="detail-row-value accent" id="statSupply">加载中</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-row-label" data-en="HOLDERS" data-zh="持币人数">持币人数</span>
+          <span class="detail-row-value" id="holdersTable">加载中</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-row-label" data-en="CONTRACT" data-zh="合约地址">合约地址</span>
+          <span class="detail-row-value" style="font-size:11px;">0xEd3Caca4903256fB3E4997BC0C7830D19Fb35f7c</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 操作按钮 -->
+    <div class="data-actions">
+      <a class="data-action"
+         href="https://bscscan.com/token/0xEd3Caca4903256fB3E4997BC0C7830D19Fb35f7c"
+         target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M15 3h6v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M10 14L21 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span data-en="VIEW ON BSCSCAN ↗" data-zh="在 BscScan 查看 ↗">在 BscScan 查看 ↗</span>
+      </a>
+      <a class="data-action"
+         href="https://dexscreener.com/bsc/0xEd3Caca4903256fB3E4997BC0C7830D19Fb35f7c"
+         target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M3.5 12H20.5M12 3C14.2 5.4 15.3 8.4 15.3 12C15.3 15.6 14.2 18.6 12 21C9.8 18.6 8.7 15.6 8.7 12C8.7 8.4 9.8 5.4 12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span data-en="VIEW ON DEXSCREENER ↗" data-zh="在 DexScreener 查看 ↗">在 DexScreener 查看 ↗</span>
+      </a>
+      <a class="data-action"
+         href="https://console.gopluslabs.io/token-security/56/0xed3caca4903256fb3e4997bc0c7830d19fb35f7c"
+         target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span data-en="VIEW FULL SECURITY REPORT ↗" data-zh="查看完整安全报告 ↗">查看完整安全报告 ↗</span>
+      </a>
+      <button class="data-action" id="copyBtnTable" type="button">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="8" width="12" height="12" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M16 8V5.5C16 4.7 15.3 4 14.5 4H5.5C4.7 4 4 4.7 4 5.5V14.5C4 15.3 4.7 16 5.5 16H8" stroke="currentColor" stroke-width="1.8"/>
+        </svg>
+        <span class="copy-text" data-en="COPY CONTRACT" data-zh="复制合约地址">复制合约地址</span>
+      </button>
     </div>
   </div>
 </section>
@@ -1666,9 +1840,9 @@ footer::before{
         </h2>
       </div>
       <p class="section-lead"
-         data-en="Telegram, social channels and on-chain activity. One CHILI community, built in public."
-         data-zh="Telegram、社交渠道和链上活动。一个 CHILI 社区，公开构建。">
-        Telegram、社交渠道和链上活动。一个 CHILI 社区，公开构建。
+         data-en="Telegram, official website and email. One CHILI community, built in public."
+         data-zh="Telegram、官方网站和邮箱。一个 CHILI 社区，公开构建。">
+        Telegram、官方网站和邮箱。一个 CHILI 社区，公开构建。
       </p>
     </div>
 
@@ -1809,20 +1983,20 @@ footer::before{
 })();
 </script>
 
-<!-- DexScreener 数据读取脚本 -->
+<!-- 数据脚本：DexScreener + GoPlus + BSC RPC -->
 <script>
 (function(){
   const CONTRACT = '0xEd3Caca4903256fB3E4997BC0C7830D19Fb35f7c';
-  const CHAIN = 'bsc';
+  const CHAIN_ID = '56';
   const DEXSCREENER_API = 'https://api.dexscreener.com/latest/dex/tokens/' + CONTRACT;
+  const GOPLUS_API = 'https://api.gopluslabs.io/api/v1/token_security/' + CHAIN_ID + '?contract_addresses=' + CONTRACT;
+  const RPC = 'https://bsc-dataseed.binance.org/';
 
-  // 格式化数字（带千分位）
   function fmt(n){
     if (n === null || n === undefined || isNaN(n)) return '—';
     return Number(n).toLocaleString('en-US');
   }
 
-  // 格式化价格（小数位自适应）
   function fmtPrice(p){
     if (p === null || p === undefined || isNaN(p)) return '—';
     const num = Number(p);
@@ -1832,62 +2006,67 @@ footer::before{
     return '$' + num.toFixed(4);
   }
 
-  // 更新所有供应量相关元素
+  function fmtCompact(n){
+    if (n === null || n === undefined || isNaN(n)) return '—';
+    const num = Number(n);
+    if (num >= 1e9) return '$' + (num / 1e9).toFixed(2) + 'B';
+    if (num >= 1e6) return '$' + (num / 1e6).toFixed(2) + 'M';
+    if (num >= 1e3) return '$' + (num / 1e3).toFixed(2) + 'K';
+    return '$' + num.toFixed(2);
+  }
+
   function updateSupply(val){
-    ['supplyHeroEn','supplyHeroZh','supplyHeroEn2','supplyTable'].forEach(function(id){
+    ['supplyHero','statSupply'].forEach(function(id){
       const el = document.getElementById(id);
       if (el) el.textContent = val + (val !== '—' ? ' CHILI' : '');
     });
   }
 
-  // 更新所有持币人数相关元素
   function updateHolders(val){
-    ['holdersHeroEn','holdersHeroZh','holdersHeroEn2','holdersTable'].forEach(function(id){
+    ['holdersHero','holdersTable'].forEach(function(id){
       const el = document.getElementById(id);
       if (el) el.textContent = val;
     });
   }
 
-  // 从 DexScreener 获取数据
+  /* —— DexScreener 市场数据 —— */
   async function fetchDexScreener(){
     try {
       const res = await fetch(DEXSCREENER_API);
       const json = await res.json();
 
-      if (!json.pairs || json.pairs.length === 0) {
-        console.warn('DexScreener: no pairs found');
-        return;
-      }
+      if (!json.pairs || json.pairs.length === 0) return;
 
-      // 取流动性最高的交易对
       const pair = json.pairs.reduce(function(a, b){
         const aLiq = a.liquidity && a.liquidity.usd ? a.liquidity.usd : 0;
         const bLiq = b.liquidity && b.liquidity.usd ? b.liquidity.usd : 0;
         return aLiq > bLiq ? a : b;
       });
 
-      // 价格
-      const priceEl = document.getElementById('priceTable');
+      const priceEl = document.getElementById('statPrice');
       if (priceEl) priceEl.textContent = fmtPrice(pair.priceUsd);
 
-      // FDV / 总供应量
       const supply = pair.fdv || pair.marketCap;
-      if (supply) {
-        updateSupply(fmt(Math.round(supply / (pair.priceUsd || 1))));
+      if (supply && pair.priceUsd) {
+        updateSupply(fmt(Math.round(supply / pair.priceUsd)));
       }
 
-      // 流动性
-      const liqEl = document.getElementById('liquidityTable');
+      const liqEl = document.getElementById('statLiquidity');
       if (liqEl) {
         const liq = pair.liquidity && pair.liquidity.usd ? pair.liquidity.usd : null;
-        liqEl.textContent = liq ? '$' + fmt(Math.round(liq)) : '—';
+        liqEl.textContent = liq ? fmtCompact(liq) : '—';
       }
 
-      // 24小时交易量
-      const volEl = document.getElementById('volumeTable');
+      const volEl = document.getElementById('statVolume');
       if (volEl) {
         const vol = pair.volume && pair.volume.h24 ? pair.volume.h24 : null;
-        volEl.textContent = vol ? '$' + fmt(Math.round(vol)) : '—';
+        volEl.textContent = vol ? fmtCompact(vol) : '—';
+      }
+
+      const fdvEl = document.getElementById('statFdv');
+      if (fdvEl) {
+        const fdv = pair.fdv || null;
+        fdvEl.textContent = fdv ? fmtCompact(fdv) : '—';
       }
 
     } catch(e){
@@ -1895,10 +2074,105 @@ footer::before{
     }
   }
 
-  // 从 BSC RPC 读取区块高度和 Gas（作为补充）
+  /* —— GoPlus 合约安全检测 —— */
+  function setCheck(id, value, status){
+    const icon = document.getElementById('icon' + id);
+    const val = document.getElementById('val' + id);
+    if (icon) {
+      icon.textContent = status === 'pass' ? '✓' : status === 'fail' ? '✕' : '!';
+      icon.className = 'security-check-icon ' + status;
+    }
+    if (val) {
+      val.textContent = value;
+      val.className = 'security-check-value ' + status;
+    }
+  }
+
+  async function fetchGoPlus(){
+    try {
+      const res = await fetch(GOPLUS_API);
+      const json = await res.json();
+
+      if (json.code !== 1 || !json.result) {
+        throw new Error('GoPlus API error');
+      }
+
+      const data = json.result[CONTRACT.toLowerCase()];
+      if (!data) throw new Error('No data for contract');
+
+      /* 蜜罐 */
+      const honeypot = data.is_honeypot === '1';
+      setCheck('Honeypot',
+        honeypot ? 'YES' : 'NO',
+        honeypot ? 'fail' : 'pass'
+      );
+
+      /* 买入税 */
+      const buyTax = data.buy_tax;
+      const buyTaxPct = buyTax ? (parseFloat(buyTax) * 100).toFixed(1) + '%' : '0%';
+      const buyTaxHigh = buyTax && parseFloat(buyTax) > 0.1;
+      setCheck('BuyTax', buyTaxPct, buyTaxHigh ? 'fail' : 'pass');
+
+      /* 卖出税 */
+      const sellTax = data.sell_tax;
+      const sellTaxPct = sellTax ? (parseFloat(sellTax) * 100).toFixed(1) + '%' : '0%';
+      const sellTaxHigh = sellTax && parseFloat(sellTax) > 0.1;
+      setCheck('SellTax', sellTaxPct, sellTaxHigh ? 'fail' : 'pass');
+
+      /* 可增发 */
+      const mintable = data.is_mintable === '1';
+      setCheck('Mintable',
+        mintable ? 'YES' : 'NO',
+        mintable ? 'warn' : 'pass'
+      );
+
+      /* 代理合约 */
+      const proxy = data.is_proxy === '1';
+      setCheck('Proxy',
+        proxy ? 'YES' : 'NO',
+        proxy ? 'warn' : 'pass'
+      );
+
+      /* 所有者权限 */
+      const ownerChange = data.owner_change_balance === '1';
+      const canTakeBack = data.can_take_back_ownership === '1';
+      const hiddenOwner = data.hidden_owner === '1';
+      let ownerStatus = 'pass';
+      let ownerText = 'NO';
+      if (ownerChange || canTakeBack || hiddenOwner) {
+        ownerStatus = 'warn';
+        ownerText = 'YES';
+      }
+      setCheck('Owner', ownerText, ownerStatus);
+
+      /* 顶部徽章 */
+      const badge = document.getElementById('securityBadge');
+      const honeypotFail = honeypot;
+      const taxFail = buyTaxHigh || sellTaxHigh;
+      if (honeypotFail || taxFail) {
+        badge.className = 'security-badge risk';
+        badge.innerHTML = '<i></i><span>RISK DETECTED</span>';
+      } else {
+        badge.className = 'security-badge';
+        badge.innerHTML = '<i></i><span>ALL CHECKS PASSED</span>';
+      }
+
+    } catch(e){
+      console.warn('GoPlus fetch failed:', e);
+      /* 失败时显示占位 */
+      ['Honeypot','BuyTax','SellTax','Mintable','Proxy','Owner'].forEach(function(id){
+        setCheck(id, '—', 'warn');
+      });
+      const badge = document.getElementById('securityBadge');
+      badge.className = 'security-badge risk';
+      badge.innerHTML = '<i></i><span>CHECK FAILED</span>';
+    }
+  }
+
+  /* —— BSC RPC —— */
   async function readBlockNumber(){
     try {
-      const res = await fetch('https://bsc-dataseed.binance.org/', {
+      const res = await fetch(RPC, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -1908,17 +2182,15 @@ footer::before{
       const json = await res.json();
       if (json.result) {
         const block = parseInt(json.result, 16);
-        ['blockNumEn','blockNumZh','blockNumEn2'].forEach(function(id){
-          const el = document.getElementById(id);
-          if (el) el.textContent = '#' + block.toLocaleString('en-US');
-        });
+        const el = document.getElementById('blockNum');
+        if (el) el.textContent = '#' + block.toLocaleString('en-US');
       }
     } catch(e){}
   }
 
   async function readGasPrice(){
     try {
-      const res = await fetch('https://bsc-dataseed.binance.org/', {
+      const res = await fetch(RPC, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -1928,15 +2200,13 @@ footer::before{
       const json = await res.json();
       if (json.result) {
         const gwei = Math.round(parseInt(json.result, 16) / 1e9);
-        ['gasPriceEn','gasPriceZh','gasPriceEn2'].forEach(function(id){
-          const el = document.getElementById(id);
-          if (el) el.textContent = gwei + ' GWEI';
-        });
+        const el = document.getElementById('gasPrice');
+        if (el) el.textContent = gwei + ' GWEI';
       }
     } catch(e){}
   }
 
-  // 复制合约地址
+  /* —— 复制按钮 —— */
   function setupCopy(btnId){
     const btn = document.getElementById(btnId);
     if (!btn) return;
@@ -1975,17 +2245,18 @@ footer::before{
     cb && cb();
   }
 
-  // 初始化
+  /* —— 初始化 —— */
   function init(){
     setupCopy('copyBtn');
     setupCopy('copyBtnTable');
 
     fetchDexScreener();
+    fetchGoPlus();
     readBlockNumber();
     readGasPrice();
 
-    // 每 30 秒刷新
     setInterval(fetchDexScreener, 30000);
+    setInterval(fetchGoPlus, 120000); /* 安全检测每 2 分钟刷新 */
     setInterval(readBlockNumber, 30000);
     setInterval(readGasPrice, 30000);
   }
