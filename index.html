@@ -152,22 +152,17 @@ section[id]{ scroll-margin-top: 100px; }
 
 .logo{
   justify-self: start;
-  font-family: var(--mono);
-  font-size: 17px;
-  font-weight: 800;
-  letter-spacing: .04em;
-  color: var(--ink);
   display: inline-flex;
   align-items: center;
   gap: 2px;
 }
-.logo .bracket{ color: var(--red); }
-.logo .cursor{
-  display: inline-block;
-  width: 8px; height: 16px;
-  margin-left: 3px;
-  background: var(--red);
-  animation: blink 1s steps(2) infinite;
+
+.logo img{
+  display: block;
+  width: 150px;
+  height: auto;
+  max-height: 46px;
+  object-fit: contain;
 }
 
 .nav-links{
@@ -469,7 +464,7 @@ section[id]{ scroll-margin-top: 100px; }
   );
   -webkit-mask: radial-gradient(circle,
     transparent 42.5%, #000 43%, #000 49.6%, transparent 50%);
-          mask: radial-gradient(circle,
+          mask-image: radial-gradient(circle,
     transparent 42.5%, #000 43%, #000 49.6%, transparent 50%);
   pointer-events: none;
 }
@@ -1509,6 +1504,11 @@ footer::before{
 
   .nav-cta{ padding: 9px 12px; font-size: 9.5px; }
   .lang-switch button{ padding: 7px 9px; font-size: 9.5px; }
+
+  .logo img{
+    width: 130px;
+    max-height: 42px;
+  }
 }
 
 </style>
@@ -1550,8 +1550,7 @@ footer::before{
   <div class="wrap nav-inner">
 
     <a class="logo" href="#">
-      <span class="bracket">[</span>小辣椒 CHILI<span class="bracket">]</span>
-      <span class="cursor"></span>
+      <img src="./logo-TOU.png" alt="小辣椒 CHILI">
     </a>
 
     <div class="nav-links">
@@ -1559,7 +1558,7 @@ footer::before{
       <a href="#founder"   data-en="02 · FOUNDER"   data-zh="02 · 创始">02 · FOUNDER</a>
       <a href="#security"  data-en="03 · SECURITY"  data-zh="03 · 安全">03 · SECURITY</a>
       <a href="#tokenomics" data-en="04 · TOKENOMICS" data-zh="04 · 代币经济">04 · TOKENOMICS</a>
-      <a href="#community" data-en="05 · COMMUNITY" data-zh="05 · 社区">05 · 社区</a>
+      <a href="#community" data-en="05 · COMMUNITY" data-zh="05 · 社区">05 · COMMUNITY</a>
     </div>
 
     <div class="nav-right">
@@ -1855,63 +1854,20 @@ footer::before{
     </div>
 
 
-    <div class="founder-grid">
-
-      <div class="founder-card">
-        <div class="founder-index">/ 01</div>
-        <div class="founder-icon">⌘</div>
-        <div class="founder-title" data-en="SMART CONTRACT" data-zh="智能合约">智能合约</div>
-        <p class="founder-desc"
-           data-en="Contract deployment and on-chain logic."
-           data-zh="合约部署与链上逻辑。">
-          合约部署与链上逻辑。
-        </p>
-      </div>
-
-      <div class="founder-card">
-        <div class="founder-index">/ 02</div>
-        <div class="founder-icon">◈</div>
-        <div class="founder-title" data-en="WEBSITE" data-zh="官方网站">官方网站</div>
-        <p class="founder-desc"
-           data-en="Official website construction and maintenance."
-           data-zh="官方网站建设与维护。">
-          官方网站建设与维护。
-        </p>
-      </div>
-
-      <div class="founder-card">
-        <div class="founder-index">/ 03</div>
-        <div class="founder-icon">▤</div>
-        <div class="founder-title" data-en="DOCUMENTATION" data-zh="项目文档">项目文档</div>
-        <p class="founder-desc"
-           data-en="Project documentation maintenance and updates."
-           data-zh="项目文档的维护与更新。">
-          项目文档的维护与更新。
-        </p>
-      </div>
-
-      <div class="founder-card">
-        <div class="founder-index">/ 04</div>
-        <div class="founder-icon">◉</div>
-        <div class="founder-title" data-en="COMMUNITY" data-zh="社区运营">社区运营</div>
-        <p class="founder-desc"
-           data-en="Community operations and ongoing communication."
-           data-zh="社区运营与持续沟通。">
-          社区运营与持续沟通。
-        </p>
-      </div>
-
-    </div>
-
-
     <div class="founder-note">
       <div class="founder-note-mark">//</div>
       <div class="founder-note-body">
-        <div class="founder-note-tag" data-en="EARLY STAGE · NO TRADITIONAL TEAM" data-zh="早期阶段 · 不设传统团队">早期阶段 · 不设传统团队</div>
+        <div class="founder-note-tag"
+             data-en="EARLY STAGE · NO TRADITIONAL TEAM"
+             data-zh="早期阶段 · 不设传统团队">
+          早期阶段 · 不设传统团队
+        </div>
+
         <p data-en="CHILI does not have a traditional team structure. The project is in its early stages. Project information — including contract address, tokenomics, roadmap and code — is continuously updated through the official website and public channels."
            data-zh="CHILI 不设立传统团队架构，项目目前处于早期发展阶段。项目相关信息，包括合约地址、代币经济模型、发展规划和代码信息，均通过官方网站及公开渠道持续更新。">
           CHILI 不设立传统团队架构，项目目前处于早期发展阶段。项目相关信息，包括合约地址、代币经济模型、发展规划和代码信息，均通过官方网站及公开渠道持续更新。
         </p>
+
         <p data-en="CHILI is a community-driven token. The intention is to witness the project's development together with participants, through an open and transparent approach."
            data-zh="小辣椒 CHILI 是一个社区驱动型代币，希望通过公开透明的方式，与参与者共同见证项目的发展过程。">
           小辣椒 CHILI 是一个社区驱动型代币，希望通过公开透明的方式，与参与者共同见证项目的发展过程。
@@ -2034,7 +1990,11 @@ footer::before{
 
       <div>
 
-        <div class="section-tag" data-en="04 · TOKENOMICS" data-zh="04 · 代币经济">04 · TOKENOMICS</div>
+        <div class="section-tag"
+             data-en="04 · TOKENOMICS"
+             data-zh="04 · 代币经济">
+          04 · TOKENOMICS
+        </div>
 
         <h2 class="tok-title"
             data-en-html="THE NUMBERS<br>STAY PUBLIC."
@@ -2081,8 +2041,11 @@ footer::before{
 
 
         <div class="contract">
-          <strong data-en="OFFICIAL CONTRACT" data-zh="官方合约">OFFICIAL CONTRACT</strong>
-          <span>0xEd3Caca4903256fB3E4997BC0C7830D19Fb35f7c</span>
+          <strong data-en="OFFICIAL CONTRACT"
+                  data-zh="官方合约">
+            OFFICIAL CONTRACT
+          </strong>
+          <span>0xEd3Caca4903256fB3E4997BC0C7830D19Fb35F7c</span>
         </div>
 
       </div>
@@ -2104,7 +2067,12 @@ footer::before{
     <div class="section-head">
 
       <div>
-        <div class="section-tag" data-en="05 · COMMUNITY" data-zh="05 · 社区">05 · COMMUNITY</div>
+        <div class="section-tag"
+             data-en="05 · COMMUNITY"
+             data-zh="05 · 社区">
+          05 · COMMUNITY
+        </div>
+
         <h2 class="section-title"
             data-en-html="JOIN<br>THE HEAT."
             data-zh-html="加入<br>热潮。">
@@ -2126,17 +2094,25 @@ footer::before{
 
       <a href="#" class="card">
         <span class="card-dots"></span>
+
         <div class="card-head">
-          <span class="card-tag" data-en="TELEGRAM" data-zh="TELEGRAM">TELEGRAM</span>
+          <span class="card-tag"
+                data-en="TELEGRAM"
+                data-zh="TELEGRAM">
+            TELEGRAM
+          </span>
           <span class="card-num">/ 01</span>
         </div>
+
         <div class="card-body">
           <div class="card-value">CHILI TG</div>
+
           <p class="card-text"
              data-en="Community updates, announcements and trading activity."
              data-zh="社区更新、公告和交易活动。">
             Community updates, announcements and trading activity.
           </p>
+
           <div class="card-data">
             <span class="status"><i></i>JOIN</span>
             <span>24/7 // ONLINE</span>
@@ -2144,21 +2120,36 @@ footer::before{
         </div>
       </a>
 
+
       <a href="https://pancakeswap.finance/"
-         target="_blank" rel="noopener"
+         target="_blank"
+         rel="noopener"
          class="card">
+
         <span class="card-dots"></span>
+
         <div class="card-head">
-          <span class="card-tag" data-en="TRADING" data-zh="交易">TRADING</span>
+          <span class="card-tag"
+                data-en="TRADING"
+                data-zh="交易">
+            TRADING
+          </span>
           <span class="card-num">/ 02</span>
         </div>
+
         <div class="card-body">
-          <div class="card-value" data-en="BUY CHILI ↗" data-zh="购买 CHILI ↗">购买 CHILI ↗</div>
+          <div class="card-value"
+               data-en="BUY CHILI ↗"
+               data-zh="购买 CHILI ↗">
+            购买 CHILI ↗
+          </div>
+
           <p class="card-text"
              data-en="Trade CHILI through the official pair."
              data-zh="通过官方交易对交易 CHILI。">
             通过官方交易对交易 CHILI。
           </p>
+
           <div class="card-data">
             <span class="status"><i></i>OPEN</span>
             <span>DEX // PANCAKE</span>
@@ -2166,21 +2157,36 @@ footer::before{
         </div>
       </a>
 
+
       <a href="https://bscscan.com/token/0xEd3Caca4903256fB3E4997BC0C7830D19Fb35f7c"
-         target="_blank" rel="noopener"
+         target="_blank"
+         rel="noopener"
          class="card">
+
         <span class="card-dots"></span>
+
         <div class="card-head">
-          <span class="card-tag" data-en="ON-CHAIN" data-zh="链上">ON-CHAIN</span>
+          <span class="card-tag"
+                data-en="ON-CHAIN"
+                data-zh="链上">
+            ON-CHAIN
+          </span>
           <span class="card-num">/ 03</span>
         </div>
+
         <div class="card-body">
-          <div class="card-value" data-en="EXPLORE ↗" data-zh="探索 ↗">EXPLORE ↗</div>
+          <div class="card-value"
+               data-en="EXPLORE ↗"
+               data-zh="探索 ↗">
+            探索 ↗
+          </div>
+
           <p class="card-text"
              data-en="Follow CHILI directly on BNB Chain."
              data-zh="直接在 BNB 链上关注 CHILI。">
             直接在 BNB 链上关注 CHILI。
           </p>
+
           <div class="card-data">
             <span class="status"><i></i>TRACK</span>
             <span>BSC // SCAN</span>
@@ -2201,11 +2207,16 @@ footer::before{
 
 <footer>
   <div class="wrap footer-inner">
-    <span class="brand">[ 小辣椒 CHILI <em>//</em> © 2026 ]</span>
+
+    <span class="brand">
+      [ 小辣椒 CHILI <em>//</em> © 2026 ]
+    </span>
+
     <span data-en="BUILT ON BNB CHAIN · COMMUNITY DRIVEN"
           data-zh="基于 BNB 链构建 · 社区驱动">
       BUILT ON BNB CHAIN · COMMUNITY DRIVEN
     </span>
+
   </div>
 </footer>
 
@@ -2217,56 +2228,111 @@ footer::before{
 
 <script>
 (function(){
+
   const STORAGE_KEY = 'chili-lang';
   const DEFAULT = 'en';
 
   const meta = {
-    en: { title: '小辣椒 CHILI — Official Website', htmlLang: 'en' },
-    zh: { title: '小辣椒 CHILI 官方网站', htmlLang: 'zh-CN' }
+    en: {
+      title: '小辣椒 CHILI — Official Website',
+      htmlLang: 'en'
+    },
+    zh: {
+      title: '小辣椒 CHILI 官方网站',
+      htmlLang: 'zh-CN'
+    }
   };
 
   function applyLang(lang){
-    if (lang !== 'en' && lang !== 'zh') lang = DEFAULT;
+
+    if (lang !== 'en' && lang !== 'zh') {
+      lang = DEFAULT;
+    }
 
     document.documentElement.lang = meta[lang].htmlLang;
     document.title = meta[lang].title;
 
     document.querySelectorAll('[data-en][data-zh]').forEach(function(el){
+
       const v = el.getAttribute('data-' + lang);
-      if (v !== null) el.textContent = v;
+
+      if (v !== null) {
+        el.textContent = v;
+      }
+
     });
 
     document.querySelectorAll('[data-en-html][data-zh-html]').forEach(function(el){
+
       const v = el.getAttribute('data-' + lang + '-html');
-      if (v !== null) el.innerHTML = v;
+
+      if (v !== null) {
+        el.innerHTML = v;
+      }
+
     });
 
     document.querySelectorAll('.lang-switch button').forEach(function(btn){
-      btn.classList.toggle('active', btn.dataset.lang === lang);
+
+      btn.classList.toggle(
+        'active',
+        btn.dataset.lang === lang
+      );
+
     });
 
-    try { localStorage.setItem(STORAGE_KEY, lang); } catch(e){}
+    try {
+      localStorage.setItem(STORAGE_KEY, lang);
+    } catch(e){}
+
   }
 
+
   document.querySelectorAll('.lang-switch button').forEach(function(btn){
+
     btn.addEventListener('click', function(){
+
       applyLang(btn.dataset.lang);
+
     });
+
   });
 
+
   let initial = DEFAULT;
+
   try {
+
     const saved = localStorage.getItem(STORAGE_KEY);
+
     if (saved === 'en' || saved === 'zh') {
+
       initial = saved;
-    } else if (navigator.language && navigator.language.indexOf('zh') === 0) {
+
+    } else if (
+      navigator.language &&
+      navigator.language.indexOf('zh') === 0
+    ){
+
       initial = 'zh';
+
     }
+
   } catch(e){
-    if (navigator.language && navigator.language.indexOf('zh') === 0) initial = 'zh';
+
+    if (
+      navigator.language &&
+      navigator.language.indexOf('zh') === 0
+    ){
+
+      initial = 'zh';
+
+    }
+
   }
 
   applyLang(initial);
+
 })();
 </script>
 
