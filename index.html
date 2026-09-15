@@ -158,7 +158,7 @@ section[id]{ scroll-margin-top: 100px; }
   color: var(--ink);
   display: inline-flex;
   align-items: center;
-  gap: 2px;
+  gap: 10px; /* 修改：增加了图片与文字的间距 */
 }
 .logo .bracket{ color: var(--red); }
 .logo .cursor{
@@ -175,6 +175,16 @@ section[id]{ scroll-margin-top: 100px; }
   max-width: 190px;
   object-fit: contain;
 }
+/* 新增：Logo 文字样式 */
+.logo-text {
+  font-family: var(--mono);
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
 .nav-links{
   display: flex;
   align-items: center;
@@ -1484,6 +1494,10 @@ footer::before{
     height: 34px;
     max-width: 160px;
   }
+  /* 新增：手机端 Logo 文字尺寸适配 */
+  .logo-text {
+    font-size: 14px;
+  }
 }
 </style>
 </head>
@@ -1516,6 +1530,7 @@ footer::before{
   <div class="wrap nav-inner">
     <a class="logo" href="#" aria-label="小辣椒 CHILI">
       <img src="logo.png" alt="小辣椒 CHILI">
+      <span class="logo-text" data-en="CHILI" data-zh="小辣椒 CHILI">小辣椒 CHILI</span>
     </a>
 
     <div class="nav-links">
