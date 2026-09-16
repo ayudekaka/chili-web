@@ -569,7 +569,7 @@ section[id]{ scroll-margin-top: 100px; }
     transparent 24%, #000 28%, #000 49%, transparent 50%);
 }
 
-/* ===== 修改：圆心显示 Logo ===== */
+/* 圆心：显示 Logo */
 .hv-core{
   position: relative;
   z-index: 6;
@@ -759,9 +759,8 @@ section[id]{ scroll-margin-top: 100px; }
   background: var(--bg-2);
 }
 
-/* MARQUEE */
+/* MARQUEE —— 纯红色横条 */
 .marquee{
-  border-bottom: 1px solid var(--line);
   background: var(--red);
   color: #fff;
   overflow: hidden;
@@ -770,30 +769,13 @@ section[id]{ scroll-margin-top: 100px; }
   align-items: center;
   position: relative;
 }
-.marquee::before,
-.marquee::after{
-  content: "";
-  position: absolute;
-  top: 0; bottom: 0;
-  width: 60px;
-  z-index: 2;
-  pointer-events: none;
-}
-.marquee::before{
-  left: 0;
-  background: linear-gradient(90deg, var(--red), transparent);
-}
-.marquee::after{
-  right: 0;
-  background: linear-gradient(-90deg, var(--red), transparent);
-}
 .marquee-track{
   display: flex;
   align-items: center;
   gap: 34px;
   padding-left: 34px;
   white-space: nowrap;
-  animation: marquee 42s linear infinite;
+  animation: marquee 100s linear infinite;
   font-family: var(--mono);
   font-size: 11px;
   font-weight: 700;
@@ -805,6 +787,16 @@ section[id]{ scroll-margin-top: 100px; }
   border-radius: 50%;
   background: #fff;
   opacity: .7;
+}
+.marquee-check{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.marquee-value{
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: .08em;
 }
 @keyframes marquee{ to { transform: translateX(-50%); } }
 
@@ -989,128 +981,6 @@ section[id]{ scroll-margin-top: 100px; }
   color: var(--red);
   font-weight: 700;
 }
-
-/* 安全检测 */
-.security-section{
-  margin-bottom: clamp(28px, 3.5vw, 44px);
-  position: relative;
-  z-index: 1;
-}
-.security-header{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
-}
-.security-title{
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .22em;
-  color: var(--muted);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.security-title::before{
-  content: ">";
-  color: var(--red);
-  font-weight: 900;
-}
-.security-badge{
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border: 1px solid var(--green-bd);
-  background: var(--green-bg);
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .14em;
-  color: var(--green);
-}
-.security-badge i{
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: var(--green);
-  box-shadow: 0 0 8px rgba(22,163,74,.5);
-  animation: blink 1.6s ease-in-out infinite;
-}
-.security-badge.risk{
-  border-color: #fecaca;
-  background: #fef2f2;
-  color: #dc2626;
-}
-.security-badge.risk i{
-  background: #dc2626;
-  box-shadow: 0 0 8px rgba(220,38,38,.5);
-}
-.security-grid{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(12px, 1.4vw, 18px);
-}
-.security-check{
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 18px 20px;
-  border: 1px solid var(--line);
-  background: #fff;
-  transition: border-color .25s, box-shadow .25s;
-}
-.security-check:hover{
-  border-color: var(--line-2);
-  box-shadow: 0 10px 24px -20px rgba(0,0,0,.3);
-}
-.security-check-icon{
-  width: 34px;
-  height: 34px;
-  flex: 0 0 34px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  font-family: var(--mono);
-  font-size: 15px;
-  font-weight: 900;
-}
-.security-check-icon.pass{
-  background: var(--green-bg);
-  border: 1px solid var(--green-bd);
-  color: var(--green);
-}
-.security-check-icon.fail{
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-  color: #dc2626;
-}
-.security-check-icon.warn{
-  background: #fffbeb;
-  border: 1px solid #fde68a;
-  color: #d97706;
-}
-.security-check-body{ min-width: 0; }
-.security-check-name{
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .16em;
-  color: var(--ink);
-  margin-bottom: 5px;
-}
-.security-check-value{
-  font-family: var(--mono);
-  font-size: 12.5px;
-  font-weight: 700;
-  color: var(--muted);
-  word-break: break-word;
-}
-.security-check-value.pass{ color: var(--green); }
-.security-check-value.fail{ color: #dc2626; }
-.security-check-value.warn{ color: #d97706; }
 
 /* —— 代币详情表 —— */
 .detail-section{
@@ -1410,7 +1280,6 @@ footer::before{
     gap: 18px;
   }
 
-  .security-grid{ grid-template-columns: repeat(2, 1fr); }
   .about-note{ grid-template-columns: 1fr; gap: 12px; }
   .about-note-mark{ font-size: 32px; }
   .contact-links{ grid-template-columns: 1fr; }
@@ -1454,8 +1323,6 @@ footer::before{
     font-size: 8px;
   }
   .contract-strip-copy svg{ width: 10px; height: 10px; }
-
-  .security-grid{ grid-template-columns: 1fr; }
 
   .detail-row{
     display: block;
@@ -1630,7 +1497,6 @@ footer::before{
       <div class="hv-halo hv-halo-1"></div>
       <div class="hv-halo hv-halo-2"></div>
 
-      <!-- 修改：圆心显示 Logo -->
       <div class="hv-core">
         <img src="logo-red32.svg" alt="CHILI">
       </div>
@@ -1639,35 +1505,30 @@ footer::before{
       <div class="hv-node hv-node-2"></div>
       <div class="hv-node hv-node-3"></div>
 
-      <!-- 网络 - 顶部居中 -->
       <div class="readout readout-1"
            data-en-html="NETWORK // <b class='red'>BNB Smart Chain (BSC)</b>"
            data-zh-html="网络 // <b class='red'>BNB Smart Chain (BSC)</b>">
         网络 // <b class="red">BNB Smart Chain (BSC)</b>
       </div>
 
-      <!-- 代币名称 - 左侧中间 -->
       <div class="readout readout-2"
            data-en-html="TOKEN NAME // <b class='red'>小辣椒</b>"
            data-zh-html="代币名称 // <b class='red'>小辣椒</b>">
         代币名称 // <b class="red">小辣椒</b>
       </div>
 
-      <!-- 代币符号 - 右侧中间 -->
       <div class="readout readout-5"
            data-en-html="TOKEN SYMBOL // <b class='red'>CHILI</b>"
            data-zh-html="代币符号 // <b class='red'>CHILI</b>">
         代币符号 // <b class="red">CHILI</b>
       </div>
 
-      <!-- 总供应量 - 左下 -->
       <div class="readout readout-3"
            data-en-html="TOTAL SUPPLY // <b class='red' id='supplyHero'>LOADING</b>"
            data-zh-html="总供应量 // <b class='red' id='supplyHero'>加载中</b>">
         总供应量 // <b class="red" id="supplyHero">加载中</b>
       </div>
 
-      <!-- 持币人数 - 右下 -->
       <div class="readout readout-4"
            data-en-html="HOLDERS // <b class='red' id='holdersHero'>LOADING</b>"
            data-zh-html="持币人数 // <b class='red' id='holdersHero'>加载中</b>">
@@ -1692,16 +1553,65 @@ footer::before{
 <!-- MARQUEE -->
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track">
+    <!-- ===== 第一组 ===== -->
+    <span data-en="小辣椒" data-zh="小辣椒">小辣椒</span><i></i>
     <span data-en="CHILI" data-zh="CHILI">CHILI</span><i></i>
-    <span data-en="BNB CHAIN" data-zh="BNB 链">BNB CHAIN</span><i></i>
-    <span data-en="LIQUIDITY LIVE" data-zh="流动性已上线">LIQUIDITY LIVE</span><i></i>
-    <span data-en="COMMUNITY DRIVEN" data-zh="社区驱动">COMMUNITY DRIVEN</span><i></i>
-    <span data-en="ON-CHAIN" data-zh="链上">ON-CHAIN</span><i></i>
+    <span data-en="BNB Smart Chain (BSC)" data-zh="BNB Smart Chain (BSC)">BNB Smart Chain (BSC)</span><i></i>
+    <span data-en="TOTAL SUPPLY" data-zh="总供应量">总供应量</span>
+    <span class="marquee-value" id="marqueeSupply">—</span><i></i>
+    <span class="marquee-check">
+      <span data-en="HONEYPOT" data-zh="蜜罐检测">蜜罐检测</span>
+      <b class="marquee-value" data-marquee="honeypot">—</b>
+    </span><i></i>
+    <span class="marquee-check">
+      <span data-en="BUY/SELL TAX" data-zh="买入/卖出税">买入/卖出税</span>
+      <b class="marquee-value" data-marquee="tax">—</b>
+    </span><i></i>
+    <span class="marquee-check">
+      <span data-en="MINTABLE" data-zh="可增发">可增发</span>
+      <b class="marquee-value" data-marquee="mintable">—</b>
+    </span><i></i>
+    <span class="marquee-check">
+      <span data-en="PROXY" data-zh="代理合约">代理合约</span>
+      <b class="marquee-value" data-marquee="proxy">—</b>
+    </span><i></i>
+    <span class="marquee-check">
+      <span data-en="OWNER" data-zh="所有者权限">所有者权限</span>
+      <b class="marquee-value" data-marquee="owner">—</b>
+    </span><i></i>
+    <span data-en="LIQUIDITY LIVE" data-zh="流动性已上线">流动性已上线</span><i></i>
+    <span data-en="COMMUNITY DRIVEN" data-zh="社区驱动">社区驱动</span><i></i>
+    <span data-en="ON-CHAIN" data-zh="链上">链上</span><i></i>
+
+    <!-- ===== 第二组（复制，无缝循环） ===== -->
+    <span data-en="小辣椒" data-zh="小辣椒">小辣椒</span><i></i>
     <span data-en="CHILI" data-zh="CHILI">CHILI</span><i></i>
-    <span data-en="BNB CHAIN" data-zh="BNB 链">BNB CHAIN</span><i></i>
-    <span data-en="LIQUIDITY LIVE" data-zh="流动性已上线">LIQUIDITY LIVE</span><i></i>
-    <span data-en="COMMUNITY DRIVEN" data-zh="社区驱动">COMMUNITY DRIVEN</span><i></i>
-    <span data-en="ON-CHAIN" data-zh="链上">ON-CHAIN</span><i></i>
+    <span data-en="BNB Smart Chain (BSC)" data-zh="BNB Smart Chain (BSC)">BNB Smart Chain (BSC)</span><i></i>
+    <span data-en="TOTAL SUPPLY" data-zh="总供应量">总供应量</span>
+    <span class="marquee-value" id="marqueeSupply2">—</span><i></i>
+    <span class="marquee-check">
+      <span data-en="HONEYPOT" data-zh="蜜罐检测">蜜罐检测</span>
+      <b class="marquee-value" data-marquee="honeypot">—</b>
+    </span><i></i>
+    <span class="marquee-check">
+      <span data-en="BUY/SELL TAX" data-zh="买入/卖出税">买入/卖出税</span>
+      <b class="marquee-value" data-marquee="tax">—</b>
+    </span><i></i>
+    <span class="marquee-check">
+      <span data-en="MINTABLE" data-zh="可增发">可增发</span>
+      <b class="marquee-value" data-marquee="mintable">—</b>
+    </span><i></i>
+    <span class="marquee-check">
+      <span data-en="PROXY" data-zh="代理合约">代理合约</span>
+      <b class="marquee-value" data-marquee="proxy">—</b>
+    </span><i></i>
+    <span class="marquee-check">
+      <span data-en="OWNER" data-zh="所有者权限">所有者权限</span>
+      <b class="marquee-value" data-marquee="owner">—</b>
+    </span><i></i>
+    <span data-en="LIQUIDITY LIVE" data-zh="流动性已上线">流动性已上线</span><i></i>
+    <span data-en="COMMUNITY DRIVEN" data-zh="社区驱动">社区驱动</span><i></i>
+    <span data-en="ON-CHAIN" data-zh="链上">链上</span><i></i>
   </div>
 </div>
 
@@ -1773,58 +1683,7 @@ footer::before{
       </p>
     </div>
 
-    <div class="security-section">
-      <div class="security-header">
-        <div class="security-title" data-en="CONTRACT SECURITY · GOPLUS" data-zh="合约安全检测 · GOPLUS">合约安全检测 · GOPLUS</div>
-        <div class="security-badge" id="securityBadge">
-          <i></i><span data-en="CHECKING" data-zh="检测中">检测中</span>
-        </div>
-      </div>
-      <div class="security-grid">
-        <div class="security-check">
-          <div class="security-check-icon" id="iconHoneypot">·</div>
-          <div class="security-check-body">
-            <div class="security-check-name" data-en="HONEYPOT" data-zh="蜜罐检测">蜜罐检测</div>
-            <div class="security-check-value" id="valHoneypot">加载中</div>
-          </div>
-        </div>
-        <div class="security-check">
-          <div class="security-check-icon" id="iconBuyTax">·</div>
-          <div class="security-check-body">
-            <div class="security-check-name" data-en="BUY TAX" data-zh="买入税">买入税</div>
-            <div class="security-check-value" id="valBuyTax">加载中</div>
-          </div>
-        </div>
-        <div class="security-check">
-          <div class="security-check-icon" id="iconSellTax">·</div>
-          <div class="security-check-body">
-            <div class="security-check-name" data-en="SELL TAX" data-zh="卖出税">卖出税</div>
-            <div class="security-check-value" id="valSellTax">加载中</div>
-          </div>
-        </div>
-        <div class="security-check">
-          <div class="security-check-icon" id="iconMintable">·</div>
-          <div class="security-check-body">
-            <div class="security-check-name" data-en="MINTABLE" data-zh="可增发">可增发</div>
-            <div class="security-check-value" id="valMintable">加载中</div>
-          </div>
-        </div>
-        <div class="security-check">
-          <div class="security-check-icon" id="iconProxy">·</div>
-          <div class="security-check-body">
-            <div class="security-check-name" data-en="PROXY CONTRACT" data-zh="代理合约">代理合约</div>
-            <div class="security-check-value" id="valProxy">加载中</div>
-          </div>
-        </div>
-        <div class="security-check">
-          <div class="security-check-icon" id="iconOwner">·</div>
-          <div class="security-check-body">
-            <div class="security-check-name" data-en="OWNER PRIVILEGES" data-zh="所有者权限">所有者权限</div>
-            <div class="security-check-value" id="valOwner">加载中</div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- 安全检测卡片已移除，数据仅显示在顶部滚动条 -->
 
     <div class="detail-section">
       <div class="detail-header">
@@ -2020,6 +1879,17 @@ const chainDataCache = { supply: null, holders: null };
     const el = document.getElementById(id);
     if (el) el.textContent = text;
   }
+  function setMarqueeValue(key, text){
+    document.querySelectorAll('[data-marquee="' + key + '"]').forEach(function(el){
+      el.textContent = text;
+    });
+  }
+  function setMarqueeSupply(text){
+    ['marqueeSupply', 'marqueeSupply2'].forEach(function(id){
+      const el = document.getElementById(id);
+      if (el) el.textContent = text;
+    });
+  }
 
   function injectContractAddress(){
     ['contractAddr', 'contractDetail'].forEach(function(id){
@@ -2029,15 +1899,10 @@ const chainDataCache = { supply: null, holders: null };
   }
 
   function setCheck(id, value, status){
-    const icon = document.getElementById('icon' + id);
-    const val = document.getElementById('val' + id);
-    if (icon) {
-      icon.textContent = status === 'pass' ? '✓' : status === 'fail' ? '✕' : '!';
-      icon.className = 'security-check-icon ' + status;
-    }
-    if (val) {
-      val.textContent = value;
-      val.className = 'security-check-value ' + status;
+    // 卡片已被移除，这里只同步到跑马灯
+    const key = id.charAt(0).toLowerCase() + id.slice(1);
+    if (key !== 'buyTax' && key !== 'sellTax') {
+      setMarqueeValue(key, value);
     }
   }
 
@@ -2050,17 +1915,21 @@ const chainDataCache = { supply: null, holders: null };
       if (!data) throw new Error('No data');
 
       const honeypot = data.is_honeypot === '1';
-      setCheck('Honeypot', honeypot ? 'YES' : 'NO', honeypot ? 'fail' : 'pass');
+      setCheck('Honeypot', honeypot ? 'YES' : 'NO');
+
       const buyTaxNum = data.buy_tax ? parseFloat(data.buy_tax) : 0;
-      setCheck('BuyTax', (buyTaxNum * 100).toFixed(1) + '%', buyTaxNum > 0.1 ? 'fail' : 'pass');
       const sellTaxNum = data.sell_tax ? parseFloat(data.sell_tax) : 0;
-      setCheck('SellTax', (sellTaxNum * 100).toFixed(1) + '%', sellTaxNum > 0.1 ? 'fail' : 'pass');
+      const maxTax = Math.max(buyTaxNum, sellTaxNum);
+      setMarqueeValue('tax', (maxTax * 100).toFixed(1) + '%');
+
       const mintable = data.is_mintable === '1';
-      setCheck('Mintable', mintable ? 'YES' : 'NO', mintable ? 'warn' : 'pass');
+      setCheck('Mintable', mintable ? 'YES' : 'NO');
+
       const proxy = data.is_proxy === '1';
-      setCheck('Proxy', proxy ? 'YES' : 'NO', proxy ? 'warn' : 'pass');
+      setCheck('Proxy', proxy ? 'YES' : 'NO');
+
       const ownerRisk = data.owner_change_balance === '1' || data.can_take_back_ownership === '1' || data.hidden_owner === '1';
-      setCheck('Owner', ownerRisk ? 'YES' : 'NO', ownerRisk ? 'warn' : 'pass');
+      setCheck('Owner', ownerRisk ? 'YES' : 'NO');
 
       if (data.holder_count) {
         const holders = Number(data.holder_count).toLocaleString('en-US');
@@ -2078,28 +1947,15 @@ const chainDataCache = { supply: null, holders: null };
         chainDataCache.supply = s;
         setText('supplyHero', s);
         setText('statSupply', s);
+        setMarqueeSupply(s);
       }
 
-      const badge = document.getElementById('securityBadge');
-      if (badge) {
-        if (honeypot || buyTaxNum > 0.1 || sellTaxNum > 0.1) {
-          badge.className = 'security-badge risk';
-          badge.innerHTML = '<i></i><span>RISK DETECTED</span>';
-        } else {
-          badge.className = 'security-badge';
-          badge.innerHTML = '<i></i><span>ALL CHECKS PASSED</span>';
-        }
-      }
       return data;
     } catch(e) {
-      ['Honeypot','BuyTax','SellTax','Mintable','Proxy','Owner'].forEach(function(id){
-        setCheck(id, '—', 'warn');
+      ['Honeypot','Mintable','Proxy','Owner'].forEach(function(id){
+        setCheck(id, '—');
       });
-      const badge = document.getElementById('securityBadge');
-      if (badge) {
-        badge.className = 'security-badge risk';
-        badge.innerHTML = '<i></i><span>CHECK FAILED</span>';
-      }
+      setMarqueeValue('tax', '—');
       return null;
     }
   }
@@ -2160,6 +2016,7 @@ const chainDataCache = { supply: null, holders: null };
       chainDataCache.supply = rpcSupply;
       setText('supplyHero', rpcSupply);
       setText('statSupply', rpcSupply);
+      setMarqueeSupply(rpcSupply);
     }
     const gp = await fetchGoPlus();
     if (gp && gp.total_supply) {
@@ -2167,11 +2024,13 @@ const chainDataCache = { supply: null, holders: null };
       chainDataCache.supply = s;
       setText('supplyHero', s);
       setText('statSupply', s);
+      setMarqueeSupply(s);
     }
     if (!chainDataCache.supply) {
       chainDataCache.supply = '—';
       setText('supplyHero', '—');
       setText('statSupply', '—');
+      setMarqueeSupply('—');
     }
     if (!chainDataCache.holders) {
       chainDataCache.holders = '—';
