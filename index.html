@@ -553,7 +553,6 @@ section[id]{ scroll-margin-top: 100px; }
     transparent 24%, #000 28%, #000 49%, transparent 50%);
 }
 
-/* 圆心：显示 Logo */
 .hv-core{
   position: relative;
   z-index: 6;
@@ -674,7 +673,6 @@ section[id]{ scroll-margin-top: 100px; }
 .readout b{ color: var(--ink); font-weight: 700; }
 .readout b.red{ color: var(--red); }
 
-/* 环形布局 —— 持币人数（readout-4）往左靠 */
 .readout-1{ top: 0;    left: 50%; transform: translateX(-50%); }
 .readout-2{ top: 40%;  left: 0; }
 .readout-5{ top: 40%;  right: 0; }
@@ -1228,7 +1226,6 @@ footer{
 
 /* RESPONSIVE */
 @media (max-width: 1080px){
-  .topbar-inner span:nth-child(n+3){ display: none; }
   .nav-links{ display: none; }
   .nav-inner{ grid-template-columns: 1fr auto; }
 
@@ -1252,7 +1249,19 @@ footer{
 }
 
 @media (max-width: 680px){
-  .topbar-inner span:nth-child(n+2){ display: none; }
+  .topbar-inner{
+    gap: 6px;
+    font-size: 8.5px;
+    letter-spacing: .02em;
+    height: 28px;
+    justify-content: space-between;
+  }
+  .topbar-inner b{ margin-left: 3px; }
+  .topbar-item{ gap: 1px; }
+  .dot{
+    width: 5px; height: 5px;
+    margin-right: 4px;
+  }
 
   .hero-ruler{ display: none; }
 
@@ -1270,7 +1279,6 @@ footer{
   .readout-2{ top: 42%; left: -4px; }
   .readout-5{ top: 42%; right: -4px; }
   .readout-3{ bottom: 12%; left: -4px; }
-  /* 手机端持币人数往左靠一点 */
   .readout-4{ bottom: 12%; right: 4%; }
 
   .contract-strip{
@@ -1329,7 +1337,6 @@ footer{
     padding: 9px 12px;
   }
 
-  /* 手机端：两个按钮并排、正长方形 */
   .hero-actions{
     flex-direction: row;
     flex-wrap: nowrap;
@@ -1345,7 +1352,6 @@ footer{
     gap: 6px;
   }
 
-  /* 手机端：导航栏按钮小巧，正长方形 */
   .nav-inner{ height: 64px; }
   .logo img{ height: 36px; max-width: 150px; }
   .logo-text { font-size: 14px; }
@@ -1356,7 +1362,6 @@ footer{
   }
   .lang-switch button{ padding: 6px 7px; font-size: 9px; }
 
-  /* 手机端页脚：居中、拉开间距（图标大小不变） */
   footer{
     padding-block: 40px;
   }
@@ -1367,12 +1372,8 @@ footer{
     gap: 20px;
     text-align: center;
   }
-  .footer-inner .brand{
-    order: 1;
-  }
-  .footer-inner > span[data-en]{
-    order: 2;
-  }
+  .footer-inner .brand{ order: 1; }
+  .footer-inner > span[data-en]{ order: 2; }
   .footer-links{
     order: 3;
     gap: 14px;
@@ -1387,10 +1388,10 @@ footer{
   <div class="wrap topbar-inner">
     <span class="topbar-item">
       <i class="dot"></i>
-      <span data-en="SYSTEM ONLINE" data-zh="系统在线">SYSTEM ONLINE</span>
+      <span data-en="SYSTEM ONLINE" data-zh="系统在线">系统在线</span>
     </span>
     <span class="topbar-item">
-      <span data-en="BNB CHAIN · BLOCK" data-zh="BNB 链 · 区块">BNB CHAIN · BLOCK</span>
+      <span data-en="BNB CHAIN · BLOCK" data-zh="BNB 链 · 区块">BNB 链 · 区块</span>
       <b id="blockNum">—</b>
     </span>
     <span class="topbar-item">
@@ -1399,7 +1400,7 @@ footer{
     </span>
     <span class="topbar-item" data-en-html="CHILI/USDT · <b>LIVE</b>"
           data-zh-html="CHILI/USDT · <b>实时</b>">
-      CHILI/USDT · <b>LIVE</b>
+      CHILI/USDT · <b>实时</b>
     </span>
   </div>
 </div>
@@ -1423,11 +1424,12 @@ footer{
         <button type="button" data-lang="en" class="active">EN</button>
         <button type="button" data-lang="zh">中文</button>
       </div>
+      <!-- ===== 购买按钮链接改为 DexScreener ===== -->
       <a class="nav-cta"
-         href="https://pancakeswap.finance/"
+         href="https://dexscreener.com/bsc/0xEd3Caca4903256fB3E4997BC0C7830D19Fb35f7c"
          target="_blank" rel="noopener"
          data-en="BUY CHILI ↗" data-zh="购买 CHILI ↗">
-        BUY CHILI ↗
+        购买 CHILI ↗
       </a>
     </div>
   </div>
@@ -1442,39 +1444,39 @@ footer{
       <div class="hero-eyebrow"
            data-en-html="<i></i> BNB CHAIN · ON-CHAIN TOKEN"
            data-zh-html="<i></i> BNB 链 · 链上代币">
-        <i></i> BNB CHAIN · ON-CHAIN TOKEN
+        <i></i> BNB 链 · 链上代币
       </div>
       <h1 class="hero-title">CHI<span>LI</span></h1>
       <div class="hero-sub">
         <span data-en-html="NETWORK <b>BNB</b>"
               data-zh-html="网络 <b>BNB</b>">
-          NETWORK <b>BNB</b>
+          网络 <b>BNB</b>
         </span>
         <span data-en-html="PAIR <b>CHILI / USDT</b>"
               data-zh-html="交易对 <b>CHILI / USDT</b>">
-          PAIR <b>CHILI / USDT</b>
+          交易对 <b>CHILI / USDT</b>
         </span>
         <span data-en-html="STATUS <b>ACTIVE</b>"
               data-zh-html="状态 <b>运行中</b>">
-          STATUS <b>ACTIVE</b>
+          状态 <b>运行中</b>
         </span>
       </div>
       <p class="hero-desc"
          data-en="A next-generation community token built on BNB Chain. Simple. Transparent. On-chain."
          data-zh="基于 BNB 链构建的新一代社区代币。简单。透明。链上。">
-        A next-generation community token built on BNB Chain.
-        Simple. Transparent. On-chain.
+        基于 BNB 链构建的新一代社区代币。简单。透明。链上。
       </p>
       <div class="hero-actions">
+        <!-- ===== 购买按钮链接改为 DexScreener ===== -->
         <a class="btn btn-primary"
-           href="https://pancakeswap.finance/"
+           href="https://dexscreener.com/bsc/0xEd3Caca4903256fB3E4997BC0C7830D19Fb35f7c"
            target="_blank" rel="noopener"
            data-en="▶ BUY CHILI" data-zh="▶ 购买 CHILI">
-          ▶ BUY CHILI
+          ▶ 购买 CHILI
         </a>
         <a class="btn btn-outline" href="#data"
            data-en="▼ VIEW ON-CHAIN DATA" data-zh="▼ 查看链上数据">
-          ▼ ON-CHAIN DATA
+          ▼ 查看链上数据
         </a>
       </div>
     </div>
@@ -1550,7 +1552,6 @@ footer{
 <!-- MARQUEE -->
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track">
-    <!-- ===== 第一组 ===== -->
     <span data-en="小辣椒" data-zh="小辣椒">小辣椒</span><i></i>
     <span data-en="CHILI" data-zh="CHILI">CHILI</span><i></i>
     <span data-en="BNB Smart Chain (BSC)" data-zh="BNB Smart Chain (BSC)">BNB Smart Chain (BSC)</span><i></i>
@@ -1580,7 +1581,6 @@ footer{
     <span data-en="COMMUNITY DRIVEN" data-zh="社区驱动">社区驱动</span><i></i>
     <span data-en="ON-CHAIN" data-zh="链上">链上</span><i></i>
 
-    <!-- ===== 第二组（复制，无缝循环） ===== -->
     <span data-en="小辣椒" data-zh="小辣椒">小辣椒</span><i></i>
     <span data-en="CHILI" data-zh="CHILI">CHILI</span><i></i>
     <span data-en="BNB Smart Chain (BSC)" data-zh="BNB Smart Chain (BSC)">BNB Smart Chain (BSC)</span><i></i>
@@ -1617,7 +1617,7 @@ footer{
   <div class="wrap">
     <div class="section-head">
       <div>
-        <div class="section-tag" data-en="01 · ABOUT" data-zh="01 · 关于">01 · ABOUT</div>
+        <div class="section-tag" data-en="01 · ABOUT" data-zh="01 · 关于">01 · 关于</div>
         <h2 class="section-title"
             data-en-html="WHAT IS<br>CHILI?"
             data-zh-html="CHILI<br>是什么？">
@@ -1638,10 +1638,10 @@ footer{
     </p>
 
     <div class="about-tags">
-      <span class="about-tag" data-en="COMMUNITY DRIVEN" data-zh="社区驱动">COMMUNITY DRIVEN</span>
-      <span class="about-tag" data-en="INDEPENDENT DEVELOPER" data-zh="独立开发者">INDEPENDENT DEVELOPER</span>
-      <span class="about-tag" data-en="EARLY STAGE" data-zh="早期阶段">EARLY STAGE</span>
-      <span class="about-tag" data-en="NO PRESALE" data-zh="无预售">NO PRESALE</span>
+      <span class="about-tag" data-en="COMMUNITY DRIVEN" data-zh="社区驱动">社区驱动</span>
+      <span class="about-tag" data-en="INDEPENDENT DEVELOPER" data-zh="独立开发者">独立开发者</span>
+      <span class="about-tag" data-en="EARLY STAGE" data-zh="早期阶段">早期阶段</span>
+      <span class="about-tag" data-en="NO PRESALE" data-zh="无预售">无预售</span>
     </div>
 
     <div class="about-note">
@@ -1680,7 +1680,7 @@ footer{
   <div class="wrap">
     <div class="section-head">
       <div>
-        <div class="section-tag" data-en="02 · DATA" data-zh="02 · 数据">02 · DATA</div>
+        <div class="section-tag" data-en="02 · DATA" data-zh="02 · 数据">02 · 数据</div>
         <h2 class="section-title"
             data-en-html="SECURITY &<br>ON-CHAIN."
             data-zh-html="合约安全<br>与链上信息。">
@@ -1773,7 +1773,7 @@ footer{
   <div class="wrap">
     <div class="section-head">
       <div>
-        <div class="section-tag" data-en="03 · COMMUNITY" data-zh="03 · 社区">03 · COMMUNITY</div>
+        <div class="section-tag" data-en="03 · COMMUNITY" data-zh="03 · 社区">03 · 社区</div>
         <h2 class="section-title"
             data-en-html="JOIN<br>THE HEAT."
             data-zh-html="加入社区。">
@@ -1797,7 +1797,7 @@ footer{
             </svg>
           </div>
           <div>
-            <div class="contact-link-label" data-en="OFFICIAL EMAIL" data-zh="官方邮箱">OFFICIAL EMAIL</div>
+            <div class="contact-link-label" data-en="OFFICIAL EMAIL" data-zh="官方邮箱">官方邮箱</div>
             <div class="contact-link-value">ayudekaka@gmail.com</div>
           </div>
         </div>
@@ -1810,7 +1810,7 @@ footer{
             <img src="logo-red32.svg" alt="小辣椒 CHILI">
           </div>
           <div>
-            <div class="contact-link-label" data-en="OFFICIAL WEBSITE" data-zh="官方网站">OFFICIAL WEBSITE</div>
+            <div class="contact-link-label" data-en="OFFICIAL WEBSITE" data-zh="官方网站">官方网站</div>
             <div class="contact-link-value">ayudekaka.github.io/ChiLi/</div>
           </div>
         </div>
@@ -1825,7 +1825,7 @@ footer{
             </svg>
           </div>
           <div>
-            <div class="contact-link-label" data-en="TELEGRAM COMMUNITY" data-zh="Telegram 社区">TELEGRAM COMMUNITY</div>
+            <div class="contact-link-label" data-en="TELEGRAM COMMUNITY" data-zh="Telegram 社区">Telegram 社区</div>
             <div class="contact-link-value">t.me/xiaolajiaoCHILI</div>
           </div>
         </div>
@@ -1841,7 +1841,7 @@ footer{
     <span class="brand">[ 小辣椒 CHILI <em>//</em> © 2026 ]</span>
     <span data-en="BUILT ON BNB CHAIN · COMMUNITY DRIVEN"
           data-zh="基于 BNB 链构建 · 社区驱动">
-      BUILT ON BNB CHAIN · COMMUNITY DRIVEN
+      基于 BNB 链构建 · 社区驱动
     </span>
     <div class="footer-links">
       <a href="mailto:ayudekaka@gmail.com" aria-label="Email" title="Email">
@@ -2096,7 +2096,7 @@ const chainDataCache = { supply: null, holders: null };
 /* 语言切换 */
 (function(){
   const STORAGE_KEY = 'chili-lang';
-  const DEFAULT = 'en';
+  const DEFAULT = 'zh';
   const meta = {
     en: { title: '小辣椒 CHILI — Official Website', htmlLang: 'en' },
     zh: { title: '小辣椒 CHILI 官方网站', htmlLang: 'zh-CN' }
