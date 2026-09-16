@@ -4,9 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>小辣椒 CHILI 官方网站</title>
-<!-- 把 sizes 改为 64x64，让浏览器使用更清晰的源图 -->
-<link rel="icon" type="image/png" sizes="64x64" href="logo-red.png">
-<link rel="apple-touch-icon" href="logo-red.png">
+<link rel="icon" type="image/svg+xml" href="logo-red32.svg">
+<link rel="apple-touch-icon" href="logo-red32.svg">
 
 <style>
 
@@ -145,7 +144,6 @@ section[id]{ scroll-margin-top: 100px; }
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 20px;
-  /* 导航栏高度从70px增加到80px，给更大的Logo留出空间 */
   height: 80px;
 }
 .logo{
@@ -157,7 +155,7 @@ section[id]{ scroll-margin-top: 100px; }
   color: var(--ink);
   display: inline-flex;
   align-items: center;
-  gap: 12px; /* 稍微增加间距 */
+  gap: 12px;
 }
 .logo .bracket{ color: var(--red); }
 .logo .cursor{
@@ -170,14 +168,12 @@ section[id]{ scroll-margin-top: 100px; }
 .logo img{
   display: block;
   width: auto;
-  /* Logo高度从38px增加到48px */
-  height: 48px;
-  max-width: 220px; /* 相应放宽最大宽度 */
+  height: 52px;
+  max-width: 220px;
   object-fit: contain;
 }
 .logo-text {
   font-family: var(--mono);
-  /* 文字大小从17px增加到20px */
   font-size: 20px;
   font-weight: 800;
   letter-spacing: .04em;
@@ -1302,8 +1298,8 @@ section[id]{ scroll-margin-top: 100px; }
   color: var(--red);
 }
 .contact-link-icon img{
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   display: block;
   object-fit: contain;
 }
@@ -1502,12 +1498,11 @@ footer::before{
   .nav-cta{ padding: 9px 12px; font-size: 9.5px; }
   .lang-switch button{ padding: 7px 9px; font-size: 9.5px; }
 
-  /* 手机端导航栏高度恢复，Logo 适当调小，避免挤压 */
   .nav-inner{
     height: 70px;
   }
   .logo img{
-    height: 38px;
+    height: 40px;
     max-width: 160px;
   }
   .logo-text {
@@ -1544,7 +1539,7 @@ footer::before{
 <nav class="navbar">
   <div class="wrap nav-inner">
     <a class="logo" href="#" aria-label="小辣椒 CHILI">
-      <img src="logo-red.png" alt="小辣椒 CHILI">
+      <img src="logo-red32.svg" alt="小辣椒 CHILI">
       <span class="logo-text" data-en="CHILI" data-zh="小辣椒 CHILI">小辣椒 CHILI</span>
     </a>
 
@@ -1923,7 +1918,7 @@ footer::before{
       <a class="contact-link" href="https://ayudekaka.github.io/ChiLi/" target="_blank" rel="noopener">
         <div class="contact-link-main">
           <div class="contact-link-icon" aria-hidden="true">
-            <img src="logo-red.png" alt="小辣椒 CHILI">
+            <img src="logo-red32.svg" alt="小辣椒 CHILI">
           </div>
           <div>
             <div class="contact-link-label" data-en="OFFICIAL WEBSITE" data-zh="官方网站">OFFICIAL WEBSITE</div>
@@ -1967,7 +1962,7 @@ footer::before{
         </svg>
       </a>
       <a href="https://ayudekaka.github.io/ChiLi/" target="_blank" rel="noopener" aria-label="Website" title="Website">
-        <img src="logo-red.png" alt="小辣椒 CHILI">
+        <img src="logo-red32.svg" alt="小辣椒 CHILI">
       </a>
       <a href="https://t.me/xiaolajiaoCHILI" target="_blank" rel="noopener" aria-label="Telegram" title="Telegram">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
