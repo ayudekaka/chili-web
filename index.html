@@ -854,6 +854,41 @@ section[id]{ scroll-margin-top: 100px; }
   font-style: normal;
   color: var(--red);
 }
+
+/* ===== 项目宣言 ===== */
+.about-manifesto{
+  position: relative;
+  max-width: 76ch;
+  padding: clamp(20px, 2.6vw, 32px) clamp(20px, 3vw, 36px)
+           clamp(20px, 2.6vw, 32px) clamp(26px, 3.4vw, 44px);
+  border: 1px solid var(--line-2);
+  border-left: 3px solid var(--red);
+  background: #fff;
+  margin-bottom: clamp(28px, 3vw, 42px);
+  z-index: 1;
+}
+.about-manifesto::before{
+  content: "\201C";
+  position: absolute;
+  top: -6px;
+  left: 14px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 72px;
+  line-height: 1;
+  color: var(--red);
+  opacity: .22;
+  user-select: none;
+  pointer-events: none;
+}
+.about-manifesto p{
+  font-size: clamp(15px, 1.2vw, 18px);
+  line-height: 1.85;
+  color: var(--ink);
+  font-weight: 500;
+  letter-spacing: .005em;
+}
+
+/* 关于标签 */
 .about-tags{
   display: flex;
   flex-wrap: wrap;
@@ -951,6 +986,61 @@ section[id]{ scroll-margin-top: 100px; }
 .about-note strong{
   color: var(--red);
   font-weight: 700;
+}
+
+/* 创始人链接块 */
+.about-links{
+  margin-top: 10px;
+  padding-top: 18px;
+  border-top: 1px dashed var(--line-2);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.about-link-row{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .04em;
+  flex: 1 1 calc(50% - 7px);
+  min-width: 0;
+  padding: 10px 14px;
+  border: 1px solid var(--line-2);
+  background: #fff;
+  transition: border-color .2s, background .2s, transform .2s;
+}
+.about-link-row:hover{
+  border-color: var(--red);
+  transform: translateY(-1px);
+}
+.about-link-label{
+  color: var(--muted);
+  font-weight: 700;
+  letter-spacing: .12em;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+.about-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--red);
+  font-weight: 700;
+  word-break: break-all;
+  min-width: 0;
+  transition: color .2s;
+  flex: 1 1 auto;
+}
+.about-link:hover{
+  color: var(--red-deep);
+}
+.about-link svg{
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
 }
 
 /* —— 代币详情表 —— */
@@ -1378,6 +1468,27 @@ footer{
     order: 3;
     gap: 14px;
   }
+
+  .about-links{
+    flex-direction: column;
+    gap: 10px;
+  }
+  .about-link-row{
+    flex: 1 1 100%;
+    width: 100%;
+  }
+  .about-link{
+    font-size: 10px;
+  }
+
+  .about-manifesto{
+    padding: 20px 18px 20px 24px;
+  }
+  .about-manifesto::before{
+    font-size: 56px;
+    top: -4px;
+    left: 10px;
+  }
 }
 </style>
 </head>
@@ -1414,9 +1525,9 @@ footer{
     </a>
 
     <div class="nav-links">
-      <a href="#about" data-en="01 · ABOUT" data-zh="01 · 关于">01 · ABOUT</a>
-      <a href="#data" data-en="02 · DATA" data-zh="02 · 数据">02 · DATA</a>
-      <a href="#community" data-en="03 · COMMUNITY" data-zh="03 · 社区">03 · COMMUNITY</a>
+      <a href="#about" data-en="01 · ABOUT" data-zh="01 · 关于">01 · 关于</a>
+      <a href="#data" data-en="02 · DATA" data-zh="02 · 数据">02 · 数据</a>
+      <a href="#community" data-en="03 · COMMUNITY" data-zh="03 · 社区">03 · 社区</a>
     </div>
 
     <div class="nav-right">
@@ -1424,7 +1535,6 @@ footer{
         <button type="button" data-lang="en" class="active">EN</button>
         <button type="button" data-lang="zh">中文</button>
       </div>
-      <!-- ===== 购买按钮链接改为 DexScreener ===== -->
       <a class="nav-cta"
          href="https://dexscreener.com/bsc/0xEd3Caca4903256fB3E4997BC0C7830D19Fb35f7c"
          target="_blank" rel="noopener"
@@ -1467,7 +1577,6 @@ footer{
         基于 BNB 链构建的新一代社区代币。简单。透明。链上。
       </p>
       <div class="hero-actions">
-        <!-- ===== 购买按钮链接改为 DexScreener ===== -->
         <a class="btn btn-primary"
            href="https://dexscreener.com/bsc/0xEd3Caca4903256fB3E4997BC0C7830D19Fb35f7c"
            target="_blank" rel="noopener"
@@ -1631,6 +1740,14 @@ footer{
       </p>
     </div>
 
+    <!-- ===== 项目宣言 ===== -->
+    <div class="about-manifesto">
+      <p data-en="Born from ordinary lives and humble beginnings, CHILI is a tribute to those who quietly carry the weight of life, hold on to their dreams, and keep moving forward. People may come and go, and dreams may fade with time, but what we leave behind can endure. CHILI carries a small piece of these stories onto the blockchain — a lasting mark of lives that mattered."
+         data-zh="CHILI 诞生于平凡的生活与微小的起点，献给那些默默承受生活重量、坚持梦想、继续前行的人。人会来来去去，梦想也会随时间淡去，但我们留下的东西可以长久存在。CHILI 把这些故事的一小部分带上链——作为那些真实存在过的生命，留下的印记。">
+        CHILI 诞生于平凡的生活与微小的起点，献给那些默默承受生活重量、坚持梦想、继续前行的人。人会来来去去，梦想也会随时间淡去，但我们留下的东西可以长久存在。CHILI 把这些故事的一小部分带上链——作为那些真实存在过的生命，留下的印记。
+      </p>
+    </div>
+
     <p class="about-statement"
        data-en-html="Simple. <em>Transparent.</em> On-chain."
        data-zh-html="简单。<em>透明。</em>链上。">
@@ -1670,6 +1787,34 @@ footer{
            data-zh="小辣椒 CHILI 是一个社区驱动型代币，希望通过公开透明的方式，与参与者共同见证项目的发展过程。">
           小辣椒 CHILI 是一个社区驱动型代币，希望通过公开透明的方式，与参与者共同见证项目的发展过程。
         </p>
+
+        <!-- ===== 创始人 / 仓库链接 ===== -->
+        <div class="about-links">
+          <div class="about-link-row">
+            <span class="about-link-label"
+                  data-en="FOUNDER GITHUB" data-zh="创始人 GitHub">创始人 GitHub</span>
+            <a class="about-link"
+               href="https://github.com/ayudekaka"
+               target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.78 1.19 1.78 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.25 5.68.41.35.78 1.05.78 2.12 0 1.53-.01 2.77-.01 3.15 0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/>
+              </svg>
+              github.com/ayudekaka
+            </a>
+          </div>
+          <div class="about-link-row">
+            <span class="about-link-label"
+                  data-en="REPOSITORY" data-zh="项目仓库">项目仓库</span>
+            <a class="about-link"
+               href="https://github.com/ayudekaka/ChiLi"
+               target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.78 1.19 1.78 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.25 5.68.41.35.78 1.05.78 2.12 0 1.53-.01 2.77-.01 3.15 0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/>
+              </svg>
+              github.com/ayudekaka/ChiLi
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1850,12 +1995,18 @@ footer{
           <path d="M4 7L12 13L20 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </a>
+      <!-- ===== 页脚 logo 改成黑色版 logo01-32x32.svg ===== -->
       <a href="https://ayudekaka.github.io/ChiLi/" target="_blank" rel="noopener" aria-label="Website" title="Website">
-        <img src="logo-red32.svg" alt="小辣椒 CHILI">
+        <img src="logo01-32x32.svg" alt="小辣椒 CHILI">
       </a>
       <a href="https://t.me/xiaolajiaoCHILI" target="_blank" rel="noopener" aria-label="Telegram" title="Telegram">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M21.5 4.5L18.4 19.2C18.2 20.2 17.6 20.5 16.8 20L12.5 16.8L10.4 18.8C10.2 19 10 19.2 9.6 19.2L9.9 14.7L18.1 7.3C18.5 7 18 6.8 17.4 7.1L7.3 13.5L2.9 12.1C1.9 11.8 1.9 11.1 3.1 10.6L20.2 4C21 3.7 21.8 4 21.5 4.5Z" fill="currentColor"/>
+        </svg>
+      </a>
+      <a href="https://github.com/ayudekaka/ChiLi" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.78 1.19 1.78 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.25 5.68.41.35.78 1.05.78 2.12 0 1.53-.01 2.77-.01 3.15 0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/>
         </svg>
       </a>
     </div>
