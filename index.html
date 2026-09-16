@@ -568,55 +568,52 @@ section[id]{ scroll-margin-top: 100px; }
           mask: radial-gradient(circle,
     transparent 24%, #000 28%, #000 49%, transparent 50%);
 }
+
+/* ===== 修改：圆心显示 Logo ===== */
 .hv-core{
   position: relative;
   z-index: 6;
-  width: 3.5%;
+  width: 9%;
   aspect-ratio: 1;
-  border-radius: 50%;
-  background: var(--red);
-  box-shadow:
-    0 0 12px rgba(230,0,0,.85),
-    0 0 30px rgba(230,0,0,.45),
-    0 0 60px rgba(230,0,0,.2);
+  display: grid;
+  place-items: center;
   animation: hvCorePulse 2.6s ease-in-out infinite;
+}
+.hv-core img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(230,0,0,.75))
+          drop-shadow(0 0 22px rgba(230,0,0,.35));
 }
 .hv-core::before{
   content: "";
   position: absolute;
-  inset: -140%;
+  inset: -40%;
   border-radius: 50%;
   border: 1px solid rgba(230,0,0,.55);
   animation: hvRing 2.6s ease-out infinite;
+  pointer-events: none;
 }
 .hv-core::after{
   content: "";
   position: absolute;
-  inset: -260%;
+  inset: -90%;
   border-radius: 50%;
   border: 1px solid rgba(230,0,0,.25);
   animation: hvRing 2.6s ease-out 1.3s infinite;
+  pointer-events: none;
 }
 @keyframes hvCorePulse{
-  0%, 100% {
-    transform: scale(1);
-    box-shadow:
-      0 0 12px rgba(230,0,0,.85),
-      0 0 30px rgba(230,0,0,.45),
-      0 0 60px rgba(230,0,0,.2);
-  }
-  50% {
-    transform: scale(1.35);
-    box-shadow:
-      0 0 18px rgba(230,0,0,1),
-      0 0 45px rgba(230,0,0,.6),
-      0 0 90px rgba(230,0,0,.3);
-  }
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.1); }
 }
 @keyframes hvRing{
   0%   { transform: scale(.7); opacity: .9; }
   100% { transform: scale(1.6); opacity: 0; }
 }
+
 .hv-halo{
   position: absolute;
   width: 4%;
@@ -693,10 +690,12 @@ section[id]{ scroll-margin-top: 100px; }
 .readout b{ color: var(--ink); font-weight: 700; }
 .readout b.red{ color: var(--red); }
 
-.readout-1{ top: 5%;  left: 0; }
-.readout-2{ top: 5%;  right: 0; }
-.readout-3{ bottom: 20%; left: 0; }
-.readout-4{ bottom: 20%; right: 0; }
+/* 环形布局 */
+.readout-1{ top: 0;    left: 50%; transform: translateX(-50%); }
+.readout-2{ top: 40%;  left: 0; }
+.readout-5{ top: 40%;  right: 0; }
+.readout-3{ bottom: 14%; left: 0; }
+.readout-4{ bottom: 14%; right: 0; }
 
 .contract-strip{
   position: absolute;
@@ -1427,10 +1426,16 @@ footer::before{
   .hero-visual{ max-width: 320px; }
 
   .readout{ font-size: 8.5px; padding: 7px 10px 7px 12px; }
-  .readout-1{ top: 3%; left: -4px; }
-  .readout-2{ top: 3%; right: -4px; }
-  .readout-3{ bottom: 18%; left: -4px; }
-  .readout-4{ bottom: 18%; right: -4px; }
+
+  .readout-1{
+    top: -2%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .readout-2{ top: 42%; left: -4px; }
+  .readout-5{ top: 42%; right: -4px; }
+  .readout-3{ bottom: 12%; left: -4px; }
+  .readout-4{ bottom: 12%; right: -4px; }
 
   .contract-strip{
     bottom: -70px;
@@ -1605,7 +1610,7 @@ footer::before{
         </a>
         <a class="btn btn-outline" href="#data"
            data-en="▼ VIEW ON-CHAIN DATA" data-zh="▼ 查看链上数据">
-          ▼ VIEW ON-CHAIN DATA
+          ▼ ON-CHAIN DATA
         </a>
       </div>
     </div>
@@ -1624,29 +1629,45 @@ footer::before{
       <div class="hv-scan"></div>
       <div class="hv-halo hv-halo-1"></div>
       <div class="hv-halo hv-halo-2"></div>
-      <div class="hv-core"></div>
+
+      <!-- 修改：圆心显示 Logo -->
+      <div class="hv-core">
+        <img src="logo-red32.svg" alt="CHILI">
+      </div>
+
       <div class="hv-node hv-node-1"></div>
       <div class="hv-node hv-node-2"></div>
       <div class="hv-node hv-node-3"></div>
 
+      <!-- 网络 - 顶部居中 -->
       <div class="readout readout-1"
            data-en-html="NETWORK // <b class='red'>BNB Smart Chain (BSC)</b>"
            data-zh-html="网络 // <b class='red'>BNB Smart Chain (BSC)</b>">
         网络 // <b class="red">BNB Smart Chain (BSC)</b>
       </div>
 
+      <!-- 代币名称 - 左侧中间 -->
       <div class="readout readout-2"
            data-en-html="TOKEN NAME // <b class='red'>小辣椒</b>"
            data-zh-html="代币名称 // <b class='red'>小辣椒</b>">
         代币名称 // <b class="red">小辣椒</b>
       </div>
 
+      <!-- 代币符号 - 右侧中间 -->
+      <div class="readout readout-5"
+           data-en-html="TOKEN SYMBOL // <b class='red'>CHILI</b>"
+           data-zh-html="代币符号 // <b class='red'>CHILI</b>">
+        代币符号 // <b class="red">CHILI</b>
+      </div>
+
+      <!-- 总供应量 - 左下 -->
       <div class="readout readout-3"
            data-en-html="TOTAL SUPPLY // <b class='red' id='supplyHero'>LOADING</b>"
            data-zh-html="总供应量 // <b class='red' id='supplyHero'>加载中</b>">
         总供应量 // <b class="red" id="supplyHero">加载中</b>
       </div>
 
+      <!-- 持币人数 - 右下 -->
       <div class="readout readout-4"
            data-en-html="HOLDERS // <b class='red' id='holdersHero'>LOADING</b>"
            data-zh-html="持币人数 // <b class='red' id='holdersHero'>加载中</b>">
