@@ -234,7 +234,6 @@ section[id]{ scroll-margin-top: 100px; }
   background: var(--red);
   color: #fff;
 }
-/* nav-cta 现在是正长方形 */
 .nav-cta{
   display: inline-flex;
   align-items: center;
@@ -349,7 +348,6 @@ section[id]{ scroll-margin-top: 100px; }
   gap: 10px;
   margin-top: clamp(26px, 3vw, 38px);
 }
-/* btn 现在是正长方形 */
 .btn{
   display: inline-flex;
   align-items: center;
@@ -676,12 +674,12 @@ section[id]{ scroll-margin-top: 100px; }
 .readout b{ color: var(--ink); font-weight: 700; }
 .readout b.red{ color: var(--red); }
 
-/* 环形布局 */
+/* 环形布局 —— 持币人数（readout-4）往左靠 */
 .readout-1{ top: 0;    left: 50%; transform: translateX(-50%); }
 .readout-2{ top: 40%;  left: 0; }
 .readout-5{ top: 40%;  right: 0; }
 .readout-3{ bottom: 14%; left: 0; }
-.readout-4{ bottom: 14%; right: 0; }
+.readout-4{ bottom: 14%; right: 8%; }
 
 .contract-strip{
   position: absolute;
@@ -1272,7 +1270,8 @@ footer{
   .readout-2{ top: 42%; left: -4px; }
   .readout-5{ top: 42%; right: -4px; }
   .readout-3{ bottom: 12%; left: -4px; }
-  .readout-4{ bottom: 12%; right: -4px; }
+  /* 手机端持币人数往左靠一点 */
+  .readout-4{ bottom: 12%; right: 4%; }
 
   .contract-strip{
     bottom: -70px;
@@ -1330,7 +1329,7 @@ footer{
     padding: 9px 12px;
   }
 
-  /* 手机端：两个按钮并排、正长方形、更小巧 */
+  /* 手机端：两个按钮并排、正长方形 */
   .hero-actions{
     flex-direction: row;
     flex-wrap: nowrap;
@@ -1347,16 +1346,9 @@ footer{
   }
 
   /* 手机端：导航栏按钮小巧，正长方形 */
-  .nav-inner{
-    height: 64px;
-  }
-  .logo img{
-    height: 36px;
-    max-width: 150px;
-  }
-  .logo-text {
-    font-size: 14px;
-  }
+  .nav-inner{ height: 64px; }
+  .logo img{ height: 36px; max-width: 150px; }
+  .logo-text { font-size: 14px; }
   .nav-cta{
     padding: 7px 10px;
     font-size: 9px;
@@ -1364,7 +1356,27 @@ footer{
   }
   .lang-switch button{ padding: 6px 7px; font-size: 9px; }
 
-  .footer-inner{ flex-direction: column; align-items: flex-start; }
+  /* 手机端页脚：居中、拉开间距（图标大小不变） */
+  footer{
+    padding-block: 40px;
+  }
+  .footer-inner{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    text-align: center;
+  }
+  .footer-inner .brand{
+    order: 1;
+  }
+  .footer-inner > span[data-en]{
+    order: 2;
+  }
+  .footer-links{
+    order: 3;
+    gap: 14px;
+  }
 }
 </style>
 </head>
@@ -1939,7 +1951,7 @@ const chainDataCache = { supply: null, holders: null };
       }
 
       if (data.total_supply) {
-        const s = fmt(Number(data.total_supply)) + ' CHILI';
+        const s = fmt(Number(data.total_supply)) + ' 枚';
         chainDataCache.supply = s;
         setText('supplyHero', s);
         setText('statSupply', s);
@@ -1991,7 +2003,7 @@ const chainDataCache = { supply: null, holders: null };
         const f = fraction.toString().padStart(decimals, '0').slice(0, 4);
         display = Number(whole).toLocaleString('en-US') + '.' + f;
       }
-      return display + ' CHILI';
+      return display + ' 枚';
     } catch(e) { return null; }
   }
 
@@ -2016,7 +2028,7 @@ const chainDataCache = { supply: null, holders: null };
     }
     const gp = await fetchGoPlus();
     if (gp && gp.total_supply) {
-      const s = fmt(Number(gp.total_supply)) + ' CHILI';
+      const s = fmt(Number(gp.total_supply)) + ' 枚';
       chainDataCache.supply = s;
       setText('supplyHero', s);
       setText('statSupply', s);
